@@ -1,4 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // 實驗室風格：滾動視差效果 (Parallax)
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        const parallaxElements = document.querySelectorAll('.page-header-text h1');
+        parallaxElements.forEach(el => {
+            el.style.transform = `translateY(${scrolled * 0.15}px)`;
+        });
+    });
+
     // Header 縮放效果
     const header = document.getElementById('main-header') || document.querySelector('header');
     if (header) {
@@ -12,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const revealElements = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
+            if (entry.isIntersecting && entry.intersectionRatio > 0) {
                 entry.target.classList.add('active');
                 revealObserver.unobserve(entry.target);
             }
