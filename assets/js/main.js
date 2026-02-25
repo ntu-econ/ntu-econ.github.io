@@ -50,4 +50,26 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // 動態載入 Linktree 連結 (僅在首頁執行)
+    const linktreeContainer = document.getElementById('linktree-container');
+    if (linktreeContainer) {
+        fetch('assets/data/links.json')
+            .then(response => response.json())
+            .then(links => {
+                links.forEach(link => {
+                    const a = document.createElement('a');
+                    a.href = link.url;
+                    a.className = 'linktree-btn';
+                    a.target = '_blank';
+                    a.rel = 'noopener noreferrer';
+                    
+                    // 這裡可以根據 link.icon 加入對應的 SVG icon，目前先只顯示文字
+                    a.textContent = link.title;
+                    
+                    linktreeContainer.appendChild(a);
+                });
+            })
+            .catch(error => console.error('Error loading links:', error));
+    }
 });
