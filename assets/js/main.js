@@ -1,4 +1,3 @@
---- /dev/null
 document.addEventListener('DOMContentLoaded', () => {
     // Header 縮放效果
     const header = document.getElementById('main-header') || document.querySelector('header');

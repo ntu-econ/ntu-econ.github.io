@@ -1,4 +1,3 @@
---- /dev/null
 /* =========================================
    1. 核心變數與重置 (Design Tokens)
    ========================================= */
@@ -119,13 +118,6 @@ footer {
     font-size: 14px;
 }
 
-/* RWD */
-@media (max-width: 768px) {
-    header { padding: 0 20px; flex-direction: column; height: auto; padding-bottom: 10px; }
-    .nav-area ul { gap: 4px; }
-    .site-title { font-size: 18px; }
-}
-
 /* =========================================
    4. 動畫特效庫 (共用)
    ========================================= */
@@ -181,6 +173,31 @@ footer {
 .toc-link:hover { background: var(--navy-100); color: var(--navy-800); padding-left: 18px; }
 .toc-link.active { background: #F0F7FF; color: var(--navy-800); font-weight: 700; border-left-color: var(--gold-500); }
 .toc-link.active svg { color: var(--gold-500); }
+
+/* 新增：全寬佈局容器 (用於沒有側邊欄的頁面，如活動回顧) */
+.layout-container-full {
+    max-width: 1280px;
+    margin: 60px auto;
+    padding: 0 32px;
+}
+
+/* 新增：媒體預留位置與響應式圖片/影片 */
+.media-placeholder {
+    background: #F8FAFC;
+    border: 1px dashed #CBD5E1;
+    border-radius: var(--radius-md);
+    padding: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+.activity-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    margin-top: 10px;
+}
+.video-container { position: relative; padding-bottom: 56.25%; /* 16:9 Aspect Ratio */ height: 0; overflow: hidden; max-width: 100%; background: #000; margin-top: 10px; border-radius: var(--radius-md); }
+.video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
 /* =========================================
    6. 內容區元件 (Content Components)
@@ -272,6 +289,26 @@ section {
 .btn-outline { background: transparent; color: var(--navy-800); border: 2px solid #E2E8F0; }
 .btn-outline:hover { border-color: var(--navy-800); background: #F8FAFC; }
 
+/* 新增：部門卡片樣式 */
+.department-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+.department-card {
+    background: var(--bg-white);
+    border: 1px solid #E2E8F0;
+    border-radius: var(--radius-md);
+    padding: 24px;
+    transition: 0.3s;
+}
+.department-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-card);
+    border-color: var(--navy-700);
+}
+.department-card h3 { font-size: 18px; margin: 0 0 10px 0; color: var(--navy-900); }
+.department-card p { font-size: 14px; color: var(--text-muted); margin: 0; line-height: 1.6; }
+
+
 /* Goals & FAQ */
 .goals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
 .goal-item {
@@ -293,6 +330,18 @@ summary::-webkit-details-marker { display: none; }
 details[open] .arrow-icon { transform: rotate(180deg); color: var(--gold-500); }
 .faq-body { padding: 0 24px 24px; color: var(--text-muted); line-height: 1.6; border-top: 1px solid #F1F5F9; padding-top: 16px; }
 
+/* 新增：聯絡資訊列表 */
+.contact-list {
+    list-style: none;
+    padding-left: 0;
+}
+.contact-list li {
+    margin-bottom: 12px;
+    color: var(--text-muted);
+}
+.contact-list a { color: var(--navy-700); font-weight: 500; text-decoration: underline; text-decoration-color: var(--gold-400); }
+.contact-list a:hover { color: var(--navy-900); text-decoration-color: var(--gold-500); }
+
 /* Component RWD */
 @media (max-width: 1200px) {
     .cards-grid { grid-template-columns: repeat(2, 1fr); }
@@ -303,8 +352,13 @@ details[open] .arrow-icon { transform: rotate(180deg); color: var(--gold-500); }
     .cards-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 768px) {
+    header { padding: 0 20px; flex-direction: column; height: auto; padding-bottom: 10px; }
+    .nav-area ul { gap: 4px; }
     .page-header-text h1 { font-size: 32px; }
     section { padding: 32px 24px; }
     .cards-grid { grid-template-columns: 1fr; }
     .btn { width: 100%; }
+    .layout-container-full {
+        padding: 0 20px; /* 手機版縮小左右邊距 */
+    }
 }
