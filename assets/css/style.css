@@ -172,9 +172,9 @@ footer {
     max-width: 1280px;
     margin: clamp(40px, 8vw, 100px) auto; /* 流體間距 */
     padding: 0 clamp(20px, 5%, 60px); /* 非對稱間距基礎 */
-    display: flex; /* 改用 Flex 配合 Grid 實現破格 */
-    flex-wrap: wrap;
-    gap: clamp(40px, 5vw, 80px);
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+    gap: 40px;
     align-items: start;
     position: relative;
 }
@@ -238,10 +238,7 @@ footer {
 /* =========================================
    6. 內容區元件 (Content Components)
    ========================================= */
-.main-content { 
-    flex: 1; /* 讓內容區塊自動填滿剩餘空間，避免掉到側邊欄下方 */
-    min-width: 0; 
-}
+.main-content { min-width: 0; }
 
 .page-header-text { margin-bottom: 50px; }
 .page-header-text h1 {
@@ -416,7 +413,7 @@ details[open] .arrow-icon { transform: rotate(180deg); color: var(--gold-500); }
     .cards-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 1024px) {
-    .layout-container { grid-template-columns: 1fr; }
+    .layout-container { grid-template-columns: 1fr; display: flex; flex-direction: column; }
     .sidebar { display: none; }
     .cards-grid { grid-template-columns: repeat(2, 1fr); }
 }
