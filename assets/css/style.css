@@ -3,18 +3,20 @@
    1. 核心變數與重置 (Design Tokens)
    ========================================= */
 :root {
-    /* 品牌色系 */
-    --navy-900: #021226;
-    --navy-800: #0A2647;
-    --navy-700: #144272;
+    /* 品牌色系 (已整體微調調淺，降低視覺壓迫感) */
+    --navy-900: #0A1E3F; /* 原 #021226，稍微調淺柔和 */
+    --navy-800: #14325A; /* 原 #0A2647，稍微調淺 */
+    --navy-700: #1C4E80; /* 原 #144272，稍微調淺 */
     --navy-100: #E6F0F9;
     
     --gold-500: #CBA16E;
     --gold-400: #DCC09B;
     --gold-100: #F9F3EB;
     
-    --text-main: #1E293B;
-    --text-muted: #64748B;
+    /* 文字色彩 (調淺，增加閱讀舒適度) */
+    --text-main: #334155;  /* 原 #1E293B，調淺為柔和的深灰藍 */
+    --text-muted: #718096; /* 原 #64748B，調淺增加呼吸感 */
+    
     --bg-body: #F8FAFC;
     --bg-white: #FAFAFA; /* 微調為米白，拒絕純白 */
     
@@ -256,7 +258,7 @@ footer {
     padding: 0 10px;
 }
 
-.page-header-text p { font-size: 18px; color: var(--text-muted); max-width: 680px; } /* 微調加大 */
+.page-header-text p { font-size: 18px; color: var(--text-muted); max-width: 680px; }
 .divider { width: 100px; height: 8px; background: var(--gold-500); margin-top: 24px; border-radius: 0; }
 
 section {
@@ -299,7 +301,7 @@ section {
     border-color: var(--navy-800); transform: scale(1.1);
 }
 .step-content h3 { margin: 0 0 6px; font-size: 20px; color: var(--navy-900); font-weight: 700; }
-.step-content p { margin: 0; font-size: 16px; color: var(--text-muted); } /* 微調加大 */
+.step-content p { margin: 0; font-size: 16px; color: var(--text-muted); }
 
 /* Cards & Buttons */
 .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -324,13 +326,13 @@ section {
 .bg-gray { background: #F1F5F9; color: #64748B; }
 
 .pay-card h3 { font-size: 20px; margin: 0 0 10px 0; color: var(--navy-900); font-weight: 700; }
-.pay-card p { font-size: 15px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.6; } /* 微調加大 */
+.pay-card p { font-size: 15px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.6; }
 
 .bank-info {
     background: #F8FAFC; border: 1px solid var(--navy-900); padding: 16px;
     border-radius: 0; margin-bottom: 20px; font-family: 'Space Grotesk', monospace;
 }
-.bank-row { display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 14px; color: #64748B; }
+.bank-row { display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 14px; color: var(--text-muted); }
 .bank-code { font-size: 16px; font-weight: 700; color: var(--navy-900); letter-spacing: 0.5px; }
 
 .btn {
@@ -364,7 +366,7 @@ section {
     box-shadow: 10px 10px 0 rgba(2, 18, 38, 0.1);
 }
 .department-card h3 { font-size: 20px; margin: 0 0 10px 0; color: var(--navy-900); font-weight: 700; }
-.department-card p { font-size: 16px; color: var(--text-muted); margin: 0; line-height: 1.6; } /* 微調加大 */
+.department-card p { font-size: 16px; color: var(--text-muted); margin: 0; line-height: 1.6; }
 
 
 /* Goals & FAQ */
