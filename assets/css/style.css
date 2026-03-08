@@ -455,3 +455,195 @@ details[open] .arrow-icon { transform: rotate(180deg); color: var(--gold-500); }
         padding: 0 20px;
     }
 }
+
+
+/* =========================================
+   7. Activity Review Page Components (02_review.html)
+   ========================================= */
+
+/* Header Activity Bubbles */
+.nav-area {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.activity-bubbles {
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 450px; /* Approx 40% on a 1280px screen */
+    height: 120px;
+    pointer-events: none; /* Container doesn't capture clicks */
+}
+
+.bubble {
+    --size-px: calc(var(--size) * 1px);
+    position: absolute;
+    width: var(--size-px);
+    height: var(--size-px);
+    background: var(--navy-100);
+    border: 1px solid var(--navy-700);
+    color: var(--navy-800);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    transition: transform 0.4s var(--ease-custom), background-color 0.4s;
+    pointer-events: all; /* Bubbles capture clicks */
+    text-shadow: none; /* Override default link hover */
+}
+.bubble span {
+    max-width: 80%;
+}
+
+.bubble:hover {
+    transform: scale(1.1);
+    background: var(--gold-400);
+    color: var(--navy-900);
+    z-index: 10;
+}
+
+/* "Random" positioning */
+.bubble:nth-child(1) { top: 0; right: 150px; } /* Econ Night (80) */
+.bubble:nth-child(2) { top: 60px; right: 230px; } /* Econ Week (60) */
+.bubble:nth-child(3) { top: 20px; right: 0; } /* Econ Camp (80) */
+.bubble:nth-child(4) { top: 75px; right: 100px; } /* Orientation (50) */
+.bubble:nth-child(5) { top: 5px; right: 80px; } /* Other (40) */
+
+/* Back to Top Button */
+.back-to-top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    background: var(--navy-900);
+    color: var(--gold-400);
+    border-radius: 0; /* Hard edge */
+    border: 1px solid var(--navy-700);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.4s, visibility 0.4s, transform 0.4s var(--ease-custom);
+}
+.back-to-top-btn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.back-to-top-btn:hover {
+    background: var(--gold-500);
+    color: var(--navy-900);
+    text-shadow: none;
+}
+.back-to-top-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Horizontal Timeline */
+.horizontal-timeline {
+    margin-top: 30px;
+}
+.timeline-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    border-bottom: 2px solid var(--navy-800);
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+}
+.timeline-tab {
+    padding: 8px 16px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 0;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: 0.3s var(--ease-custom);
+}
+.timeline-tab:hover {
+    background: var(--navy-100);
+    color: var(--navy-900);
+}
+.timeline-tab.active {
+    background: var(--navy-800);
+    color: #fff;
+    border-color: var(--navy-900);
+}
+
+.timeline-pane {
+    display: none;
+    padding: 15px 5px;
+    animation: fadeIn 0.5s var(--ease-custom);
+}
+.timeline-pane.active {
+    display: block;
+}
+.timeline-pane h3 {
+    font-size: 20px;
+    color: var(--navy-900);
+    margin: 0 0 10px;
+}
+
+/* Hide nav for single-entry timelines */
+.horizontal-timeline.single-entry .timeline-nav {
+    display: none;
+}
+.horizontal-timeline.single-entry .timeline-content {
+    border-top: 2px solid var(--navy-800);
+    margin-top: -10px; /* Adjust for visual consistency */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Other Activities Grid */
+.other-activities-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+/* =========================================
+   8. Responsive Adjustments
+   ========================================= */
+
+@media (max-width: 1200px) {
+    .activity-bubbles {
+        display: none; /* Hide bubbles on smaller screens to avoid overlap */
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 15px 20px; /* Adjust header padding */
+    }
+    .nav-area {
+        width: 100%;
+        justify-content: center;
+    }
+    .activity-bubbles {
+        display: none; /* Ensure it's hidden on mobile */
+    }
+    .other-activities-grid {
+        grid-template-columns: 1fr;
+    }
+    .timeline-nav {
+        justify-content: center;
+    }
+}
