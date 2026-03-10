@@ -351,6 +351,99 @@
 .mini-card p { font-size:12px; color:var(--text-muted); margin:0; line-height:1.5; }
 
 /* =====================================================
+   PHOTO GALLERY SLIDER
+===================================================== */
+.gallery {
+  margin-top: 16px;
+  position: relative;
+  user-select: none;
+}
+.gallery.empty { display: none; }
+
+.gallery-track {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--navy-100);
+  border: 1.5px solid var(--navy-800);
+  aspect-ratio: 16 / 9;
+}
+.gallery-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.45s var(--ease-custom);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gallery-slide.active { opacity: 1; }
+.gallery-slide img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+/* overlay arrow buttons */
+.gallery-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px; height: 48px;
+  background: rgba(2,18,38,0.60);
+  border: none; border-radius: 0;
+  color: var(--gold-400);
+  font-size: 22px; font-family: 'Outfit', sans-serif;
+  cursor: pointer; z-index: 10;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, color 0.2s;
+  padding: 0;
+}
+.gallery-btn:hover { background: var(--gold-500); color: var(--navy-900); }
+.gallery-prev { left: 0; }
+.gallery-next { right: 0; }
+
+.gallery-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+  min-height: 18px;
+}
+.gallery-dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.gallery-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--navy-100);
+  border: 1.5px solid var(--navy-700);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  padding: 0;
+}
+.gallery-dot.active {
+  background: var(--navy-800);
+  transform: scale(1.25);
+}
+.gallery-counter {
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 600;
+  min-width: 32px;
+  text-align: center;
+}
+
+/* mini-card 內的相簿比例較小 */
+.mini-card .gallery { margin-top: 10px; }
+.mini-card .gallery-track { aspect-ratio: 4 / 3; }
+.mini-card .gallery-btn { width: 28px; height: 40px; font-size: 18px; }
+
+/* =====================================================
    MOBILE BOTTOM NAV
 ===================================================== */
 .mobile-nav-bar {
@@ -527,29 +620,83 @@
           <h3>《E心只想con著你》</h3>
           <p>日期：2024/5/15</p>
           <p>Instagram：<a href="https://www.instagram.com/p/C9fKc-gy_4h/?img_index=7" target="_blank">活動貼文 ↗</a></p>
+          <div class="gallery" data-section="econ-night" data-key="2024">
+            <div class="gallery-track"></div>
+            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+          </div>
         </div>
         <div class="dock-pane" data-year="2022">
           <h3>經宵別夢寒</h3>
           <p>YouTube：<a href="https://youtube.com/playlist?list=PLoXkCKVbGXuv13k_3vBw2GCzr5HYM3Eux" target="_blank">活動影片 ↗</a></p>
+          <div class="gallery" data-section="econ-night" data-key="2022">
+            <div class="gallery-track"></div>
+            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+          </div>
         </div>
-        <div class="dock-pane" data-year="2017"><h3>《紙醉經迷 Extravagant》</h3></div>
-        <div class="dock-pane" data-year="2016"><h3>《前世經生 About Time》</h3></div>
+        <div class="dock-pane" data-year="2017">
+          <h3>《紙醉經迷 Extravagant》</h3>
+          <div class="gallery" data-section="econ-night" data-key="2017">
+            <div class="gallery-track"></div>
+            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+          </div>
+        </div>
+        <div class="dock-pane" data-year="2016">
+          <h3>《前世經生 About Time》</h3>
+          <div class="gallery" data-section="econ-night" data-key="2016">
+            <div class="gallery-track"></div>
+            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+          </div>
+        </div>
         <div class="dock-pane" data-year="2015">
           <h3>Serendipity</h3>
           <p>日期：2015/3/20</p>
           <p>Facebook：<a href="https://www.facebook.com/2015Serendipity/?locale=zh_TW" target="_blank">活動專頁 ↗</a></p>
+          <div class="gallery" data-section="econ-night" data-key="2015">
+            <div class="gallery-track"></div>
+            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+          </div>
         </div>
         <div class="dock-pane" data-year="2014">
           <h3>Exotic Crush</h3>
           <p>日期：2014/3/21</p>
           <p>Facebook：<a href="https://www.facebook.com/econcrush/" target="_blank">活動專頁 ↗</a></p>
+          <div class="gallery" data-section="econ-night" data-key="2014">
+            <div class="gallery-track"></div>
+            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+          </div>
         </div>
         <div class="dock-pane" data-year="2013">
           <h3>36天流浪倒數</h3>
           <p>日期：2013/3/6</p>
           <p>Facebook：<a href="https://www.facebook.com/EconNight2013/" target="_blank">活動專頁 ↗</a></p>
+          <div class="gallery" data-section="econ-night" data-key="2013">
+            <div class="gallery-track"></div>
+            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+          </div>
         </div>
-        <div class="dock-pane" data-year="2012"><h3>chocolate or me</h3></div>
+        <div class="dock-pane" data-year="2012">
+          <h3>chocolate or me</h3>
+          <div class="gallery" data-section="econ-night" data-key="2012">
+            <div class="gallery-track"></div>
+            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -567,6 +714,12 @@
         <div class="timeline-pane active" data-year="2023">
           <h3>經濟週主題</h3>
           <p>此處可放置該年份經濟週的介紹、照片或相關連結。</p>
+          <div class="gallery" data-section="econ-week" data-key="2023">
+            <div class="gallery-track"></div>
+            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -585,6 +738,12 @@
         <div class="timeline-pane active" data-year="2023">
           <h3>經濟營主題</h3>
           <p>此處可放置該年份經濟營的介紹、照片或相關連結。</p>
+          <div class="gallery" data-section="econ-camp" data-key="2023">
+            <div class="gallery-track"></div>
+            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -603,6 +762,12 @@
         <div class="timeline-pane active" data-year="future">
           <h3>迎新活動</h3>
           <p>此處將更新迎新活動的資訊，敬請期待。</p>
+          <div class="gallery" data-section="orientation" data-key="future">
+            <div class="gallery-track"></div>
+            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -613,10 +778,50 @@
     <div class="section-heading" data-num="05"><h2>其他活動</h2></div>
     <p>除了四大年度活動外，系學會也舉辦各式各樣的單次活動，豐富大家的課餘生活。</p>
     <div class="mini-activities-grid">
-      <div class="mini-card"><span class="mini-card-icon">🀄</span><h3>麻將大賽</h3><p>與系上同學切磋牌技的絕佳機會。</p></div>
-      <div class="mini-card"><span class="mini-card-icon">🧺</span><h3>系野餐</h3><p>在校園草地享受悠閒的午後時光。</p></div>
-      <div class="mini-card"><span class="mini-card-icon">🔥</span><h3>系烤</h3><p>增進感情的經典團體活動。</p></div>
-      <div class="mini-card"><span class="mini-card-icon">🥂</span><h3>系酒會</h3><p>讓系上同學與教授在正式場合交流。</p></div>
+      <div class="mini-card">
+        <span class="mini-card-icon">🀄</span>
+        <h3>麻將大賽</h3>
+        <p>與系上同學切磋牌技的絕佳機會。</p>
+        <div class="gallery" data-section="other-activities" data-key="mahjong">
+          <div class="gallery-track"></div>
+          <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+          <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+          <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+        </div>
+      </div>
+      <div class="mini-card">
+        <span class="mini-card-icon">🧺</span>
+        <h3>系野餐</h3>
+        <p>在校園草地享受悠閒的午後時光。</p>
+        <div class="gallery" data-section="other-activities" data-key="picnic">
+          <div class="gallery-track"></div>
+          <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+          <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+          <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+        </div>
+      </div>
+      <div class="mini-card">
+        <span class="mini-card-icon">🔥</span>
+        <h3>系烤</h3>
+        <p>增進感情的經典團體活動。</p>
+        <div class="gallery" data-section="other-activities" data-key="bbq">
+          <div class="gallery-track"></div>
+          <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+          <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+          <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+        </div>
+      </div>
+      <div class="mini-card">
+        <span class="mini-card-icon">🥂</span>
+        <h3>系酒會</h3>
+        <p>讓系上同學與教授在正式場合交流。</p>
+        <div class="gallery" data-section="other-activities" data-key="cocktail">
+          <div class="gallery-track"></div>
+          <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+          <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+          <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -658,6 +863,7 @@
 </footer>
 
 <script src="assets/js/main.js"></script>
+<script src="assets/js/gallery-data.js"></script>
 <script>
 /* ======================================================
    PAGE JS — fully self-contained
@@ -831,6 +1037,73 @@
   }
 
   /* --------------------------------------------------
+     8. Photo Gallery Slider
+  -------------------------------------------------- */
+  function initGalleries() {
+    document.querySelectorAll('.gallery').forEach(function(gallery) {
+      var section = gallery.getAttribute('data-section');
+      var key     = gallery.getAttribute('data-key');
+      var urls    = (typeof GALLERY_DATA !== 'undefined' &&
+                     GALLERY_DATA[section] &&
+                     GALLERY_DATA[section][key]) || [];
+
+      if (!urls.length) {
+        gallery.classList.add('empty');
+        return;
+      }
+
+      var track   = gallery.querySelector('.gallery-track');
+      var dotsEl  = gallery.querySelector('.gallery-dots');
+      var counter = gallery.querySelector('.gallery-counter');
+      var prevBtn = gallery.querySelector('.gallery-prev');
+      var nextBtn = gallery.querySelector('.gallery-next');
+      var current = 0;
+
+      urls.forEach(function(url, i) {
+        /* slide */
+        var slide = document.createElement('div');
+        slide.className = 'gallery-slide' + (i === 0 ? ' active' : '');
+        var img = document.createElement('img');
+        img.src = url;
+        img.alt = '活動照片 ' + (i + 1);
+        img.loading = 'lazy';
+        slide.appendChild(img);
+        track.appendChild(slide);
+
+        /* dot */
+        var dot = document.createElement('button');
+        dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', '第 ' + (i + 1) + ' 張');
+        dot.addEventListener('click', function() { goTo(i); });
+        dotsEl.appendChild(dot);
+      });
+
+      var slides = gallery.querySelectorAll('.gallery-slide');
+      var dots   = gallery.querySelectorAll('.gallery-dot');
+
+      function goTo(idx) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (idx + urls.length) % urls.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+        counter.textContent = (current + 1) + ' / ' + urls.length;
+      }
+
+      counter.textContent = '1 / ' + urls.length;
+
+      if (urls.length === 1) {
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+        dotsEl.style.display  = 'none';
+      }
+
+      prevBtn.addEventListener('click', function() { goTo(current - 1); });
+      nextBtn.addEventListener('click', function() { goTo(current + 1); });
+    });
+  }
+
+  /* --------------------------------------------------
      BOOT
   -------------------------------------------------- */
   document.addEventListener('DOMContentLoaded', function() {
@@ -841,6 +1114,7 @@
     initTimelines();
     initDock();
     initMobileNav();
+    initGalleries();
   });
 
 }());
