@@ -7,234 +7,9 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Outfit:wght@400;700;900&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Outfit:wght@400;600;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
     
-    <style>
-        /* =========================================
-           1. 核心變數與重置 (極簡學術風)
-           ========================================= */
-        :root {
-            /* 沉穩深藍色系為主 */
-            --navy-900: #0A1E3F; 
-            --navy-800: #14325A; 
-            --navy-100: #E6F0F9;
-            
-            --gold-500: #CBA16E;
-            --gold-100: #F9F3EB;
-            
-            --text-main: #334155;  
-            --text-muted: #64748B; 
-            
-            --bg-body: #F8FAFC;
-            --bg-white: #FFFFFF; 
-            
-            /* 捨棄浮誇陰影，改用硬邊框與銳利陰影 */
-            --border-solid: 1px solid var(--navy-900);
-            --shadow-solid: 4px 4px 0 var(--navy-900);
-            --shadow-solid-hover: 8px 8px 0 var(--navy-900);
-            
-            --sidebar-width: 220px;
-            --header-h: 80px;
-            --ease-custom: cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg-body); }
-        ::-webkit-scrollbar-thumb { background: var(--navy-900); }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            margin: 0; padding: 0;
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif; 
-            font-size: 18px; 
-            line-height: 1.8;
-            overflow-x: hidden;
-        }
-
-        * { box-sizing: border-box; }
-        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
-        ul { list-style: none; margin: 0; padding: 0; }
-
-        /* =========================================
-           2. Header
-           ========================================= */
-        header {
-            font-family: 'Noto Sans TC', sans-serif; 
-            font-weight: 700; display: flex; justify-content: space-between; align-items: center;
-            padding: 0 40px; background: var(--bg-white);
-            border-bottom: 2px solid var(--navy-900); position: sticky; top: 0;
-            z-index: 1000; height: var(--header-h); transition: height 0.4s var(--ease-custom);
-        }
-        header.scrolled { height: 65px; }
-
-        .brand-area { display: flex; align-items: center; gap: 16px; }
-        .site-logo { width: 40px; height: 40px; object-fit: contain; }
-        .site-title { font-size: 20px; font-weight: 900; color: var(--navy-900); letter-spacing: 1px; }
-
-        .nav-area ul { display: flex; gap: 24px; }
-        .nav-link {
-            font-size: 15px; font-weight: 700; color: var(--text-muted);
-            padding: 8px 0; position: relative; overflow: hidden;
-            text-transform: uppercase; letter-spacing: 1px;
-        }
-        .nav-link::before {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 0%; height: 2px;
-            background: var(--navy-900); transition: width 0.3s ease;
-        }
-        .nav-link:hover::before { width: 100%; }
-        .nav-link:hover { color: var(--navy-900); }
-
-        /* =========================================
-           3. 佈局與側邊欄
-           ========================================= */
-        .layout-container {
-            max-width: 1200px; margin: 80px auto;
-            padding: 0 40px; display: grid;
-            grid-template-columns: var(--sidebar-width) 1fr; gap: 60px; align-items: start;
-        }
-
-        .sidebar {
-            position: sticky; top: calc(var(--header-h) + 40px); background: var(--bg-white);
-            padding: 32px 24px; border: var(--border-solid);
-            box-shadow: var(--shadow-solid); width: var(--sidebar-width); z-index: 10;
-        }
-        .sidebar-title {
-            font-size: 13px; text-transform: uppercase; letter-spacing: 2px;
-            color: var(--navy-900); font-weight: 900; margin-bottom: 24px;
-            border-bottom: 2px solid var(--navy-900); padding-bottom: 8px;
-        }
-        .toc-link {
-            display: block; padding: 10px 0; margin-bottom: 8px;
-            color: var(--text-muted); font-weight: 500; font-size: 16px; 
-            transition: all 0.2s; border-left: 3px solid transparent; padding-left: 12px;
-        }
-        .toc-link:hover { color: var(--navy-900); border-left-color: var(--gold-500); }
-        .toc-link.active { color: var(--navy-900); font-weight: 700; border-left-color: var(--navy-900); background: var(--navy-100); }
-
-        /* =========================================
-           4. 內容區元件
-           ========================================= */
-        .main-content { min-width: 0; }
-        
-        .page-header-text { margin-bottom: 60px; }
-        .page-header-text h1 {
-            font-family: 'Noto Sans TC', sans-serif;
-            font-size: 42px; font-weight: 900; color: var(--navy-900); 
-            margin: 0 0 20px 0; line-height: 1.2; letter-spacing: -1px;
-        }
-        .page-header-text p { font-size: 18px; color: var(--text-main); max-width: 700px; line-height: 1.8; }
-        .divider { width: 80px; height: 6px; background: var(--navy-900); margin-top: 30px; }
-
-        section {
-            background: var(--bg-white);
-            padding: 60px 40px;
-            margin-bottom: 60px;
-            border: var(--border-solid);
-            scroll-margin-top: 120px; 
-        }
-        
-        .section-heading {
-            margin-bottom: 40px;
-            padding-bottom: 16px; 
-            border-bottom: 2px solid var(--navy-900);
-        }
-        .section-heading h2 {
-            font-size: 28px; color: var(--navy-900); margin: 0; font-weight: 900;
-            letter-spacing: 1px;
-        }
-
-        /* 贊助流程 (純粹數字排版) */
-        .timeline { position: relative; padding: 0; margin-top: 20px; }
-        .timeline::before {
-            content: ''; position: absolute; top: 0; bottom: 0; left: 19px; width: 2px; background: var(--navy-900); z-index: 0;
-        }
-        .step-item { position: relative; padding-left: 60px; margin-bottom: 40px; z-index: 1; }
-        .step-marker {
-            position: absolute; left: 0; top: 0; width: 40px; height: 40px;
-            background: var(--navy-900); color: var(--bg-white);
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 18px;
-        }
-        .step-content h3 { margin: 0 0 8px; font-size: 20px; color: var(--navy-900); font-weight: 700; }
-        .step-content p { margin: 0; font-size: 16px; color: var(--text-main); }
-
-        /* 支付方式卡片 (極簡風格) */
-        .cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
-        .pay-card {
-            background: var(--bg-white); border: var(--border-solid);
-            padding: 32px; transition: transform 0.3s ease, box-shadow 0.3s ease; 
-            display: flex; flex-direction: column;
-        }
-        .pay-card:hover { transform: translate(-4px, -4px); box-shadow: var(--shadow-solid); }
-
-        .badge {
-            display: inline-block; padding: 6px 12px; border: var(--border-solid);
-            font-size: 13px; font-weight: 900; letter-spacing: 1px;
-            margin-bottom: 20px; width: fit-content; background: var(--navy-900); color: var(--bg-white);
-        }
-
-        .pay-card h3 { font-size: 24px; margin: 0 0 16px 0; color: var(--navy-900); font-weight: 900; border-bottom: 2px solid var(--navy-100); padding-bottom: 12px; }
-        
-        .bank-info {
-            background: var(--bg-body); border: 1px solid #CBD5E1; padding: 20px;
-            margin-bottom: 20px; margin-top: 10px; font-family: 'Space Grotesk', monospace;
-        }
-        .bank-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 16px; color: var(--text-main); }
-        .bank-row:last-child { margin-bottom: 0; }
-        .bank-code { font-size: 20px; font-weight: 900; color: var(--navy-900); letter-spacing: 1px; }
-
-        /* 提示框 */
-        .notice-box {
-            background: var(--navy-100); border-left: 4px solid var(--navy-900);
-            padding: 16px 20px; margin-bottom: 20px; color: var(--navy-900); font-weight: 500; font-size: 16px; line-height: 1.6;
-        }
-
-        /* 贊助目標 */
-        .goals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; }
-        .goal-item {
-            padding-top: 16px; border-top: 4px solid var(--navy-900);
-        }
-        .goal-item h4 { font-size: 20px; font-weight: 900; color: var(--navy-900); margin: 0 0 12px 0; }
-        .goal-item p { font-size: 16px; color: var(--text-main); margin: 0; line-height: 1.6; }
-
-        /* FAQ */
-        details { border-bottom: 1px solid #CBD5E1; margin-bottom: 0; }
-        details[open] { background: var(--bg-body); }
-        summary {
-            padding: 24px 20px; font-size: 18px; font-weight: 700; cursor: pointer; list-style: none;
-            display: flex; justify-content: space-between; align-items: center; color: var(--navy-900);
-        }
-        summary::-webkit-details-marker { display: none; }
-        summary::after { content: '+'; font-size: 24px; font-weight: 400; color: var(--navy-900); transition: transform 0.3s; }
-        details[open] summary::after { content: '−'; transform: rotate(180deg); }
-        .faq-body { padding: 0 20px 24px 20px; font-size: 16px; color: var(--text-main); line-height: 1.8; }
-
-        /* Footer */
-        footer { background: var(--navy-900); color: #E2E8F0; padding: 60px 0 40px; margin-top: 100px; border-top: 8px solid var(--gold-500); }
-        .footer-content { max-width: 1200px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
-        .footer-col h4 { color: #fff; margin-bottom: 24px; font-size: 18px; font-weight: 900; letter-spacing: 1px; margin-top: 0; }
-        .footer-col ul li { margin-bottom: 12px; }
-        .footer-col a:hover { color: var(--gold-500); text-decoration: underline; }
-        .footer-bottom { text-align: center; margin-top: 60px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 15px; }
-
-        /* RWD */
-        @media (max-width: 1024px) {
-            .layout-container { grid-template-columns: 1fr; display: block; }
-            .sidebar { display: none; }
-            section { padding: 40px 30px; }
-        }
-        @media (max-width: 768px) {
-            header { padding: 0 20px; flex-direction: column; height: auto; padding-bottom: 16px; padding-top: 16px;}
-            .nav-area ul { gap: 16px; flex-wrap: wrap; justify-content: center;}
-            .layout-container { padding: 0 20px; margin: 40px auto; }
-            .page-header-text h1 { font-size: 32px; }
-            .cards-grid { grid-template-columns: 1fr; }
-            section { padding: 30px 20px; }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
@@ -243,23 +18,14 @@
             <img src="images.jpeg" alt="Logo" class="site-logo">
             <a href="index.html" class="site-title">國立臺灣大學經濟學系學生會</a>
         </div>
-        <div class="nav-area">
-            <nav>
-                <ul>
-                    <li><a href="#how-to" class="nav-link">贊助流程</a></li>
-                    <li><a href="#plan" class="nav-link">支付方式</a></li>
-                    <li><a href="#feedback" class="nav-link">物流運費</a></li>
-                    <li><a href="#faq" class="nav-link">常見問題</a></li>
-                    <li><a href="01_about.html" class="nav-link">關於我們</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+        </header>
 
     <div class="layout-container">
         
         <aside class="sidebar">
-            <div class="sidebar-title">本頁目錄</div>
+            <div class="sidebar-title">
+                本頁目錄
+            </div>
             <nav id="toc">
                 <a href="#how-to" class="toc-link active">贊助流程</a>
                 <a href="#plan" class="toc-link">支付方式</a>
@@ -271,41 +37,41 @@
 
         <main class="main-content">
             
-            <div class="page-header-text">
+            <div class="page-header-text reveal active">
                 <h1>贊助與支持計畫</h1>
                 <p>感謝您的支持。我們致力於將資源做最有效的運用，為經濟系師生創造更優質的學術與成長環境。</p>
                 <div class="divider"></div>
             </div>
 
-            <section id="how-to">
+            <section id="how-to" class="reveal">
                 <div class="section-heading">
                     <h2>贊助流程說明</h2>
                 </div>
                 
                 <div class="timeline">
-                    <div class="step-item">
-                        <div class="step-marker">1</div>
+                    <div class="step-item reveal delay-100">
+                        <div class="step-marker">01</div>
                         <div class="step-content">
                             <h3>選擇方案</h3>
                             <p>瀏覽下方的贊助目標與紀念品，挑選您想支持的項目。</p>
                         </div>
                     </div>
-                    <div class="step-item">
-                        <div class="step-marker">2</div>
+                    <div class="step-item reveal delay-200">
+                        <div class="step-marker">02</div>
                         <div class="step-content">
                             <h3>填寫資料</h3>
                             <p>留下聯絡資訊與地址。<strong>若需開立抵稅收據，請務必填寫身分證字號或統編。</strong></p>
                         </div>
                     </div>
-                    <div class="step-item">
-                        <div class="step-marker">3</div>
+                    <div class="step-item reveal delay-300">
+                        <div class="step-marker">03</div>
                         <div class="step-content">
                             <h3>進行支付</h3>
                             <p>支援匯入華南銀行臺大分行（可開立抵稅收據）、或郵局直接轉帳。</p>
                         </div>
                     </div>
-                    <div class="step-item">
-                        <div class="step-marker">4</div>
+                    <div class="step-item reveal delay-300">
+                        <div class="step-marker">04</div>
                         <div class="step-content">
                             <h3>確認回覆</h3>
                             <p>完成匯款後，請務必主動通知學生會以利對帳；若需收據，校方約需兩週作業時間。</p>
@@ -314,113 +80,119 @@
                 </div>
             </section>
 
-            <section id="plan">
+            <section id="plan" class="reveal">
                 <div class="section-heading">
                     <h2>支付方式</h2>
                 </div>
 
                 <div class="cards-grid">
                     
-                    <div class="pay-card">
-                        <span class="badge">需開立正式收據</span>
-                        <h3>校方專戶匯款</h3>
-                        
-                        <div class="notice-box">
-                            捐款者如需由學校開立正式收據，請將捐款匯入學校帳戶。
-                        </div>
+                    <div class="pay-card reveal delay-100">
+                        <span class="badge bg-navy">可抵稅</span>
+                        <h3>校方帳戶匯款</h3>
+                        <p>需由學校開立正式收據者適用。款項將撥入經濟學系學生會之捐款計畫 (FC0077)。</p>
                         
                         <div class="bank-info">
                             <div class="bank-row"><span>銀行</span> <span>華南商業銀行臺大分行</span></div>
                             <div class="bank-row"><span>戶名</span> <span>國立台灣大學 401 專戶</span></div>
-                            <div class="bank-row" style="margin-top: 12px;"><span>帳號</span> <span class="bank-code">154360000028</span></div>
+                            <div class="bank-row" style="margin-top: 4px;"><span>帳號</span> <span class="bank-code">154360000028</span></div>
                         </div>
 
-                        <p style="font-size: 15px; margin-top: auto; padding-top: 20px; border-top: 1px solid #E2E8F0;">
-                            <strong>備註說明：</strong>捐款者可於匯款備註註明「供經濟學系學生會使用」，或另提供匯款證明，皆可作為出納組開立收據之依據。
-                        </p>
+                        <div style="background:#F1F5F9; padding:12px; border-radius:4px; margin-bottom:20px; font-size:13px; color:#64748B; line-height:1.6; border: 1px solid #E2E8F0;">
+                            <strong>📌 備註說明：</strong>匯款備註請註明<strong>「供經濟學系學生會使用」</strong>，或另提供匯款證明，作為出納組開立收據之依據。
+                        </div>
                     </div>
 
-                    <div class="pay-card">
-                        <span class="badge" style="background: var(--bg-body); color: var(--navy-900);">免收據專用</span>
+                    <div class="pay-card reveal delay-200">
+                        <span class="badge bg-gray">免收據專用</span>
                         <h3>郵局直接轉帳</h3>
-                        
-                        <div class="notice-box" style="background: var(--bg-body); border-color: #94A3B8;">
-                            倘捐款者不需學校正式收據，可直接匯入經濟學系學生會之郵局帳戶辦理捐款。
-                        </div>
+                        <p>倘捐款者不需學校正式收據，可直接匯入學生會郵局帳戶辦理捐款。</p>
                         
                         <div class="bank-info">
                             <div class="bank-row"><span>銀行</span> <span>郵局 (700)</span></div>
-                            <div class="bank-row" style="margin-top: 12px;"><span>帳號</span> <span class="bank-code">0001236 0632402</span></div>
+                            <div class="bank-row"><span>帳號</span> <span class="bank-code">0001236 0632402</span></div>
                         </div>
 
-                        <p style="font-size: 15px; margin-top: auto; padding-top: 20px; border-top: 1px solid #E2E8F0; color: var(--text-muted);">
-                            此管道為學生會內部對帳使用，無法提供報稅用之正式抵稅收據。
-                        </p>
+                        <div class="btn" style="background:#F1F5F9; color:#94A3B8; cursor:default; border: 1px solid #E2E8F0; margin-top: auto;">僅供直接轉帳使用</div>
                     </div>
-
                 </div>
             </section>
 
-            <section id="feedback">
+            <section id="feedback" class="reveal">
                 <div class="section-heading">
                     <h2>物流及運費</h2>
                 </div>
-                <div style="font-size: 18px; line-height: 1.8;">
-                    <p>我們將會把紀念品直接寄送給系友，<strong>無需負擔任何運費</strong>。</p>
-                    <div class="notice-box" style="background: var(--bg-white); border: 1px solid var(--navy-900); margin-top: 24px;">
-                        <strong>預計出貨時間：</strong><br>
-                        視品項製作進度而定。現貨商品約 3-5 個工作天寄出；預購商品請參閱個別方案之詳細說明。
-                    </div>
+                <p>我們將會把紀念品直接寄送給系友，無需負擔運費。</p>
+                <div style="background:#F0F9FF; border-left:4px solid #0EA5E9; padding:16px; margin-top:16px; color:#0369A1;">
+                    <strong>預計出貨時間：</strong>視品項製作進度而定，現貨約 3-5 天，預購商品請參閱個別說明。
                 </div>
             </section>
 
-            <section id="goal">
+            <section id="goal" class="reveal">
                 <div class="section-heading">
                     <h2>贊助目標</h2>
                 </div>
                 <div class="goals-grid">
-                    <div class="goal-item">
+                    <div class="goal-item reveal delay-100">
                         <h4>學術講座</h4>
-                        <p>邀請國內外大師演講，提升學術視野。</p>
+                        <p style="font-size:15px; color:#64748B;">邀請國內外大師演講，提升學術視野。</p>
                     </div>
-                    <div class="goal-item">
+                    <div class="goal-item reveal delay-200">
                         <h4>空間優化</h4>
-                        <p>改善系館討論室與公共空間硬體設備。</p>
+                        <p style="font-size:15px; color:#64748B;">改善系館討論室與公共空間硬體設備。</p>
                     </div>
-                    <div class="goal-item">
+                    <div class="goal-item reveal delay-300">
                         <h4>活動發展</h4>
-                        <p>補助系隊比賽與各類學藝活動經費。</p>
+                        <p style="font-size:15px; color:#64748B;">補助系隊比賽與各類學藝活動經費。</p>
                     </div>
                 </div>
             </section>
 
-            <section id="faq">
+            <section id="faq" class="reveal">
                 <div class="section-heading">
                     <h2>常見問題</h2>
                 </div>
                 
                 <details>
-                    <summary>只有系友才能捐款嗎？</summary>
+                    <summary>
+                        只有系友才能捐款嗎？
+                        <span class="arrow-icon" style="font-size: 14px;">▼</span>
+                    </summary>
                     <div class="faq-body">不限系友，我們歡迎社會各界人士支持台大經濟系的發展，您的每一份心意都對我們至關重要。</div>
                 </details>
                 <details>
-                    <summary>可以匿名贊助嗎？</summary>
-                    <div class="faq-body">可以。請在聯絡表單或來信中說明「希望匿名」，我們將會在公開徵信時將您的姓名隱藏，改以「善心人士」稱呼。</div>
+                    <summary>
+                        可以匿名贊助嗎？
+                        <span class="arrow-icon" style="font-size: 14px;">▼</span>
+                    </summary>
+                    <div class="faq-body">可以。請在聯絡表單或來信說明「希望匿名」，我們將會在公開徵信時將您的姓名隱藏，改以「善心人士」稱呼。</div>
                 </details>
                 <details>
-                    <summary>捐款收據可以抵稅嗎？</summary>
-                    <div class="faq-body">僅有匯入「華南商業銀行臺大分行」（校方專戶）之捐款，才可由學校開立正式抵稅收據；匯入學生會郵局帳戶則無法用於報稅扣抵。</div>
+                    <summary>
+                        捐款收據可以抵稅嗎？
+                        <span class="arrow-icon" style="font-size: 14px;">▼</span>
+                    </summary>
+                    <div class="faq-body">僅有透過「校方帳戶匯款」（華南商業銀行）捐款才可由學校開立正式抵稅收據；透過郵局直接轉帳僅供一般收據，無法用於報稅扣抵。</div>
                 </details>
                 <details>
-                    <summary>收據何時會收到？</summary>
-                    <div class="faq-body">若透過校方帳戶代收，學校出納組核對後約需兩週作業時間，收據將郵寄至您的地址。</div>
+                    <summary>
+                        收據何時會收到？
+                        <span class="arrow-icon" style="font-size: 14px;">▼</span>
+                    </summary>
+                    <div class="faq-body">若透過校方代收，學校出納組核對後約需兩週作業時間，收據將郵寄至您的地址。</div>
                 </details>
                 <details>
-                    <summary>匯款完成後需要主動通知嗎？</summary>
+                    <summary>
+                        匯款完成後需要主動通知嗎？
+                        <span class="arrow-icon" style="font-size: 14px;">▼</span>
+                    </summary>
                     <div class="faq-body">是的，匯款後請您務必來信或透過表單提供您的匯款帳號後五碼及金額，以利我們後續進行對帳作業。</div>
                 </details>
                 <details>
-                    <summary>如果有操作問題該聯絡誰？</summary>
+                    <summary>
+                        如果有操作問題該聯絡誰？
+                        <span class="arrow-icon" style="font-size: 14px;">▼</span>
+                    </summary>
                     <div class="faq-body">歡迎來信 ntu.econ.student@gmail.com 或私訊學生會粉絲專頁，我們將有專人為您協助。</div>
                 </details>
             </section>
@@ -450,11 +222,25 @@
         </div>
     </footer>
 
+    <script src="assets/js/main.js"></script>
+    
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // 1. 捲動顯現動畫
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // 2. 側邊欄 Active 狀態自動切換
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('.toc-link');
-            
             window.addEventListener('scroll', () => {
                 let current = '';
                 sections.forEach(section => {
@@ -471,6 +257,7 @@
                 });
             });
 
+            // 3. Header 縮放效果
             const header = document.getElementById('main-header');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 50) header.classList.add('scrolled');
