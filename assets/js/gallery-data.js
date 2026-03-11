@@ -49,8 +49,7 @@
  *      credit:  '攝影：陳小明',   ← 攝影者，  顯示在圖片【左下角】（可省略）
  *    },
  *
- *  兩種格式可在同一陣列中混用。
- *  caption 和 credit 彼此獨立，可以只填其中一個，也可以都填，也可以都不填。
+ *  兩種格式可在同一陣列中混用 *  caption 和 credit 彼此獨立，可以只填其中一個，也可以都填，也可以都不填。
  *
  * ============================================================
  *  【新增年份】
@@ -108,6 +107,10 @@ var GALLERY_DATA = {
       { url: 'images/econ-night/2024/06.webp', caption: 'My name sayin', credit: '攝影：小柚子' },
       { url: 'images/econ-night/2024/07.webp', caption: '家有大鼻', credit: '攝影：小柚子' },
       { url: 'images/econ-night/2024/08.webp', caption: '家有大鼻', credit: '攝影：小柚子' },
+      { url: 'images/econ-night/2024/09.webp', caption: '一紅和他的小夥伴', credit: '攝影：小柚子' },
+      { url: 'images/econ-night/2024/10.webp', caption: 'To the X', credit: '攝影：小柚子' },
+      { url: 'images/econ-night/2024/11.webp', caption: '街舞', credit: '攝影：小柚子' },
+      { url: 'images/econ-night/2024/12.webp', caption: '我更聰明寶貝', credit: '攝影：小柚子' },
     ],
 
     '2022': [
