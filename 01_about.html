@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>關於我們 - 國立臺灣大學經濟學系學生會</title>
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Outfit:wght@400;600;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
     
-    <!-- 共用樣式 -->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -166,6 +164,12 @@
         </div>
     </main>
 
+    <button id="backToTopBtn" aria-label="回到頁首">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5"/>
+        </svg>
+    </button>
+
     <footer>
         <div class="footer-content">
             <div class="footer-col">
@@ -197,7 +201,44 @@
         </div>
     </footer>
 
-    <!-- 共用腳本 -->
     <script src="assets/js/main.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 初始化動態顯現
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // 初始化 Header 特效
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) header.classList.add('scrolled');
+                else header.classList.remove('scrolled');
+            });
+
+            // 初始化回到頁首按鈕
+            const backToTopBtn = document.getElementById('backToTopBtn');
+            if (backToTopBtn) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 300) {
+                        backToTopBtn.classList.add('visible');
+                    } else {
+                        backToTopBtn.classList.remove('visible');
+                    }
+                });
+                backToTopBtn.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+        });
+    </script>
 </body>
 </html>
