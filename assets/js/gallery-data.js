@@ -36,22 +36,22 @@
  *    - 路徑範例：images/econ-night/2024/01.webp
  *
  *  步驟 3：在下方填入路徑（取消註解並修改）
- *    - 格式：'images/活動名稱/年份/檔名.webp'
- *    - 每個活動最多放 5 張，超過只顯示前 5 張
- *    - 把路徑加入陣列後存檔，重新整理網頁即可看到效果
- *  ===================
- * 第一次新增照片
-
-    # 1. 安裝 Pillow（只需一次）
-    pip install Pillow
-
-    # 2. 把原始照片（JPG/PNG）丟入對應資料夾
-    #    例：images/econ-night/2024/
-
-    # 3. 執行壓縮腳本
-    python tools/optimize_images.py
-
-    # 4. 確認 .webp 生成後，可刪除原始 .jpg
+ *    每個活動最多放 5 張，超過只顯示前 5 張。
+ *    把路徑加入陣列後存檔，重新整理網頁即可看到效果。
+ *
+ *  ── 格式 A：純路徑字串（不標任何資訊）─────────────────
+ *    'images/econ-night/2024/01.webp',
+ *
+ *  ── 格式 B：物件格式（可選填 caption 和/或 credit）──────
+ *    {
+ *      url:     'images/econ-night/2024/02.webp',
+ *      caption: '合唱團表演',     ← 表演名稱，顯示在圖片【左上角】（可省略）
+ *      credit:  '攝影：陳小明',   ← 攝影者，  顯示在圖片【左下角】（可省略）
+ *    },
+ *
+ *  兩種格式可在同一陣列中混用。
+ *  caption 和 credit 彼此獨立，可以只填其中一個，也可以都填，也可以都不填。
+ *
  * ============================================================
  *  【新增年份】
  *  以經濟之夜為例，若要新增 2025 年：
@@ -63,6 +63,25 @@
  * ============================================================
  */
 
+/*
+不要 credit（原本的格式，繼續沿用）：
+
+
+'images/econ-night/2024/01.webp',
+要標攝影者：
+
+
+{ url: 'images/econ-night/2024/02.webp', credit: '攝影：陳小明' },
+兩種混用（同一個活動裡，某幾張要標、某幾張不標）：
+
+
+'2024': [
+  { url: 'images/econ-night/2024/01.webp', credit: '攝影：陳小明' },
+  'images/econ-night/2024/02.webp',          // 這張不標
+  { url: 'images/econ-night/2024/03.webp', credit: '攝影：林小華' },
+],
+*/
+
 var GALLERY_DATA = {
 
   /* ──────────────────────────────────────────
@@ -72,11 +91,23 @@ var GALLERY_DATA = {
   'econ-night': {
 
     '2024': [
-       'images/econ-night/2024/01.webp',
-       'images/econ-night/2024/02.webp',
-       'images/econ-night/2024/03.webp',
-      // 'images/econ-night/2024/04.webp',
+      /* 格式 A：純路徑，不加任何標註 */
+      // 'images/econ-night/2024/01.webp',
+      /* 格式 B：只標攝影者 */
+      // { url: 'images/econ-night/2024/02.webp', credit: '攝影：陳小明' },
+      /* 格式 B：只標表演名稱（左上角）*/
+      // { url: 'images/econ-night/2024/03.webp', caption: '合唱團表演' },
+      /* 格式 B：同時標表演名稱和攝影者 */
+      // { url: 'images/econ-night/2024/04.webp', caption: '舞蹈表演', credit: '攝影：林小華' },
       // 'images/econ-night/2024/05.webp',
+      { url: 'images/econ-night/2024/01.webp', caption: '大合照', credit: '攝影：小柚子' },
+      { url: 'images/econ-night/2024/02.webp', credit: '攝影：小柚子' },
+      { url: 'images/econ-night/2024/03.webp', caption: 'Econ baby', credit: '攝影：小柚子' },
+      { url: 'images/econ-night/2024/04.webp', caption: '菜頭想去海邊', credit: '攝影：小柚子' },
+      { url: 'images/econ-night/2024/05.webp', caption: '戴光佑徵女友', credit: '攝影：小柚子' },
+      { url: 'images/econ-night/2024/06.webp', caption: 'My name sayin', credit: '攝影：小柚子' },
+      { url: 'images/econ-night/2024/07.webp', caption: '家有大鼻', credit: '攝影：小柚子' },
+      { url: 'images/econ-night/2024/08.webp', caption: '家有大鼻', credit: '攝影：小柚子' },
     ],
 
     '2022': [

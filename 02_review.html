@@ -438,10 +438,50 @@
   text-align: center;
 }
 
+/* 表演名稱 caption — 疊在圖片左上角 */
+.gallery-caption {
+  position: absolute;
+  top: 0; left: 0;
+  background: rgba(2,18,38,0.62);
+  color: rgba(255,255,255,0.92);
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px 4px 8px;
+  pointer-events: none;
+  z-index: 5;
+  letter-spacing: 0.5px;
+  max-width: 85%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mini-card .gallery-caption { font-size: 9px; padding: 3px 8px 3px 6px; }
+
+/* 攝影 credit — 疊在圖片左下角 */
+.gallery-credit {
+  position: absolute;
+  bottom: 0; left: 0;
+  background: rgba(2,18,38,0.62);
+  color: rgba(255,255,255,0.85);
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  padding: 3px 10px 3px 8px;
+  pointer-events: none;
+  z-index: 5;
+  letter-spacing: 0.3px;
+  max-width: 75%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* mini-card 內的相簿比例較小 */
 .mini-card .gallery { margin-top: 10px; }
 .mini-card .gallery-track { aspect-ratio: 4 / 3; }
 .mini-card .gallery-btn { width: 28px; height: 40px; font-size: 18px; }
+.mini-card .gallery-credit { font-size: 9px; padding: 2px 7px 2px 6px; }
 
 /* =====================================================
    MOBILE BOTTOM NAV
@@ -1059,15 +1099,37 @@
       var nextBtn = gallery.querySelector('.gallery-next');
       var current = 0;
 
-      urls.forEach(function(url, i) {
+      urls.forEach(function(item, i) {
+        /* 支援純字串或 {url, caption, credit} 物件 */
+        var src     = typeof item === 'string' ? item : item.url;
+        var caption = typeof item === 'string' ? null : (item.caption || null);
+        var credit  = typeof item === 'string' ? null : (item.credit  || null);
+
         /* slide */
         var slide = document.createElement('div');
         slide.className = 'gallery-slide' + (i === 0 ? ' active' : '');
         var img = document.createElement('img');
-        img.src = url;
+        img.src = src;
         img.alt = '活動照片 ' + (i + 1);
         img.loading = 'lazy';
         slide.appendChild(img);
+
+        /* 表演名稱 overlay（有填才顯示，左上角） */
+        if (caption) {
+          var captionEl = document.createElement('span');
+          captionEl.className = 'gallery-caption';
+          captionEl.textContent = caption;
+          slide.appendChild(captionEl);
+        }
+
+        /* credit overlay（有填才顯示，左下角） */
+        if (credit) {
+          var creditEl = document.createElement('span');
+          creditEl.className = 'gallery-credit';
+          creditEl.textContent = credit;
+          slide.appendChild(creditEl);
+        }
+
         track.appendChild(slide);
 
         /* dot */
