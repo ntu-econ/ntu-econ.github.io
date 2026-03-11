@@ -1,97 +1,568 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>國立臺灣大學經濟學系學生會</title>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Outfit:wght@400;600;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
-    
-    <!-- 共用樣式 -->
-    <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>國立臺灣大學經濟學系學生會</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
 
-    <style>
-        .banner {
-            position: relative;
-            width: 100%;
-            height: 320px;
-            background-image: url('horizon.jpg'); 
-            background-size: cover;
-            background-position: center;
-        }
-    </style>
+  <style>
+  /* =====================================================
+     首頁專屬變數（繼承共用 style.css 的標準色）
+  ===================================================== */
+  :root {
+    --navy-900:#021226; --navy-800:#0A2647; --navy-700:#144272; --navy-100:#E6F0F9;
+    --gold-500:#CBA16E; --gold-400:#DCC09B; --gold-100:#F9F3EB;
+    --text-main:#1E293B; --text-muted:#64748B;
+    --bg-body:#F8FAFC; --bg-white:#FAFAFA;
+    --ease-custom:cubic-bezier(0.19,1,0.22,1);
+  }
+
+  /* =====================================================
+     BANNER — 頂部大圖
+     ★ 更換背景圖：修改 background-image 中的檔名
+  ===================================================== */
+  .banner {
+    position:relative; width:100%; height:340px;
+    background-image: url('horizon.jpg');
+    background-size:cover; background-position:center;
+    display:flex; align-items:flex-end;
+  }
+  .banner-overlay {
+    /* 漸層遮罩，讓文字可讀 */
+    width:100%; padding:32px clamp(20px,5%,60px) 40px;
+    background:linear-gradient(to top, rgba(2,18,38,0.72) 0%, transparent 100%);
+  }
+  .banner-title {
+    font-family:'Noto Sans TC',sans-serif; font-weight:900;
+    font-size:clamp(1.6rem,4vw,2.8rem); color:#fff;
+    margin:0; letter-spacing:-1px; line-height:1.1;
+  }
+  .banner-sub {
+    font-family:'Outfit',sans-serif; font-size:clamp(0.85rem,1.8vw,1.1rem);
+    color:var(--gold-400); font-weight:600; letter-spacing:4px;
+    margin:6px 0 0; text-transform:uppercase;
+  }
+
+  /* =====================================================
+     NAVY ACCENT BAR — 深藍色橫幅（統計數字）
+     ★ 修改數字和標題：直接改下方 HTML 的 .stat-num / .stat-label 文字
+  ===================================================== */
+  .navy-bar {
+    background:var(--navy-900); color:#fff;
+    padding:0 clamp(20px,5%,60px);
+  }
+  .navy-bar-inner {
+    max-width:1280px; margin:0 auto;
+    display:flex; justify-content:space-around; flex-wrap:wrap; gap:0;
+  }
+  .stat-item {
+    display:flex; flex-direction:column; align-items:center;
+    padding:32px 24px; flex:1 1 150px; min-width:100px;
+    border-right:1px solid rgba(255,255,255,0.10);
+  }
+  .stat-item:last-child { border-right:none; }
+  .stat-num {
+    font-family:'Outfit',sans-serif; font-size:clamp(2rem,4vw,3rem);
+    font-weight:800; color:var(--gold-400); line-height:1; margin-bottom:8px;
+  }
+  .stat-label {
+    font-family:'Noto Sans TC',sans-serif; font-size:13px;
+    color:rgba(255,255,255,0.65); letter-spacing:1px; font-weight:500;
+  }
+
+  /* =====================================================
+     MAIN CONTENT 容器
+  ===================================================== */
+  .home-content {
+    max-width:1280px; margin:0 auto;
+    padding:clamp(40px,6vw,80px) clamp(20px,5%,60px);
+    display:grid;
+    grid-template-columns:1fr 360px;
+    gap:48px; align-items:start;
+  }
+  @media (max-width:960px) {
+    .home-content { grid-template-columns:1fr; }
+  }
+
+  /* =====================================================
+     HOME SECTION — 通用 section 樣式
+  ===================================================== */
+  .home-section { margin-bottom:56px; }
+  .home-section-heading {
+    display:flex; align-items:center; gap:12px;
+    border-bottom:2px solid var(--navy-900); padding-bottom:12px; margin-bottom:24px;
+  }
+  .home-section-heading h2 {
+    font-family:'Noto Sans TC',sans-serif; font-size:22px;
+    font-weight:900; color:var(--navy-900); margin:0;
+  }
+  .home-section-heading .heading-en {
+    font-family:'Outfit',sans-serif; font-size:11px; font-weight:700;
+    color:var(--gold-500); letter-spacing:3px; text-transform:uppercase;
+  }
+
+  /* =====================================================
+     最新公告（新聞列表）
+     ★ 維護：編輯 assets/data/announcements.js
+     ★ 標籤顏色：在 main.js 的 tagColors 物件新增對應 class
+  ===================================================== */
+  .news-list { display:flex; flex-direction:column; }
+
+  .news-row {
+    display:flex; align-items:center; gap:12px;
+    padding:13px 16px; border-bottom:1px solid var(--navy-100);
+    text-decoration:none; color:var(--text-main);
+    transition:background 0.2s, padding-left 0.3s var(--ease-custom);
+    position:relative;
+  }
+  .news-row:first-child { border-top:1px solid var(--navy-100); }
+  a.news-row:hover {
+    background:var(--navy-100); padding-left:24px;
+  }
+  .news-date {
+    font-family:'Outfit',sans-serif; font-size:12px; font-weight:600;
+    color:var(--text-muted); white-space:nowrap; flex-shrink:0; min-width:80px;
+  }
+  .news-tag {
+    font-family:'Noto Sans TC',sans-serif; font-size:10px; font-weight:700;
+    padding:2px 8px; border:1.5px solid; white-space:nowrap; flex-shrink:0;
+    letter-spacing:0.5px;
+  }
+  /* ★ 標籤顏色設定（新增標籤時在此加一行） */
+  .tag-announce { color:var(--navy-800); border-color:var(--navy-700); }
+  .tag-event    { color:#7c5000; border-color:var(--gold-500); background:var(--gold-100); }
+  .tag-new      { color:#0f6624; border-color:#0f6624; }
+  .tag-recruit  { color:#7a0000; border-color:#b91c1c; }
+
+  .news-title {
+    font-family:'Noto Sans TC',sans-serif; font-size:15px;
+    color:var(--text-main); flex:1; line-height:1.5;
+  }
+  .news-arrow {
+    font-family:'Outfit',sans-serif; color:var(--gold-500); font-size:16px; flex-shrink:0;
+  }
+  .news-empty { color:var(--text-muted); font-size:14px; padding:16px 0; }
+
+  /* =====================================================
+     相關連結（框框卡片）
+     ★ 維護：編輯 assets/data/links.json
+     ★ icon 支援：instagram / facebook / globe / youtube / line
+  ===================================================== */
+  .linktree-container {
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .link-card {
+    display:flex; align-items:center; gap:14px;
+    padding:14px 20px;
+    border:2px solid var(--navy-900);
+    background:var(--bg-white); color:var(--navy-900);
+    text-decoration:none; font-family:'Noto Sans TC',sans-serif;
+    transition: transform 0.25s var(--ease-custom), box-shadow 0.25s, background 0.2s;
+    position:relative;
+  }
+  .link-card::before {
+    content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
+    background:var(--gold-500);
+  }
+  .link-card:hover {
+    transform:translate(-3px,-3px);
+    box-shadow:5px 5px 0 var(--navy-900);
+    background:var(--navy-100);
+    text-shadow:none !important;
+  }
+  .link-card-icon {
+    width:24px; height:24px; flex-shrink:0; display:flex;
+    align-items:center; justify-content:center; color:var(--navy-800);
+  }
+  .link-card-icon svg { width:22px; height:22px; }
+  .link-card-title {
+    flex:1; font-size:15px; font-weight:700; letter-spacing:0.5px;
+  }
+  .link-card-arrow {
+    font-family:'Outfit',sans-serif; color:var(--gold-500); font-size:18px;
+  }
+
+  /* =====================================================
+     NAVY HIGHLIGHT BOX — 深藍提示區塊（側欄）
+     ★ 可放置重要訊息、贊助 CTA 等
+     ★ 修改內容：直接改 HTML 的 .navy-box 內的文字
+  ===================================================== */
+  .navy-box {
+    background:var(--navy-900); color:#fff;
+    padding:28px 24px; margin-bottom:24px;
+    border-left:5px solid var(--gold-500);
+    position:relative;
+  }
+  .navy-box-label {
+    font-family:'Outfit',sans-serif; font-size:10px; font-weight:800;
+    color:var(--gold-400); letter-spacing:4px; text-transform:uppercase;
+    margin-bottom:10px; display:block;
+  }
+  .navy-box h3 {
+    font-family:'Noto Sans TC',sans-serif; font-size:18px; font-weight:900;
+    color:#fff; margin:0 0 10px; line-height:1.3;
+  }
+  .navy-box p {
+    font-family:'Noto Sans TC',sans-serif; font-size:13px;
+    color:rgba(255,255,255,0.70); margin:0 0 18px; line-height:1.7;
+  }
+  .navy-box-btn {
+    display:inline-block; padding:10px 20px;
+    border:2px solid var(--gold-500); color:var(--gold-400);
+    font-family:'Outfit',sans-serif; font-size:13px; font-weight:700;
+    letter-spacing:1px; text-transform:uppercase; text-decoration:none;
+    transition:background 0.2s, color 0.2s;
+  }
+  .navy-box-btn:hover {
+    background:var(--gold-500); color:var(--navy-900);
+    text-shadow:none !important;
+  }
+
+  /* =====================================================
+     社群媒體嵌入（IG / FB）
+  ===================================================== */
+  .social-embed-section { margin-bottom:56px; }
+  .social-grid {
+    display:grid; grid-template-columns:1fr 1fr; gap:24px;
+    align-items:start;
+  }
+  @media (max-width:760px) {
+    .social-grid { grid-template-columns:1fr; }
+  }
+
+  /* Facebook Page Plugin 外框 */
+  .fb-embed-wrap {
+    border:2px solid var(--navy-100);
+    background:var(--bg-white);
+    overflow:hidden; line-height:0;
+  }
+  .fb-embed-wrap iframe {
+    display:block; width:100% !important;
+    border:none; overflow:hidden;
+  }
+
+  /* Instagram 個人頁連結卡片
+     ★ 說明：Instagram 官方不支援個人頁面嵌入，
+             此卡片會直接連到 IG 個人頁。
+             若要嵌入單篇貼文，見下方 HTML 說明。 */
+  .ig-profile-card {
+    display:flex; flex-direction:column;
+    border:2px solid var(--navy-100);
+    background:var(--bg-white);
+    text-decoration:none; color:var(--text-main);
+    overflow:hidden; transition:box-shadow 0.25s, transform 0.25s var(--ease-custom);
+  }
+  .ig-profile-card:hover {
+    transform:translate(-3px,-3px);
+    box-shadow:5px 5px 0 var(--navy-900);
+    text-shadow:none !important;
+  }
+  .ig-card-top {
+    background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);
+    padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:12px;
+  }
+  .ig-card-top svg { width:52px; height:52px; color:#fff; }
+  .ig-card-username {
+    font-family:'Outfit',sans-serif; font-size:18px; font-weight:800;
+    color:#fff; letter-spacing:0.5px;
+  }
+  .ig-card-body {
+    padding:20px 24px 24px;
+    display:flex; flex-direction:column; align-items:center; gap:14px;
+  }
+  .ig-card-desc {
+    font-family:'Noto Sans TC',sans-serif; font-size:13px;
+    color:var(--text-muted); text-align:center; line-height:1.7;
+  }
+  .ig-card-btn {
+    display:inline-flex; align-items:center; gap:8px;
+    padding:11px 24px;
+    background:var(--navy-900); color:var(--gold-400);
+    border:2px solid var(--navy-700);
+    font-family:'Outfit',sans-serif; font-size:13px; font-weight:700;
+    letter-spacing:1px; text-transform:uppercase; text-decoration:none;
+    transition:background 0.2s, color 0.2s;
+  }
+  .ig-card-btn:hover {
+    background:var(--gold-500); color:var(--navy-900);
+    text-shadow:none !important;
+  }
+  /* placeholder（備用，未嵌入時顯示） */
+  .social-placeholder {
+    text-align:center; color:var(--text-muted);
+    font-family:'Noto Sans TC',sans-serif; font-size:13px; line-height:1.8;
+    padding:40px 16px;
+  }
+  .social-placeholder strong { display:block; font-size:15px; color:var(--navy-800); margin-bottom:8px; }
+
+  /* =====================================================
+     RWD
+  ===================================================== */
+  @media (max-width:600px) {
+    .navy-bar-inner { flex-direction:row; }
+    .stat-item { padding:20px 12px; border-right:none; border-bottom:1px solid rgba(255,255,255,0.08); }
+    .stat-item:last-child { border-bottom:none; }
+  }
+  </style>
 </head>
 <body>
 
-    <header id="main-header">
-        <div class="brand-area">
-            <img src="images.jpeg" alt="Logo" class="site-logo">
-            <a href="index.html" class="site-title">國立臺灣大學經濟學系學生會</a>
+<!-- ======================================================
+     HEADER
+====================================================== -->
+<header id="main-header">
+  <div class="brand-area">
+    <img src="images.jpeg" alt="Logo" class="site-logo">
+    <a href="index.html" class="site-title">國立臺灣大學經濟學系學生會</a>
+  </div>
+  <div class="nav-area">
+    <nav>
+      <ul>
+        <li><a href="index.html"    class="nav-link">首頁</a></li>
+        <li><a href="02_review.html" class="nav-link">活動回顧</a></li>
+        <li><a href="01_about.html"  class="nav-link">關於我們</a></li>
+        <li><a href="03_support.html" class="nav-link">立即贊助</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ======================================================
+     BANNER 大圖
+     ★ 修改圖片：換掉 CSS 的 background-image 中的 'horizon.jpg'
+     ★ 修改文字：改下方 .banner-title / .banner-sub 的文字
+====================================================== -->
+<div class="banner">
+  <div class="banner-overlay">
+    <p class="banner-sub">NTU Department of Economics · Student Association</p>
+    <h1 class="banner-title">國立臺灣大學<br>經濟學系學生會</h1>
+  </div>
+</div>
+
+<!-- ======================================================
+     NAVY BAR — 深藍統計數字橫幅
+     ★ 修改數字/文字：直接改 .stat-num 和 .stat-label 的文字即可
+     ★ 新增欄位：複製一個 .stat-item 貼在此區塊內
+====================================================== -->
+<div class="navy-bar reveal">
+  <div class="navy-bar-inner">
+    <div class="stat-item">
+      <span class="stat-num">12+</span>
+      <span class="stat-label">年度活動</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">400+</span>
+      <span class="stat-label">系上同學</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">5</span>
+      <span class="stat-label">大型年度活動</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">30+</span>
+      <span class="stat-label">幹部人數</span>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================
+     MAIN CONTENT
+====================================================== -->
+<div class="home-content">
+
+  <!-- 左欄：公告 + 社群嵌入 -->
+  <div>
+
+    <!-- ==================================================
+         最新公告
+         ★ 維護：編輯 assets/data/announcements.js
+         ★ 不需改這裡的 HTML，JS 會自動渲染
+    ================================================== -->
+    <div class="home-section reveal">
+      <div class="home-section-heading">
+        <h2>最新公告</h2>
+        <span class="heading-en">Announcements</span>
+      </div>
+      <div class="news-list" id="news-list">
+        <!-- 由 main.js 讀取 announcements.js 自動渲染 -->
+      </div>
+    </div>
+
+    <!-- ==================================================
+         社群媒體嵌入
+         ┌────────────────────────────────────────────────────────┐
+         │ Facebook Page Plugin（已嵌入，直接可用）               │
+         │   ★ 更換粉專：修改 iframe src 中的 href 參數           │
+         │     將 NTUECONSA 換成新的粉專 ID 即可                  │
+         │                                                        │
+         │ Instagram（說明）                                       │
+         │   Instagram 官方「不支援」個人頁面嵌入，               │
+         │   目前顯示一個連結卡片直達 IG 頁面。                   │
+         │                                                        │
+         │   若要嵌入「單篇貼文」：                               │
+         │     1. 打開任意一篇 IG 貼文                            │
+         │     2. 點右上角「⋯」→ 選「嵌入」                      │
+         │     3. 複製 <blockquote>...</blockquote> 整段代碼      │
+         │     4. 把下方 .ig-profile-card 整個 <a> 標籤刪除       │
+         │     5. 貼上複製的 <blockquote> 代碼                    │
+         │     6. 取消 </body> 前的 embed.js script 的註解        │
+         └────────────────────────────────────────────────────────┘
+    ================================================== -->
+    <div class="home-section social-embed-section reveal">
+      <div class="home-section-heading">
+        <h2>追蹤我們</h2>
+        <span class="heading-en">Social Media</span>
+      </div>
+      <div class="social-grid">
+
+        <!-- ══════════════════════════════════════════════════════
+             Instagram 連結卡片
+             ★ 更換帳號：修改 href 和 .ig-card-username 的文字
+             ★ 要改成單篇貼文嵌入：見上方說明
+        ═══════════════════════════════════════════════════════ -->
+        <a class="ig-profile-card"
+           href="https://www.instagram.com/ntu_econ_official/"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="前往 Instagram @ntu_econ_official">
+          <div class="ig-card-top">
+            <!-- Instagram 官方 Logo SVG -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                 aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4.5"/>
+              <circle cx="17.5" cy="6.5" r="1.2" fill="white" stroke="none"/>
+            </svg>
+            <span class="ig-card-username">@ntu_econ_official</span>
+          </div>
+          <div class="ig-card-body">
+            <p class="ig-card-desc">
+              國立臺灣大學經濟學系學生會官方 Instagram<br>
+              追蹤我們，掌握最新活動資訊
+            </p>
+            <span class="ig-card-btn">
+              在 Instagram 查看 ↗
+            </span>
+          </div>
+        </a>
+
+        <!-- ══════════════════════════════════════════════════════
+             Facebook Page Plugin（官方 iframe，可直接執行）
+             ★ 更換粉專：把 href 參數改為新粉專的完整網址
+               例：href=https%3A%2F%2Fwww.facebook.com%2F新粉專ID
+               （注意：網址需 URL encode，/ → %2F，: → %3A）
+             ★ 調整高度：修改 iframe 的 height 屬性（單位 px）
+             ★ 調整 tabs：可選 timeline / events / messages
+               多個 tabs 用逗號分隔，如 tabs=timeline%2Cevents
+        ═══════════════════════════════════════════════════════ -->
+        <div class="fb-embed-wrap">
+          <iframe
+            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FNTUECONSA&tabs=timeline&width=500&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true"
+            height="500"
+            style="border:none;overflow:hidden;"
+            scrolling="no"
+            frameborder="0"
+            allowfullscreen="true"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+            title="NTU Econ Student Association Facebook Page">
+          </iframe>
         </div>
-        <div class="nav-area">
-            <nav>
-                <ul>
-                    <li><a href="index.html" class="nav-link">首頁</a></li>
-                    <li><a href="02_review.html" class="nav-link">活動回顧</a></li>
-                    <li><a href="01_about.html" class="nav-link">關於我們</a></li>
-                    <li><a href="03_support.html" class="nav-link">立即贊助</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <div class="banner"></div>
+      </div>
+    </div>
 
-    <main class="reveal">
-        <section>
-            <h2>最新公告</h2>
-            <p>blablabla</p>
-        </section>
+  </div><!-- /左欄 -->
 
-        <section id="quick-links">
-            <h2>相關連結</h2>
-            <p>快速訪問我們的社群媒體與相關資源。</p>
-            <div class="linktree-container" id="linktree-container">
-                <!-- 連結將由 JavaScript 動態載入 -->
-            </div>
-        </section>
-    </main>
+  <!-- 右欄：連結卡片 + 深藍 CTA -->
+  <div>
 
-    <!-- 統一使用深藍色 Footer -->
-    <footer class="reveal">
-        <div class="footer-content">
-            <div class="footer-col">
-                <h4>關於我們</h4>
-                <ul>
-                    <li><a href="index.html">學生會首頁</a></li>
-                    <li><a href="#">組織章程</a></li>
-                    <li><a href="#">歷屆成員</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>相關連結</h4>
-                <ul>
-                    <li><a href="https://giving.ntu.edu.tw/" target="_blank">台大財務處捐款</a></li>
-                    <li><a href="http://www.econ.ntu.edu.tw/" target="_blank">經濟系官方網站</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>聯絡資訊</h4>
-                <ul>
-                    <li>Email: ntu.econ.student@gmail.com</li>
-                    <li>台北市大安區羅斯福路四段1號</li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            © 2026 國立臺灣大學經濟學系學生會 | All Rights Reserved.
-        </div>
-    </footer>
+    <!-- ==================================================
+         相關連結（框框卡片）
+         ★ 維護：編輯 assets/data/links.json
+         ★ 格式：
+           { "title": "顯示名稱", "url": "https://...", "icon": "instagram" }
+         ★ icon 可用：instagram / facebook / globe / youtube / line
+    ================================================== -->
+    <div class="home-section reveal">
+      <div class="home-section-heading">
+        <h2>相關連結</h2>
+        <span class="heading-en">Quick Links</span>
+      </div>
+      <div class="linktree-container" id="linktree-container">
+        <!-- 由 main.js 讀取 links.json 自動渲染 -->
+      </div>
+    </div>
 
-    <!-- 共用腳本 -->
-    <script src="assets/js/main.js"></script>
+    <!-- ==================================================
+         深藍 CTA 色塊（贊助/重要行動呼籲）
+         ★ 修改文字：直接改下方 h3 / p / a 的文字
+         ★ 修改連結：改 a.navy-box-btn 的 href
+         ★ 要新增一個色塊：複製整個 .navy-box 貼在此區塊後
+    ================================================== -->
+    <div class="navy-box reveal">
+      <span class="navy-box-label">Support Us</span>
+      <h3>贊助我們的活動</h3>
+      <p>您的支持是系學會舉辦精彩活動的最大動力，歡迎透過以下管道贊助我們。</p>
+      <a href="03_support.html" class="navy-box-btn">了解贊助方案 →</a>
+    </div>
+
+    <!-- ★ 可在此複製貼上更多 .navy-box 色塊 -->
+
+  </div><!-- /右欄 -->
+
+</div><!-- /.home-content -->
+
+<!-- ======================================================
+     FOOTER
+====================================================== -->
+<footer class="reveal">
+  <div class="footer-content">
+    <div class="footer-col">
+      <h4>關於我們</h4>
+      <ul>
+        <li><a href="index.html">學生會首頁</a></li>
+        <li><a href="02_review.html">活動回顧</a></li>
+        <li><a href="#">組織章程</a></li>
+        <li><a href="#">歷屆成員</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>相關連結</h4>
+      <ul>
+        <li><a href="https://giving.ntu.edu.tw/" target="_blank">台大財務處捐款</a></li>
+        <li><a href="http://www.econ.ntu.edu.tw/" target="_blank">經濟系官方網站</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>聯絡資訊</h4>
+      <ul>
+        <li>Email: ntu.econ.student@gmail.com</li>
+        <li>台北市大安區羅斯福路四段1號</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 國立臺灣大學經濟學系學生會 | All Rights Reserved.
+  </div>
+</footer>
+
+<!-- 共用腳本 -->
+<script src="assets/data/announcements.js"></script>
+<script src="assets/js/main.js"></script>
+
+<!--
+  ══════════════════════════════════════════════════════════════
+  Instagram 單篇貼文嵌入腳本（目前不需要，因為使用的是連結卡片）
+
+  若你改成嵌入單篇 IG 貼文（貼上 <blockquote> 後），
+  請把下面這行的 <!-- 和 --> 刪掉以啟用：
+
+  <script async src="//www.instagram.com/embed.js"></script>
+  ══════════════════════════════════════════════════════════════
+-->
+
 </body>
 </html>
