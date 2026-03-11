@@ -24,8 +24,14 @@
             border: 1px solid var(--navy-900) !important;
             padding: 24px;
             transition: transform 0.3s, box-shadow 0.3s;
+            /* 確保卡片高度一致，內容對齊 */
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
-        .goal-item:nth-child(even) { transform: translateY(16px); }
+        /* 移除原本的高低錯落設計，確保完全對齊 */
+        /* .goal-item:nth-child(even) { transform: translateY(16px); } */
+        
         .goal-item:hover {
             transform: translate(-4px, -4px) !important;
             box-shadow: 6px 6px 0 var(--navy-900) !important;
@@ -34,15 +40,17 @@
             width: 48px; height: 48px; background: var(--bg-body); border: 1px solid var(--navy-900);
             display: flex; align-items: center; justify-content: center;
             color: var(--navy-900); margin-bottom: 16px; border-radius: 0;
+            /* 避免圖示被壓縮 */
+            flex-shrink: 0; 
         }
         .goal-item h4 { margin: 0 0 10px 0; font-size: 20px; color: var(--navy-900); font-weight: 700; border: none; padding: 0; }
-        .goal-item p { margin: 0; font-size: 15px; color: var(--text-main); line-height: 1.6; }
+        .goal-item p { margin: 0; font-size: 15px; color: var(--text-main); line-height: 1.6; flex-grow: 1; }
 
         /* 2. 組織架構 - 方框樣式 */
         .department-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            gap: 24px; /* 統一間距 */
             margin-top: 24px;
         }
         .department-card {
@@ -51,13 +59,17 @@
             padding: 24px;
             transition: transform 0.3s, box-shadow 0.3s;
             position: relative;
+            /* 確保卡片高度一致 */
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         .department-card:hover {
             transform: translate(-4px, -4px);
             box-shadow: 6px 6px 0 var(--navy-900);
         }
-        .department-card h3 { font-size: 20px; margin: 0 0 10px 0; color: var(--navy-900); font-weight: 700; border: none; padding: 0; }
-        .department-card p { font-size: 16px; color: var(--text-main); margin: 0; line-height: 1.6; }
+        .department-card h3 { margin: 0 0 10px 0; font-size: 20px; color: var(--navy-900); font-weight: 700; border: none; padding: 0; }
+        .department-card p { font-size: 16px; color: var(--text-main); margin: 0; line-height: 1.6; flex-grow: 1; }
 
         /* 3. 年度亮點 - 方框樣式 */
         .cards-grid {
@@ -71,7 +83,10 @@
             border: 1px solid var(--navy-900);
             padding: 24px;
             transition: transform 0.3s, box-shadow 0.3s;
-            display: flex; flex-direction: column;
+            /* 確保卡片高度一致 */
+            display: flex; 
+            flex-direction: column;
+            height: 100%;
         }
         .pay-card:hover {
             transform: translate(-4px, -4px);
@@ -88,7 +103,7 @@
         .bg-gray { background: #F1F5F9; color: #475569; border-color: #475569; }
         
         .pay-card h3 { font-size: 20px; margin: 0 0 12px 0; color: var(--navy-900); font-weight: 700; border: none; padding: 0; }
-        .pay-card p { font-size: 15px; color: var(--text-main); margin: 0; line-height: 1.6; }
+        .pay-card p { font-size: 15px; color: var(--text-main); margin: 0; line-height: 1.6; flex-grow: 1; }
 
         /* 聯絡資訊列表微調 */
         .contact-list { list-style: none; padding-left: 0; margin-top: 24px; }
