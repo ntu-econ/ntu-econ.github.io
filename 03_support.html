@@ -10,234 +10,125 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Outfit:wght@400;600;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
     
     <style>
-        /* 實驗室風格重構 - 去 AI 化設計 */
-        /* =========================================
-           1. 核心變數與重置 (Design Tokens)
-           ========================================= */
+        /* 由於您原本檔案有內建 style，這裡一併更新 header 字體與 backToTopBtn CSS */
         :root {
-            /* 品牌色系 */
-            --navy-900: #0A1E3F; 
-            --navy-800: #14325A; 
-            --navy-700: #1C4E80; 
-            --navy-100: #E6F0F9;
-            
-            --gold-500: #CBA16E;
-            --gold-400: #DCC09B;
-            --gold-100: #F9F3EB;
-            
-            /* 文字色彩 */
-            --text-main: #334155;  
-            --text-muted: #718096; 
-            
-            --bg-body: #F8FAFC;
-            --bg-white: #FAFAFA; 
-            
-            /* 陰影系統 */
+            --navy-900: #0A1E3F; --navy-800: #14325A; --navy-700: #1C4E80; --navy-100: #E6F0F9;
+            --gold-500: #CBA16E; --gold-400: #DCC09B; --gold-100: #F9F3EB;
+            --text-main: #334155; --text-muted: #718096; 
+            --bg-body: #F8FAFC; --bg-white: #FAFAFA; 
             --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
             --shadow-float: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            
-            /* 尺寸設定 */
-            --sidebar-width: 220px;
-            --radius-xl: 0px; 
-            --radius-md: 0px; 
-            --header-h: 80px;
+            --sidebar-width: 220px; --header-h: 80px;
             --ease-custom: cubic-bezier(0.19, 1, 0.22, 1);
         }
-
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-body); }
         ::-webkit-scrollbar-thumb { background: var(--navy-900); border-radius: 0; }
-
         html { scroll-behavior: smooth; }
-
         body {
-            margin: 0; padding: 0;
-            background-color: var(--bg-body);
-            color: var(--text-main);
+            margin: 0; padding: 0; background-color: var(--bg-body); color: var(--text-main);
             font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif; 
-            font-size: 18px; 
-            line-height: 1.75;
-            overflow-x: hidden;
-            position: relative;
+            font-size: 18px; line-height: 1.75; overflow-x: hidden; position: relative;
         }
-
         body::before {
             content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
             pointer-events: none; z-index: 9999; mix-blend-mode: multiply;
         }
-
         * { box-sizing: border-box; }
         a { text-decoration: none; color: inherit; transition: all 0.4s var(--ease-custom); }
         a:hover { text-shadow: 2px 0 var(--gold-500), -2px 0 var(--navy-700); }
-        ul { list-style: none; margin: 0; padding: 0; }
-        .icon { width: 1.25em; height: 1.25em; display: inline-block; vertical-align: middle; flex-shrink: 0; }
-
-        /* =========================================
-           2. Header (全站共用)
-           ========================================= */
+        
+        /* 橫列全面改用明體 */
         header {
-            font-family: 'Noto Sans TC', sans-serif; 
+            font-family: "PMingLiU", "新細明體", serif; 
             font-weight: 700; display: flex; justify-content: space-between; align-items: center;
             padding: 0 40px; background: rgba(255, 255, 255, 0.95);
             border-bottom: 2px solid var(--navy-900); position: sticky; top: 0;
             z-index: 1000; height: var(--header-h); transition: height 0.6s var(--ease-custom);
         }
         header.scrolled { height: 60px; box-shadow: var(--shadow-sm); }
-
         .brand-area { display: flex; align-items: center; gap: 12px; }
         .site-logo { width: 42px; height: 42px; object-fit: contain; }
-        .site-title { font-size: 22px; font-weight: 700; color: var(--navy-900); letter-spacing: 0.5px; }
+        .site-title { font-family: "PMingLiU", "新細明體", serif; font-size: 22px; font-weight: 700; color: var(--navy-900); letter-spacing: 0.5px; }
 
-        /* =========================================
-           3. 動畫特效庫
-           ========================================= */
-        .reveal {
-            opacity: 0; transform: translateY(30px);
-            transition: opacity 1s var(--ease-custom), transform 1s var(--ease-custom);
+        /* 回到頁首按鈕樣式 */
+        #backToTopBtn {
+            position: fixed; bottom: 28px; right: 24px;
+            width: 48px; height: 48px;
+            background: var(--navy-900); color: var(--gold-400);
+            border: 2px solid var(--navy-700); border-radius: 0;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 900;
+            opacity: 0; visibility: hidden; transform: translateY(16px);
+            transition: opacity 0.4s, visibility 0.4s, transform 0.4s var(--ease-custom), background 0.3s, color 0.3s;
+            box-shadow: 3px 3px 0 var(--navy-700);
+            padding: 0; text-shadow: none !important;
         }
+        #backToTopBtn.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+        #backToTopBtn:hover {
+            background: var(--gold-500); color: var(--navy-900);
+            transform: translateY(-4px); box-shadow: 4px 7px 0 var(--navy-900);
+            text-shadow: none !important;
+        }
+        #backToTopBtn svg { width: 22px; height: 22px; pointer-events: none; }
+
+        /* 以下為原版面樣式 */
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 1s var(--ease-custom), transform 1s var(--ease-custom); }
         .reveal.active { opacity: 1; transform: translateY(0) skewY(0deg); }
-        .delay-100 { transition-delay: 0.1s; }
-        .delay-200 { transition-delay: 0.2s; }
-        .delay-300 { transition-delay: 0.3s; }
-
-        /* =========================================
-           4. 佈局與側邊欄
-           ========================================= */
-        .layout-container {
-            max-width: 1280px; margin: clamp(40px, 8vw, 100px) auto;
-            padding: 0 clamp(20px, 5%, 60px); display: grid;
-            grid-template-columns: var(--sidebar-width) 1fr; gap: 40px; align-items: start;
-        }
-
-        .sidebar {
-            position: sticky; top: 100px; background: var(--bg-white);
-            padding: 24px; border: 1px solid var(--navy-900);
-            box-shadow: 4px 4px 0 var(--navy-900); width: var(--sidebar-width); z-index: 10;
-        }
-        .sidebar-title {
-            font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
-            color: var(--gold-500); font-weight: 800; margin-bottom: 20px;
-            display: flex; align-items: center; gap: 8px;
-        }
-        .toc-link {
-            display: block; padding: 12px 14px; margin-bottom: 6px;
-            color: var(--text-muted); font-weight: 500; font-size: 16px; 
-            transition: all 0.3s; border-left: 2px solid transparent;
-        }
-        .toc-link:hover { background: var(--navy-100); color: var(--navy-800); padding-left: 20px; }
+        .delay-100 { transition-delay: 0.1s; } .delay-200 { transition-delay: 0.2s; } .delay-300 { transition-delay: 0.3s; }
+        .layout-container { max-width: 1280px; margin: clamp(40px, 8vw, 100px) auto; padding: 0 clamp(20px, 5%, 60px); display: grid; grid-template-columns: var(--sidebar-width) 1fr; gap: 40px; align-items: start; }
+        .sidebar { position: sticky; top: 100px; background: var(--bg-white); padding: 24px; border: 1px solid var(--navy-900); box-shadow: 4px 4px 0 var(--navy-900); width: var(--sidebar-width); z-index: 10; }
+        .sidebar-title { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--gold-500); font-weight: 800; margin-bottom: 20px; }
+        .toc-link { display: block; padding: 12px 14px; margin-bottom: 6px; color: var(--text-muted); font-weight: 500; font-size: 16px; transition: all 0.3s; border-left: 2px solid transparent; }
+        .toc-link:hover { background: var(--navy-100); color: var(--navy-800); padding-left: 24px; }
         .toc-link.active { background: #F0F7FF; color: var(--navy-800); font-weight: 700; border-left-color: var(--gold-500); }
-
-        /* =========================================
-           5. 內容區元件
-           ========================================= */
         .main-content { min-width: 0; }
         .page-header-text { margin-bottom: 50px; }
-        .page-header-text h1 {
-            font-family: 'Noto Sans TC', sans-serif;
-            font-size: clamp(3rem, 6vw, 5rem); font-weight: 900; color: var(--navy-900); 
-            margin: 0 0 24px -4px; line-height: 1; letter-spacing: -2px;
-        }
-        .page-header-text h1 span {
-            display: inline-block;
-            background: linear-gradient(120deg, transparent 0%, transparent 60%, var(--gold-400) 60%, var(--gold-400) 100%);
-            background-size: 100% 40%; background-repeat: no-repeat; background-position: 0 90%;
-            transform: skewX(-10deg); padding: 0 10px;
-        }
+        .page-header-text h1 { font-family: 'Noto Sans TC', sans-serif; font-size: clamp(3rem, 6vw, 5rem); font-weight: 900; color: var(--navy-900); margin: 0 0 24px -4px; line-height: 1; letter-spacing: -2px; }
+        .page-header-text h1 span { display: inline-block; background: linear-gradient(120deg, transparent 0%, transparent 60%, var(--gold-400) 60%, var(--gold-400) 100%); background-size: 100% 40%; background-repeat: no-repeat; background-position: 0 90%; transform: skewX(-10deg); padding: 0 10px; }
         .page-header-text p { font-size: 18px; color: var(--text-muted); max-width: 680px; }
         .divider { width: 100px; height: 8px; background: var(--gold-500); margin-top: 24px; }
-
-        section {
-            background: var(--bg-white);
-            padding: clamp(30px, 5vw, 60px) clamp(20px, 4vw, 50px);
-            margin-bottom: clamp(40px, 8vw, 80px);
-            scroll-margin-top: 100px; position: relative; overflow: hidden;
-        }
-        .section-heading {
-            display: flex; align-items: center; margin-bottom: 30px;
-            padding-bottom: 15px; border-bottom: 2px solid var(--navy-900);
-        }
-        .section-heading h2 {
-            font-size: 28px; color: var(--navy-900); margin: 0; font-weight: 700;
-        }
-
-        /* Timeline */
+        section { background: var(--bg-white); padding: clamp(30px, 5vw, 60px) clamp(20px, 4vw, 50px); margin-bottom: clamp(40px, 8vw, 80px); scroll-margin-top: 100px; position: relative; overflow: hidden; }
+        .section-heading { display: flex; align-items: center; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 2px solid var(--navy-900); }
+        .section-heading h2 { font-size: 28px; color: var(--navy-900); margin: 0; font-weight: 700; }
         .timeline { position: relative; padding: 10px 0; }
-        .timeline::before {
-            content: ''; position: absolute; top: 0; bottom: 0; left: 24px; width: 2px; background: #E2E8F0; z-index: 0;
-        }
+        .timeline::before { content: ''; position: absolute; top: 0; bottom: 0; left: 24px; width: 2px; background: #E2E8F0; z-index: 0; }
         .step-item { position: relative; padding-left: 70px; margin-bottom: 30px; z-index: 1; }
-        .step-marker {
-            position: absolute; left: 0; top: 0; width: 50px; height: 50px;
-            background: var(--bg-white); border: 2px solid var(--navy-900);
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 22px;
-            color: var(--navy-900); transition: 0.4s var(--ease-custom);
-        }
+        .step-marker { position: absolute; left: 0; top: 0; width: 50px; height: 50px; background: var(--bg-white); border: 2px solid var(--navy-900); display: flex; align-items: center; justify-content: center; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 22px; color: var(--navy-900); transition: 0.4s var(--ease-custom); }
         .step-item:hover .step-marker { background: var(--navy-900); color: var(--gold-500); transform: scale(1.1); }
         .step-content h3 { margin: 0 0 6px; font-size: 20px; color: var(--navy-900); font-weight: 700; }
         .step-content p { margin: 0; font-size: 16px; color: var(--text-muted); }
-
-        /* 支付方式卡片 */
         .cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; max-width: 900px; margin: 0 auto; }
-        .pay-card {
-            background: #fff; border: 1px solid var(--navy-900);
-            padding: 30px; transition: transform 0.4s var(--ease-custom), box-shadow 0.4s var(--ease-custom); 
-            display: flex; flex-direction: column;
-            clip-path: polygon(0 0, 100% 0, 100% 97%, 95% 100%, 0 100%);
-        }
+        .pay-card { background: #fff; border: 1px solid var(--navy-900); padding: 30px; transition: transform 0.4s var(--ease-custom), box-shadow 0.4s var(--ease-custom); display: flex; flex-direction: column; clip-path: polygon(0 0, 100% 0, 100% 97%, 95% 100%, 0 100%); }
         .pay-card:hover { transform: translate(-4px, -4px); box-shadow: 8px 8px 0 var(--navy-900); }
-
-        .badge {
-            display: inline-block; padding: 4px 10px; border: 1px solid currentColor;
-            font-size: 13px; font-weight: 700; letter-spacing: 0.5px;
-            margin-bottom: 15px; width: fit-content;
-        }
+        .badge { display: inline-block; padding: 4px 10px; border: 1px solid currentColor; font-size: 13px; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 15px; width: fit-content; }
         .bg-gold { background: var(--gold-100); color: #B45309; }
-        .bg-navy { background: var(--navy-100); color: var(--navy-800); }
         .bg-gray { background: #F1F5F9; color: #475569; }
-
         .pay-card h3 { font-size: 22px; margin: 0 0 15px 0; color: var(--navy-900); font-weight: 700; }
-        
-        .bank-info {
-            background: #F8FAFC; border: 1px solid var(--navy-900); padding: 16px;
-            margin-bottom: 20px; font-family: 'Space Grotesk', monospace;
-        }
+        .bank-info { background: #F8FAFC; border: 1px solid var(--navy-900); padding: 16px; margin-bottom: 20px; font-family: 'Space Grotesk', monospace; }
         .bank-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 15px; color: var(--text-muted); }
         .bank-row:last-child { margin-bottom: 0; }
         .bank-code { font-size: 18px; font-weight: 700; color: var(--navy-900); letter-spacing: 0.5px; }
-
-        .btn {
-            margin-top: auto; display: flex; justify-content: center; align-items: center; gap: 8px;
-            padding: 14px; font-weight: 700; font-size: 16px; transition: 0.3s var(--ease-custom); cursor: pointer;
-        }
-        .btn-outline { background: transparent; color: var(--navy-900); border: 1px solid var(--navy-900); }
-        .btn-outline:hover { background: var(--navy-900); color: #fff; }
-
-        /* Goals & FAQ */
         .goals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
         .goal-item { background: #F8FAFC; padding: 20px; border: 1px solid transparent; transition: 0.3s; }
         .goal-item:nth-child(even) { transform: translateY(20px); }
         .goal-item:hover { background: #fff; border-color: var(--gold-400); box-shadow: var(--shadow-card); }
         .goal-item h4 { margin-top: 0; margin-bottom: 12px; font-size: 20px; color: var(--navy-900); }
-
         details { background: #fff; border: 1px solid #E2E8F0; margin-bottom: 16px; transition: all 0.3s; }
         details[open] { border-color: var(--gold-400); box-shadow: var(--shadow-sm); }
         summary { padding: 20px 24px; font-size: 18px; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; color: var(--navy-900); }
         summary::-webkit-details-marker { display: none; }
-        .arrow-icon { transition: transform 0.3s; color: var(--text-muted); }
+        .arrow-icon { transition: transform 0.3s; color: var(--text-muted); display: inline-block; }
         details[open] .arrow-icon { transform: rotate(180deg); color: var(--gold-500); }
         .faq-body { padding: 0 24px 24px; font-size: 16px; color: var(--text-muted); line-height: 1.7; border-top: 1px solid #F1F5F9; padding-top: 16px; }
-
-        /* Footer */
         footer { background: var(--navy-900); color: #94A3B8; padding: 80px 0 40px; margin-top: 100px; }
         .footer-content { max-width: 1280px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
         .footer-col h4 { color: #fff; margin-bottom: 24px; font-size: 18px; letter-spacing: 1px; margin-top: 0; }
         .footer-col a:hover { color: var(--gold-500); }
         .footer-bottom { text-align: center; margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 15px; }
 
-        /* RWD */
         @media (max-width: 1024px) {
             .layout-container { grid-template-columns: 1fr; display: flex; flex-direction: column; }
             .sidebar { display: none; }
@@ -247,7 +138,6 @@
             .page-header-text h1 { font-size: 32px; }
             section { padding: 32px 24px; }
             .cards-grid { grid-template-columns: 1fr; }
-            .btn { width: 100%; }
         }
     </style>
 </head>
@@ -263,9 +153,7 @@
     <div class="layout-container">
         
         <aside class="sidebar">
-            <div class="sidebar-title">
-                本頁目錄
-            </div>
+            <div class="sidebar-title">本頁目錄</div>
             <nav id="toc">
                 <a href="#how-to" class="toc-link active">贊助流程</a>
                 <a href="#plan" class="toc-link">支付方式</a>
@@ -287,7 +175,6 @@
                 <div class="section-heading">
                     <h2>贊助流程說明</h2>
                 </div>
-                
                 <div class="timeline">
                     <div class="step-item reveal delay-100">
                         <div class="step-marker">01</div>
@@ -324,46 +211,36 @@
                 <div class="section-heading">
                     <h2>支付方式</h2>
                 </div>
-
                 <div class="cards-grid">
-                    
                     <div class="pay-card reveal delay-100">
                         <span class="badge bg-gold">可開立抵稅收據</span>
                         <h3>校方專戶匯款</h3>
-                        
                         <div style="background: #FFFBEB; border-left: 4px solid #F59E0B; padding: 14px 18px; margin-bottom: 24px; color: #92400E; font-weight: 700; font-size: 15px; line-height: 1.6;">
                             如需由學校開立正式收據，請將捐款匯入此學校帳戶。
                         </div>
-                        
                         <div class="bank-info">
                             <div class="bank-row"><span>銀行</span> <span>華南商業銀行 臺大分行</span></div>
                             <div class="bank-row"><span>戶名</span> <span>國立台灣大學 401 專戶</span></div>
                             <div class="bank-row" style="margin-top: 8px;"><span>帳號</span> <span class="bank-code">154360000028</span></div>
                         </div>
-
-                        <div style="background:#F1F5F9; padding:14px; border-radius:0; margin-bottom:24px; font-size:15px; color:#475569; line-height:1.6; border: 1px solid #E2E8F0;">
+                        <div style="background:#F1F5F9; padding:14px; margin-bottom:24px; font-size:15px; color:#475569; line-height:1.6; border: 1px solid #E2E8F0;">
                             <strong>備註說明：</strong>匯款者可於匯款備註註明「供經濟學系學生會使用」，或另提供匯款證明，皆可作為出納組開立收據之依據。
                         </div>
                     </div>
-
                     <div class="pay-card reveal delay-200">
                         <span class="badge bg-gray">免收據專用</span>
                         <h3>郵局直接轉帳</h3>
-                        
                         <div style="background: #F1F5F9; border-left: 4px solid #94A3B8; padding: 14px 18px; margin-bottom: 24px; color: #475569; font-weight: 700; font-size: 15px; line-height: 1.6;">
                             倘捐款者不需學校正式收據，可直接匯入學生會郵局帳戶辦理捐款。
                         </div>
-                        
                         <div class="bank-info">
                             <div class="bank-row"><span>銀行</span> <span>郵局 (700)</span></div>
                             <div class="bank-row" style="margin-top: 8px;"><span>帳號</span> <span class="bank-code">0001236 0632402</span></div>
                         </div>
-
                         <div class="btn" style="background:#F8FAFC; color:#94A3B8; cursor:default; border: 1px solid #E2E8F0; margin-top: auto;">
                             此管道不提供抵稅收據
                         </div>
                     </div>
-
                 </div>
             </section>
 
@@ -401,7 +278,6 @@
                 <div class="section-heading">
                     <h2>常見問題</h2>
                 </div>
-                
                 <details>
                     <summary>
                         只有系友才能捐款嗎？
@@ -448,6 +324,12 @@
 
         </main>
     </div>
+
+    <button id="backToTopBtn" aria-label="回到頁首">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5"/>
+        </svg>
+    </button>
 
     <footer>
         <div class="footer-content">
@@ -507,6 +389,21 @@
                 if (window.scrollY > 50) header.classList.add('scrolled');
                 else header.classList.remove('scrolled');
             });
+
+            // 初始化回到頁首按鈕特效
+            const backToTopBtn = document.getElementById('backToTopBtn');
+            if (backToTopBtn) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 300) {
+                        backToTopBtn.classList.add('visible');
+                    } else {
+                        backToTopBtn.classList.remove('visible');
+                    }
+                });
+                backToTopBtn.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
         });
     </script>
 </body>
