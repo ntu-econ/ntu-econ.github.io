@@ -201,9 +201,11 @@
         </div>
     </footer>
 
+    <script src="assets/js/main.js"></script>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // 1. 初始化動態顯現
+            // 初始化動態顯現
             const revealElements = document.querySelectorAll('.reveal');
             const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -215,14 +217,14 @@
             }, { threshold: 0.1 });
             revealElements.forEach(el => revealObserver.observe(el));
 
-            // 2. 初始化 Header 特效
+            // 初始化 Header 特效
             const header = document.getElementById('main-header');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 50) header.classList.add('scrolled');
                 else header.classList.remove('scrolled');
             });
 
-            // 3. 初始化回到頁首按鈕
+            // 初始化回到頁首按鈕特效
             const backToTopBtn = document.getElementById('backToTopBtn');
             if (backToTopBtn) {
                 window.addEventListener('scroll', () => {
