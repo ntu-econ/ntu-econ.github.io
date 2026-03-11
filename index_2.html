@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NTU ECON SA — 國立臺灣大學經濟學系學生會</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════
+   RESET & VARIABLES
+═══════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#021226;--navy-800:#0A2647;--navy-700:#144272;--navy-100:#E6F0F9;
+  --gold:#CBA16E;--gold-light:#DCC09B;--gold-100:#F9F3EB;
+  --bg:#F8FAFC;--white:#fff;
+  --text:#1E293B;--text-muted:#64748B;
+  --ease:cubic-bezier(0.19,1,0.22,1);
+  --ease-out:cubic-bezier(0.22,1,0.36,1);
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{
+  font-family:'Noto Sans TC','PingFang TC',sans-serif;
+  background:var(--navy);color:var(--white);
+  overflow-x:hidden;cursor:none;
+}
+a{text-decoration:none;color:inherit;cursor:none}
+ul{list-style:none}
+img{display:block;max-width:100%}
+
+/* ═══════════════════════════════════════════════════
+   CUSTOM CURSOR
+═══════════════════════════════════════════════════ */
+.cursor{
+  position:fixed;width:16px;height:16px;
+  border:2px solid var(--gold);border-radius:50%;
+  pointer-events:none;z-index:99999;
+  transform:translate(-50%,-50%);
+  transition:width 0.3s var(--ease),height 0.3s var(--ease),
+             border-color 0.3s,background 0.3s;
+  mix-blend-mode:difference;
+}
+.cursor.hover{
+  width:60px;height:60px;
+  background:rgba(203,161,110,0.15);
+  border-color:var(--gold-light);
+}
+.cursor-dot{
+  position:fixed;width:5px;height:5px;
+  background:var(--gold);border-radius:50%;
+  pointer-events:none;z-index:99999;
+  transform:translate(-50%,-50%);
+}
+
+/* ═══════════════════════════════════════════════════
+   LOADING SCREEN
+═══════════════════════════════════════════════════ */
+.loader{
+  position:fixed;inset:0;z-index:100000;
+  background:var(--navy);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  transition:opacity 0.8s var(--ease),visibility 0.8s;
+}
+.loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loader-text{
+  font-family:'Outfit',sans-serif;font-size:clamp(2rem,5vw,4rem);
+  font-weight:800;color:var(--white);letter-spacing:12px;
+  text-transform:uppercase;overflow:hidden;
+}
+.loader-bar{
+  width:200px;height:2px;background:rgba(255,255,255,0.1);
+  margin-top:30px;border-radius:2px;overflow:hidden;
+}
+.loader-bar-inner{
+  width:0%;height:100%;background:var(--gold);
+  transition:width 0.3s linear;
+}
+
+/* ═══════════════════════════════════════════════════
+   NAVBAR — glassmorphism
+═══════════════════════════════════════════════════ */
+.navbar{
+  position:fixed;top:0;left:0;right:0;z-index:9000;
+  padding:0 clamp(20px,4vw,60px);height:80px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:transparent;
+  transition:background 0.5s,backdrop-filter 0.5s,box-shadow 0.5s;
+}
+.navbar.scrolled{
+  background:rgba(2,18,38,0.85);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  box-shadow:0 1px 40px rgba(0,0,0,0.3);
+}
+.nav-brand{
+  display:flex;align-items:center;gap:12px;
+}
+.nav-brand img{width:38px;height:38px;object-fit:contain;filter:brightness(10)}
+.nav-brand span{
+  font-family:'Outfit',sans-serif;font-weight:700;font-size:15px;
+  letter-spacing:3px;text-transform:uppercase;color:var(--white);
+}
+.nav-links{display:flex;gap:8px}
+.nav-links a{
+  font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;
+  letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.6);
+  padding:10px 18px;position:relative;overflow:hidden;
+  transition:color 0.4s var(--ease);
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:6px;left:18px;right:18px;
+  height:1px;background:var(--gold);transform:scaleX(0);
+  transform-origin:right;transition:transform 0.5s var(--ease);
+}
+.nav-links a:hover{color:var(--white)}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+
+/* ═══════════════════════════════════════════════════
+   HERO — full viewport
+═══════════════════════════════════════════════════ */
+.hero{
+  position:relative;width:100%;height:100vh;min-height:600px;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:url('horizon.jpg') center/cover no-repeat;
+  transform:scale(1.1);
+  transition:transform 8s linear;
+}
+.hero-bg-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(2,18,38,0.4) 0%,rgba(2,18,38,0.7) 50%,rgba(2,18,38,0.95) 100%);
+}
+/* Animated grid lines */
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(203,161,110,0.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(203,161,110,0.06) 1px,transparent 1px);
+  background-size:80px 80px;
+  animation:gridMove 20s linear infinite;
+}
+@keyframes gridMove{0%{transform:translate(0,0)}100%{transform:translate(80px,80px)}}
+
+.hero-content{
+  position:relative;z-index:2;text-align:center;
+  padding:0 24px;max-width:1000px;
+}
+.hero-label{
+  font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;
+  letter-spacing:8px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:24px;
+  opacity:0;transform:translateY(30px);
+}
+.hero-title{
+  font-family:'Outfit',sans-serif;
+  font-size:clamp(3.5rem,12vw,10rem);font-weight:800;
+  line-height:0.95;letter-spacing:-2px;
+  color:var(--white);margin-bottom:20px;
+}
+.hero-title .line{
+  display:block;overflow:hidden;
+}
+.hero-title .line span{
+  display:inline-block;
+  transform:translateY(110%);
+  transition:transform 1.2s var(--ease);
+}
+.hero-title.reveal .line span{transform:translateY(0)}
+.hero-title .line:nth-child(2) span{transition-delay:0.15s}
+
+.hero-subtitle{
+  font-family:'Noto Sans TC',sans-serif;font-size:clamp(14px,2vw,18px);
+  color:rgba(255,255,255,0.5);letter-spacing:4px;font-weight:300;
+  margin-bottom:50px;
+  opacity:0;transform:translateY(20px);
+}
+.hero-scroll-hint{
+  position:absolute;bottom:40px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+  opacity:0;
+}
+.hero-scroll-hint span{
+  font-family:'Outfit',sans-serif;font-size:10px;
+  letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,0.35);
+}
+.scroll-line{
+  width:1px;height:50px;background:rgba(255,255,255,0.15);
+  position:relative;overflow:hidden;
+}
+.scroll-line::after{
+  content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;
+  background:var(--gold);animation:scrollDown 2s ease-in-out infinite;
+}
+@keyframes scrollDown{0%{top:-100%}50%{top:100%}100%{top:100%}}
+
+/* ═══════════════════════════════════════════════════
+   FLOATING PARTICLES (hero)
+═══════════════════════════════════════════════════ */
+.particles{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.particle{
+  position:absolute;width:3px;height:3px;
+  background:var(--gold);border-radius:50%;opacity:0;
+  animation:float 8s ease-in-out infinite;
+}
+@keyframes float{
+  0%{opacity:0;transform:translateY(100vh) scale(0)}
+  10%{opacity:0.6}
+  90%{opacity:0.6}
+  100%{opacity:0;transform:translateY(-20vh) scale(1)}
+}
+
+/* ═══════════════════════════════════════════════════
+   MARQUEE — horizontal scroll ticker
+═══════════════════════════════════════════════════ */
+.marquee{
+  background:var(--gold);padding:14px 0;overflow:hidden;
+  white-space:nowrap;
+}
+.marquee-track{
+  display:inline-flex;gap:60px;
+  animation:marquee 30s linear infinite;
+}
+.marquee-track span{
+  font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;
+  letter-spacing:4px;text-transform:uppercase;color:var(--navy);
+}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ═══════════════════════════════════════════════════
+   SECTIONS — common
+═══════════════════════════════════════════════════ */
+.section{
+  padding:clamp(80px,12vw,160px) clamp(24px,6vw,80px);
+  position:relative;overflow:hidden;
+}
+.section-label{
+  font-family:'Outfit',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:6px;text-transform:uppercase;color:var(--gold);
+  margin-bottom:16px;display:flex;align-items:center;gap:16px;
+}
+.section-label::before{content:'';width:40px;height:1px;background:var(--gold)}
+.section-title{
+  font-family:'Noto Sans TC',sans-serif;font-size:clamp(2rem,5vw,3.5rem);
+  font-weight:900;color:var(--white);line-height:1.2;margin-bottom:20px;
+  max-width:700px;
+}
+.section-desc{
+  font-size:16px;color:rgba(255,255,255,0.55);max-width:600px;line-height:1.8;
+  margin-bottom:50px;
+}
+
+/* Reveal animation */
+[data-reveal]{
+  opacity:0;transform:translateY(60px);
+  transition:opacity 1s var(--ease),transform 1s var(--ease);
+}
+[data-reveal].visible{opacity:1;transform:translateY(0)}
+[data-reveal][data-delay="1"]{transition-delay:0.1s}
+[data-reveal][data-delay="2"]{transition-delay:0.2s}
+[data-reveal][data-delay="3"]{transition-delay:0.3s}
+[data-reveal][data-delay="4"]{transition-delay:0.4s}
+
+/* ═══════════════════════════════════════════════════
+   ABOUT SECTION — split layout
+═══════════════════════════════════════════════════ */
+.about{background:var(--navy)}
+.about-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;
+  max-width:1200px;margin:0 auto;align-items:center;
+}
+.about-visual{
+  position:relative;aspect-ratio:4/5;overflow:hidden;
+}
+.about-visual img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 0.8s var(--ease);
+}
+.about-visual:hover img{transform:scale(1.05)}
+.about-visual-frame{
+  position:absolute;inset:16px;
+  border:1px solid rgba(203,161,110,0.3);
+  pointer-events:none;
+  transition:inset 0.5s var(--ease);
+}
+.about-visual:hover .about-visual-frame{inset:8px}
+
+/* Stats row */
+.stats-row{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  margin-top:50px;padding-top:40px;border-top:1px solid rgba(255,255,255,0.08);
+}
+.stat{text-align:center}
+.stat-number{
+  font-family:'Outfit',sans-serif;font-size:clamp(2rem,4vw,3rem);
+  font-weight:800;color:var(--gold);line-height:1;
+}
+.stat-text{
+  font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:2px;
+  text-transform:uppercase;margin-top:8px;
+}
+
+/* ═══════════════════════════════════════════════════
+   DEPARTMENTS — hover-interactive cards
+═══════════════════════════════════════════════════ */
+.departments{background:#060E1A}
+.dept-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:2px;
+  max-width:1200px;margin:0 auto;
+}
+.dept-card{
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.04);
+  padding:36px 28px;
+  position:relative;overflow:hidden;
+  transition:background 0.5s var(--ease),border-color 0.5s;
+}
+.dept-card::before{
+  content:'';position:absolute;top:0;left:0;
+  width:100%;height:3px;background:var(--gold);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.6s var(--ease);
+}
+.dept-card:hover{
+  background:rgba(203,161,110,0.05);
+  border-color:rgba(203,161,110,0.15);
+}
+.dept-card:hover::before{transform:scaleX(1)}
+.dept-num{
+  font-family:'Outfit',sans-serif;font-size:48px;font-weight:800;
+  color:rgba(255,255,255,0.03);line-height:1;margin-bottom:16px;
+  transition:color 0.5s;
+}
+.dept-card:hover .dept-num{color:rgba(203,161,110,0.12)}
+.dept-card h3{
+  font-size:18px;font-weight:700;color:var(--white);margin-bottom:10px;
+  transition:color 0.3s;
+}
+.dept-card:hover h3{color:var(--gold)}
+.dept-card p{
+  font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;
+  transition:color 0.3s;
+}
+.dept-card:hover p{color:rgba(255,255,255,0.65)}
+
+/* ═══════════════════════════════════════════════════
+   EVENTS — horizontal scroll cards
+═══════════════════════════════════════════════════ */
+.events{background:var(--navy)}
+.events-header{
+  max-width:1200px;margin:0 auto 50px;
+}
+.events-scroll{
+  display:flex;gap:24px;padding:0 clamp(24px,6vw,80px) 40px;
+  overflow-x:auto;scroll-snap-type:x mandatory;
+  scrollbar-width:none;-ms-overflow-style:none;
+}
+.events-scroll::-webkit-scrollbar{display:none}
+.event-card{
+  flex:0 0 380px;scroll-snap-align:start;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.06);
+  overflow:hidden;position:relative;
+  transition:border-color 0.4s,transform 0.5s var(--ease);
+}
+.event-card:hover{
+  border-color:var(--gold);
+  transform:translateY(-8px);
+}
+.event-card-img{
+  width:100%;aspect-ratio:16/10;overflow:hidden;position:relative;
+  background:linear-gradient(135deg,var(--navy-800),var(--navy));
+}
+.event-card-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(2,18,38,0.6),transparent);
+}
+.event-card-badge{
+  position:absolute;top:16px;left:16px;z-index:2;
+  font-family:'Outfit',sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:3px;text-transform:uppercase;
+  padding:6px 14px;background:var(--gold);color:var(--navy);
+}
+.event-card-body{padding:28px}
+.event-card-body h3{
+  font-size:22px;font-weight:700;color:var(--white);margin-bottom:10px;
+}
+.event-card-body p{
+  font-size:14px;color:rgba(255,255,255,0.45);line-height:1.7;
+}
+.event-card-arrow{
+  position:absolute;bottom:20px;right:20px;
+  width:40px;height:40px;border:1px solid rgba(255,255,255,0.1);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Outfit',sans-serif;font-size:18px;color:rgba(255,255,255,0.3);
+  transition:all 0.3s var(--ease);
+}
+.event-card:hover .event-card-arrow{
+  border-color:var(--gold);color:var(--gold);
+  transform:translate(4px,-4px);
+}
+
+/* ═══════════════════════════════════════════════════
+   ANNOUNCEMENTS — elegant list
+═══════════════════════════════════════════════════ */
+.announce{background:#060E1A}
+.announce-inner{max-width:1000px;margin:0 auto}
+.announce-list{border-top:1px solid rgba(255,255,255,0.08)}
+.announce-item{
+  display:flex;align-items:center;gap:24px;
+  padding:24px 0;border-bottom:1px solid rgba(255,255,255,0.05);
+  transition:padding-left 0.4s var(--ease),border-color 0.3s;
+  cursor:pointer;
+}
+.announce-item:hover{
+  padding-left:16px;
+  border-bottom-color:rgba(203,161,110,0.2);
+}
+.announce-date{
+  font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;
+  color:rgba(255,255,255,0.3);white-space:nowrap;min-width:90px;
+}
+.announce-tag{
+  font-family:'Outfit',sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;
+  padding:4px 10px;white-space:nowrap;
+  border:1px solid var(--gold);color:var(--gold);
+  flex-shrink:0;
+}
+.announce-title{
+  flex:1;font-size:15px;color:rgba(255,255,255,0.7);
+  transition:color 0.3s;
+}
+.announce-item:hover .announce-title{color:var(--white)}
+.announce-arrow{
+  font-family:'Outfit',sans-serif;font-size:18px;
+  color:rgba(255,255,255,0.15);transition:color 0.3s,transform 0.3s;
+}
+.announce-item:hover .announce-arrow{color:var(--gold);transform:translateX(6px)}
+
+/* ═══════════════════════════════════════════════════
+   CTA — full-width dramatic
+═══════════════════════════════════════════════════ */
+.cta{
+  background:var(--navy);text-align:center;
+  padding:clamp(100px,15vw,200px) 24px;position:relative;
+}
+.cta-bg-text{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-family:'Outfit',sans-serif;font-size:clamp(6rem,20vw,18rem);
+  font-weight:900;color:rgba(255,255,255,0.015);
+  white-space:nowrap;pointer-events:none;
+  letter-spacing:-4px;
+}
+.cta h2{
+  font-family:'Noto Sans TC',sans-serif;font-size:clamp(1.5rem,4vw,2.5rem);
+  font-weight:900;color:var(--white);margin-bottom:16px;
+  position:relative;
+}
+.cta p{
+  font-size:16px;color:rgba(255,255,255,0.4);margin-bottom:40px;
+  position:relative;
+}
+.cta-btn{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:18px 44px;background:transparent;
+  border:2px solid var(--gold);color:var(--gold);
+  font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;
+  letter-spacing:3px;text-transform:uppercase;
+  position:relative;overflow:hidden;
+  transition:color 0.4s;z-index:1;
+}
+.cta-btn::before{
+  content:'';position:absolute;inset:0;
+  background:var(--gold);z-index:-1;
+  transform:scaleX(0);transform-origin:right;
+  transition:transform 0.5s var(--ease);
+}
+.cta-btn:hover{color:var(--navy)}
+.cta-btn:hover::before{transform:scaleX(1);transform-origin:left}
+
+/* ═══════════════════════════════════════════════════
+   FOOTER — minimal modern
+═══════════════════════════════════════════════════ */
+.footer{
+  background:#020B18;padding:80px clamp(24px,6vw,80px) 40px;
+}
+.footer-inner{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;
+}
+.footer-brand h3{
+  font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;
+  color:var(--white);margin-bottom:16px;letter-spacing:2px;
+}
+.footer-brand p{
+  font-size:13px;color:rgba(255,255,255,0.35);line-height:1.8;
+  max-width:300px;
+}
+.footer-col h4{
+  font-family:'Outfit',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:3px;text-transform:uppercase;color:var(--gold);
+  margin-bottom:20px;
+}
+.footer-col a{
+  display:block;font-size:14px;color:rgba(255,255,255,0.4);
+  padding:6px 0;transition:color 0.3s,padding-left 0.3s var(--ease);
+}
+.footer-col a:hover{color:var(--white);padding-left:8px}
+.footer-bottom{
+  max-width:1200px;margin:60px auto 0;padding-top:30px;
+  border-top:1px solid rgba(255,255,255,0.06);
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:12px;color:rgba(255,255,255,0.25);
+}
+.footer-socials{display:flex;gap:16px}
+.footer-socials a{
+  width:36px;height:36px;border:1px solid rgba(255,255,255,0.1);
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,0.4);font-size:14px;
+  transition:all 0.3s var(--ease);
+}
+.footer-socials a:hover{
+  border-color:var(--gold);color:var(--gold);
+  transform:translateY(-3px);
+}
+
+/* ═══════════════════════════════════════════════════
+   BACK TO TOP
+═══════════════════════════════════════════════════ */
+.back-top{
+  position:fixed;bottom:28px;right:28px;z-index:8000;
+  width:48px;height:48px;background:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;transform:translateY(20px);
+  transition:opacity 0.4s,visibility 0.4s,transform 0.4s var(--ease);
+  cursor:none;
+}
+.back-top.visible{opacity:1;visibility:visible;transform:translateY(0)}
+.back-top:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(203,161,110,0.4)}
+.back-top svg{width:20px;height:20px;color:var(--navy)}
+
+/* ═══════════════════════════════════════════════════
+   MAGNETIC EFFECT utility
+═══════════════════════════════════════════════════ */
+.magnetic{transition:transform 0.3s var(--ease)}
+
+/* ═══════════════════════════════════════════════════
+   RWD
+═══════════════════════════════════════════════════ */
+@media(max-width:1024px){
+  .dept-grid{grid-template-columns:repeat(2,1fr)}
+  .about-grid{grid-template-columns:1fr;gap:40px}
+  .footer-inner{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .cursor,.cursor-dot{display:none}
+  body{cursor:auto}
+  a{cursor:pointer}
+  .nav-links{display:none}
+  .dept-grid{grid-template-columns:1fr}
+  .event-card{flex:0 0 85vw}
+  .footer-inner{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;gap:16px;text-align:center}
+  .stats-row{grid-template-columns:repeat(3,1fr);gap:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════ CUSTOM CURSOR ═══════ -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- ═══════ LOADING SCREEN ═══════ -->
+<div class="loader" id="loader">
+  <div class="loader-text" id="loaderText">ECON SA</div>
+  <div class="loader-bar"><div class="loader-bar-inner" id="loaderBar"></div></div>
+</div>
+
+<!-- ═══════ NAVBAR ═══════ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-brand magnetic">
+    <img src="images.jpeg" alt="Logo">
+    <span>NTU Econ</span>
+  </div>
+  <div class="nav-links">
+    <a href="index.html" class="magnetic">首頁</a>
+    <a href="02_review.html" class="magnetic">活動回顧</a>
+    <a href="01_about.html" class="magnetic">關於我們</a>
+    <a href="03_support.html" class="magnetic">贊助支持</a>
+  </div>
+</nav>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero" id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-bg-overlay"></div>
+  <div class="hero-grid"></div>
+  <div class="particles" id="particles"></div>
+  <div class="hero-content">
+    <div class="hero-label" data-reveal>Department of Economics · Student Association</div>
+    <h1 class="hero-title" id="heroTitle">
+      <span class="line"><span>NTU</span></span>
+      <span class="line"><span>ECON SA</span></span>
+    </h1>
+    <p class="hero-subtitle" data-reveal>國立臺灣大學經濟學系學生會</p>
+  </div>
+  <div class="hero-scroll-hint" id="scrollHint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══════ MARQUEE ═══════ -->
+<div class="marquee">
+  <div class="marquee-track" id="marqueeTrack">
+    <span>權益維護</span><span>✦</span>
+    <span>資源共享</span><span>✦</span>
+    <span>社群凝聚</span><span>✦</span>
+    <span>專業發展</span><span>✦</span>
+    <span>經濟之夜</span><span>✦</span>
+    <span>經濟週</span><span>✦</span>
+    <span>經濟營</span><span>✦</span>
+    <span>杜鵑花節</span><span>✦</span>
+    <span>權益維護</span><span>✦</span>
+    <span>資源共享</span><span>✦</span>
+    <span>社群凝聚</span><span>✦</span>
+    <span>專業發展</span><span>✦</span>
+    <span>經濟之夜</span><span>✦</span>
+    <span>經濟週</span><span>✦</span>
+    <span>經濟營</span><span>✦</span>
+    <span>杜鵑花節</span><span>✦</span>
+  </div>
+</div>
+
+<!-- ═══════ ABOUT ═══════ -->
+<section class="section about">
+  <div class="about-grid">
+    <div>
+      <div class="section-label" data-reveal>About Us</div>
+      <h2 class="section-title" data-reveal>為每位經濟人<br>打造更好的大學生活</h2>
+      <p class="section-desc" data-reveal>國立臺灣大學經濟學系學生會（NTU ECON SA）是代表臺大經濟系全體大學部學生的自治組織，致力於權益維護、資源共享、社群凝聚與專業發展。</p>
+      <div class="stats-row">
+        <div class="stat" data-reveal data-delay="1">
+          <div class="stat-number" data-count="8">0</div>
+          <div class="stat-text">職能部門</div>
+        </div>
+        <div class="stat" data-reveal data-delay="2">
+          <div class="stat-number" data-count="10">0</div>
+          <div class="stat-text">年度活動</div>
+        </div>
+        <div class="stat" data-reveal data-delay="3">
+          <div class="stat-number" data-count="500">0</div>
+          <div class="stat-text">服務人數</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-visual" data-reveal data-delay="2">
+      <img src="horizon.jpg" alt="NTU Economics">
+      <div class="about-visual-frame"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ DEPARTMENTS ═══════ -->
+<section class="section departments">
+  <div style="max-width:1200px;margin:0 auto 50px;">
+    <div class="section-label" data-reveal>Organization</div>
+    <h2 class="section-title" data-reveal>組織架構</h2>
+    <p class="section-desc" data-reveal>系學會設有會長與副會長，任期一年，設有多個部門共同推動系務運作。</p>
+  </div>
+  <div class="dept-grid">
+    <div class="dept-card" data-reveal data-delay="1">
+      <div class="dept-num">01</div>
+      <h3>會本部</h3>
+      <p>維持各部門良好溝通、爭取學生權益及推動系學會各項政策以增加系上學生之福利。</p>
+    </div>
+    <div class="dept-card" data-reveal data-delay="2">
+      <div class="dept-num">02</div>
+      <h3>總務部</h3>
+      <p>統籌系學會年度資金，編列預算、審核各活動之預算及處理會務出納。</p>
+    </div>
+    <div class="dept-card" data-reveal data-delay="3">
+      <div class="dept-num">03</div>
+      <h3>活動部</h3>
+      <p>舉辦系上大小活動，如系野餐、系烤、系酒會、經濟之夜，凝聚系上同學情誼。</p>
+    </div>
+    <div class="dept-card" data-reveal data-delay="4">
+      <div class="dept-num">04</div>
+      <h3>公關部</h3>
+      <p>協助舉辦聯合舞會，系上活動拉贊、廠商接洽。</p>
+    </div>
+    <div class="dept-card" data-reveal data-delay="1">
+      <div class="dept-num">05</div>
+      <h3>學術部</h3>
+      <p>主辦學術講座、職涯講座、讀書會以及一年一度的杜鵑花節。</p>
+    </div>
+    <div class="dept-card" data-reveal data-delay="2">
+      <div class="dept-num">06</div>
+      <h3>國際部</h3>
+      <p>處理系上外籍生相關事務，融合本地生及外籍生，推廣全英專班活動訊息。</p>
+    </div>
+    <div class="dept-card" data-reveal data-delay="3">
+      <div class="dept-num">07</div>
+      <h3>行設部</h3>
+      <p>設計系學會年度主視覺、管理系學會官方社群帳號，宣傳活動。</p>
+    </div>
+    <div class="dept-card" data-reveal data-delay="4">
+      <div class="dept-num">08</div>
+      <h3>體育部</h3>
+      <p>統籌系隊事務及與各校系學會輪流主辦「北經盃」、「大經盃」體育賽事。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ EVENTS — horizontal scroll ═══════ -->
+<section class="section events">
+  <div class="events-header">
+    <div class="section-label" data-reveal>Events</div>
+    <h2 class="section-title" data-reveal>年度活動</h2>
+    <p class="section-desc" data-reveal>左右滑動探索我們的精彩活動 →</p>
+  </div>
+  <div class="events-scroll" id="eventsScroll">
+    <div class="event-card" data-reveal data-delay="1">
+      <div class="event-card-img">
+        <div class="event-card-badge">年度盛事</div>
+      </div>
+      <div class="event-card-body">
+        <h3>經濟之夜</h3>
+        <p>系上同學展現多元才藝之活動，如樂團表演、舞蹈演出、戲劇節目，是全系最大盛事。</p>
+      </div>
+      <div class="event-card-arrow">→</div>
+    </div>
+    <div class="event-card" data-reveal data-delay="2">
+      <div class="event-card-img">
+        <div class="event-card-badge">學系推廣</div>
+      </div>
+      <div class="event-card-body">
+        <h3>杜鵑花節</h3>
+        <p>向有興趣就讀本校系之高中生介紹本系之修課規劃及職涯發展等。</p>
+      </div>
+      <div class="event-card-arrow">→</div>
+    </div>
+    <div class="event-card" data-reveal data-delay="3">
+      <div class="event-card-img">
+        <div class="event-card-badge">學系推廣</div>
+      </div>
+      <div class="event-card-body">
+        <h3>經濟營</h3>
+        <p>帶領高中生更認識經濟系及建立人際網絡，體驗大學經濟學的魅力。</p>
+      </div>
+      <div class="event-card-arrow">→</div>
+    </div>
+    <div class="event-card" data-reveal data-delay="4">
+      <div class="event-card-img">
+        <div class="event-card-badge">特色活動</div>
+      </div>
+      <div class="event-card-body">
+        <h3>經濟週</h3>
+        <p>販賣經濟系周邊商品、手作美食、設計小遊戲給系外同學娛樂。</p>
+      </div>
+      <div class="event-card-arrow">→</div>
+    </div>
+    <div class="event-card" data-reveal data-delay="1">
+      <div class="event-card-img">
+        <div class="event-card-badge">專業成長</div>
+      </div>
+      <div class="event-card-body">
+        <h3>職涯與學術講座</h3>
+        <p>邀請知名系友或產業專家分享，包含金融、數據分析、學術研究等領域。</p>
+      </div>
+      <div class="event-card-arrow">→</div>
+    </div>
+    <div class="event-card" data-reveal data-delay="2">
+      <div class="event-card-img">
+        <div class="event-card-badge">新生系列</div>
+      </div>
+      <div class="event-card-body">
+        <h3>大迎新 & 宿營</h3>
+        <p>學期初向新生介紹系學會及各系隊，暑假帶領準大一生體驗三天兩夜的團康活動。</p>
+      </div>
+      <div class="event-card-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ ANNOUNCEMENTS ═══════ -->
+<section class="section announce">
+  <div class="announce-inner">
+    <div class="section-label" data-reveal>News</div>
+    <h2 class="section-title" data-reveal>最新公告</h2>
+    <p class="section-desc" data-reveal>掌握系學會的最新動態與活動資訊。</p>
+    <div class="announce-list" data-reveal>
+      <div class="announce-item">
+        <span class="announce-date">2026.03</span>
+        <span class="announce-tag">活動</span>
+        <span class="announce-title">114-2 學期經濟之夜即將登場</span>
+        <span class="announce-arrow">→</span>
+      </div>
+      <div class="announce-item">
+        <span class="announce-date">2026.02</span>
+        <span class="announce-tag">公告</span>
+        <span class="announce-title">系學會新學期幹部招募中</span>
+        <span class="announce-arrow">→</span>
+      </div>
+      <div class="announce-item">
+        <span class="announce-date">2026.01</span>
+        <span class="announce-tag">講座</span>
+        <span class="announce-title">職涯系列講座 — 金融業校友分享</span>
+        <span class="announce-arrow">→</span>
+      </div>
+      <div class="announce-item">
+        <span class="announce-date">2025.12</span>
+        <span class="announce-tag">活動</span>
+        <span class="announce-title">系烤暨年末派對圓滿落幕</span>
+        <span class="announce-arrow">→</span>
+      </div>
+      <div class="announce-item">
+        <span class="announce-date">2025.11</span>
+        <span class="announce-tag">體育</span>
+        <span class="announce-title">大經盃報名開始</span>
+        <span class="announce-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CTA ═══════ -->
+<section class="cta">
+  <div class="cta-bg-text">SUPPORT</div>
+  <h2 data-reveal>支持我們，讓活動更加精彩</h2>
+  <p data-reveal>您的贊助是系學會持續為同學們創造美好體驗的動力。</p>
+  <a href="03_support.html" class="cta-btn magnetic" data-reveal>
+    了解贊助方案
+    <span>→</span>
+  </a>
+</section>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>NTU ECON SA</h3>
+      <p>國立臺灣大學經濟學系學生會<br>為每一位經濟人服務。</p>
+    </div>
+    <div class="footer-col">
+      <h4>Pages</h4>
+      <a href="index.html">首頁</a>
+      <a href="02_review.html">活動回顧</a>
+      <a href="01_about.html">關於我們</a>
+      <a href="03_support.html">贊助支持</a>
+    </div>
+    <div class="footer-col">
+      <h4>Links</h4>
+      <a href="https://giving.ntu.edu.tw/" target="_blank">台大財務處捐款</a>
+      <a href="http://www.econ.ntu.edu.tw/" target="_blank">經濟系官方網站</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a>ntu.econ.student@gmail.com</a>
+      <a>台北市大安區羅斯福路四段1號</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 NTU ECON SA. All Rights Reserved.</span>
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/ntu_econ_official/" target="_blank" class="magnetic" aria-label="Instagram">IG</a>
+      <a href="https://www.facebook.com/NTUECONSA" target="_blank" class="magnetic" aria-label="Facebook">FB</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════ BACK TO TOP ═══════ -->
+<button class="back-top" id="backTop" aria-label="回到頂部">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5"/>
+  </svg>
+</button>
+
+<!-- ═══════════════════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════════════════ -->
+<script>
+(function(){
+'use strict';
+
+/* --------------------------------------------------
+   1. LOADING SCREEN
+-------------------------------------------------- */
+var loader = document.getElementById('loader');
+var loaderBar = document.getElementById('loaderBar');
+var progress = 0;
+var loadInterval = setInterval(function(){
+  progress += Math.random()*25;
+  if(progress>=100){progress=100;clearInterval(loadInterval);
+    setTimeout(function(){
+      loader.classList.add('hidden');
+      initHeroReveal();
+    },400);
+  }
+  loaderBar.style.width = progress+'%';
+},200);
+
+/* --------------------------------------------------
+   2. CUSTOM CURSOR
+-------------------------------------------------- */
+var cursor = document.getElementById('cursor');
+var cursorDot = document.getElementById('cursorDot');
+var mx=0,my=0,cx=0,cy=0;
+document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY});
+(function animCursor(){
+  cx+=(mx-cx)*0.15;cy+=(my-cy)*0.15;
+  cursor.style.left=cx+'px';cursor.style.top=cy+'px';
+  cursorDot.style.left=mx+'px';cursorDot.style.top=my+'px';
+  requestAnimationFrame(animCursor);
+})();
+document.querySelectorAll('a,button,.dept-card,.event-card,.announce-item,.magnetic').forEach(function(el){
+  el.addEventListener('mouseenter',function(){cursor.classList.add('hover')});
+  el.addEventListener('mouseleave',function(){cursor.classList.remove('hover')});
+});
+
+/* --------------------------------------------------
+   3. MAGNETIC EFFECT
+-------------------------------------------------- */
+document.querySelectorAll('.magnetic').forEach(function(el){
+  el.addEventListener('mousemove',function(e){
+    var r=el.getBoundingClientRect();
+    var x=e.clientX-r.left-r.width/2;
+    var y=e.clientY-r.top-r.height/2;
+    el.style.transform='translate('+x*0.25+'px,'+y*0.25+'px)';
+  });
+  el.addEventListener('mouseleave',function(){
+    el.style.transform='translate(0,0)';
+  });
+});
+
+/* --------------------------------------------------
+   4. HERO REVEAL
+-------------------------------------------------- */
+function initHeroReveal(){
+  var title=document.getElementById('heroTitle');
+  title.classList.add('reveal');
+  // staggered label + subtitle
+  var label=document.querySelector('.hero-label');
+  var sub=document.querySelector('.hero-subtitle');
+  var hint=document.getElementById('scrollHint');
+  setTimeout(function(){label.style.opacity='1';label.style.transform='translateY(0)';label.style.transition='opacity 1s var(--ease),transform 1s var(--ease)'},300);
+  setTimeout(function(){sub.style.opacity='1';sub.style.transform='translateY(0)';sub.style.transition='opacity 1s var(--ease),transform 1s var(--ease)'},800);
+  setTimeout(function(){hint.style.opacity='1';hint.style.transition='opacity 1s'},1200);
+}
+
+/* --------------------------------------------------
+   5. PARALLAX — hero bg
+-------------------------------------------------- */
+window.addEventListener('scroll',function(){
+  var s=window.scrollY;
+  var bg=document.getElementById('heroBg');
+  if(bg)bg.style.transform='scale(1.1) translateY('+s*0.35+'px)';
+},{passive:true});
+
+/* --------------------------------------------------
+   6. NAVBAR SCROLL
+-------------------------------------------------- */
+var navbar=document.getElementById('navbar');
+window.addEventListener('scroll',function(){
+  navbar.classList.toggle('scrolled',window.scrollY>80);
+},{passive:true});
+
+/* --------------------------------------------------
+   7. REVEAL ON SCROLL
+-------------------------------------------------- */
+var reveals=document.querySelectorAll('[data-reveal]');
+var revealIO=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){e.target.classList.add('visible');revealIO.unobserve(e.target)}
+  });
+},{threshold:0.12});
+reveals.forEach(function(el){revealIO.observe(el)});
+
+/* --------------------------------------------------
+   8. COUNT UP ANIMATION
+-------------------------------------------------- */
+var counted=false;
+var statsIO=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting && !counted){
+      counted=true;
+      document.querySelectorAll('[data-count]').forEach(function(el){
+        var target=parseInt(el.getAttribute('data-count'));
+        var start=0;var dur=2000;var startTime=null;
+        function step(ts){
+          if(!startTime)startTime=ts;
+          var p=Math.min((ts-startTime)/dur,1);
+          var eased=1-Math.pow(1-p,4);
+          el.textContent=Math.floor(eased*target)+(target>=100?'+':'');
+          if(p<1)requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    }
+  });
+},{threshold:0.5});
+document.querySelectorAll('.stats-row').forEach(function(el){statsIO.observe(el)});
+
+/* --------------------------------------------------
+   9. PARTICLES
+-------------------------------------------------- */
+var particleContainer=document.getElementById('particles');
+for(var i=0;i<35;i++){
+  var p=document.createElement('div');
+  p.className='particle';
+  p.style.left=Math.random()*100+'%';
+  p.style.animationDelay=Math.random()*8+'s';
+  p.style.animationDuration=(6+Math.random()*6)+'s';
+  p.style.width=p.style.height=(1+Math.random()*3)+'px';
+  particleContainer.appendChild(p);
+}
+
+/* --------------------------------------------------
+   10. BACK TO TOP
+-------------------------------------------------- */
+var backTop=document.getElementById('backTop');
+window.addEventListener('scroll',function(){
+  backTop.classList.toggle('visible',window.scrollY>400);
+},{passive:true});
+backTop.addEventListener('click',function(){
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+/* --------------------------------------------------
+   11. TILT EFFECT on event cards
+-------------------------------------------------- */
+document.querySelectorAll('.event-card').forEach(function(card){
+  card.addEventListener('mousemove',function(e){
+    var r=card.getBoundingClientRect();
+    var x=(e.clientX-r.left)/r.width-0.5;
+    var y=(e.clientY-r.top)/r.height-0.5;
+    card.style.transform='translateY(-8px) perspective(600px) rotateX('+(-y*8)+'deg) rotateY('+(x*8)+'deg)';
+  });
+  card.addEventListener('mouseleave',function(){
+    card.style.transform='translateY(0) perspective(600px) rotateX(0) rotateY(0)';
+  });
+});
+
+/* --------------------------------------------------
+   12. DEPT CARD — glowing border on mouse
+-------------------------------------------------- */
+document.querySelectorAll('.dept-card').forEach(function(card){
+  card.addEventListener('mousemove',function(e){
+    var r=card.getBoundingClientRect();
+    var x=e.clientX-r.left;
+    var y=e.clientY-r.top;
+    card.style.background='radial-gradient(circle at '+x+'px '+y+'px, rgba(203,161,110,0.08), rgba(255,255,255,0.02) 60%)';
+  });
+  card.addEventListener('mouseleave',function(){
+    card.style.background='rgba(255,255,255,0.02)';
+  });
+});
+
+})();
+</script>
+</body>
+</html>
