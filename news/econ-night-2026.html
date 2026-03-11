@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>經濟之夜 2026 報名開始 - 國立臺灣大學經濟學系學生會</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <style>
+    :root {
+      --navy-900:#021226; --navy-800:#0A2647; --navy-700:#144272; --navy-100:#E6F0F9;
+      --gold-500:#CBA16E; --gold-400:#DCC09B; --gold-100:#F9F3EB;
+      --text-main:#1E293B; --text-muted:#64748B;
+      --bg-body:#F8FAFC; --bg-white:#FAFAFA;
+      --ease-custom:cubic-bezier(0.19,1,0.22,1);
+    }
+
+    /* ── 麵包屑 ── */
+    .breadcrumb {
+      max-width: 860px; margin: 32px auto 0; padding: 0 clamp(20px,5%,60px);
+      font-family: 'Outfit', sans-serif; font-size: 13px; color: var(--text-muted);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .breadcrumb a { color: var(--navy-700); font-weight: 600; }
+    .breadcrumb a:hover { color: var(--gold-500); }
+    .breadcrumb span { color: var(--text-muted); }
+
+    /* ── 文章容器 ── */
+    .article-wrap {
+      max-width: 860px; margin: 28px auto 80px;
+      padding: 0 clamp(20px,5%,60px);
+    }
+
+    /* ── 文章頭部 ── */
+    .article-header {
+      border-bottom: 2px solid var(--navy-900);
+      padding-bottom: 24px; margin-bottom: 36px;
+    }
+    .article-tag {
+      display: inline-block;
+      font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 700;
+      padding: 3px 10px; border: 1.5px solid;
+      color: #7c5000; border-color: var(--gold-500);
+      background: var(--gold-100); letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+    .article-title {
+      font-family: 'Noto Sans TC', sans-serif; font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 900; color: var(--navy-900); margin: 0 0 16px;
+      line-height: 1.25;
+    }
+    .article-meta {
+      display: flex; align-items: center; gap: 20px;
+      font-family: 'Outfit', sans-serif; font-size: 13px; color: var(--text-muted);
+    }
+    .article-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ── 內文 ── */
+    .article-body {
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: 16px; line-height: 1.9; color: var(--text-main);
+    }
+    .article-body h2 {
+      font-size: 20px; font-weight: 900; color: var(--navy-900);
+      margin: 40px 0 14px;
+      padding-bottom: 10px; border-bottom: 2px solid var(--navy-100);
+    }
+    .article-body p { margin: 0 0 20px; }
+    .article-body ul { padding-left: 20px; margin: 0 0 20px; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body strong { color: var(--navy-900); }
+
+    /* 資訊 box */
+    .info-box {
+      background: var(--navy-900); color: #fff;
+      border-left: 5px solid var(--gold-500);
+      padding: 24px 28px; margin: 32px 0;
+    }
+    .info-box-label {
+      font-family: 'Outfit', sans-serif; font-size: 10px; font-weight: 800;
+      color: var(--gold-400); letter-spacing: 4px; text-transform: uppercase;
+      margin-bottom: 14px; display: block;
+    }
+    .info-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+    }
+    .info-row { display: flex; flex-direction: column; gap: 4px; }
+    .info-key {
+      font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 700;
+      color: var(--gold-400); letter-spacing: 2px; text-transform: uppercase;
+    }
+    .info-val {
+      font-family: 'Noto Sans TC', sans-serif; font-size: 15px;
+      color: #fff; font-weight: 500;
+    }
+
+    /* 報名按鈕 */
+    .cta-area { margin-top: 36px; }
+    .cta-btn {
+      display: inline-block; padding: 14px 36px;
+      background: var(--navy-900); color: var(--gold-400);
+      border: 2px solid var(--gold-500);
+      font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .cta-btn:hover {
+      background: var(--gold-500); color: var(--navy-900);
+      text-shadow: none !important;
+    }
+
+    /* 返回列表 */
+    .back-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 48px; padding: 10px 0;
+      font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 700;
+      color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .back-link:hover {
+      color: var(--navy-900); border-color: var(--gold-500);
+      text-shadow: none !important;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header id="main-header">
+  <div class="brand-area">
+    <img src="../images.jpeg" alt="Logo" class="site-logo">
+    <a href="../index.html" class="site-title">國立臺灣大學經濟學系學生會</a>
+  </div>
+  <div class="nav-area">
+    <nav>
+      <ul>
+        <li><a href="../index.html"     class="nav-link">首頁</a></li>
+        <li><a href="../02_review.html" class="nav-link">活動回顧</a></li>
+        <li><a href="../01_about.html"  class="nav-link">關於我們</a></li>
+        <li><a href="../03_support.html" class="nav-link">立即贊助</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ── 麵包屑 ── -->
+<div class="breadcrumb">
+  <a href="../index.html">首頁</a>
+  <span>›</span>
+  <span>最新公告</span>
+  <span>›</span>
+  <span>經濟之夜 2026</span>
+</div>
+
+<!-- ── 文章本體 ── -->
+<div class="article-wrap">
+
+  <div class="article-header">
+    <span class="article-tag">活動</span>
+    <h1 class="article-title">經濟之夜 2026 報名開始！快來報名參加年度盛典</h1>
+    <div class="article-meta">
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        2026-03-01
+      </span>
+      <span>活動部</span>
+    </div>
+  </div>
+
+  <div class="article-body">
+
+    <p>經濟系學生會年度最盛大的表演活動 ——「<strong>經濟之夜 2026</strong>」即將登場！本年度主題以「突破」為核心，結合戲劇、舞蹈與音樂，展現經濟系同學的才華與熱情。歡迎全體大學部同學踴躍報名參與，與我們共同創造這場難忘的夜晚。</p>
+
+    <!-- 活動資訊 box -->
+    <div class="info-box">
+      <span class="info-box-label">Event Info</span>
+      <div class="info-grid">
+        <div class="info-row">
+          <span class="info-key">日期</span>
+          <span class="info-val">2026 年 5 月 15 日（五）</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">時間</span>
+          <span class="info-val">18:30 開始（18:00 入場）</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">地點</span>
+          <span class="info-val">臺大綜合體育館</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">票價</span>
+          <span class="info-val">本系學生 NT$ 150 / 一般 NT$ 250</span>
+        </div>
+      </div>
+    </div>
+
+    <h2>活動內容</h2>
+    <ul>
+      <li>戲劇演出：由各班同學自製、演出精彩短劇</li>
+      <li>舞蹈表演：街舞、現代舞、國際標準舞各組輪番上陣</li>
+      <li>樂團演奏：現場 live band，帶動全場氣氛</li>
+      <li>驚喜嘉賓：系友及特別嘉賓壓軸登場</li>
+    </ul>
+
+    <h2>報名方式</h2>
+    <p>請填寫下方 Google 表單完成報名，並於報名截止日（<strong>2026 年 4 月 30 日</strong>）前完成付款。票券數量有限，額滿為止。</p>
+
+    <div class="cta-area">
+      <a href="#" class="cta-btn">立即報名 →</a>
+      <!-- ★ 維護：將上方 href="#" 換成實際 Google 表單連結 -->
+    </div>
+
+    <a href="../index.html" class="back-link">← 返回首頁公告列表</a>
+
+  </div>
+
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-col">
+      <h4>關於我們</h4>
+      <ul>
+        <li><a href="../index.html">學生會首頁</a></li>
+        <li><a href="../02_review.html">活動回顧</a></li>
+        <li><a href="../01_about.html">關於我們</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>相關連結</h4>
+      <ul>
+        <li><a href="https://giving.ntu.edu.tw/" target="_blank">台大財務處捐款</a></li>
+        <li><a href="http://www.econ.ntu.edu.tw/" target="_blank">經濟系官方網站</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>聯絡資訊</h4>
+      <ul>
+        <li>Email: ntu.econ.student@gmail.com</li>
+        <li>台北市大安區羅斯福路四段1號</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 國立臺灣大學經濟學系學生會 | All Rights Reserved.
+  </div>
+</footer>
+
+<script>
+  // Header scroll effect
+  const header = document.getElementById('main-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 50);
+  });
+</script>
+
+</body>
+</html>

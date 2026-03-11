@@ -26,25 +26,28 @@
      ★ 更換背景圖：修改 background-image 中的檔名
   ===================================================== */
   .banner {
-    position:relative; width:100%; height:340px;
+    position:relative; width:100%; height:420px;
     background-image: url('horizon.jpg');
     background-size:cover; background-position:center;
     display:flex; align-items:flex-end;
   }
   .banner-overlay {
     /* 漸層遮罩，讓文字可讀 */
-    width:100%; padding:32px clamp(20px,5%,60px) 40px;
-    background:linear-gradient(to top, rgba(2,18,38,0.72) 0%, transparent 100%);
+    width:100%; padding:32px clamp(20px,5%,60px) 48px;
+    background:linear-gradient(to top, rgba(2,18,38,0.78) 0%, transparent 100%);
   }
-  .banner-title {
-    font-family:'Noto Sans TC',sans-serif; font-weight:900;
-    font-size:clamp(1.6rem,4vw,2.8rem); color:#fff;
-    margin:0; letter-spacing:-1px; line-height:1.1;
+  /* ★ Banner 主標題（英文大字）
+     修改文字：改下方 HTML 的 .banner-en-main / .banner-en-sub 內容 */
+  .banner-en-main {
+    font-family:'Outfit',sans-serif; font-weight:800;
+    font-size:clamp(4rem,11vw,9rem); color:#fff;
+    margin:0 0 14px; letter-spacing:6px; line-height:1.0;
+    text-transform:uppercase;
   }
-  .banner-sub {
-    font-family:'Outfit',sans-serif; font-size:clamp(0.85rem,1.8vw,1.1rem);
-    color:var(--gold-400); font-weight:600; letter-spacing:4px;
-    margin:6px 0 0; text-transform:uppercase;
+  .banner-en-sub {
+    font-family:'Outfit',sans-serif; font-size:clamp(0.95rem,2vw,1.35rem);
+    color:var(--gold-400); font-weight:600; letter-spacing:5px;
+    margin:0; text-transform:uppercase;
   }
 
   /* =====================================================
@@ -338,34 +341,24 @@
 ====================================================== -->
 <div class="banner">
   <div class="banner-overlay">
-    <p class="banner-sub">NTU Department of Economics · Student Association</p>
-    <h1 class="banner-title">國立臺灣大學<br>經濟學系學生會</h1>
+    <!-- ★ 修改文字：直接改下面兩行的文字內容 -->
+    <p class="banner-en-main">NTU ECON SA</p>
+    <p class="banner-en-sub">Department of Economics · Student Association</p>
   </div>
 </div>
 
 <!-- ======================================================
-     NAVY BAR — 深藍統計數字橫幅
-     ★ 修改數字/文字：直接改 .stat-num 和 .stat-label 的文字即可
-     ★ 新增欄位：複製一個 .stat-item 貼在此區塊內
+     NAVY BAR — 深藍裝飾橫幅
+     ★ 若要在此加入文字或數字：
+       複製以下格式並取消註解，貼入 .navy-bar-inner 內：
+       <div class="stat-item">
+         <span class="stat-num">12+</span>
+         <span class="stat-label">年度活動</span>
+       </div>
 ====================================================== -->
-<div class="navy-bar reveal">
+<div class="navy-bar" style="padding-top:14px;padding-bottom:14px;">
   <div class="navy-bar-inner">
-    <div class="stat-item">
-      <span class="stat-num">12+</span>
-      <span class="stat-label">年度活動</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-num">400+</span>
-      <span class="stat-label">系上同學</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-num">5</span>
-      <span class="stat-label">大型年度活動</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-num">30+</span>
-      <span class="stat-label">幹部人數</span>
-    </div>
+    <!-- 目前為純深藍裝飾條，可在此加入數字或文字 -->
   </div>
 </div>
 

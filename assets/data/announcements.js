@@ -35,8 +35,8 @@ var ANNOUNCEMENTS = [
   },
   {
     date:  '2026-03-01',
-    title: '經濟之夜 2026 報名開始！',
-    link:   null,
+    title: '經濟之夜 2026 報名開始！快來報名參加年度盛典',
+    link:  'news/econ-night-2026.html',   /* ← 有連結時，整列可點擊 */
     tag:   '活動',
   },
   {

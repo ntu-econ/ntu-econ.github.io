@@ -8,8 +8,42 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Outfit:wght@400;600;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="assets/css/style.css">
+
     <style>
+        /* =====================================================
+           BANNER — 頂部大圖（與首頁一致）
+        ===================================================== */
+        .banner {
+            position: relative; width: 100%; height: 420px;
+            background-image: url('horizon.jpg');
+            background-size: cover; background-position: center;
+            display: flex; align-items: flex-end;
+        }
+        .banner-overlay {
+            width: 100%; padding: 32px clamp(20px,5%,60px) 48px;
+            background: linear-gradient(to top, rgba(2,18,38,0.78) 0%, transparent 100%);
+        }
+        .banner-en-main {
+            font-family: 'Outfit', sans-serif; font-weight: 800;
+            font-size: clamp(4rem,11vw,9rem); color: #fff;
+            margin: 0 0 14px; letter-spacing: 6px; line-height: 1.0;
+            text-transform: uppercase;
+        }
+        .banner-en-sub {
+            font-family: 'Outfit', sans-serif; font-size: clamp(0.95rem,2vw,1.35rem);
+            color: var(--gold-400); font-weight: 600; letter-spacing: 5px;
+            margin: 0; text-transform: uppercase;
+        }
+        /* NAVY BAR */
+        .navy-bar {
+            background: var(--navy-900); color: #fff;
+            padding: 14px clamp(20px,5%,60px);
+        }
+        .navy-bar-inner {
+            max-width: 1280px; margin: 0 auto;
+        }
+
         /* 由於您原本檔案有內建 style，這裡一併更新 header 字體與 backToTopBtn CSS */
         :root {
             --navy-900: #0A1E3F; --navy-800: #14325A; --navy-700: #1C4E80; --navy-100: #E6F0F9;
@@ -148,7 +182,28 @@
             <img src="images.jpeg" alt="Logo" class="site-logo">
             <a href="index.html" class="site-title">國立臺灣大學經濟學系學生會</a>
         </div>
-        </header>
+        <div class="nav-area">
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="nav-link">首頁</a></li>
+                    <li><a href="02_review.html" class="nav-link">活動回顧</a></li>
+                    <li><a href="01_about.html" class="nav-link">關於我們</a></li>
+                    <li><a href="03_support.html" class="nav-link">立即贊助</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="banner">
+        <div class="banner-overlay">
+            <p class="banner-en-main">SUPPORT US</p>
+            <p class="banner-en-sub">Sponsor · NTU Economics Student Association</p>
+        </div>
+    </div>
+
+    <div class="navy-bar">
+        <div class="navy-bar-inner"></div>
+    </div>
 
     <div class="layout-container">
         
