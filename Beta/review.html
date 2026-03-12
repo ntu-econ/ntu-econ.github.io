@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>活動回顧 — NTU ECON SA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+:root{--gold:#CBA16E;--gold-light:#DCC09B;--navy:#021226;--navy-800:#0A2647;--navy-700:#144272;--electric:#3B82F6}
+
+/* PAGE HERO */
+.page-hero{position:relative;height:52vh;min-height:380px;display:flex;align-items:flex-end;overflow:hidden}
+.ph-bg{position:absolute;inset:0;background:url('horizon.jpg') center/cover no-repeat;transform:scale(1.08);will-change:transform}
+.ph-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,18,38,.25) 0%,rgba(2,18,38,.92) 100%)}
+.ph-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(203,161,110,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(203,161,110,.04) 1px,transparent 1px);background-size:80px 80px}
+.ph-content{position:relative;z-index:2;padding:clamp(36px,5vw,64px) clamp(24px,6vw,80px);max-width:1200px;margin:0 auto;width:100%}
+.ph-en{font-family:'Outfit',sans-serif;font-size:clamp(2.8rem,8vw,6.5rem);font-weight:900;line-height:.9;letter-spacing:-3px;color:#fff}
+.ph-zh{color:var(--gold-light);letter-spacing:4px;margin-top:10px;font-size:13px;font-family:'Outfit',sans-serif;text-transform:uppercase}
+.ph-line{width:0;height:3px;background:var(--gold);margin-top:16px;transition:width 1.2s cubic-bezier(0.19,1,0.22,1)}
+.ph-line.vis{width:100px}
+
+/* ACT NAV TABS */
+.act-tabs-wrap{background:#060E1A;border-bottom:1px solid rgba(255,255,255,.06)}
+.act-tabs{display:flex;max-width:1100px;margin:0 auto;padding:0 clamp(24px,6vw,80px)}
+.act-tab{font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:18px 20px;color:rgba(255,255,255,.4);cursor:pointer;border-bottom:2px solid transparent;transition:all .3s;background:none;border-left:none;border-right:none;border-top:none;white-space:nowrap}
+.act-tab:hover{color:rgba(255,255,255,.8)}
+.act-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* CONTENT AREA */
+.act-content{background:var(--navy);min-height:60vh}
+.act-pane{display:none}
+.act-pane.active{display:block;animation:fadeUp .45s cubic-bezier(0.19,1,0.22,1)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+.act-inner{max-width:1100px;margin:0 auto;padding:clamp(50px,8vw,80px) clamp(24px,6vw,80px)}
+.act-head{margin-bottom:40px}
+.act-head h2{font-family:'Outfit',sans-serif;font-size:clamp(2rem,4.5vw,3.2rem);font-weight:900;line-height:1;margin-bottom:12px}
+.act-head h2 em{color:var(--gold);font-style:normal}
+.act-head p{font-size:14px;color:rgba(255,255,255,.5);max-width:660px;line-height:1.8}
+.act-head a{color:var(--gold);border-bottom:1px solid rgba(203,161,110,.3);transition:border-color .2s}
+.act-head a:hover{border-bottom-color:var(--gold)}
+
+/* DOCK TIMELINE — macOS style */
+.dock-wrap{margin:28px 0 0}
+.dock-track-outer{position:relative;overflow-x:auto;overflow-y:visible;scrollbar-width:none;padding-bottom:4px}
+.dock-track-outer::-webkit-scrollbar{display:none}
+.dock-track{display:inline-flex;align-items:flex-end;gap:4px;position:relative;padding:40px 16px 0;min-width:100%}
+/* dashed timeline line */
+.dock-track::before{content:'';position:absolute;left:40px;right:40px;bottom:32px;border-top:2px dashed rgba(255,255,255,.12);z-index:0;pointer-events:none}
+.dock-node{display:flex;flex-direction:column;align-items:center;cursor:pointer;background:none;border:none;padding:8px 12px 0;flex-shrink:0;z-index:1;transform-origin:center bottom;will-change:transform}
+.dock-circle{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.04);border:2px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:800;font-size:13px;color:rgba(255,255,255,.45);transition:background .3s,border-color .3s,color .3s,box-shadow .3s}
+.dock-node.active .dock-circle{background:var(--gold);border-color:var(--gold);color:var(--navy);box-shadow:0 8px 28px rgba(203,161,110,.4)}
+.dock-label{margin-top:8px;font-size:10px;color:rgba(255,255,255,.3);text-align:center;line-height:1.3;white-space:nowrap;font-family:'Noto Sans TC',sans-serif;padding-bottom:2px}
+.dock-node.active .dock-label{color:var(--gold-light)}
+.dock-pane-wrap{border:1px solid rgba(255,255,255,.08);border-top:2px solid var(--gold);padding:24px 24px 20px;background:rgba(255,255,255,.02);margin-top:0}
+.dock-pane{display:none;animation:fadeUp .4s cubic-bezier(0.19,1,0.22,1)}
+.dock-pane.active{display:block}
+.dock-pane h3{font-size:18px;font-weight:700;margin-bottom:10px}
+.dock-pane p{font-size:13px;color:rgba(255,255,255,.5);margin:4px 0;line-height:1.7}
+.dock-pane a{color:var(--gold);border-bottom:1px solid rgba(203,161,110,.3);transition:border-color .2s}
+.dock-pane a:hover{border-bottom-color:var(--gold)}
+
+/* GALLERY */
+.gallery{margin-top:16px;position:relative;user-select:none}
+.gallery.empty{display:none}
+.gallery-track{position:relative;width:100%;overflow:hidden;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);aspect-ratio:16/9}
+.gallery-slide{position:absolute;inset:0;opacity:0;transition:opacity .45s cubic-bezier(0.19,1,0.22,1);display:flex;align-items:center;justify-content:center}
+.gallery-slide.active{opacity:1}
+.gallery-slide img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.gallery-caption{position:absolute;top:0;left:0;background:rgba(2,18,38,.65);color:rgba(255,255,255,.92);font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;padding:4px 12px 4px 8px;pointer-events:none;z-index:5;letter-spacing:.5px;max-width:85%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gallery-credit{position:absolute;bottom:0;left:0;background:rgba(2,18,38,.65);color:rgba(255,255,255,.8);font-family:'Noto Sans TC',sans-serif;font-size:10px;padding:3px 10px 3px 8px;pointer-events:none;z-index:5;max-width:75%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gallery-btn{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:48px;background:rgba(2,18,38,.6);border:none;color:var(--gold-light);font-size:22px;font-family:'Outfit',sans-serif;cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center;padding:0;transition:background .2s}
+.gallery-btn:hover{background:var(--gold);color:var(--navy)}
+.gallery-prev{left:0}.gallery-next{right:0}
+.gallery-footer{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:8px;min-height:18px}
+.gallery-dots{display:flex;gap:6px;align-items:center}
+.gallery-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.25);cursor:pointer;transition:background .2s,transform .2s;padding:0}
+.gallery-dot.active{background:var(--gold);border-color:var(--gold);transform:scale(1.3)}
+.gallery-counter{font-family:'Outfit',sans-serif;font-size:11px;color:rgba(255,255,255,.35);font-weight:600;min-width:32px;text-align:center}
+.gallery-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:rgba(255,255,255,.15);font-size:13px;gap:8px;font-family:'Outfit',sans-serif;letter-spacing:2px}
+
+/* YEAR TABS */
+.year-tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:2px solid rgba(255,255,255,.1);padding-bottom:10px;margin-bottom:0}
+.year-tab{font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;padding:6px 14px;background:transparent;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.4);cursor:pointer;transition:all .3s;position:relative;top:2px}
+.year-tab:hover{background:rgba(255,255,255,.05);color:#fff}.year-tab.active{background:var(--gold);color:var(--navy);border-color:var(--gold);border-bottom-color:transparent}
+.year-content-wrap{border:1px solid rgba(255,255,255,.08);border-top:none;padding:20px;background:rgba(255,255,255,.02)}
+.year-pane{display:none;animation:fadeUp .4s cubic-bezier(0.19,1,0.22,1)}
+.year-pane.active{display:block}
+.year-pane h3{font-size:17px;font-weight:700;margin-bottom:8px}
+.year-pane p{font-size:13px;color:rgba(255,255,255,.5);margin:4px 0}
+.year-pane a{color:var(--gold)}
+
+/* MINI CARDS */
+.mini-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:20px}
+.mini-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);padding:18px;position:relative;transition:all .35s cubic-bezier(0.19,1,0.22,1);overflow:hidden}
+.mini-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold)}
+.mini-card:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 rgba(203,161,110,.2);border-color:rgba(203,161,110,.2)}
+.mini-card .emo{font-size:26px;margin-bottom:10px;display:block}
+.mini-card h3{font-size:14px;font-weight:700;margin-bottom:5px;color:#fff}
+.mini-card p{font-size:12px;color:rgba(255,255,255,.4);line-height:1.5}
+
+/* mini gallery stays smaller */
+.mini-card .gallery-track{aspect-ratio:4/3}
+.mini-card .gallery-btn{width:26px;height:38px;font-size:16px}
+
+/* SECTION SPACING */
+.sect-alt{background:#060E1A}
+.content-block{padding:clamp(50px,8vw,70px) 0;border-top:1px solid rgba(255,255,255,.05)}
+.content-block:first-child{border-top:none}
+
+@media(max-width:768px){
+  .act-tabs{gap:0}
+  .act-tab{padding:14px 12px;font-size:11px}
+  .dock-circle{width:46px;height:46px;font-size:11px}
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-brand magnetic"><img src="images.jpeg" alt="Logo"><span>NTU ECON SA</span></div>
+  <div class="nav-links">
+    <a href="index.html" class="magnetic">首頁</a>
+    <a href="review.html" class="magnetic active">活動回顧</a>
+    <a href="about.html" class="magnetic">關於我們</a>
+    <a href="support.html" class="magnetic">贊助支持</a>
+  </div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">首頁</a><a href="review.html">活動回顧</a><a href="about.html">關於我們</a><a href="support.html">贊助支持</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="ph-bg" id="phBg"></div>
+  <div class="ph-ov"></div>
+  <div class="ph-grid"></div>
+  <div class="ph-content">
+    <div class="ph-en">EVENTS<br>REVIEW</div>
+    <div class="ph-zh">活動回顧 · NTU ECON Student Association</div>
+    <div class="ph-line" id="phLine"></div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>經濟之夜</span><span>✦</span><span>經濟週</span><span>✦</span><span>經濟營</span><span>✦</span><span>迎新</span><span>✦</span><span>Events Review</span><span>✦</span><span>NTU Econ</span><span>✦</span>
+    <span>經濟之夜</span><span>✦</span><span>經濟週</span><span>✦</span><span>經濟營</span><span>✦</span><span>迎新</span><span>✦</span><span>Events Review</span><span>✦</span><span>NTU Econ</span><span>✦</span>
+  </div>
+</div>
+
+<!-- ACT TABS -->
+<div class="act-tabs-wrap">
+  <div class="act-tabs">
+    <button class="act-tab active" data-pane="econ-night">經濟之夜</button>
+    <button class="act-tab" data-pane="econ-week">經濟週</button>
+    <button class="act-tab" data-pane="econ-camp">經濟營</button>
+    <button class="act-tab" data-pane="orientation">迎新系列</button>
+    <button class="act-tab" data-pane="other">其他活動</button>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="act-content">
+
+<!-- ── 經濟之夜 ── -->
+<div class="act-pane active" id="pane-econ-night">
+  <div class="act-inner">
+    <div class="act-head" data-reveal>
+      <h2><em>經濟之夜</em></h2>
+      <p>臺大學生的傳統之一，一年一度由系學會企劃演出的大型活動。常見表演包括歌唱、樂團、舞蹈、戲劇等，是系上同學展現才藝的最大舞台。</p>
+      <p style="margin-top:6px">官方 YouTube：<a href="https://www.youtube.com/@ntuEconNight/videos" target="_blank">NTU Econ Night ↗</a></p>
+    </div>
+    <!-- DOCK TIMELINE -->
+    <div class="dock-wrap" data-reveal>
+      <div class="dock-track-outer">
+        <div class="dock-track" id="dockTrack">
+          <button class="dock-node active" data-year="2024"><div class="dock-circle">2024</div><div class="dock-label">E心只想<br>con著你</div></button>
+          <button class="dock-node" data-year="2022"><div class="dock-circle">2022</div><div class="dock-label">經宵別<br>夢寒</div></button>
+          <button class="dock-node" data-year="2017"><div class="dock-circle">2017</div><div class="dock-label">紙醉<br>經迷</div></button>
+          <button class="dock-node" data-year="2016"><div class="dock-circle">2016</div><div class="dock-label">前世<br>經生</div></button>
+          <button class="dock-node" data-year="2015"><div class="dock-circle">2015</div><div class="dock-label">Seren-<br>dipity</div></button>
+          <button class="dock-node" data-year="2014"><div class="dock-circle">2014</div><div class="dock-label">Exotic<br>Crush</div></button>
+          <button class="dock-node" data-year="2013"><div class="dock-circle">2013</div><div class="dock-label">36天<br>流浪</div></button>
+          <button class="dock-node" data-year="2012"><div class="dock-circle">2012</div><div class="dock-label">choco-<br>late</div></button>
+        </div>
+      </div>
+      <div class="dock-pane-wrap">
+        <div class="dock-pane active" data-year="2024">
+          <h3>《E心只想con著你》</h3>
+          <p>日期：2024/5/15</p>
+          <p>Instagram：<a href="https://www.instagram.com/p/C9fKc-gy_4h/?img_index=7" target="_blank">活動貼文 ↗</a></p>
+          <div class="gallery" data-section="econ-night" data-key="2024">
+            <div class="gallery-track"></div>
+            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+          </div>
+        </div>
+        <div class="dock-pane" data-year="2022">
+          <h3>《經宵別夢寒》</h3>
+          <p>YouTube：<a href="https://youtube.com/playlist?list=PLoXkCKVbGXuv13k_3vBw2GCzr5HYM3Eux" target="_blank">活動影片 ↗</a></p>
+          <div class="gallery" data-section="econ-night" data-key="2022">
+            <div class="gallery-track"></div>
+            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+          </div>
+        </div>
+        <div class="dock-pane" data-year="2017">
+          <h3>《紙醉經迷 Extravagant》</h3>
+          <div class="gallery" data-section="econ-night" data-key="2017">
+            <div class="gallery-track"></div>
+            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+          </div>
+        </div>
+        <div class="dock-pane" data-year="2016">
+          <h3>《前世經生 About Time》</h3>
+          <div class="gallery" data-section="econ-night" data-key="2016">
+            <div class="gallery-track"></div>
+            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+          </div>
+        </div>
+        <div class="dock-pane" data-year="2015">
+          <h3>《Serendipity》</h3>
+          <p>日期：2015/3/20　Facebook：<a href="https://www.facebook.com/2015Serendipity/?locale=zh_TW" target="_blank">活動專頁 ↗</a></p>
+          <div class="gallery" data-section="econ-night" data-key="2015">
+            <div class="gallery-track"></div>
+            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+          </div>
+        </div>
+        <div class="dock-pane" data-year="2014">
+          <h3>《Exotic Crush》</h3>
+          <p>日期：2014/3/21　Facebook：<a href="https://www.facebook.com/econcrush/" target="_blank">活動專頁 ↗</a></p>
+          <div class="gallery" data-section="econ-night" data-key="2014">
+            <div class="gallery-track"></div>
+            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+          </div>
+        </div>
+        <div class="dock-pane" data-year="2013">
+          <h3>《36天流浪倒數》</h3>
+          <p>日期：2013/3/6　Facebook：<a href="https://www.facebook.com/EconNight2013/" target="_blank">活動專頁 ↗</a></p>
+          <div class="gallery" data-section="econ-night" data-key="2013">
+            <div class="gallery-track"></div>
+            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+          </div>
+        </div>
+        <div class="dock-pane" data-year="2012">
+          <h3>《chocolate or me》</h3>
+          <div class="gallery" data-section="econ-night" data-key="2012">
+            <div class="gallery-track"></div>
+            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 經濟週 ── -->
+<div class="act-pane" id="pane-econ-week">
+  <div class="act-inner">
+    <div class="act-head" data-reveal>
+      <h2><em>經濟週</em></h2>
+      <p>系學會每年舉辦的系列活動，通常包含園遊會、市集、主題展覽或講座，旨在推廣經濟學知識並提供系上師生交流的平台。</p>
+    </div>
+    <div class="year-tabs" data-reveal><button class="year-tab active" data-pane="week2023">2023</button></div>
+    <div class="year-content-wrap">
+      <div class="year-pane active" id="week2023">
+        <h3>2023 經濟週</h3>
+        <p>活動精彩內容，包含市集擺攤與經濟學主題小遊戲。</p>
+        <div class="gallery" data-section="econ-week" data-key="2023">
+          <div class="gallery-track"></div>
+          <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+          <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+          <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 經濟營 ── -->
+<div class="act-pane" id="pane-econ-camp">
+  <div class="act-inner">
+    <div class="act-head" data-reveal>
+      <h2><em>經濟營</em></h2>
+      <p>每年暑假舉辦，旨在讓高中生提早接觸經濟學領域，透過課程、講座、團體活動等方式探索經濟學的奧秘，體驗大學生活。</p>
+    </div>
+    <div class="year-tabs" data-reveal><button class="year-tab active" data-pane="camp2023">2023</button></div>
+    <div class="year-content-wrap">
+      <div class="year-pane active" id="camp2023">
+        <h3>2023 經濟營</h3>
+        <p>三天兩夜的沉浸式經濟學體驗，帶領高中生走進臺大校園。</p>
+        <div class="gallery" data-section="econ-camp" data-key="2023">
+          <div class="gallery-track"></div>
+          <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+          <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+          <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 迎新 ── -->
+<div class="act-pane" id="pane-orientation">
+  <div class="act-inner">
+    <div class="act-head" data-reveal>
+      <h2><em>迎新系列</em></h2>
+      <p>學期初向新生介紹系學會及各系隊，暑假帶領準大一生體驗三天兩夜的宿營活動。</p>
+    </div>
+    <div class="year-tabs" data-reveal><button class="year-tab active" data-pane="ori-future">近期</button></div>
+    <div class="year-content-wrap">
+      <div class="year-pane active" id="ori-future">
+        <h3>大迎新 &amp; 宿營</h3>
+        <p>精彩的迎新活動，讓新生快速融入系上大家庭。</p>
+        <div class="gallery" data-section="orientation" data-key="future">
+          <div class="gallery-track"></div>
+          <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+          <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+          <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 其他活動 ── -->
+<div class="act-pane" id="pane-other">
+  <div class="act-inner">
+    <div class="act-head" data-reveal>
+      <h2><em>其他活動</em></h2>
+      <p>系學會全年舉辦多元活動，打造豐富的大學生活。</p>
+    </div>
+    <div class="mini-grid" data-reveal>
+      <div class="mini-card">
+        <span class="emo">🍖</span><h3>系烤</h3><p>全系戶外烤肉，建立情誼。</p>
+        <div class="gallery" data-section="other-activities" data-key="bbq">
+          <div class="gallery-track"></div>
+          <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+          <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+          <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+        </div>
+      </div>
+      <div class="mini-card">
+        <span class="emo">🍷</span><h3>系酒會</h3><p>輕鬆愉快的社交場合。</p>
+        <div class="gallery" data-section="other-activities" data-key="cocktail">
+          <div class="gallery-track"></div>
+          <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+          <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+          <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+        </div>
+      </div>
+      <div class="mini-card">
+        <span class="emo">🌳</span><h3>系野餐</h3><p>春日戶外休閒活動。</p>
+        <div class="gallery" data-section="other-activities" data-key="picnic">
+          <div class="gallery-track"></div>
+          <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+          <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+          <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+        </div>
+      </div>
+      <div class="mini-card">
+        <span class="emo">🀄</span><h3>麻將大賽</h3><p>益智娛樂競技活動。</p>
+        <div class="gallery" data-section="other-activities" data-key="mahjong">
+          <div class="gallery-track"></div>
+          <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+          <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+          <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /act-content -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><h3>NTU ECON SA</h3><p>國立臺灣大學經濟學系學生會<br>為每一位經濟人服務。</p></div>
+    <div class="footer-col"><h4>Pages</h4><a href="index.html">首頁</a><a href="review.html">活動回顧</a><a href="about.html">關於我們</a><a href="support.html">贊助支持</a></div>
+    <div class="footer-col"><h4>Links</h4><a href="https://giving.ntu.edu.tw/" target="_blank">台大財務處捐款</a><a href="http://www.econ.ntu.edu.tw/" target="_blank">經濟系官方網站</a></div>
+    <div class="footer-col"><h4>Contact</h4><a>ntu.econ.student@gmail.com</a><a>羅斯福路四段1號</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 NTU ECON SA. All Rights Reserved.</span><div class="footer-socials"><a href="https://www.instagram.com/ntu_econ_official/" target="_blank">IG</a><a href="https://www.facebook.com/NTUECONSA" target="_blank">FB</a></div></div>
+</footer>
+<button class="back-top" id="backTop" aria-label="回到頂部"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5"/></svg></button>
+
+<!-- DATA FILES -->
+<script src="assets/data/site-data.js"></script>
+<script>
+(function(){
+'use strict';
+/* CURSOR */
+var cur=document.getElementById('cursor'),dot=document.getElementById('cursorDot');
+var mx=0,my=0,cx=0,cy=0;
+document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY});
+(function a(){cx+=(mx-cx)*.14;cy+=(my-cy)*.14;cur.style.left=cx+'px';cur.style.top=cy+'px';dot.style.left=mx+'px';dot.style.top=my+'px';requestAnimationFrame(a)})();
+document.querySelectorAll('a,button,.mini-card').forEach(function(el){el.addEventListener('mouseenter',function(){cur.classList.add('hover')});el.addEventListener('mouseleave',function(){cur.classList.remove('hover')})});
+/* NAV */
+var nav=document.getElementById('navbar');
+window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>80)},{passive:true});
+/* HAMBURGER */
+var ham=document.getElementById('hamburger'),mmenu=document.getElementById('mobileMenu');
+ham.addEventListener('click',function(){ham.classList.toggle('open');mmenu.classList.toggle('open')});
+/* MAGNETIC */
+document.querySelectorAll('.magnetic').forEach(function(el){
+  el.addEventListener('mousemove',function(e){var r=el.getBoundingClientRect(),x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2;el.style.transform='translate('+x*.25+'px,'+y*.25+'px)'});
+  el.addEventListener('mouseleave',function(){el.style.transform=''});
+});
+/* PARALLAX */
+window.addEventListener('scroll',function(){var b=document.getElementById('phBg');if(b)b.style.transform='scale(1.08) translateY('+window.scrollY*.18+'px)'},{passive:true});
+/* LINE */
+setTimeout(function(){var l=document.getElementById('phLine');if(l)l.classList.add('vis')},400);
+/* REVEAL */
+document.querySelectorAll('[data-reveal]').forEach(function(el){
+  (new IntersectionObserver(function(ents){ents.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.1})).observe(el);
+});
+/* ACT TAB SWITCH */
+var actTabs=document.querySelectorAll('.act-tab');
+actTabs.forEach(function(tab){
+  tab.addEventListener('click',function(){
+    actTabs.forEach(function(t){t.classList.remove('active')});
+    document.querySelectorAll('.act-pane').forEach(function(p){p.classList.remove('active')});
+    tab.classList.add('active');
+    var pane=document.getElementById('pane-'+tab.dataset.pane);
+    if(pane)pane.classList.add('active');
+    window.scrollTo({top:document.querySelector('.act-tabs-wrap').offsetTop-80,behavior:'smooth'});
+  });
+});
+/* DOCK — macOS proximity scale */
+var dockNodes=document.querySelectorAll('#dockTrack .dock-node');
+var dockPanes=document.querySelectorAll('.dock-pane');
+// Each node tracks {scale:current, target:target}
+var nodeStates=[];
+dockNodes.forEach(function(){nodeStates.push({s:1,t:1});});
+var dockMouseX=-9999,dockActive=false;
+var MAX_SCALE=2.0,NEIGHBOR_SCALE=1.4,SPREAD=90,REST=1;
+
+var dockTrack=document.getElementById('dockTrack');
+if(dockTrack){
+  dockTrack.parentElement.addEventListener('mousemove',function(e){
+    dockMouseX=e.clientX;dockActive=true;
+  });
+  dockTrack.parentElement.addEventListener('mouseleave',function(){
+    dockActive=false;dockMouseX=-9999;
+  });
+}
+
+// Click: activate pane
+dockNodes.forEach(function(node){
+  node.addEventListener('click',function(){
+    dockNodes.forEach(function(n){n.classList.remove('active')});
+    dockPanes.forEach(function(p){p.classList.remove('active')});
+    node.classList.add('active');
+    var yr=node.dataset.year;
+    var pane=document.querySelector('.dock-pane[data-year="'+yr+'"]');
+    if(pane)pane.classList.add('active');
+  });
+});
+
+// RAF loop — Gaussian proximity scale
+(function dockLoop(){
+  dockNodes.forEach(function(node,i){
+    var r=node.getBoundingClientRect();
+    var cx=r.left+r.width/2;
+    var dist=Math.abs(dockMouseX-cx);
+    var t=dockActive?Math.max(REST,REST+(MAX_SCALE-REST)*Math.exp(-(dist*dist)/(2*SPREAD*SPREAD))):REST;
+    nodeStates[i].t=t;
+    nodeStates[i].s+=(nodeStates[i].t-nodeStates[i].s)*0.18;
+    var sc=nodeStates[i].s;
+    var lift=(sc-1)*30;
+    node.style.transform='scale('+sc+') translateY(-'+lift+'px)';
+  });
+  requestAnimationFrame(dockLoop);
+})();
+/* YEAR TABS */
+document.querySelectorAll('.year-tab').forEach(function(tab){
+  tab.addEventListener('click',function(){
+    var wrap=tab.closest('.act-inner')||tab.closest('.act-pane');
+    wrap.querySelectorAll('.year-tab').forEach(function(t){t.classList.remove('active')});
+    wrap.querySelectorAll('.year-pane').forEach(function(p){p.classList.remove('active')});
+    tab.classList.add('active');
+    var pane=wrap.querySelector('#'+tab.dataset.pane);
+    if(pane)pane.classList.add('active');
+  });
+});
+/* BACK TO TOP */
+var bt=document.getElementById('backTop');
+window.addEventListener('scroll',function(){bt.classList.toggle('visible',window.scrollY>400)},{passive:true});
+bt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+
+/* ══════════════════════════════════════
+   GALLERY — mirrors original main.js logic
+══════════════════════════════════════ */
+function initGallery(galleryEl,photos){
+  var track=galleryEl.querySelector('.gallery-track');
+  var dotsWrap=galleryEl.querySelector('.gallery-dots');
+  var counter=galleryEl.querySelector('.gallery-counter');
+  var prevBtn=galleryEl.querySelector('.gallery-prev');
+  var nextBtn=galleryEl.querySelector('.gallery-next');
+  if(!photos||photos.length===0){
+    galleryEl.classList.add('empty');
+    track.innerHTML='<div class="gallery-placeholder"><span>— 照片即將上線 —</span></div>';
+    if(prevBtn)prevBtn.style.display='none';if(nextBtn)nextBtn.style.display='none';
+    return;
+  }
+  var current=0;
+  // Build slides
+  photos.forEach(function(item,i){
+    var url=typeof item==='string'?item:item.url;
+    var caption=typeof item==='object'&&item.caption?item.caption:null;
+    var credit=typeof item==='object'&&item.credit?item.credit:null;
+    var slide=document.createElement('div');
+    slide.className='gallery-slide'+(i===0?' active':'');
+    var img=document.createElement('img');
+    img.src='../'+url;// path relative to Beta/ → go up one level to root
+    img.alt=caption||'活動照片';
+    img.loading='lazy';
+    slide.appendChild(img);
+    if(caption){var cap=document.createElement('div');cap.className='gallery-caption';cap.textContent=caption;slide.appendChild(cap);}
+    if(credit){var crd=document.createElement('div');crd.className='gallery-credit';crd.textContent=credit;slide.appendChild(crd);}
+    track.appendChild(slide);
+    var dot=document.createElement('button');dot.className='gallery-dot'+(i===0?' active':'');dot.dataset.idx=i;dot.addEventListener('click',function(){goTo(+dot.dataset.idx)});dotsWrap.appendChild(dot);
+  });
+  function goTo(idx){
+    track.querySelectorAll('.gallery-slide').forEach(function(s){s.classList.remove('active')});
+    dotsWrap.querySelectorAll('.gallery-dot').forEach(function(d){d.classList.remove('active')});
+    current=((idx%photos.length)+photos.length)%photos.length;
+    track.querySelectorAll('.gallery-slide')[current].classList.add('active');
+    dotsWrap.querySelectorAll('.gallery-dot')[current].classList.add('active');
+    if(counter)counter.textContent=(current+1)+'/'+photos.length;
+  }
+  if(counter)counter.textContent='1/'+photos.length;
+  if(prevBtn)prevBtn.addEventListener('click',function(){goTo(current-1)});
+  if(nextBtn)nextBtn.addEventListener('click',function(){goTo(current+1)});
+}
+
+function initAllGalleries(){
+  document.querySelectorAll('.gallery').forEach(function(g){
+    var section=g.dataset.section;
+    var key=g.dataset.key;
+    var photos=[];
+    if(typeof GALLERY_DATA!=='undefined'&&GALLERY_DATA[section]&&GALLERY_DATA[section][key]){
+      photos=GALLERY_DATA[section][key];
+    }
+    initGallery(g,photos);
+  });
+}
+initAllGalleries();
+
+})();
+</script>
+</body>
+</html>

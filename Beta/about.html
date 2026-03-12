@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>關於我們 — NTU ECON SA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+/* ── PAGE HERO ── */
+.page-hero{position:relative;height:60vh;min-height:440px;display:flex;align-items:flex-end;overflow:hidden}
+.page-hero-bg{position:absolute;inset:0;background:url('horizon.jpg') center/cover no-repeat;transform:scale(1.1)}
+.page-hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,18,38,.3) 0%,rgba(2,18,38,.85) 100%)}
+.page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(203,161,110,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(203,161,110,.05) 1px,transparent 1px);background-size:80px 80px}
+.page-hero-content{position:relative;z-index:2;padding:clamp(40px,6vw,80px) clamp(24px,6vw,80px);max-width:1200px;margin:0 auto;width:100%}
+.page-hero-en{font-family:'Outfit',sans-serif;font-size:clamp(3rem,10vw,8rem);font-weight:900;line-height:.95;letter-spacing:-3px;color:var(--white)}
+.page-hero-zh{font-family:'Noto Sans TC',sans-serif;font-size:clamp(1rem,2vw,1.4rem);color:var(--gold-light);letter-spacing:4px;margin-top:12px}
+.page-hero-line{width:0;height:3px;background:var(--gold);margin-top:20px;transition:width 1.2s var(--ease)}
+.page-hero-line.vis{width:120px}
+
+/* ── GOALS ── */
+.goals-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+.goal-item{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:32px 24px;position:relative;overflow:hidden;transition:border-color .4s,background .4s var(--ease);cursor:default}
+.goal-item::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--electric));transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.goal-item:hover{border-color:rgba(203,161,110,.3);background:rgba(203,161,110,.04)}
+.goal-item:hover::before{transform:scaleX(1)}
+.goal-icon{width:48px;height:48px;border:1px solid rgba(203,161,110,.3);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px}
+.goal-item h4{font-size:17px;font-weight:700;margin-bottom:10px;color:var(--white)}
+.goal-item p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.7}
+
+/* ── DEPARTMENTS ── */
+.dept-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px}
+.dept-bubble{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:24px;position:relative;overflow:hidden;transition:all .4s var(--ease)}
+.dept-bubble::before{content:attr(data-num);position:absolute;right:-10px;bottom:-18px;font-family:'Outfit',sans-serif;font-size:80px;font-weight:900;color:rgba(255,255,255,.03);pointer-events:none;line-height:1}
+.dept-bubble:hover{border-color:rgba(203,161,110,.25);background:rgba(203,161,110,.05);transform:translateY(-4px);box-shadow:0 16px 40px rgba(2,18,38,.6)}
+.dept-bubble h3{font-size:16px;font-weight:700;color:var(--gold);margin-bottom:8px}
+.dept-bubble p{font-size:12px;color:rgba(255,255,255,.45);line-height:1.65}
+
+/* ── HIGHLIGHTS ── */
+.highlights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.highlight-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:28px;transition:all .4s var(--ease)}
+.highlight-card:hover{border-color:var(--gold);transform:translateY(-4px);background:rgba(203,161,110,.05)}
+.highlight-card .badge{display:inline-block;font-family:'Outfit',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;border:1px solid var(--gold);color:var(--gold);margin-bottom:14px}
+.highlight-card h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.highlight-card p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.7}
+
+/* ── CONTACT ── */
+.contact-block{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:40px;margin-top:40px}
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:24px}
+.contact-item{text-align:center}
+.contact-item .ci-label{font-family:'Outfit',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.contact-item a,.contact-item p{font-size:14px;color:rgba(255,255,255,.6);transition:color .3s}
+.contact-item a:hover{color:var(--gold)}
+
+/* ── SECTION ── */
+.content-section{padding:clamp(60px,10vw,100px) clamp(24px,6vw,80px);background:var(--navy);max-width:none}
+.content-section.alt{background:#060E1A}
+
+/* ── RWD ── */
+@media(max-width:1024px){.goals-grid,.dept-flow{grid-template-columns:repeat(2,1fr)}.highlights-grid{grid-template-columns:repeat(2,1fr)}.contact-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.goals-grid,.dept-flow{grid-template-columns:1fr}.highlights-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- NAV -->
+<nav class="navbar" id="navbar">
+  <div class="nav-brand magnetic">
+    <img src="images.jpeg" alt="Logo">
+    <span>NTU ECON SA</span>
+  </div>
+  <div class="nav-links">
+    <a href="index.html" class="magnetic">首頁</a>
+    <a href="review.html" class="magnetic">活動回顧</a>
+    <a href="about.html" class="magnetic active">關於我們</a>
+    <a href="support.html" class="magnetic">贊助支持</a>
+  </div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">首頁</a><a href="review.html">活動回顧</a><a href="about.html">關於我們</a><a href="support.html">贊助支持</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg" id="phBg"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="page-hero-en" id="phTitle">ABOUT<br>US</div>
+    <div class="page-hero-zh">關於我們 · NTU ECON SA</div>
+    <div class="page-hero-line" id="phLine"></div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>權益維護</span><span>✦</span><span>資源共享</span><span>✦</span>
+    <span>社群凝聚</span><span>✦</span><span>專業發展</span><span>✦</span>
+    <span>About Us</span><span>✦</span><span>NTU Econ</span><span>✦</span>
+    <span>權益維護</span><span>✦</span><span>資源共享</span><span>✦</span>
+    <span>社群凝聚</span><span>✦</span><span>專業發展</span><span>✦</span>
+    <span>About Us</span><span>✦</span><span>NTU Econ</span><span>✦</span>
+  </div>
+</div>
+
+<!-- CORE MISSIONS -->
+<section class="content-section">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="section-label" data-reveal>Core Mission</div>
+    <h2 class="section-title" data-reveal>核心任務與願景</h2>
+    <p class="section-desc" data-reveal>NTU ECON SA 是代表臺大經濟系全體大學部學生的自治組織。</p>
+    <div class="goals-grid">
+      <div class="goal-item" data-reveal data-delay="1">
+        <div class="goal-icon">⚖️</div>
+        <h4>權益維護</h4>
+        <p>擔任系方與學生間的溝通橋樑，為學生爭取更優質的學習與生活環境。</p>
+      </div>
+      <div class="goal-item" data-reveal data-delay="2">
+        <div class="goal-icon">📚</div>
+        <h4>資源共享</h4>
+        <p>建置臺大經濟資料庫，整合學習資源，並協助系友與在校生的資訊對接。</p>
+      </div>
+      <div class="goal-item" data-reveal data-delay="3">
+        <div class="goal-icon">🤝</div>
+        <h4>社群凝聚</h4>
+        <p>舉辦跨年級、跨系所、跨國際的交流活動，建立緊密社群脈絡。</p>
+      </div>
+      <div class="goal-item" data-reveal data-delay="4">
+        <div class="goal-icon">🚀</div>
+        <h4>專業發展</h4>
+        <p>透過講座、參訪等活動，縮短學術理論與職場實務的差距，佈局多元職涯。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPARTMENTS -->
+<section class="content-section alt">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="section-label" data-reveal>Organization</div>
+    <h2 class="section-title" data-reveal>組織架構</h2>
+    <p class="section-desc" data-reveal>系學會設有會長與副會長，任期一年，設有多個部門共同推動系務運作。</p>
+    <div class="dept-flow">
+      <div class="dept-bubble" data-num="01" data-reveal data-delay="1"><h3>會本部</h3><p>維持各部門良好溝通、爭取學生權益及推動系學會各項政策以增加系上學生之福利。</p></div>
+      <div class="dept-bubble" data-num="02" data-reveal data-delay="2"><h3>總務部</h3><p>申請社團定籌款、統籌系學會年度資金，编列預算、審核各活動之預算及處理會務出納。</p></div>
+      <div class="dept-bubble" data-num="03" data-reveal data-delay="3"><h3>活動部</h3><p>舉辦系上大小活動，如系野餐、系烤、系酒會、經濟之夜，凝聚系上同學情誼。</p></div>
+      <div class="dept-bubble" data-num="04" data-reveal data-delay="4"><h3>公關部</h3><p>協助舉辦聯合舞會，系上活動拉贊、廠商接洽。</p></div>
+      <div class="dept-bubble" data-num="05" data-reveal data-delay="1"><h3>學術部</h3><p>主辦學術講座、職涯講座、讀書會以及一年一度的杜鵑花節，並維護學術資源庫。</p></div>
+      <div class="dept-bubble" data-num="06" data-reveal data-delay="2"><h3>國際部</h3><p>處理系上外籍生相關事務，如舉辦英文課外活動，融合本地生及外籍生，推廣全英專班。</p></div>
+      <div class="dept-bubble" data-num="07" data-reveal data-delay="3"><h3>行設部</h3><p>設計系學會年度主視覺、管理系學會官方社群帳號，宣傳活動。</p></div>
+      <div class="dept-bubble" data-num="08" data-reveal data-delay="4"><h3>體育部</h3><p>統籌系隊事務及與各校系學會輪流主辦「北經盃」、「大經盃」體育賽事。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<section class="content-section">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="section-label" data-reveal>Annual Events</div>
+    <h2 class="section-title" data-reveal>年度亮點活動</h2>
+    <div class="highlights-grid">
+      <div class="highlight-card" data-reveal data-delay="1"><div class="badge">年度盛事</div><h3>經濟之夜</h3><p>系上同學展現多元才藝之活動，如樂團表演、舞蹈演出、戲劇節目。</p></div>
+      <div class="highlight-card" data-reveal data-delay="2"><div class="badge">專業成長</div><h3>職涯與學術講座</h3><p>邀請知名系友或產業專家分享，包含金融、數據分析、學術研究等領域。</p></div>
+      <div class="highlight-card" data-reveal data-delay="3"><div class="badge">學系推廣</div><h3>杜鵑花節</h3><p>向有興趣就讀本校系之高中生介紹本系之修課規劃及職涯發展等。</p></div>
+      <div class="highlight-card" data-reveal data-delay="1"><div class="badge">學系推廣</div><h3>經濟營</h3><p>帶領高中生更認識經濟系及建立人際網絡，體驗大學經濟學的魅力。</p></div>
+      <div class="highlight-card" data-reveal data-delay="2"><div class="badge">特色活動</div><h3>經濟週</h3><p>販賣經濟系周邊商品、手作美食、設計小遊戲給系外同學娛樂。</p></div>
+      <div class="highlight-card" data-reveal data-delay="3"><div class="badge">新生系列</div><h3>大迎新 &amp; 宿營</h3><p>學期初向新生介紹系學會及各系隊，暑假帶領準大一生體驗三天兩夜的團康活動。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="content-section alt">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="section-label" data-reveal>Contact</div>
+    <h2 class="section-title" data-reveal>聯絡我們</h2>
+    <div class="contact-block" data-reveal>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="ci-label">辦公室</div>
+          <p>國立臺灣大學社會科學院大樓</p>
+        </div>
+        <div class="contact-item">
+          <div class="ci-label">Instagram</div>
+          <a href="https://www.instagram.com/ntu_econ_official/" target="_blank">@ntu_econ_official</a>
+        </div>
+        <div class="contact-item">
+          <div class="ci-label">Facebook</div>
+          <a href="https://www.facebook.com/NTUECONSA" target="_blank">NTU ECON SA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><h3>NTU ECON SA</h3><p>國立臺灣大學經濟學系學生會<br>為每一位經濟人服務。</p></div>
+    <div class="footer-col"><h4>Pages</h4><a href="index.html">首頁</a><a href="review.html">活動回顧</a><a href="about.html">關於我們</a><a href="support.html">贊助支持</a></div>
+    <div class="footer-col"><h4>Links</h4><a href="https://giving.ntu.edu.tw/" target="_blank">台大財務處捐款</a><a href="http://www.econ.ntu.edu.tw/" target="_blank">經濟系官方網站</a></div>
+    <div class="footer-col"><h4>Contact</h4><a>ntu.econ.student@gmail.com</a><a>羅斯福路四段1號</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 NTU ECON SA. All Rights Reserved.</span><div class="footer-socials"><a href="https://www.instagram.com/ntu_econ_official/" target="_blank">IG</a><a href="https://www.facebook.com/NTUECONSA" target="_blank">FB</a></div></div>
+</footer>
+<button class="back-top" id="backTop" aria-label="回到頂部"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5"/></svg></button>
+
+<script>
+(function(){
+'use strict';
+// Cursor
+var cur=document.getElementById('cursor'),dot=document.getElementById('cursorDot');
+var mx=0,my=0,cx=0,cy=0;
+document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY});
+(function a(){cx+=(mx-cx)*.14;cy+=(my-cy)*.14;cur.style.left=cx+'px';cur.style.top=cy+'px';dot.style.left=mx+'px';dot.style.top=my+'px';requestAnimationFrame(a)})();
+document.querySelectorAll('a,button,.goal-item,.dept-bubble,.highlight-card').forEach(function(el){el.addEventListener('mouseenter',function(){cur.classList.add('hover')});el.addEventListener('mouseleave',function(){cur.classList.remove('hover')})});
+// Hamburger
+var ham=document.getElementById('hamburger'),menu=document.getElementById('mobileMenu');
+ham.addEventListener('click',function(){ham.classList.toggle('open');menu.classList.toggle('open')});
+// Navbar
+var nav=document.getElementById('navbar');
+window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>80)},{passive:true});
+// Parallax hero bg
+window.addEventListener('scroll',function(){var b=document.getElementById('phBg');if(b)b.style.transform='scale(1.1) translateY('+window.scrollY*.25+'px)'},{passive:true});
+// Page hero line
+setTimeout(function(){var l=document.getElementById('phLine');if(l)l.classList.add('vis')},400);
+// Magnetic
+document.querySelectorAll('.magnetic').forEach(function(el){
+  el.addEventListener('mousemove',function(e){var r=el.getBoundingClientRect(),x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2;el.style.transform='translate('+x*.25+'px,'+y*.25+'px)'});
+  el.addEventListener('mouseleave',function(){el.style.transform=''});
+});
+// Reveal
+document.querySelectorAll('[data-reveal]').forEach(function(el){
+  (new IntersectionObserver(function(ents){ents.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.1})).observe(el);
+});
+// Back to top
+var bt=document.getElementById('backTop');
+window.addEventListener('scroll',function(){bt.classList.toggle('visible',window.scrollY>400)},{passive:true});
+bt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+// Dept card glow
+document.querySelectorAll('.dept-bubble').forEach(function(card){
+  card.addEventListener('mousemove',function(e){var r=card.getBoundingClientRect();card.style.background='radial-gradient(circle at '+(e.clientX-r.left)+'px '+(e.clientY-r.top)+'px,rgba(203,161,110,.08),rgba(255,255,255,.03) 60%)'});
+  card.addEventListener('mouseleave',function(){card.style.background=''});
+});
+})();
+</script>
+</body>
+</html>
