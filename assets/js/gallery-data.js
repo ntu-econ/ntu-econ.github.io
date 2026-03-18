@@ -114,11 +114,15 @@ var GALLERY_DATA = {
     ],
 
     '2022': [
-      // 'images/econ-night/2022/01.webp',
-      // 'images/econ-night/2022/02.webp',
-      // 'images/econ-night/2022/03.webp',
-      // 'images/econ-night/2022/04.webp',
-      // 'images/econ-night/2022/05.webp',
+      { url: 'images/econ-night/2022/01.webp', caption: '劇1' },
+      { url: 'images/econ-night/2022/02.webp', caption: 'Band-我想和你一起花錢' },
+      { url: 'images/econ-night/2022/03.webp', caption: '女舞' },
+      { url: 'images/econ-night/2022/04.webp', caption: '魔術' },
+      { url: 'images/econ-night/2022/05.webp', caption: 'Band - Ryan\'s Party' },
+      { url: 'images/econ-night/2022/06.webp', caption: '經吉檸檬' },
+      { url: 'images/econ-night/2022/07.webp', caption: '唱跳' },
+      { url: 'images/econ-night/2022/08.webp', caption: '男舞' },
+      { url: 'images/econ-night/2022/09.webp', caption: 'Band-菜頭的白日夢' }
     ],
 
     '2017': [
@@ -134,7 +138,18 @@ var GALLERY_DATA = {
     ],
 
     '2014': [
-      // 'images/econ-night/2014/01.webp',
+      { url: 'images/econ-night/2014/01.webp', caption: '大合照' },
+      { url: 'images/econ-night/2014/02.webp', caption: '倒數一天' },
+      { url: 'images/econ-night/2014/03.webp', caption: '倒數五天' },
+      { url: 'images/econ-night/2014/04.webp', caption: '倒數六天' },
+      { url: 'images/econ-night/2014/05.webp', caption: '倒數九天' },
+      { url: 'images/econ-night/2014/06.webp', caption: '倒數十天' },
+      { url: 'images/econ-night/2014/07.webp', caption: '倒數十三天' },
+      { url: 'images/econ-night/2014/08.webp', caption: '倒數十五天' },
+      { url: 'images/econ-night/2014/09.webp', caption: '倒數十六天' },
+      { url: 'images/econ-night/2014/10.webp', caption: '倒數十八天' },
+      { url: 'images/econ-night/2014/11.webp', caption: '倒數十八天' },
+      { url: 'images/econ-night/2014/12.webp', caption: '倒數二十天' }
     ],
 
     '2013': [
@@ -203,6 +218,41 @@ var GALLERY_DATA = {
     'cocktail': [  /* 系酒會 */
       // 'images/other-activities/cocktail/01.webp',
     ]
+  },
+
+  /* ──────────────────────────────────────────
+     關於我們 — 年度亮點活動（01_about.html）
+     路徑格式：'images/highlights/活動key/01.webp'
+  ────────────────────────────────────────── */
+  'highlights': {
+
+    'econ-night': [    /* 經濟之夜 */
+      'images/econ-night/2024/01.webp'
+    ],
+
+    'lecture': [       /* 職涯與學術講座 */
+      // 'images/highlights/lecture/01.webp',
+    ],
+
+    'azalea': [        /* 杜鵑花節 */
+      // 'images/highlights/azalea/01.webp',
+    ],
+
+    'econ-camp': [     /* 經濟營 */
+      // 'images/econ-camp/2023/01.webp',
+    ],
+
+    'econ-week': [     /* 經濟週 */
+      // 'images/econ-week/2023/01.webp',
+    ],
+
+    'orientation': [   /* 大迎新 */
+      // 'images/orientation/01.webp',
+    ],
+
+    'camp': [          /* 宿營 */
+      // 'images/highlights/camp/01.webp',
+    ],
   }
 
 };

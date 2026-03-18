@@ -46,7 +46,7 @@
   }
   .banner-en-sub {
     font-family:'Outfit',sans-serif; font-size:clamp(0.95rem,2vw,1.35rem);
-    color:var(--gold-400); font-weight:600; letter-spacing:5px;
+    color:#fff; font-weight:600; letter-spacing:5px;
     margin:0; text-transform:uppercase;
   }
 
@@ -350,8 +350,6 @@
 ====================================================== -->
 <div class="banner">
   <div class="banner-overlay">
-    <!-- ★ 修改文字：直接改下面兩行的文字內容 -->
-    <p class="banner-en-main">NTU ECON SA</p>
     <p class="banner-en-sub">Department of Economics · Student Association</p>
   </div>
 </div>
@@ -396,23 +394,7 @@
 
     <!-- ==================================================
          社群媒體嵌入
-         ┌────────────────────────────────────────────────────────┐
-         │ Facebook Page Plugin（已嵌入，直接可用）               │
-         │   ★ 更換粉專：修改 iframe src 中的 href 參數           │
-         │     將 NTUECONSA 換成新的粉專 ID 即可                  │
-         │                                                        │
-         │ Instagram（說明）                                       │
-         │   Instagram 官方「不支援」個人頁面嵌入，               │
-         │   目前顯示一個連結卡片直達 IG 頁面。                   │
-         │                                                        │
-         │   若要嵌入「單篇貼文」：                               │
-         │     1. 打開任意一篇 IG 貼文                            │
-         │     2. 點右上角「⋯」→ 選「嵌入」                      │
-         │     3. 複製 <blockquote>...</blockquote> 整段代碼      │
-         │     4. 把下方 .ig-profile-card 整個 <a> 標籤刪除       │
-         │     5. 貼上複製的 <blockquote> 代碼                    │
-         │     6. 取消 </body> 前的 embed.js script 的註解        │
-         └────────────────────────────────────────────────────────┘
+         ★ IG 嵌入說明請參閱 README.md
     ================================================== -->
     <div class="home-section social-embed-section reveal">
       <div class="home-section-heading">
@@ -496,6 +478,18 @@
       <div class="linktree-container" id="linktree-container">
         <!-- 由 main.js 讀取 links.json 自動渲染 -->
       </div>
+      <a href="links.html" class="view-all-btn" style="
+        display:inline-flex; align-items:center; gap:8px;
+        margin-top:14px; padding:9px 20px;
+        border:1.5px solid var(--navy-900); background:transparent;
+        font-family:'Outfit',sans-serif; font-size:13px; font-weight:700;
+        color:var(--navy-900); letter-spacing:1px; text-transform:uppercase;
+        text-decoration:none;
+        transition:background 0.2s, color 0.2s, box-shadow 0.2s;
+      " onmouseover="this.style.background='var(--navy-900)';this.style.color='var(--gold-400)';this.style.boxShadow='3px 3px 0 var(--navy-700)'"
+         onmouseout="this.style.background='transparent';this.style.color='var(--navy-900)';this.style.boxShadow='none'">
+        檢視所有連結 →
+      </a>
     </div>
 
     <!-- ==================================================
@@ -554,16 +548,7 @@
 <script src="assets/data/announcements.js"></script>
 <script src="assets/js/main.js"></script>
 
-<!--
-  ══════════════════════════════════════════════════════════════
-  Instagram 單篇貼文嵌入腳本（目前不需要，因為使用的是連結卡片）
-
-  若你改成嵌入單篇 IG 貼文（貼上 <blockquote> 後），
-  請把下面這行的 <!-- 和 --> 刪掉以啟用：
-
-  <script async src="//www.instagram.com/embed.js"></script>
-  ══════════════════════════════════════════════════════════════
--->
+<!-- <script async src="//www.instagram.com/embed.js"></script> -->
 
 </body>
 </html>

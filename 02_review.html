@@ -24,6 +24,7 @@
 ===================================================== */
 .page-hero {
   display:flex; align-items:flex-start; gap:40px; margin-bottom:60px;
+  min-height:340px;
 }
 .page-hero-text { flex:1 1 0; min-width:0; }
 .page-hero-text h1 {
@@ -176,17 +177,22 @@
 .sidebar-pill {
   width:63px; height:63px; border-radius:50%;
   display:flex; align-items:center; justify-content:center;
-  background:var(--navy-800); border:2px solid var(--navy-700);
-  box-shadow:0 2px 10px rgba(2,18,38,0.25); flex-shrink:0;
+  background:transparent; border:2.5px solid var(--navy-700);
+  box-shadow:0 2px 10px rgba(2,18,38,0.18); flex-shrink:0;
   transition: transform 0.35s var(--ease-custom), background 0.3s, border-radius 0.3s, border-color 0.3s;
 }
 .sidebar-pill span {
   font-family:'Noto Sans TC',sans-serif; font-size:13px; font-weight:700;
-  color:#fff; text-align:center; line-height:1.2;
-  transition: opacity 0.2s;
+  color:var(--navy-800); text-align:center; line-height:1.2;
+  transition: opacity 0.2s, color 0.2s;
 }
-.bubble-sidebar-item:nth-child(even) .sidebar-pill { background:var(--navy-100); border-color:var(--navy-700); }
-.bubble-sidebar-item:nth-child(even) .sidebar-pill span { color:var(--navy-900); }
+/* 目前滾動到的章節：空心圓 + 金色邊框 */
+.bubble-sidebar-item.active .sidebar-pill {
+  border-color:var(--gold-500);
+  background:rgba(203,161,110,0.08);
+  transform:scale(1.1);
+}
+.bubble-sidebar-item.active .sidebar-pill span { color:var(--gold-500); }
 /* hover: text disappears, pill turns gold */
 .bubble-sidebar-item:hover .sidebar-pill {
   background:var(--gold-500) !important; border-color:var(--gold-400) !important;
@@ -965,11 +971,26 @@
     var sidebar = document.getElementById('bubbleSidebar');
     if (!cluster || !sidebar) return;
 
+    var sidebarItems = Array.from(sidebar.querySelectorAll('.bubble-sidebar-item'));
+    var sectionIds = ['econ-night','econ-week','econ-camp','orientation','other-activities'];
+    var sections = sectionIds.map(function(id) { return document.getElementById(id); }).filter(Boolean);
+
     function update() {
       var rect = cluster.getBoundingClientRect();
       var passed = rect.bottom < 90;
       cluster.classList.toggle('hidden', passed);
       sidebar.classList.toggle('visible', passed);
+
+      /* active section highlight */
+      var scrollMid = window.scrollY + window.innerHeight * 0.4;
+      var activeId = '';
+      sections.forEach(function(sec) {
+        if (sec.offsetTop <= scrollMid) activeId = sec.id;
+      });
+      sidebarItems.forEach(function(item) {
+        var href = item.getAttribute('href').replace('#', '');
+        item.classList.toggle('active', href === activeId);
+      });
     }
     window.addEventListener('scroll', update, { passive: true });
     update();

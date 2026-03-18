@@ -142,6 +142,75 @@
             section { padding: 32px 24px; }
             .cards-grid { grid-template-columns: 1fr; }
         }
+
+        /* ── 贊助紀念品 ── */
+        .merch-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 8px;
+        }
+        @media (max-width: 880px) {
+            .merch-grid { grid-template-columns: 1fr; }
+        }
+        .merch-card {
+            border: 1.5px solid var(--navy-900);
+            background: var(--bg-white);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s var(--ease-custom), box-shadow 0.3s;
+            position: relative;
+        }
+        .merch-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 3px; background: var(--gold-500);
+        }
+        .merch-card:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 5px 5px 0 var(--navy-900);
+        }
+        .merch-img-wrap {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: var(--navy-100);
+        }
+        .merch-img {
+            width: 100%; height: 100%;
+            object-fit: cover; display: block;
+        }
+        .merch-img-placeholder {
+            width: 100%; height: 100%;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            gap: 10px; color: var(--text-muted);
+            background: var(--navy-100);
+        }
+        .merch-img-placeholder svg { width: 40px; height: 40px; opacity: 0.5; }
+        .merch-img-placeholder span { font-family: 'Noto Sans TC', sans-serif; font-size: 12px; opacity: 0.5; }
+        .merch-body {
+            padding: 18px 20px 22px;
+            display: flex; flex-direction: column; gap: 8px;
+        }
+        .merch-badge {
+            display: inline-block; width: fit-content;
+            padding: 2px 10px;
+            border: 1.5px solid var(--gold-500);
+            background: var(--gold-100); color: #7c5000;
+            font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .merch-name {
+            font-family: 'Noto Sans TC', sans-serif;
+            font-size: 17px; font-weight: 700;
+            color: var(--navy-900); margin: 0;
+        }
+        .merch-desc {
+            font-family: 'Noto Sans TC', sans-serif;
+            font-size: 13px; color: var(--text-muted);
+            line-height: 1.7; margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -168,6 +237,7 @@
         <aside class="sidebar">
             <div class="sidebar-title">本頁目錄</div>
             <nav id="toc">
+                <a href="#merchandise" class="toc-link">贊助紀念品</a>
                 <a href="#how-to" class="toc-link active">贊助流程</a>
                 <a href="#plan" class="toc-link">支付方式</a>
                 <a href="#feedback" class="toc-link">物流運費</a>
@@ -184,7 +254,74 @@
                 <div class="divider"></div>
             </div>
 
+
+            <!-- ─────────────────────────────────────────────
+                 贊助紀念品
+                 ★ 維護：修改下面各 .merch-card 內的文字
+                 ★ 換圖：把 src 改成對應的圖片路徑
+            ───────────────────────────────────────────── -->
+            <section id="merchandise" class="reveal">
+                <div class="section-heading">
+                    <h2>贊助紀念品</h2>
+                </div>
+                <p style="font-size:16px; color:var(--text-muted); margin-bottom:28px;">感謝您的支持！以下為本學期可選購的贊助紀念品，每份捐款均附贈精美周邊一份。</p>
+
+                <div class="merch-grid">
+
+                    <!-- 紀念品 1 -->
+                    <div class="merch-card reveal delay-100">
+                        <div class="merch-img-wrap">
+                            <div class="merch-img-placeholder">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
+                                <span>放置商品照片</span>
+                            </div>
+                            <!-- ★ 有圖時取消下行並填入 src，刪除上方 .merch-img-placeholder -->
+                            <!-- <img src="images/merch/tote-bag.webp" alt="帆布袋" class="merch-img"> -->
+                        </div>
+                        <div class="merch-body">
+                            <span class="merch-badge">限量周邊</span>
+                            <h3 class="merch-name">NTU ECON 帆布袋</h3>
+                            <p class="merch-desc">採用厚磅純棉帆布製成，印有本年度系學會主視覺，容量大適合日常通勤，可作為課本、筆電的隨身袋。</p>
+                        </div>
+                    </div>
+
+                    <!-- 紀念品 2 -->
+                    <div class="merch-card reveal delay-200">
+                        <div class="merch-img-wrap">
+                            <div class="merch-img-placeholder">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
+                                <span>放置商品照片</span>
+                            </div>
+                            <!-- <img src="images/merch/mug.webp" alt="馬克杯" class="merch-img"> -->
+                        </div>
+                        <div class="merch-body">
+                            <span class="merch-badge">精選好物</span>
+                            <h3 class="merch-name">陶瓷馬克杯</h3>
+                            <p class="merch-desc">350ml 厚底陶瓷杯，兩側印有 NTU ECON SA 標誌與年度設計，完美適合日常咖啡或茶飲，質感滿點。</p>
+                        </div>
+                    </div>
+
+                    <!-- 紀念品 3 -->
+                    <div class="merch-card reveal delay-300">
+                        <div class="merch-img-wrap">
+                            <div class="merch-img-placeholder">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
+                                <span>放置商品照片</span>
+                            </div>
+                            <!-- <img src="images/merch/sticker.webp" alt="貼紙組" class="merch-img"> -->
+                        </div>
+                        <div class="merch-body">
+                            <span class="merch-badge">必備小物</span>
+                            <h3 class="merch-name">系學會貼紙組</h3>
+                            <p class="merch-desc">一套 6 枚防水貼紙，涵蓋系學會 Logo、年度主題圖案，適合貼於水瓶、筆電、手帳，展現系上認同感。</p>
+                        </div>
+                    </div>
+
+                </div><!-- .merch-grid -->
+            </section>
+
             <section id="how-to" class="reveal">
+
                 <div class="section-heading">
                     <h2>贊助流程說明</h2>
                 </div>

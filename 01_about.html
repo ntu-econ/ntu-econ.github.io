@@ -17,6 +17,7 @@
         ===================================================== */
         .page-hero {
             display: flex; align-items: flex-start; gap: 40px; margin-bottom: 60px;
+            min-height: 340px;
         }
         .page-hero-text { flex: 1 1 0; min-width: 0; }
         .page-hero-text h1 {
@@ -484,6 +485,65 @@
         .contact-list li { margin-bottom: 16px; font-size: 16px; color: var(--text-main); line-height: 1.8; }
         .contact-list a { color: var(--navy-700); font-weight: 700; text-decoration: underline; text-decoration-color: var(--gold-400); }
         .contact-list a:hover { color: var(--navy-900); text-decoration-color: var(--gold-500); }
+
+        /* =====================================================
+           PHOTO GALLERY SLIDER（年度亮點用）
+        ===================================================== */
+        .highlights-gallery { margin-top: 14px; position: relative; user-select: none; }
+        .highlights-gallery.empty { display: none; }
+        .highlights-gallery .gallery-track {
+            position: relative; width: 100%; overflow: hidden;
+            background: var(--navy-100); aspect-ratio: 16 / 9;
+            border: 1.5px solid var(--navy-800);
+        }
+        .highlights-gallery .gallery-slide {
+            position: absolute; inset: 0;
+            opacity: 0; transition: opacity 0.45s var(--ease-custom, cubic-bezier(0.19,1,0.22,1));
+            display: flex; align-items: center; justify-content: center;
+        }
+        .highlights-gallery .gallery-slide.active { opacity: 1; }
+        .highlights-gallery .gallery-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .highlights-gallery .gallery-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 30px; height: 44px;
+            background: rgba(2,18,38,0.60); border: none;
+            color: var(--gold-400); font-size: 20px; cursor: pointer; z-index: 10;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s, color 0.2s; padding: 0;
+        }
+        .highlights-gallery .gallery-btn:hover { background: var(--gold-500); color: var(--navy-900); }
+        .highlights-gallery .gallery-prev { left: 0; }
+        .highlights-gallery .gallery-next { right: 0; }
+        .highlights-gallery .gallery-footer {
+            display: flex; align-items: center; justify-content: center;
+            gap: 8px; margin-top: 6px; min-height: 16px;
+        }
+        .highlights-gallery .gallery-dots { display: flex; gap: 5px; align-items: center; }
+        .highlights-gallery .gallery-dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--navy-100); border: 1.5px solid var(--navy-700);
+            cursor: pointer; transition: background 0.2s, transform 0.2s; padding: 0;
+        }
+        .highlights-gallery .gallery-dot.active { background: var(--navy-800); transform: scale(1.3); }
+        .highlights-gallery .gallery-caption {
+            position: absolute; top: 0; left: 0;
+            background: rgba(2,18,38,0.62); color: rgba(255,255,255,0.92);
+            font-family: 'Noto Sans TC', sans-serif; font-size: 11px; font-weight: 700;
+            padding: 4px 12px 4px 8px; pointer-events: none; z-index: 5;
+            max-width: 85%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .highlights-gallery .gallery-credit {
+            position: absolute; bottom: 0; left: 0;
+            background: rgba(2,18,38,0.62); color: rgba(255,255,255,0.85);
+            font-family: 'Noto Sans TC', sans-serif; font-size: 10px;
+            padding: 3px 10px 3px 8px; pointer-events: none; z-index: 5;
+            max-width: 75%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+
+        /* RWD：手機小屏寬度 */
+        @media (max-width: 900px) {
+            /* sidebar 已移除，保留 media query 區塊以備將來扩展 */
+        }
     </style>
 </head>
 <body>
@@ -505,7 +565,8 @@
         </div>
     </header>
 
-    <main style="max-width: 1200px; margin: 60px auto; padding: 0 16px; min-height: 60vh;">
+
+    <main style="max-width: 1200px; margin: clamp(40px, 8vw, 100px) auto; padding: 0 clamp(20px, 5%, 60px); min-height: 60vh;">
         
         <div class="page-hero reveal active" style="margin-bottom: 50px;">
             <div class="page-hero-text">
@@ -598,53 +659,102 @@
                 <h2>年度亮點活動</h2>
             </div>
             <div class="cards-grid">
+                <!-- 經濟之夜 -->
                 <div class="pay-card reveal delay-100">
                     <div>
                         <span class="badge bg-gold">年度盛事</span>
                         <h3>經濟之夜</h3>
                         <p>系上同學展現多元才藝之活動，如樂團表演、舞蹈演出、戲劇節目。</p>
                     </div>
+                    <div class="highlights-gallery" data-hkey="econ-night">
+                        <div class="gallery-track"></div>
+                        <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+                        <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+                        <div class="gallery-footer"><div class="gallery-dots"></div></div>
+                    </div>
                 </div>
+                <!-- 職涯與學術講座 -->
                 <div class="pay-card reveal delay-200">
                     <div>
                         <span class="badge bg-navy">專業成長</span>
                         <h3>職涯與學術講座</h3>
                         <p>邀請知名系友或產業專家分享，包含金融、數據分析、學術研究等領域。</p>
                     </div>
+                    <div class="highlights-gallery" data-hkey="lecture">
+                        <div class="gallery-track"></div>
+                        <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+                        <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+                        <div class="gallery-footer"><div class="gallery-dots"></div></div>
+                    </div>
                 </div>
+                <!-- 杜鵑花節 -->
                 <div class="pay-card reveal delay-300">
                     <div>
                         <span class="badge bg-navy">學系推廣</span>
                         <h3>杜鵑花節</h3>
                         <p>向有興趣就讀本校系之高中生介紹本系之修課規劃及職涯發展等。</p>
                     </div>
+                    <div class="highlights-gallery" data-hkey="azalea">
+                        <div class="gallery-track"></div>
+                        <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+                        <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+                        <div class="gallery-footer"><div class="gallery-dots"></div></div>
+                    </div>
                 </div>
+                <!-- 經濟營 -->
                 <div class="pay-card reveal delay-100">
                     <div>
                         <span class="badge bg-navy">學系推廣</span>
                         <h3>經濟營</h3>
                         <p>帶領高中生更認識經濟系及建立人際網絡。</p>
                     </div>
+                    <div class="highlights-gallery" data-hkey="econ-camp">
+                        <div class="gallery-track"></div>
+                        <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+                        <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+                        <div class="gallery-footer"><div class="gallery-dots"></div></div>
+                    </div>
                 </div>
+                <!-- 經濟週 -->
                 <div class="pay-card reveal delay-200">
                     <div>
                         <span class="badge bg-gray">特色活動</span>
                         <h3>經濟週</h3>
                         <p>販賣經濟系周邊商品、手作美食、設計小遊戲給系外同學娛樂。</p>
                     </div>
+                    <div class="highlights-gallery" data-hkey="econ-week">
+                        <div class="gallery-track"></div>
+                        <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+                        <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+                        <div class="gallery-footer"><div class="gallery-dots"></div></div>
+                    </div>
                 </div>
+                <!-- 大迎新 -->
                 <div class="pay-card reveal delay-300">
                     <div>
                         <span class="badge bg-navy">新生系列</span>
                         <h3>大迎新</h3>
                         <p>學期初向新生介紹系學會及各系隊、邀請教授蒞臨指導。</p>
                     </div>
+                    <div class="highlights-gallery" data-hkey="orientation">
+                        <div class="gallery-track"></div>
+                        <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+                        <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+                        <div class="gallery-footer"><div class="gallery-dots"></div></div>
+                    </div>
                 </div>
+                <!-- 宿營 -->
                 <div class="pay-card reveal delay-100">
                     <div>
                         <span class="badge bg-navy">新生系列</span>
                         <h3>宿營</h3>
                         <p>學長姐帶領準大一生於暑假一起於三天兩夜之團康活動同歡。</p>
+                    </div>
+                    <div class="highlights-gallery" data-hkey="camp">
+                        <div class="gallery-track"></div>
+                        <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+                        <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+                        <div class="gallery-footer"><div class="gallery-dots"></div></div>
                     </div>
                 </div>
             </div>
@@ -704,96 +814,177 @@
         </div>
     </footer>
 
+    <script src="assets/js/gallery-data.js"></script>
     <script src="assets/js/main.js"></script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // 初始化動態顯現
-            const revealElements = document.querySelectorAll('.reveal');
-            const revealObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        revealObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            revealElements.forEach(el => revealObserver.observe(el));
+(function() {
+  'use strict';
 
-            // 卡片滾動顯現特效 - 帶stagger延遲
-            const cards = document.querySelectorAll('.goal-item, .department-card, .pay-card');
-            const cardObserver = new IntersectionObserver((entries) => {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'translateY(0) scale(1)';
-                        }, index * 80);
-                    }
-                });
-            }, { threshold: 0.15 });
-            
-            cards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px) scale(0.95)';
-                card.style.transition = 'opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
-                cardObserver.observe(card);
-            });
+  /* ── 1. Scroll Reveal ── */
+  function initReveal() {
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('active'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
+  }
 
-            // 增強的滾動視差效果
-            window.addEventListener('scroll', () => {
-                const scrollY = window.scrollY;
-                
-                // 卡片視差 + 微妙旋轉
-                cards.forEach((card) => {
-                    const rect = card.getBoundingClientRect();
-                    if (rect.top < window.innerHeight && rect.bottom > 0) {
-                        const offset = (rect.top - window.innerHeight) * -0.05;
-                        const rotateAmount = (rect.top - window.innerHeight) * 0.02;
-                        card.style.transform = `translateY(${offset}px) rotateX(${rotateAmount}deg)`;
-                    }
-                });
+  /* ── 2. Card stagger animate ── */
+  function initCards() {
+    var cards = document.querySelectorAll('.goal-item, .department-card, .pay-card');
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry, idx) {
+        if (entry.isIntersecting) {
+          setTimeout(function() {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0) scale(1)';
+          }, idx * 70);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    cards.forEach(function(card) {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(24px) scale(0.96)';
+      card.style.transition = 'opacity 0.55s ease, transform 0.55s cubic-bezier(0.34,1.56,0.64,1)';
+      io.observe(card);
+    });
+  }
 
-                // Section標題的視差效果
-                document.querySelectorAll('.section-heading').forEach(heading => {
-                    const rect = heading.getBoundingClientRect();
-                    if (rect.top < window.innerHeight && rect.bottom > 0) {
-                        const offset = (rect.top - window.innerHeight) * -0.03;
-                        heading.style.transform = `translateX(${offset}px)`;
-                    }
-                });
+  /* ── 3. Header shrink ── */
+  function initHeader() {
+    var h = document.getElementById('main-header');
+    if (!h) return;
+    window.addEventListener('scroll', function() {
+      h.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+  }
 
-                // 動態背景亮度
-                document.querySelectorAll('section').forEach(section => {
-                    const rect = section.getBoundingClientRect();
-                    const scrollProgress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-                    const opacity = Math.max(0.95, Math.min(1, 0.95 + scrollProgress * 0.15));
-                    section.style.opacity = opacity;
-                });
-            });
+  /* ── 4. Back To Top ── */
+  function initBackToTop() {
+    var btn = document.getElementById('backToTopBtn');
+    if (!btn) return;
+    window.addEventListener('scroll', function() {
+      btn.classList.toggle('visible', window.scrollY > 300);
+    }, { passive: true });
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
-            // 初始化 Header 特效
-            const header = document.getElementById('main-header');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) header.classList.add('scrolled');
-                else header.classList.remove('scrolled');
-            });
+  /* ── 5. Right Sidebar (show after scroll + active section) ── */
+  function initAboutSidebar() {
+    var sidebar = document.getElementById('aboutSidebar');
+    if (!sidebar) return;
+    var items = Array.from(sidebar.querySelectorAll('.about-sidebar-item'));
+    var sectionIds = ['mission', 'structure', 'highlights', 'contact'];
+    var sections = sectionIds.map(function(id) { return document.getElementById(id); }).filter(Boolean);
 
-            // 初始化回到頁首按鈕特效
-            const backToTopBtn = document.getElementById('backToTopBtn');
-            if (backToTopBtn) {
-                window.addEventListener('scroll', () => {
-                    if (window.scrollY > 300) {
-                        backToTopBtn.classList.add('visible');
-                    } else {
-                        backToTopBtn.classList.remove('visible');
-                    }
-                });
-                backToTopBtn.addEventListener('click', () => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-            }
-        });
+    function update() {
+      /* show sidebar after first section is out of viewport */
+      var firstSection = sections[0];
+      var show = firstSection && firstSection.getBoundingClientRect().top < 60;
+      sidebar.classList.toggle('visible', !!show);
+
+      /* highlight active section */
+      var scrollMid = window.scrollY + window.innerHeight * 0.4;
+      var activeId = '';
+      sections.forEach(function(sec) {
+        if (sec.offsetTop <= scrollMid) activeId = sec.id;
+      });
+      items.forEach(function(item) {
+        var href = item.getAttribute('href').replace('#', '');
+        item.classList.toggle('active', href === activeId);
+      });
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  }
+
+  /* ── 6. Highlights Gallery (reads GALLERY_DATA.highlights) ── */
+  function initHighlightsGalleries() {
+    document.querySelectorAll('.highlights-gallery').forEach(function(gallery) {
+      var hkey = gallery.getAttribute('data-hkey');
+      var urls = (typeof GALLERY_DATA !== 'undefined' &&
+                  GALLERY_DATA['highlights'] &&
+                  GALLERY_DATA['highlights'][hkey]) || [];
+
+      if (!urls.length) { gallery.classList.add('empty'); return; }
+
+      var track   = gallery.querySelector('.gallery-track');
+      var dotsEl  = gallery.querySelector('.gallery-dots');
+      var prevBtn = gallery.querySelector('.gallery-prev');
+      var nextBtn = gallery.querySelector('.gallery-next');
+      var current = 0;
+
+      urls.forEach(function(item, i) {
+        var src     = typeof item === 'string' ? item : item.url;
+        var caption = typeof item === 'object' ? (item.caption || null) : null;
+        var credit  = typeof item === 'object' ? (item.credit  || null) : null;
+
+        var slide = document.createElement('div');
+        slide.className = 'gallery-slide' + (i === 0 ? ' active' : '');
+        var img = document.createElement('img');
+        img.src = src;
+        img.alt = '活動照片 ' + (i + 1);
+        img.loading = 'lazy';
+        slide.appendChild(img);
+
+        if (caption) {
+          var capEl = document.createElement('span');
+          capEl.className = 'gallery-caption';
+          capEl.textContent = caption;
+          slide.appendChild(capEl);
+        }
+        if (credit) {
+          var creEl = document.createElement('span');
+          creEl.className = 'gallery-credit';
+          creEl.textContent = credit;
+          slide.appendChild(creEl);
+        }
+        track.appendChild(slide);
+
+        var dot = document.createElement('button');
+        dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', '第 ' + (i + 1) + ' 張');
+        dot.addEventListener('click', function() { goTo(i); });
+        dotsEl.appendChild(dot);
+      });
+
+      var slides = gallery.querySelectorAll('.gallery-slide');
+      var dots   = gallery.querySelectorAll('.gallery-dot');
+
+      function goTo(idx) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (idx + urls.length) % urls.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+      }
+
+      if (urls.length === 1) {
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+        if (dotsEl) dotsEl.style.display = 'none';
+      }
+
+      prevBtn.addEventListener('click', function() { goTo(current - 1); });
+      nextBtn.addEventListener('click', function() { goTo(current + 1); });
+    });
+  }
+
+  /* ── BOOT ── */
+  document.addEventListener('DOMContentLoaded', function() {
+    initReveal();
+    initCards();
+    initHeader();
+    initBackToTop();
+    initHighlightsGalleries();
+  });
+
+}());
     </script>
 </body>
 </html>

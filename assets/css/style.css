@@ -187,3 +187,31 @@ section { background: var(--bg-white); border-radius: 0; padding: clamp(30px, 5v
     section { padding: 32px 24px; }
     .layout-container-full { padding: 0 20px; }
 }
+/* =========================================
+   6. 全站 UX 微優化
+   ========================================= */
+/* 鍵盤 focus ring */
+:focus-visible {
+    outline: 2.5px solid var(--gold-500);
+    outline-offset: 3px;
+}
+:focus:not(:focus-visible) { outline: none; }
+
+/* nav-link：目前頁面底線常駐 */
+.nav-link.current-page::before { width: 100%; }
+.nav-link.current-page { color: var(--navy-900); }
+
+/* button 手型指標 */
+button { cursor: pointer; }
+
+/* section hover 左側金色邊框微提示 */
+section { transition: box-shadow 0.35s var(--ease-custom); }
+section:hover { box-shadow: inset 3px 0 0 var(--gold-500); }
+
+/* gallery / dock / toc focus */
+.gallery-btn:focus-visible,
+.dock-node:focus-visible,
+.toc-link:focus-visible {
+    outline: 2px solid var(--gold-500);
+    outline-offset: 2px;
+}
