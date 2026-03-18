@@ -84,11 +84,20 @@
     max-width:1280px; margin:0 auto;
     padding:clamp(40px,6vw,80px) clamp(20px,5%,60px);
     display:grid;
-    grid-template-columns:1fr 360px;
+    grid-template-columns:minmax(0, 1fr) 360px;
     gap:48px; align-items:start;
   }
   @media (max-width:960px) {
-    .home-content { grid-template-columns:1fr; }
+    .home-content { 
+      grid-template-columns:1fr; 
+      gap:32px;
+    }
+  }
+  @media (max-width:640px) {
+    .home-content {
+      padding:clamp(30px,5vw,60px) clamp(16px,4%,40px);
+      gap:24px;
+    }
   }
 
   /* =====================================================
