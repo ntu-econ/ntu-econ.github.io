@@ -87,18 +87,40 @@ var GALLERY_DATA = {
      經濟之夜（依年份）
      路徑格式：'images/econ-night/年份/01.webp'
   ────────────────────────────────────────── */
+  /* 格式 A：純路徑，不加任何標註 */
+  // 'images/econ-night/2024/01.webp',
+  /* 格式 B：只標攝影者 */
+  // { url: 'images/econ-night/2024/02.webp', credit: '攝影：陳小明' },
+  /* 格式 B：只標表演名稱（左上角）*/
+  // { url: 'images/econ-night/2024/03.webp', caption: '合唱團表演' },
+  /* 格式 B：同時標表演名稱和攝影者 */
+  // { url: 'images/econ-night/2024/04.webp', caption: '舞蹈表演', credit: '攝影：林小華' },
+  // 'images/econ-night/2024/05.webp',
   'econ-night': {
 
+    '2025': [
+      { url: 'images/econ-night/2025/01.webp', caption: '大合照' },
+      { url: 'images/econ-night/2025/02.webp', caption: '合照' },
+      { url: 'images/econ-night/2025/03.webp', caption: '合照' },
+      { url: 'images/econ-night/2025/04.webp', caption: '合照' },
+      { url: 'images/econ-night/2025/05.webp', caption: '表演者獨照' },
+      { url: 'images/econ-night/2025/06.webp', caption: '表演照' },
+      { url: 'images/econ-night/2025/07.webp', caption: '合照' },
+      { url: 'images/econ-night/2025/08.webp', caption: '表演照' },
+      { url: 'images/econ-night/2025/09.webp', caption: '表演照' },
+      { url: 'images/econ-night/2025/10.webp', caption: '抽獎' },
+      { url: 'images/econ-night/2025/11.webp', caption: '抽獎' },
+      { url: 'images/econ-night/2025/12.webp', caption: '合照' },
+      { url: 'images/econ-night/2025/13.webp', caption: '合照' },
+      { url: 'images/econ-night/2025/14.webp', caption: '表演照' },
+      { url: 'images/econ-night/2025/15.webp', caption: '表演照' },
+      { url: 'images/econ-night/2025/16.webp', caption: '表演照' },
+      { url: 'images/econ-night/2025/17.webp', caption: '表演照' },
+      { url: 'images/econ-night/2025/18.webp', caption: '表演照' },
+      { url: 'images/econ-night/2025/19.webp', caption: '表演照' },
+    ],
+
     '2024': [
-      /* 格式 A：純路徑，不加任何標註 */
-      // 'images/econ-night/2024/01.webp',
-      /* 格式 B：只標攝影者 */
-      // { url: 'images/econ-night/2024/02.webp', credit: '攝影：陳小明' },
-      /* 格式 B：只標表演名稱（左上角）*/
-      // { url: 'images/econ-night/2024/03.webp', caption: '合唱團表演' },
-      /* 格式 B：同時標表演名稱和攝影者 */
-      // { url: 'images/econ-night/2024/04.webp', caption: '舞蹈表演', credit: '攝影：林小華' },
-      // 'images/econ-night/2024/05.webp',
       { url: 'images/econ-night/2024/01.webp', caption: '大合照', credit: '攝影：小柚子' },
       { url: 'images/econ-night/2024/02.webp', credit: '攝影：小柚子' },
       { url: 'images/econ-night/2024/03.webp', caption: 'Econ baby', credit: '攝影：小柚子' },
@@ -126,7 +148,16 @@ var GALLERY_DATA = {
     ],
 
     '2017': [
-      // 'images/econ-night/2017/01.webp',
+      { url: 'images/econ-night/2017/01.webp', caption: '競技啦啦隊' },
+      { url: 'images/econ-night/2017/02.webp', caption: '大一Band' },
+      { url: 'images/econ-night/2017/03.webp', caption: '大二Band' },
+      { url: 'images/econ-night/2017/04.webp', caption: '大一舞' },
+      { url: 'images/econ-night/2017/05.webp', caption: '音樂劇' },
+      { url: 'images/econ-night/2017/06.webp', caption: 'Acappella' },
+      { url: 'images/econ-night/2017/07.webp', caption: '大四劇' },
+      { url: 'images/econ-night/2017/08.webp', caption: '光舞' },
+      { url: 'images/econ-night/2017/09.webp', caption: '跨屆女舞' },
+      { url: 'images/econ-night/2017/10.webp', caption: '跨屆男舞' },
     ],
 
     '2016': [
@@ -134,7 +165,19 @@ var GALLERY_DATA = {
     ],
 
     '2015': [
-      // 'images/econ-night/2015/01.webp',
+      { url: 'images/econ-night/2015/01.webp', caption: '大合照' },
+      { url: 'images/econ-night/2015/02.webp', caption: '倒數一天' },
+      { url: 'images/econ-night/2015/03.webp', caption: '倒數三天' },
+      { url: 'images/econ-night/2015/04.webp', caption: '倒數四天' },
+      { url: 'images/econ-night/2015/05.webp', caption: '倒數六天' },
+      { url: 'images/econ-night/2015/06.webp', caption: '倒數十天' },
+      { url: 'images/econ-night/2015/07.webp', caption: '倒數十一天' },
+      { url: 'images/econ-night/2015/08.webp', caption: '倒數十二天' },
+      { url: 'images/econ-night/2015/09.webp', caption: '倒數十三天' },
+      { url: 'images/econ-night/2015/10.webp', caption: '倒數十四天' },
+      { url: 'images/econ-night/2015/11.webp', caption: '倒數十五天' },
+      { url: 'images/econ-night/2015/12.webp', caption: '倒數十六天' },
+      // Ice Monster 活動冰品兌換卷抽獎：https://www.facebook.com/share/v/18Wfngomfi/
     ],
 
     '2014': [
@@ -153,7 +196,16 @@ var GALLERY_DATA = {
     ],
 
     '2013': [
-      // 'images/econ-night/2013/01.webp',
+      { url: 'images/econ-night/2013/01.webp', caption: '大合照' },
+      { url: 'images/econ-night/2013/02.webp', caption: '倒數33天' },
+      { url: 'images/econ-night/2013/03.webp', caption: '倒數29天' },
+      { url: 'images/econ-night/2013/04.webp', caption: '倒數28天' },
+      { url: 'images/econ-night/2013/05.webp', caption: '倒數12天' },
+      { url: 'images/econ-night/2013/06.webp', caption: '倒數6天' },
+      { url: 'images/econ-night/2013/07.webp', caption: '倒數5天' },
+      { url: 'images/econ-night/2013/08.webp', caption: '倒數3天' },
+      { url: 'images/econ-night/2013/09.webp', caption: '倒數2天' },
+      { url: 'images/econ-night/2013/10.webp', caption: '宣傳片' },
     ],
 
     '2012': [

@@ -1,1213 +1,1782 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>活動回顧 - 國立臺灣大學經濟學系學生會</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Outfit:wght@400;600;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
-<style>
-/* =====================================================
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>活動回顧 - 國立臺灣大學經濟學系學生會</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Outfit:wght@400;600;800&family=Space+Grotesk:wght@700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* =====================================================
    VARIABLES FALLBACK
 ===================================================== */
-:root {
-  --navy-900:#021226; --navy-800:#0A2647; --navy-700:#144272; --navy-100:#E6F0F9;
-  --gold-500:#CBA16E; --gold-400:#DCC09B; --gold-100:#F9F3EB;
-  --text-main:#1E293B; --text-muted:#64748B; --bg-body:#F8FAFC; --bg-white:#FAFAFA;
-  --ease-custom:cubic-bezier(0.19,1,0.22,1); --header-h:80px;
-}
+    :root {
+      --navy-900: #021226;
+      --navy-800: #0A2647;
+      --navy-700: #144272;
+      --navy-100: #E6F0F9;
+      --gold-500: #CBA16E;
+      --gold-400: #DCC09B;
+      --gold-100: #F9F3EB;
+      --text-main: #1E293B;
+      --text-muted: #64748B;
+      --bg-body: #F8FAFC;
+      --bg-white: #FAFAFA;
+      --ease-custom: cubic-bezier(0.19, 1, 0.22, 1);
+      --header-h: 80px;
+    }
 
-/* =====================================================
+    /* =====================================================
    PAGE HERO — title + bubble cluster
 ===================================================== */
-.page-hero {
-  display:flex; align-items:flex-start; gap:40px; margin-bottom:60px;
-  min-height:340px;
-}
-.page-hero-text { flex:1 1 0; min-width:0; }
-.page-hero-text h1 {
-  font-family:'Noto Sans TC',sans-serif;
-  font-size:clamp(3rem,6vw,5rem); font-weight:900; color:var(--navy-900);
-  margin:0 0 20px -4px; line-height:1.05; letter-spacing:-2px;
-}
-.page-hero-text h1 span {
-  display:block; font-family:'Outfit',sans-serif;
-  font-size:clamp(1.1rem,2.2vw,1.6rem); font-weight:800;
-  color:var(--gold-500); letter-spacing:6px; line-height:1.4; margin-top:6px;
-}
-.page-hero-text p { font-size:16px; color:var(--text-muted); max-width:560px; }
-.divider { width:100px; height:8px; background:var(--gold-500); margin-top:24px; }
+    .page-hero {
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+      margin-bottom: 60px;
+      min-height: 340px;
+    }
 
-/* =====================================================
+    .page-hero-text {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+
+    .page-hero-text h1 {
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 900;
+      color: var(--navy-900);
+      margin: 0 0 20px -4px;
+      line-height: 1.05;
+      letter-spacing: -2px;
+    }
+
+    .page-hero-text h1 span {
+      display: block;
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+      font-weight: 800;
+      color: var(--gold-500);
+      letter-spacing: 6px;
+      line-height: 1.4;
+      margin-top: 6px;
+    }
+
+    .page-hero-text p {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 560px;
+    }
+
+    .divider {
+      width: 100px;
+      height: 8px;
+      background: var(--gold-500);
+      margin-top: 24px;
+    }
+
+    /* =====================================================
    BUBBLE CLUSTER — more spread out, 3D quality
 ===================================================== */
-.bubble-cluster {
-  flex:0 0 500px; width:500px; height:340px;
-  position:relative; pointer-events:none; flex-shrink:0; overflow:visible;
-}
+    .bubble-cluster {
+      flex: 0 0 500px;
+      width: 500px;
+      height: 340px;
+      position: relative;
+      pointer-events: none;
+      flex-shrink: 0;
+      overflow: visible;
+    }
 
-.bubble {
-  --size-px: calc(var(--size) * 3px);
-  position:absolute; width:var(--size-px); height:var(--size-px);
-  border-radius:50%; display:flex; align-items:center; justify-content:center;
-  text-align:center; pointer-events:all; cursor:pointer;
-  font-family:'Noto Sans TC',sans-serif; font-weight:700; line-height:1.2;
-  text-decoration:none; text-shadow:none !important; overflow:hidden;
-  transition: transform 0.5s var(--ease-custom), opacity 0.6s var(--ease-custom);
-}
+    .bubble {
+      --size-px: calc(var(--size) * 3px);
+      position: absolute;
+      width: var(--size-px);
+      height: var(--size-px);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      pointer-events: all;
+      cursor: pointer;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-weight: 700;
+      line-height: 1.2;
+      text-decoration: none;
+      text-shadow: none !important;
+      overflow: hidden;
+      transition: transform 0.5s var(--ease-custom), opacity 0.6s var(--ease-custom);
+    }
 
-/* Dark bubble (odd) — refined 3D: subtle top-left highlight, deep shadow */
-.bubble:nth-child(odd) {
-  background: radial-gradient(ellipse at 38% 32%,
-    #2a5a9e 0%, #0d3660 30%, #071e40 65%, #020e22 100%);
-  border: 1px solid rgba(255,255,255,0.10);
-  color:#fff;
-  box-shadow:
-    /* inner top highlight */
-    inset 0 2px 6px rgba(80,140,220,0.22),
-    /* inner bottom shadow */
-    inset 0 -3px 8px rgba(0,0,0,0.45),
-    /* outer ambient */
-    0 10px 30px rgba(2,18,38,0.40),
-    0 3px 8px rgba(2,18,38,0.25);
-}
+    /* Dark bubble (odd) — refined 3D: subtle top-left highlight, deep shadow */
+    .bubble:nth-child(odd) {
+      background: radial-gradient(ellipse at 38% 32%,
+          #2a5a9e 0%, #0d3660 30%, #071e40 65%, #020e22 100%);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      color: #fff;
+      box-shadow:
+        /* inner top highlight */
+        inset 0 2px 6px rgba(80, 140, 220, 0.22),
+        /* inner bottom shadow */
+        inset 0 -3px 8px rgba(0, 0, 0, 0.45),
+        /* outer ambient */
+        0 10px 30px rgba(2, 18, 38, 0.40),
+        0 3px 8px rgba(2, 18, 38, 0.25);
+    }
 
-/* Light bubble (even) — clean glass */
-.bubble:nth-child(even) {
-  background: radial-gradient(ellipse at 38% 30%,
-    #ffffff 0%, #d4e8f8 38%, #9fc4e4 80%, #7aaed4 100%);
-  border: 1px solid rgba(20,66,114,0.20);
-  color:var(--navy-900);
-  box-shadow:
-    inset 0 2px 8px rgba(255,255,255,0.90),
-    inset 0 -3px 8px rgba(20,66,114,0.18),
-    0 10px 30px rgba(20,66,114,0.20),
-    0 3px 8px rgba(20,66,114,0.12);
-}
+    /* Light bubble (even) — clean glass */
+    .bubble:nth-child(even) {
+      background: radial-gradient(ellipse at 38% 30%,
+          #ffffff 0%, #d4e8f8 38%, #9fc4e4 80%, #7aaed4 100%);
+      border: 1px solid rgba(20, 66, 114, 0.20);
+      color: var(--navy-900);
+      box-shadow:
+        inset 0 2px 8px rgba(255, 255, 255, 0.90),
+        inset 0 -3px 8px rgba(20, 66, 114, 0.18),
+        0 10px 30px rgba(20, 66, 114, 0.20),
+        0 3px 8px rgba(20, 66, 114, 0.12);
+    }
 
-/* Specular highlight — small bright ellipse top-left */
-.bubble::before {
-  content:''; position:absolute;
-  top:9%; left:16%; width:34%; height:26%;
-  background: radial-gradient(ellipse at center,
-    rgba(255,255,255,0.60) 0%, rgba(255,255,255,0.0) 100%);
-  border-radius:50%; pointer-events:none; z-index:1;
-}
-/* Secondary bottom-right rim light for depth */
-.bubble::after {
-  content:''; position:absolute;
-  bottom:8%; right:10%; width:20%; height:16%;
-  background: radial-gradient(ellipse at center,
-    rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.0) 100%);
-  border-radius:50%; pointer-events:none; z-index:1;
-}
+    /* Specular highlight — small bright ellipse top-left */
+    .bubble::before {
+      content: '';
+      position: absolute;
+      top: 9%;
+      left: 16%;
+      width: 34%;
+      height: 26%;
+      background: radial-gradient(ellipse at center,
+          rgba(255, 255, 255, 0.60) 0%, rgba(255, 255, 255, 0.0) 100%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 1;
+    }
 
-.bubble span { display:block; max-width:72%; font-size:calc(var(--size)*0.42px); position:relative; z-index:2; }
+    /* Secondary bottom-right rim light for depth */
+    .bubble::after {
+      content: '';
+      position: absolute;
+      bottom: 8%;
+      right: 10%;
+      width: 20%;
+      height: 16%;
+      background: radial-gradient(ellipse at center,
+          rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.0) 100%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 1;
+    }
 
-.bubble:hover {
-  background: radial-gradient(ellipse at 38% 30%,
-    #f0dfc0 0%, #d4a96a 45%, #a07030 100%) !important;
-  border-color:rgba(255,255,255,0.28) !important;
-  color:var(--navy-900) !important;
-  box-shadow:
-    inset 0 2px 8px rgba(255,220,150,0.40),
-    inset 0 -3px 8px rgba(120,70,10,0.30),
-    0 16px 40px rgba(203,161,110,0.55),
-    0 5px 12px rgba(203,161,110,0.35) !important;
-  z-index:20;
-  transform: scale(1.07) translateY(-6px);
-}
+    .bubble span {
+      display: block;
+      max-width: 72%;
+      font-size: calc(var(--size)*0.42px);
+      position: relative;
+      z-index: 2;
+    }
 
-/*
+    .bubble:hover {
+      background: radial-gradient(ellipse at 38% 30%,
+          #f0dfc0 0%, #d4a96a 45%, #a07030 100%) !important;
+      border-color: rgba(255, 255, 255, 0.28) !important;
+      color: var(--navy-900) !important;
+      box-shadow:
+        inset 0 2px 8px rgba(255, 220, 150, 0.40),
+        inset 0 -3px 8px rgba(120, 70, 10, 0.30),
+        0 16px 40px rgba(203, 161, 110, 0.55),
+        0 5px 12px rgba(203, 161, 110, 0.35) !important;
+      z-index: 20;
+      transform: scale(1.07) translateY(-6px);
+    }
+
+    /*
  * Spread positions — container 500×340px
  * sizes: 1=240  2=180  3=240  4=150  5=120
  * Layout: 1 far-left, 3 upper-right, 4 centre-top, 2 lower-mid, 5 far-right
  */
-.bubble:nth-child(1) { left:0;    top:60px;  z-index:3; } /* 經濟之夜 240 */
-.bubble:nth-child(2) { left:210px;top:160px; z-index:4; } /* 經濟週 180 */
-.bubble:nth-child(3) { left:220px;top:0;     z-index:2; } /* 經濟營 240 */
-.bubble:nth-child(4) { left:80px; top:-20px; z-index:5; } /* 迎新 150 */
-.bubble:nth-child(5) { left:400px;top:50px;  z-index:3; } /* 其他活動 120 */
+    .bubble:nth-child(1) {
+      left: 0;
+      top: 60px;
+      z-index: 3;
+    }
 
-/* fade-out when scrolled past */
-.bubble-cluster.hidden .bubble {
-  opacity:0; pointer-events:none; transform:scale(0.85) translateY(8px);
-}
+    /* 經濟之夜 240 */
+    .bubble:nth-child(2) {
+      left: 210px;
+      top: 160px;
+      z-index: 4;
+    }
 
-/* =====================================================
+    /* 經濟週 180 */
+    .bubble:nth-child(3) {
+      left: 220px;
+      top: 0;
+      z-index: 2;
+    }
+
+    /* 經濟營 240 */
+    .bubble:nth-child(4) {
+      left: 80px;
+      top: -20px;
+      z-index: 5;
+    }
+
+    /* 迎新 150 */
+    .bubble:nth-child(5) {
+      left: 400px;
+      top: 50px;
+      z-index: 3;
+    }
+
+    /* 其他活動 120 */
+
+    /* fade-out when scrolled past */
+    .bubble-cluster.hidden .bubble {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.85) translateY(8px);
+    }
+
+    /* =====================================================
    SIDEBAR — fixed right column after scroll
 ===================================================== */
-.bubble-sidebar {
-  position:fixed; right:0; top:50%; transform:translateY(-50%);
-  z-index:500; display:flex; flex-direction:column; align-items:flex-end;
-  gap:9px; pointer-events:none; /* ★ gap：原6px × 150% = 9px */
-  opacity:0; translate:120px 0;
-  transition: opacity 0.55s var(--ease-custom), translate 0.55s var(--ease-custom);
-}
-.bubble-sidebar.visible { opacity:1; translate:0 0; pointer-events:all; }
+    .bubble-sidebar {
+      position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 500;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 9px;
+      pointer-events: none;
+      /* ★ gap：原6px × 150% = 9px */
+      opacity: 0;
+      translate: 120px 0;
+      transition: opacity 0.55s var(--ease-custom), translate 0.55s var(--ease-custom);
+    }
 
-.bubble-sidebar-item:nth-child(1) { transition-delay:0s; }
-.bubble-sidebar-item:nth-child(2) { transition-delay:0.05s; }
-.bubble-sidebar-item:nth-child(3) { transition-delay:0.10s; }
-.bubble-sidebar-item:nth-child(4) { transition-delay:0.15s; }
-.bubble-sidebar-item:nth-child(5) { transition-delay:0.20s; }
+    .bubble-sidebar.visible {
+      opacity: 1;
+      translate: 0 0;
+      pointer-events: all;
+    }
 
-.bubble-sidebar-item {
-  display:flex; align-items:center; text-decoration:none; text-shadow:none !important;
-}
+    .bubble-sidebar-item:nth-child(1) {
+      transition-delay: 0s;
+    }
 
-/* slide-out label
+    .bubble-sidebar-item:nth-child(2) {
+      transition-delay: 0.05s;
+    }
+
+    .bubble-sidebar-item:nth-child(3) {
+      transition-delay: 0.10s;
+    }
+
+    .bubble-sidebar-item:nth-child(4) {
+      transition-delay: 0.15s;
+    }
+
+    .bubble-sidebar-item:nth-child(5) {
+      transition-delay: 0.20s;
+    }
+
+    .bubble-sidebar-item {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      text-shadow: none !important;
+    }
+
+    /* slide-out label
    ★ 字體大小：原12px × 150% ≈ 14px，hover 展開寬度對應調整 */
-.sidebar-label {
-  font-family:'Noto Sans TC',sans-serif; font-size:14px; font-weight:700;
-  color:var(--navy-800); background:var(--bg-white);
-  border:1.5px solid var(--navy-700); border-right:none;
-  white-space:nowrap; max-width:0; overflow:hidden; opacity:0; padding:0;
-  transition: max-width 0.4s var(--ease-custom), opacity 0.3s, padding 0.3s;
-}
-.bubble-sidebar-item:hover .sidebar-label {
-  max-width:140px; opacity:1; padding:9px 14px;
-}
+    .sidebar-label {
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy-800);
+      background: var(--bg-white);
+      border: 1.5px solid var(--navy-700);
+      border-right: none;
+      white-space: nowrap;
+      max-width: 0;
+      overflow: hidden;
+      opacity: 0;
+      padding: 0;
+      transition: max-width 0.4s var(--ease-custom), opacity 0.3s, padding 0.3s;
+    }
 
-/* pill（右側圓形選單）
+    .bubble-sidebar-item:hover .sidebar-label {
+      max-width: 0;
+      opacity: 0;
+      padding: 0;
+    }
+
+    /* pill（右側圓形選單）
    ★ 圓圈大小：原42px × 150% = 63px
    ★ 字體大小：原9px × 150% ≈ 13px */
-.sidebar-pill {
-  width:63px; height:63px; border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
-  background:transparent; border:2.5px solid var(--navy-700);
-  box-shadow:0 2px 10px rgba(2,18,38,0.18); flex-shrink:0;
-  transition: transform 0.35s var(--ease-custom), background 0.3s, border-radius 0.3s, border-color 0.3s;
-}
-.sidebar-pill span {
-  font-family:'Noto Sans TC',sans-serif; font-size:13px; font-weight:700;
-  color:var(--navy-800); text-align:center; line-height:1.2;
-  transition: opacity 0.2s, color 0.2s;
-}
-/* 目前滾動到的章節：空心圓 + 金色邊框 */
-.bubble-sidebar-item.active .sidebar-pill {
-  border-color:var(--gold-500);
-  background:rgba(203,161,110,0.08);
-  transform:scale(1.1);
-}
-.bubble-sidebar-item.active .sidebar-pill span { color:var(--gold-500); }
-/* hover: text disappears, pill turns gold */
-.bubble-sidebar-item:hover .sidebar-pill {
-  background:var(--gold-500) !important; border-color:var(--gold-400) !important;
-  transform:scale(1.15) translateX(-2px); border-radius:8px;
-}
-.bubble-sidebar-item:hover .sidebar-pill span { opacity:0; }
+    .sidebar-pill {
+      width: 63px;
+      height: 63px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      border: 2.5px solid var(--navy-700);
+      box-shadow: 0 2px 10px rgba(2, 18, 38, 0.18);
+      flex-shrink: 0;
+      transition: transform 0.35s var(--ease-custom), background 0.3s, border-radius 0.3s, border-color 0.3s;
+    }
 
-/* =====================================================
+    .sidebar-pill span {
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy-800);
+      text-align: center;
+      line-height: 1.2;
+      transition: opacity 0.2s, color 0.2s;
+    }
+
+    /* 目前滾動到的章節：空心圓 + 金色邊框 */
+    .bubble-sidebar-item.active .sidebar-pill {
+      border-color: var(--gold-500);
+      background: black;
+      transform: scale(1);
+    }
+
+    .bubble-sidebar-item.active .sidebar-pill span {
+      color: var(--gold-500);
+    }
+
+    /* hover: 圓形變深藍色 + 白字，不改變形狀 */
+    .bubble-sidebar-item:hover .sidebar-pill {
+      background: var(--navy-800) !important;
+      border-color: var(--navy-900) !important;
+      transform: scale(1.1);
+    }
+
+    .bubble-sidebar-item:hover .sidebar-pill span {
+      color: #fff;
+      opacity: 1;
+    }
+
+    /* =====================================================
    BACK-TO-TOP BUTTON — fixed, z-index above sidebar
 ===================================================== */
-#backToTopBtn {
-  position:fixed; bottom:28px; right:24px;
-  width:48px; height:48px;
-  background:var(--navy-900); color:var(--gold-400);
-  border:2px solid var(--navy-700); border-radius:0;
-  display:flex; align-items:center; justify-content:center;
-  cursor:pointer; z-index:900;
-  opacity:0; visibility:hidden; transform:translateY(16px);
-  transition: opacity 0.4s, visibility 0.4s, transform 0.4s var(--ease-custom),
-              background 0.3s, color 0.3s;
-  box-shadow:3px 3px 0 var(--navy-700);
-  padding:0; text-shadow:none !important;
-}
-#backToTopBtn.visible { opacity:1; visibility:visible; transform:translateY(0); }
-#backToTopBtn:hover {
-  background:var(--gold-500); color:var(--navy-900);
-  transform:translateY(-4px); box-shadow:4px 7px 0 var(--navy-900);
-  text-shadow:none !important;
-}
-#backToTopBtn svg { width:22px; height:22px; pointer-events:none; }
+    #backToTopBtn {
+      position: fixed;
+      bottom: 28px;
+      right: 24px;
+      width: 48px;
+      height: 48px;
+      background: var(--navy-900);
+      color: var(--gold-400);
+      border: 2px solid var(--navy-700);
+      border-radius: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 900;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(16px);
+      transition: opacity 0.4s, visibility 0.4s, transform 0.4s var(--ease-custom),
+        background 0.3s, color 0.3s;
+      box-shadow: 3px 3px 0 var(--navy-700);
+      padding: 0;
+      text-shadow: none !important;
+    }
 
-/* =====================================================
+    #backToTopBtn.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    #backToTopBtn:hover {
+      background: var(--gold-500);
+      color: var(--navy-900);
+      transform: translateY(-4px);
+      box-shadow: 4px 7px 0 var(--navy-900);
+      text-shadow: none !important;
+    }
+
+    #backToTopBtn svg {
+      width: 22px;
+      height: 22px;
+      pointer-events: none;
+    }
+
+    /* =====================================================
    DOCK TIMELINE — econ-night
 ===================================================== */
-#econ-night { overflow:visible !important; }
+    #econ-night {
+      overflow: visible !important;
+    }
 
-.dock-timeline { margin-top:44px; overflow:visible; }
+    .dock-timeline {
+      margin-top: 44px;
+      overflow: visible;
+    }
 
-.dock-track {
-  position:relative; display:flex; align-items:flex-end;
-  justify-content:space-between;
-  /* top padding = max scale headroom: node 44px × 2 = 88px, plus label ~36px ≈ 130px */
-  padding:0px 44px 0 8px;
-  overflow:visible; gap:0;
-}
+    .dock-track {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      /* top padding = max scale headroom: node 44px × 2 = 88px, plus label ~36px ≈ 130px */
+      padding: 0px 44px 0 8px;
+      overflow: visible;
+      gap: 0;
+    }
 
-/* dashed line — 圓圈中心對齊（66px/2 = 33px，加 9px 視覺補償 = 42px）
+    /* dashed line — 圓圈中心對齊（66px/2 = 33px，加 9px 視覺補償 = 42px）
    ★ 若圓圈尺寸有改，此值約為：圓圈高度 × 0.64 */
-.dock-track::before {
-  content:''; position:absolute;
-  left:8px; right:44px; bottom:42px;
-  border-top:2px dashed var(--navy-700);
-  z-index:0; pointer-events:none;
-}
-/* arrow at right end — bottom = 線的 bottom - 箭頭半高（42 - 13 = 29）
+    .dock-track::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      right: 44px;
+      bottom: 42px;
+      border-top: 2px dashed var(--navy-700);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* arrow at right end — bottom = 線的 bottom - 箭頭半高（42 - 13 = 29）
    ★ border-top/bottom 約為 圓圈高度 × 0.197，border-left 約為 × 0.36 */
-.dock-track::after {
-  content:''; position:absolute;
-  right:16px; bottom:29px;
-  border-top:13px solid transparent; border-bottom:13px solid transparent;
-  border-left:24px solid var(--navy-700);
-  z-index:1; pointer-events:none;
-}
+    .dock-track::after {
+      content: '';
+      position: absolute;
+      right: 16px;
+      bottom: 29px;
+      border-top: 13px solid transparent;
+      border-bottom: 13px solid transparent;
+      border-left: 24px solid var(--navy-700);
+      z-index: 1;
+      pointer-events: none;
+    }
 
-.dock-node {
-  display:flex; flex-direction:column; align-items:center;
-  cursor:pointer; position:relative; z-index:2;
-  background:none; border:none; padding:0 8px; flex-shrink:0;
-}
+    .dock-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+      z-index: 2;
+      background: none;
+      border: none;
+      padding: 0 8px;
+      flex-shrink: 0;
+    }
 
-.dock-node-circle {
-  /* ★ 圓圈尺寸：原 44px × 150% = 66px。若要調整大小，修改 width/height/font-size */
-  width:66px; height:66px; border-radius:50%;
-  background:var(--bg-white); border:2px solid var(--navy-800);
-  display:flex; align-items:center; justify-content:center;
-  font-family:'Outfit',sans-serif; font-weight:800; font-size:18px;
-  color:var(--navy-800); will-change:transform;
-  /* scale grows UPWARD */
-  transform-origin:center bottom;
-  /* transition controlled by JS (fast on move, slow on leave) */
-  transition:background 0.25s, border-color 0.25s, color 0.25s;
-  cursor:pointer;
-}
-.dock-node.active .dock-node-circle {
-  background:var(--navy-900); color:var(--gold-400); border-color:var(--navy-900);
-}
+    .dock-node-circle {
+      /* ★ 圓圈尺寸：原 44px × 150% = 66px。若要調整大小，修改 width/height/font-size */
+      width: 66px;
+      height: 66px;
+      border-radius: 50%;
+      background: var(--bg-white);
+      border: 2px solid var(--navy-800);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--navy-800);
+      will-change: transform;
+      /* scale grows UPWARD */
+      transform-origin: center bottom;
+      /* transition controlled by JS (fast on move, slow on leave) */
+      transition: background 0.25s, border-color 0.25s, color 0.25s;
+      cursor: pointer;
+    }
 
-.dock-node-label {
-  /* ★ 年份下方中文標題：原 10px × 150% = 15px */
-  margin-top:10px; font-family:'Noto Sans TC',sans-serif; font-size:15px; font-weight:600;
-  color:var(--text-muted); white-space:nowrap; text-align:center; line-height:1.3;
-  pointer-events:none; will-change:transform; transform-origin:center top;
-}
-.dock-node.active .dock-node-label { color:var(--navy-900); font-weight:700; }
+    .dock-node.active .dock-node-circle {
+      background: var(--navy-900);
+      color: var(--gold-400);
+      border-color: var(--navy-900);
+    }
 
-.dock-pane-wrap {
-  border:2px solid var(--navy-800); border-top:none;
-  padding:22px 20px 18px; background:var(--bg-white); min-height:80px;
-}
-.dock-pane { display:none; animation:fadeInUp 0.4s var(--ease-custom); }
-.dock-pane.active { display:block; }
-.dock-pane h3 { font-family:'Noto Sans TC',sans-serif; font-size:19px; font-weight:700; color:var(--navy-900); margin:0 0 10px; }
-.dock-pane p { font-size:14px; color:var(--text-muted); margin:4px 0; }
-.dock-pane a { color:var(--navy-700); font-weight:600; text-decoration:underline; text-decoration-color:var(--gold-400); text-underline-offset:3px; text-shadow:none !important; }
-.dock-pane a:hover { color:var(--gold-500); }
+    .dock-node-label {
+      /* ★ 年份下方中文標題：原 10px × 150% = 15px */
+      margin-top: 10px;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+      text-align: center;
+      line-height: 1.3;
+      pointer-events: none;
+      will-change: transform;
+      transform-origin: center top;
+    }
 
-/* =====================================================
+    .dock-node.active .dock-node-label {
+      color: var(--navy-900);
+      font-weight: 700;
+    }
+
+    .dock-pane-wrap {
+      border: 2px solid var(--navy-800);
+      border-top: none;
+      padding: 22px 20px 18px;
+      background: var(--bg-white);
+      min-height: 80px;
+    }
+
+    .dock-pane {
+      display: none;
+      animation: fadeInUp 0.4s var(--ease-custom);
+    }
+
+    .dock-pane.active {
+      display: block;
+    }
+
+    .dock-pane h3 {
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--navy-900);
+      margin: 0 0 10px;
+    }
+
+    .dock-pane p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin: 4px 0;
+    }
+
+    .dock-pane a {
+      color: var(--navy-700);
+      font-weight: 600;
+      text-decoration: underline;
+      text-decoration-color: var(--gold-400);
+      text-underline-offset: 3px;
+      text-shadow: none !important;
+    }
+
+    .dock-pane a:hover {
+      color: var(--gold-500);
+    }
+
+    /* =====================================================
    HORIZONTAL TIMELINE (other sections)
 ===================================================== */
-.horizontal-timeline { margin-top:28px; }
-.timeline-nav {
-  display:flex; flex-wrap:wrap; gap:6px;
-  border-bottom:2px solid var(--navy-800); padding-bottom:10px; margin-bottom:0;
-}
-.timeline-tab {
-  padding:7px 18px; font-family:'Outfit',sans-serif; font-size:14px; font-weight:700;
-  letter-spacing:0.5px; background:transparent; border:1.5px solid var(--navy-100);
-  border-radius:0; color:var(--text-muted); cursor:pointer;
-  transition:all 0.3s var(--ease-custom); position:relative; top:2px;
-}
-.timeline-tab:hover { background:var(--navy-100); color:var(--navy-900); border-color:var(--navy-700); }
-.timeline-tab.active { background:var(--navy-900); color:#fff; border-color:var(--navy-900); border-bottom-color:var(--bg-white); }
-.timeline-content { border:1.5px solid var(--navy-800); border-top:none; padding:24px 20px; background:var(--bg-white); }
-.timeline-pane { display:none; animation:fadeInUp 0.4s var(--ease-custom); }
-.timeline-pane.active { display:block; }
-.timeline-pane h3 { font-size:19px; font-weight:700; color:var(--navy-900); margin:0 0 10px; font-family:'Noto Sans TC',sans-serif; }
-.timeline-pane p { font-size:14px; color:var(--text-muted); margin:4px 0; }
-.timeline-pane a { color:var(--navy-700); font-weight:600; text-decoration:underline; text-decoration-color:var(--gold-400); text-underline-offset:3px; text-shadow:none !important; }
-.timeline-pane a:hover { color:var(--gold-500); }
-.horizontal-timeline.single-entry .timeline-nav { display:none; }
-.horizontal-timeline.single-entry .timeline-content { border-top:2px solid var(--navy-800); }
+    .horizontal-timeline {
+      margin-top: 28px;
+    }
 
-@keyframes fadeInUp {
-  from { opacity:0; transform:translateY(12px); }
-  to   { opacity:1; transform:translateY(0); }
-}
+    .timeline-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      border-bottom: 2px solid var(--navy-800);
+      padding-bottom: 10px;
+      margin-bottom: 0;
+    }
 
-/* =====================================================
+    .timeline-tab {
+      padding: 7px 18px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      background: transparent;
+      border: 1.5px solid var(--navy-100);
+      border-radius: 0;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.3s var(--ease-custom);
+      position: relative;
+      top: 2px;
+    }
+
+    .timeline-tab:hover {
+      background: var(--navy-100);
+      color: var(--navy-900);
+      border-color: var(--navy-700);
+    }
+
+    .timeline-tab.active {
+      background: var(--navy-900);
+      color: #fff;
+      border-color: var(--navy-900);
+      border-bottom-color: var(--bg-white);
+    }
+
+    .timeline-content {
+      border: 1.5px solid var(--navy-800);
+      border-top: none;
+      padding: 24px 20px;
+      background: var(--bg-white);
+    }
+
+    .timeline-pane {
+      display: none;
+      animation: fadeInUp 0.4s var(--ease-custom);
+    }
+
+    .timeline-pane.active {
+      display: block;
+    }
+
+    .timeline-pane h3 {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--navy-900);
+      margin: 0 0 10px;
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+
+    .timeline-pane p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin: 4px 0;
+    }
+
+    .timeline-pane a {
+      color: var(--navy-700);
+      font-weight: 600;
+      text-decoration: underline;
+      text-decoration-color: var(--gold-400);
+      text-underline-offset: 3px;
+      text-shadow: none !important;
+    }
+
+    .timeline-pane a:hover {
+      color: var(--gold-500);
+    }
+
+    .horizontal-timeline.single-entry .timeline-nav {
+      display: none;
+    }
+
+    .horizontal-timeline.single-entry .timeline-content {
+      border-top: 2px solid var(--navy-800);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =====================================================
    SECTION HEADINGS — bigger number, 10% darker
 ===================================================== */
-.section-heading { position:relative; }
-.section-heading::before {
-  content:attr(data-num); position:absolute;
-  left:-10px; top:50%; transform:translateY(-50%);
-  font-family:'Outfit',sans-serif;
-  font-size:128px; font-weight:800;
-  color:#BECFE4; /* #E6F0F9 darkened ~10% */
-  line-height:1; z-index:0; user-select:none; pointer-events:none;
-}
-.section-heading h2 { position:relative; z-index:1; }
+    .section-heading {
+      position: relative;
+    }
 
-/* =====================================================
+    .section-heading::before {
+      content: attr(data-num);
+      position: absolute;
+      left: -10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Outfit', sans-serif;
+      font-size: 128px;
+      font-weight: 800;
+      color: #BECFE4;
+      /* #E6F0F9 darkened ~10% */
+      line-height: 1;
+      z-index: 0;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .section-heading h2 {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* =====================================================
    OTHER ACTIVITIES mini cards
 ===================================================== */
-.mini-activities-grid {
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-  gap:12px; margin-top:20px;
-}
-.mini-card {
-  background:var(--bg-white); border:1.5px solid var(--navy-900);
-  padding:14px 16px; position:relative;
-  transition:transform 0.3s var(--ease-custom), box-shadow 0.3s;
-  clip-path:polygon(0 0,100% 0,100% 88%,92% 100%,0 100%);
-}
-.mini-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; background:var(--gold-500); }
-.mini-card:hover { transform:translate(-3px,-3px); box-shadow:5px 5px 0 var(--navy-900); }
-.mini-card-icon { font-size:22px; margin-bottom:8px; display:block; }
-.mini-card h3 { font-family:'Noto Sans TC',sans-serif; font-size:15px; font-weight:700; color:var(--navy-900); margin:0 0 5px; }
-.mini-card p { font-size:12px; color:var(--text-muted); margin:0; line-height:1.5; }
+    .mini-activities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
 
-/* =====================================================
+    .mini-card {
+      background: var(--bg-white);
+      border: 1.5px solid var(--navy-900);
+      padding: 14px 16px;
+      position: relative;
+      transition: transform 0.3s var(--ease-custom), box-shadow 0.3s;
+      clip-path: polygon(0 0, 100% 0, 100% 88%, 92% 100%, 0 100%);
+    }
+
+    .mini-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--gold-500);
+    }
+
+    .mini-card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 5px 5px 0 var(--navy-900);
+    }
+
+    .mini-card-icon {
+      font-size: 22px;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .mini-card h3 {
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy-900);
+      margin: 0 0 5px;
+    }
+
+    .mini-card p {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* =====================================================
    PHOTO GALLERY SLIDER
 ===================================================== */
-.gallery {
-  margin-top: 16px;
-  position: relative;
-  user-select: none;
-}
-.gallery.empty { display: none; }
+    .gallery {
+      margin-top: 16px;
+      position: relative;
+      user-select: none;
+    }
 
-.gallery-track {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  background: var(--navy-100);
-  border: 1.5px solid var(--navy-800);
-  aspect-ratio: 16 / 9;
-}
-.gallery-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 0.45s var(--ease-custom);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.gallery-slide.active { opacity: 1; }
-.gallery-slide img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
-  pointer-events: none;
-}
+    .gallery.empty {
+      display: none;
+    }
 
-/* overlay arrow buttons */
-.gallery-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 34px; height: 48px;
-  background: rgba(2,18,38,0.60);
-  border: none; border-radius: 0;
-  color: var(--gold-400);
-  font-size: 22px; font-family: 'Outfit', sans-serif;
-  cursor: pointer; z-index: 10;
-  display: flex; align-items: center; justify-content: center;
-  transition: background 0.2s, color 0.2s;
-  padding: 0;
-}
-.gallery-btn:hover { background: var(--gold-500); color: var(--navy-900); }
-.gallery-prev { left: 0; }
-.gallery-next { right: 0; }
+    .gallery-track {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background: var(--navy-100);
+      border: 1.5px solid var(--navy-800);
+      aspect-ratio: 16 / 9;
+    }
 
-.gallery-footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 8px;
-  min-height: 18px;
-}
-.gallery-dots {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-}
-.gallery-dot {
-  width: 7px; height: 7px; border-radius: 50%;
-  background: var(--navy-100);
-  border: 1.5px solid var(--navy-700);
-  cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
-  padding: 0;
-}
-.gallery-dot.active {
-  background: var(--navy-800);
-  transform: scale(1.25);
-}
-.gallery-counter {
-  font-family: 'Outfit', sans-serif;
-  font-size: 11px;
-  color: var(--text-muted);
-  font-weight: 600;
-  min-width: 32px;
-  text-align: center;
-}
+    .gallery-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.45s var(--ease-custom);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-/* 表演名稱 caption — 疊在圖片左上角 */
-.gallery-caption {
-  position: absolute;
-  top: 0; left: 0;
-  background: rgba(2,18,38,0.62);
-  color: rgba(255,255,255,0.92);
-  font-family: 'Noto Sans TC', sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 4px 12px 4px 8px;
-  pointer-events: none;
-  z-index: 5;
-  letter-spacing: 0.5px;
-  max-width: 85%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.mini-card .gallery-caption { font-size: 9px; padding: 3px 8px 3px 6px; }
+    .gallery-slide.active {
+      opacity: 1;
+    }
 
-/* 攝影 credit — 疊在圖片左下角 */
-.gallery-credit {
-  position: absolute;
-  bottom: 0; left: 0;
-  background: rgba(2,18,38,0.62);
-  color: rgba(255,255,255,0.85);
-  font-family: 'Noto Sans TC', sans-serif;
-  font-size: 10px;
-  font-weight: 400;
-  padding: 3px 10px 3px 8px;
-  pointer-events: none;
-  z-index: 5;
-  letter-spacing: 0.3px;
-  max-width: 75%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+    .gallery-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+    }
 
-/* mini-card 內的相簿比例較小 */
-.mini-card .gallery { margin-top: 10px; }
-.mini-card .gallery-track { aspect-ratio: 4 / 3; }
-.mini-card .gallery-btn { width: 28px; height: 40px; font-size: 18px; }
-.mini-card .gallery-credit { font-size: 9px; padding: 2px 7px 2px 6px; }
+    /* overlay arrow buttons */
+    .gallery-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 34px;
+      height: 48px;
+      background: rgba(2, 18, 38, 0.60);
+      border: none;
+      border-radius: 0;
+      color: var(--gold-400);
+      font-size: 22px;
+      font-family: 'Outfit', sans-serif;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s;
+      padding: 0;
+    }
 
-/* =====================================================
+    .gallery-btn:hover {
+      background: var(--gold-500);
+      color: var(--navy-900);
+    }
+
+    .gallery-prev {
+      left: 0;
+    }
+
+    .gallery-next {
+      right: 0;
+    }
+
+    .gallery-footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 8px;
+      min-height: 18px;
+    }
+
+    .gallery-dots {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .gallery-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--navy-100);
+      border: 1.5px solid var(--navy-700);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      padding: 0;
+    }
+
+    .gallery-dot.active {
+      background: var(--navy-800);
+      transform: scale(1.25);
+    }
+
+    .gallery-counter {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+      min-width: 32px;
+      text-align: center;
+    }
+
+    /* 表演名稱 caption — 疊在圖片左上角 */
+    .gallery-caption {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: rgba(2, 18, 38, 0.62);
+      color: rgba(255, 255, 255, 0.92);
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 12px 4px 8px;
+      pointer-events: none;
+      z-index: 5;
+      letter-spacing: 0.5px;
+      max-width: 85%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mini-card .gallery-caption {
+      font-size: 9px;
+      padding: 3px 8px 3px 6px;
+    }
+
+    /* 攝影 credit — 疊在圖片左下角 */
+    .gallery-credit {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background: rgba(2, 18, 38, 0.62);
+      color: rgba(255, 255, 255, 0.85);
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      padding: 3px 10px 3px 8px;
+      pointer-events: none;
+      z-index: 5;
+      letter-spacing: 0.3px;
+      max-width: 75%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* mini-card 內的相簿比例較小 */
+    .mini-card .gallery {
+      margin-top: 10px;
+    }
+
+    .mini-card .gallery-track {
+      aspect-ratio: 4 / 3;
+    }
+
+    .mini-card .gallery-btn {
+      width: 28px;
+      height: 40px;
+      font-size: 18px;
+    }
+
+    .mini-card .gallery-credit {
+      font-size: 9px;
+      padding: 2px 7px 2px 6px;
+    }
+
+    /* =====================================================
    MOBILE BOTTOM NAV
 ===================================================== */
-.mobile-nav-bar {
-  display:none; position:fixed; bottom:0; left:0; right:0;
-  background:var(--navy-900); border-top:2px solid var(--gold-500);
-  z-index:900; overflow-x:auto; scrollbar-width:none;
-}
-.mobile-nav-bar::-webkit-scrollbar { display:none; }
-.mobile-nav-bar a {
-  flex:0 0 auto; display:flex; flex-direction:column; align-items:center;
-  justify-content:center; padding:10px 16px; color:#94A3B8;
-  font-size:11px; font-weight:600; font-family:'Noto Sans TC',sans-serif;
-  transition:color 0.2s,background 0.2s; white-space:nowrap;
-  border-right:1px solid rgba(255,255,255,0.08); text-shadow:none !important;
-}
-.mobile-nav-bar a:last-child { border-right:none; }
-.mobile-nav-bar a:hover,.mobile-nav-bar a.active { color:var(--gold-400); background:rgba(255,255,255,0.05); }
-.mobile-nav-bar .dot {
-  width:6px; height:6px; border-radius:50%; background:var(--gold-500);
-  margin-bottom:4px; opacity:0; transition:opacity 0.2s;
-}
-.mobile-nav-bar a.active .dot { opacity:1; }
+    .mobile-nav-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--navy-900);
+      border-top: 2px solid var(--gold-500);
+      z-index: 900;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
 
-/* =====================================================
+    .mobile-nav-bar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .mobile-nav-bar a {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      color: #94A3B8;
+      font-size: 11px;
+      font-weight: 600;
+      font-family: 'Noto Sans TC', sans-serif;
+      transition: color 0.2s, background 0.2s;
+      white-space: nowrap;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      text-shadow: none !important;
+    }
+
+    .mobile-nav-bar a:last-child {
+      border-right: none;
+    }
+
+    .mobile-nav-bar a:hover,
+    .mobile-nav-bar a.active {
+      color: var(--gold-400);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .mobile-nav-bar .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold-500);
+      margin-bottom: 4px;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .mobile-nav-bar a.active .dot {
+      opacity: 1;
+    }
+
+    /* =====================================================
    RWD
 ===================================================== */
-@media (max-width:900px) {
-  .page-hero { flex-direction:column; }
-  .bubble-cluster { display:none !important; }
-  .bubble-sidebar { display:none !important; }
-  .mobile-nav-bar { display:flex !important; }
-  body { padding-bottom:64px; }
-  #backToTopBtn { bottom:76px; }
-}
-@media (max-width:600px) {
-  .mini-activities-grid { grid-template-columns:1fr 1fr; }
-  .section-heading::before { font-size:72px; }
-  /* ★ 手機版 dock 圓圈：原36px × 150% = 54px，字體同比例 */
-  .dock-node-circle { width:54px; height:54px; font-size:15px; }
-  .dock-node-label { font-size:12px; }
-  .dock-track { padding-top:120px; }
-}
-</style>
+    @media (max-width:900px) {
+      .page-hero {
+        flex-direction: column;
+      }
+
+      .bubble-cluster {
+        display: none !important;
+      }
+
+      .bubble-sidebar {
+        display: none !important;
+      }
+
+      .mobile-nav-bar {
+        display: flex !important;
+      }
+
+      body {
+        padding-bottom: 64px;
+      }
+
+      #backToTopBtn {
+        bottom: 76px;
+      }
+    }
+
+    @media (max-width:600px) {
+      .mini-activities-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .section-heading::before {
+        font-size: 72px;
+      }
+
+      /* ★ 手機版 dock 圓圈：原36px × 150% = 54px，字體同比例 */
+      .dock-node-circle {
+        width: 54px;
+        height: 54px;
+        font-size: 15px;
+      }
+
+      .dock-node-label {
+        font-size: 12px;
+      }
+
+      .dock-track {
+        padding-top: 120px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- ======================================================
+  <!-- ======================================================
      HEADER
 ====================================================== -->
-<header id="main-header">
-  <div class="brand-area">
-    <img src="images.jpeg" alt="Logo" class="site-logo">
-    <a href="index.html" class="site-title">國立臺灣大學經濟學系學生會</a>
+  <header id="main-header">
+    <div class="brand-area">
+      <img src="images.jpeg" alt="Logo" class="site-logo">
+      <a href="index.html" class="site-title">國立臺灣大學經濟學系學生會</a>
+    </div>
+    <div class="nav-area">
+      <nav>
+        <ul>
+          <li><a href="index.html" class="nav-link">首頁</a></li>
+          <li><a href="02_review.html" class="nav-link">活動回顧</a></li>
+          <li><a href="01_about.html" class="nav-link">關於我們</a></li>
+          <li><a href="03_support.html" class="nav-link">立即贊助</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MOBILE BOTTOM NAV -->
+  <nav class="mobile-nav-bar" id="mobileNav" aria-label="活動分類導覽">
+    <a href="#econ-night"><span class="dot"></span>經濟之夜</a>
+    <a href="#econ-week"><span class="dot"></span>經濟週</a>
+    <a href="#econ-camp"><span class="dot"></span>經濟營</a>
+    <a href="#orientation"><span class="dot"></span>迎新</a>
+    <a href="#other-activities"><span class="dot"></span>其他活動</a>
+  </nav>
+
+  <!-- FIXED SIDEBAR (appears on scroll) -->
+  <div class="bubble-sidebar" id="bubbleSidebar" aria-label="活動快捷導航">
+    <a href="#econ-night" class="bubble-sidebar-item" aria-label="經濟之夜">
+      <span class="sidebar-label">經濟之夜</span>
+      <div class="sidebar-pill"><span>之夜</span></div>
+    </a>
+    <a href="#econ-week" class="bubble-sidebar-item" aria-label="經濟週">
+      <span class="sidebar-label">經濟週</span>
+      <div class="sidebar-pill"><span>經濟週</span></div>
+    </a>
+    <a href="#econ-camp" class="bubble-sidebar-item" aria-label="經濟營">
+      <span class="sidebar-label">經濟營</span>
+      <div class="sidebar-pill"><span>經濟營</span></div>
+    </a>
+    <a href="#orientation" class="bubble-sidebar-item" aria-label="迎新">
+      <span class="sidebar-label">迎新</span>
+      <div class="sidebar-pill"><span>迎新</span></div>
+    </a>
+    <a href="#other-activities" class="bubble-sidebar-item" aria-label="其他活動">
+      <span class="sidebar-label">其他活動</span>
+      <div class="sidebar-pill"><span>其他</span></div>
+    </a>
   </div>
-  <div class="nav-area">
-    <nav>
-      <ul>
-        <li><a href="index.html" class="nav-link">首頁</a></li>
-        <li><a href="02_review.html" class="nav-link">活動回顧</a></li>
-        <li><a href="01_about.html" class="nav-link">關於我們</a></li>
-        <li><a href="03_support.html" class="nav-link">立即贊助</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
 
-<!-- MOBILE BOTTOM NAV -->
-<nav class="mobile-nav-bar" id="mobileNav" aria-label="活動分類導覽">
-  <a href="#econ-night"><span class="dot"></span>經濟之夜</a>
-  <a href="#econ-week"><span class="dot"></span>經濟週</a>
-  <a href="#econ-camp"><span class="dot"></span>經濟營</a>
-  <a href="#orientation"><span class="dot"></span>迎新</a>
-  <a href="#other-activities"><span class="dot"></span>其他活動</a>
-</nav>
+  <!-- BACK TO TOP -->
+  <button id="backToTopBtn" aria-label="回到頁首">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+    </svg>
+  </button>
 
-<!-- FIXED SIDEBAR (appears on scroll) -->
-<div class="bubble-sidebar" id="bubbleSidebar" aria-label="活動快捷導航">
-  <a href="#econ-night" class="bubble-sidebar-item" aria-label="經濟之夜">
-    <span class="sidebar-label">經濟之夜</span>
-    <div class="sidebar-pill"><span>之夜</span></div>
-  </a>
-  <a href="#econ-week" class="bubble-sidebar-item" aria-label="經濟週">
-    <span class="sidebar-label">經濟週</span>
-    <div class="sidebar-pill"><span>經濟週</span></div>
-  </a>
-  <a href="#econ-camp" class="bubble-sidebar-item" aria-label="經濟營">
-    <span class="sidebar-label">經濟營</span>
-    <div class="sidebar-pill"><span>經濟營</span></div>
-  </a>
-  <a href="#orientation" class="bubble-sidebar-item" aria-label="迎新">
-    <span class="sidebar-label">迎新</span>
-    <div class="sidebar-pill"><span>迎新</span></div>
-  </a>
-  <a href="#other-activities" class="bubble-sidebar-item" aria-label="其他活動">
-    <span class="sidebar-label">其他活動</span>
-    <div class="sidebar-pill"><span>其他</span></div>
-  </a>
-</div>
-
-<!-- BACK TO TOP -->
-<button id="backToTopBtn" aria-label="回到頁首">
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5"/>
-  </svg>
-</button>
-
-<!-- ======================================================
+  <!-- ======================================================
      MAIN
 ====================================================== -->
-<main>
-<div class="layout-container-full">
+  <main>
+    <div class="layout-container-full">
 
-  <!-- HERO: title + bubble cluster -->
-  <div class="page-hero reveal active">
-    <div class="page-hero-text">
-      <h1>活動回顧<br><span>EVENTS</span></h1>
-      <p>回顧國立臺灣大學經濟學系學生會歷年來舉辦的精彩活動，一同重溫那些難忘的時刻。</p>
-      <div class="divider"></div>
-    </div>
-    <div class="bubble-cluster" id="bubbleCluster" aria-label="活動快捷導航">
-      <a href="#econ-night"       class="bubble" style="--size:80" aria-label="前往經濟之夜"><span>經濟之夜</span></a>
-      <a href="#econ-week"        class="bubble" style="--size:60" aria-label="前往經濟週"><span>經濟週</span></a>
-      <a href="#econ-camp"        class="bubble" style="--size:80" aria-label="前往經濟營"><span>經濟營</span></a>
-      <a href="#orientation"      class="bubble" style="--size:50" aria-label="前往迎新"><span>迎新</span></a>
-      <a href="#other-activities" class="bubble" style="--size:40" aria-label="前往其他活動"><span>其他活動</span></a>
-    </div>
-  </div>
+      <!-- HERO: title + bubble cluster -->
+      <div class="page-hero reveal active">
+        <div class="page-hero-text">
+          <h1>活動回顧<br><span>EVENTS</span></h1>
+          <p>回顧國立臺灣大學經濟學系學生會歷年來舉辦的精彩活動，一同重溫那些難忘的時刻。</p>
+          <div class="divider"></div>
+        </div>
+        <div class="bubble-cluster" id="bubbleCluster" aria-label="活動快捷導航">
+          <a href="#econ-night" class="bubble" style="--size:80" aria-label="前往經濟之夜"><span>經濟之夜</span></a>
+          <a href="#econ-week" class="bubble" style="--size:60" aria-label="前往經濟週"><span>經濟週</span></a>
+          <a href="#econ-camp" class="bubble" style="--size:80" aria-label="前往經濟營"><span>經濟營</span></a>
+          <a href="#orientation" class="bubble" style="--size:50" aria-label="前往迎新"><span>迎新</span></a>
+          <a href="#other-activities" class="bubble" style="--size:40" aria-label="前往其他活動"><span>其他活動</span></a>
+        </div>
+      </div>
 
-  <!-- ===== Section 1: 經濟之夜 ===== -->
-  <section id="econ-night" class="reveal">
-    <div class="section-heading" data-num="01">
-      <h2>經濟之夜</h2>
-    </div>
-    <p>臺大學生的傳統之一，各系每年均會舉辦「XX之夜」。經濟之夜是一年一度由系學會企劃、拉贊、邀請系上同學排練並演出的活動。舉辦時間為一學年度的下學期（3-6月），演出地點通常位於活大一樓的怡仁堂。常見表演包括歌唱、樂團、舞蹈、戲劇等，是系上的一大盛事，也是系上同學們展現自己才藝的大好機會。</p>
-    <p>官方 YouTube 頻道：<a href="https://www.youtube.com/@ntuEconNight/videos" target="_blank">NTU Econ Night ↗</a></p>
+      <!-- ===== Section 1: 經濟之夜 ===== -->
+      <section id="econ-night" class="reveal">
+        <div class="section-heading" data-num="01">
+          <h2>經濟之夜</h2>
+        </div>
+        <p>
+          臺大學生的傳統之一，各系每年均會舉辦「XX之夜」。經濟之夜是一年一度由系學會企劃、拉贊、邀請系上同學排練並演出的活動。舉辦時間為一學年度的下學期（3-6月），演出地點通常位於活大一樓的怡仁堂。常見表演包括歌唱、樂團、舞蹈、戲劇等，是系上的一大盛事，也是系上同學們展現自己才藝的大好機會。
+        </p>
+        <p>官方 YouTube 頻道：<a href="https://www.youtube.com/@ntuEconNight/videos" target="_blank">NTU Econ Night ↗</a></p>
 
-    <!-- DOCK TIMELINE -->
-    <div class="dock-timeline">
-      <div class="dock-track" id="dockTrack">
-        <button class="dock-node active" data-year="2024">
-          <div class="dock-node-circle">2024</div>
-          <div class="dock-node-label">E心只想<br>con著你</div>
-        </button>
-        <button class="dock-node" data-year="2022">
-          <div class="dock-node-circle">2022</div>
-          <div class="dock-node-label">經宵別<br>夢寒</div>
-        </button>
-        <button class="dock-node" data-year="2017">
-          <div class="dock-node-circle">2017</div>
-          <div class="dock-node-label">紙醉<br>經迷</div>
-        </button>
-        <button class="dock-node" data-year="2016">
-          <div class="dock-node-circle">2016</div>
-          <div class="dock-node-label">前世<br>經生</div>
-        </button>
-        <button class="dock-node" data-year="2015">
-          <div class="dock-node-circle">2015</div>
-          <div class="dock-node-label">Seren-<br>dipity</div>
-        </button>
-        <button class="dock-node" data-year="2014">
-          <div class="dock-node-circle">2014</div>
-          <div class="dock-node-label">Exotic<br>Crush</div>
-        </button>
-        <button class="dock-node" data-year="2013">
-          <div class="dock-node-circle">2013</div>
-          <div class="dock-node-label">36天<br>流浪</div>
-        </button>
-        <button class="dock-node" data-year="2012">
-          <div class="dock-node-circle">2012</div>
-          <div class="dock-node-label">choco-<br>late</div>
-        </button>
-      </div>
-      <div class="dock-pane-wrap">
-        <div class="dock-pane active" data-year="2024">
-          <h3>《E心只想con著你》</h3>
-          <p>日期：2024/5/15</p>
-          <p>Instagram：<a href="https://www.instagram.com/p/C9fKc-gy_4h/?img_index=7" target="_blank">活動貼文 ↗</a></p>
-          <div class="gallery" data-section="econ-night" data-key="2024">
-            <div class="gallery-track"></div>
-            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
-            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
-            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+        <!-- DOCK TIMELINE -->
+        <div class="dock-timeline">
+          <div class="dock-track" id="dockTrack">
+            <button class="dock-node active" data-year="2024">
+              <div class="dock-node-circle">2024</div>
+              <div class="dock-node-label">E心只想<br>con著你</div>
+            </button>
+            <button class="dock-node" data-year="2022">
+              <div class="dock-node-circle">2022</div>
+              <div class="dock-node-label">經宵別<br>夢寒</div>
+            </button>
+            <button class="dock-node" data-year="2017">
+              <div class="dock-node-circle">2017</div>
+              <div class="dock-node-label">紙醉<br>經迷</div>
+            </button>
+            <button class="dock-node" data-year="2016">
+              <div class="dock-node-circle">2016</div>
+              <div class="dock-node-label">前世<br>經生</div>
+            </button>
+            <button class="dock-node" data-year="2015">
+              <div class="dock-node-circle">2015</div>
+              <div class="dock-node-label">Seren-<br>dipity</div>
+            </button>
+            <button class="dock-node" data-year="2014">
+              <div class="dock-node-circle">2014</div>
+              <div class="dock-node-label">Exotic<br>Crush</div>
+            </button>
+            <button class="dock-node" data-year="2013">
+              <div class="dock-node-circle">2013</div>
+              <div class="dock-node-label">36天<br>流浪</div>
+            </button>
+            <button class="dock-node" data-year="2012">
+              <div class="dock-node-circle">2012</div>
+              <div class="dock-node-label">choco-<br>late</div>
+            </button>
+          </div>
+          <div class="dock-pane-wrap">
+            <div class="dock-pane active" data-year="2024">
+              <h3>《E心只想con著你》</h3>
+              <p>日期：2024/5/15</p>
+              <p>Instagram：<a href="https://www.instagram.com/p/C9fKc-gy_4h/?img_index=7" target="_blank">活動貼文 ↗</a></p>
+              <div class="gallery" data-section="econ-night" data-key="2024">
+                <div class="gallery-track"></div>
+                <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+                <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+                <div class="gallery-footer">
+                  <div class="gallery-dots"></div><span class="gallery-counter"></span>
+                </div>
+              </div>
+            </div>
+            <div class="dock-pane" data-year="2022">
+              <h3>經宵別夢寒</h3>
+              <p>YouTube：<a href="https://youtube.com/playlist?list=PLoXkCKVbGXuv13k_3vBw2GCzr5HYM3Eux"
+                  target="_blank">活動影片 ↗</a></p>
+              <div class="gallery" data-section="econ-night" data-key="2022">
+                <div class="gallery-track"></div>
+                <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+                <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+                <div class="gallery-footer">
+                  <div class="gallery-dots"></div><span class="gallery-counter"></span>
+                </div>
+              </div>
+            </div>
+            <div class="dock-pane" data-year="2017">
+              <h3>《紙醉經迷 Extravagant》</h3>
+              <div class="gallery" data-section="econ-night" data-key="2017">
+                <div class="gallery-track"></div>
+                <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+                <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+                <div class="gallery-footer">
+                  <div class="gallery-dots"></div><span class="gallery-counter"></span>
+                </div>
+              </div>
+            </div>
+            <div class="dock-pane" data-year="2016">
+              <h3>《前世經生 About Time》</h3>
+              <div class="gallery" data-section="econ-night" data-key="2016">
+                <div class="gallery-track"></div>
+                <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+                <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+                <div class="gallery-footer">
+                  <div class="gallery-dots"></div><span class="gallery-counter"></span>
+                </div>
+              </div>
+            </div>
+            <div class="dock-pane" data-year="2015">
+              <h3>Serendipity</h3>
+              <p>日期：2015/3/20</p>
+              <p>Facebook：<a href="https://www.facebook.com/2015Serendipity/?locale=zh_TW" target="_blank">活動專頁 ↗</a>
+              </p>
+              <div class="gallery" data-section="econ-night" data-key="2015">
+                <div class="gallery-track"></div>
+                <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+                <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+                <div class="gallery-footer">
+                  <div class="gallery-dots"></div><span class="gallery-counter"></span>
+                </div>
+              </div>
+            </div>
+            <div class="dock-pane" data-year="2014">
+              <h3>Exotic Crush</h3>
+              <p>日期：2014/3/21</p>
+              <p>Facebook：<a href="https://www.facebook.com/econcrush/" target="_blank">活動專頁 ↗</a></p>
+              <div class="gallery" data-section="econ-night" data-key="2014">
+                <div class="gallery-track"></div>
+                <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+                <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+                <div class="gallery-footer">
+                  <div class="gallery-dots"></div><span class="gallery-counter"></span>
+                </div>
+              </div>
+            </div>
+            <div class="dock-pane" data-year="2013">
+              <h3>36天流浪倒數</h3>
+              <p>日期：2013/3/6</p>
+              <p>Facebook：<a href="https://www.facebook.com/EconNight2013/" target="_blank">活動專頁 ↗</a></p>
+              <div class="gallery" data-section="econ-night" data-key="2013">
+                <div class="gallery-track"></div>
+                <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+                <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+                <div class="gallery-footer">
+                  <div class="gallery-dots"></div><span class="gallery-counter"></span>
+                </div>
+              </div>
+            </div>
+            <div class="dock-pane" data-year="2012">
+              <h3>chocolate or me</h3>
+              <div class="gallery" data-section="econ-night" data-key="2012">
+                <div class="gallery-track"></div>
+                <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+                <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+                <div class="gallery-footer">
+                  <div class="gallery-dots"></div><span class="gallery-counter"></span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="dock-pane" data-year="2022">
-          <h3>經宵別夢寒</h3>
-          <p>YouTube：<a href="https://youtube.com/playlist?list=PLoXkCKVbGXuv13k_3vBw2GCzr5HYM3Eux" target="_blank">活動影片 ↗</a></p>
-          <div class="gallery" data-section="econ-night" data-key="2022">
-            <div class="gallery-track"></div>
-            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
-            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
-            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
-          </div>
-        </div>
-        <div class="dock-pane" data-year="2017">
-          <h3>《紙醉經迷 Extravagant》</h3>
-          <div class="gallery" data-section="econ-night" data-key="2017">
-            <div class="gallery-track"></div>
-            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
-            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
-            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
-          </div>
-        </div>
-        <div class="dock-pane" data-year="2016">
-          <h3>《前世經生 About Time》</h3>
-          <div class="gallery" data-section="econ-night" data-key="2016">
-            <div class="gallery-track"></div>
-            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
-            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
-            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
-          </div>
-        </div>
-        <div class="dock-pane" data-year="2015">
-          <h3>Serendipity</h3>
-          <p>日期：2015/3/20</p>
-          <p>Facebook：<a href="https://www.facebook.com/2015Serendipity/?locale=zh_TW" target="_blank">活動專頁 ↗</a></p>
-          <div class="gallery" data-section="econ-night" data-key="2015">
-            <div class="gallery-track"></div>
-            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
-            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
-            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
-          </div>
-        </div>
-        <div class="dock-pane" data-year="2014">
-          <h3>Exotic Crush</h3>
-          <p>日期：2014/3/21</p>
-          <p>Facebook：<a href="https://www.facebook.com/econcrush/" target="_blank">活動專頁 ↗</a></p>
-          <div class="gallery" data-section="econ-night" data-key="2014">
-            <div class="gallery-track"></div>
-            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
-            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
-            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
-          </div>
-        </div>
-        <div class="dock-pane" data-year="2013">
-          <h3>36天流浪倒數</h3>
-          <p>日期：2013/3/6</p>
-          <p>Facebook：<a href="https://www.facebook.com/EconNight2013/" target="_blank">活動專頁 ↗</a></p>
-          <div class="gallery" data-section="econ-night" data-key="2013">
-            <div class="gallery-track"></div>
-            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
-            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
-            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
-          </div>
-        </div>
-        <div class="dock-pane" data-year="2012">
-          <h3>chocolate or me</h3>
-          <div class="gallery" data-section="econ-night" data-key="2012">
-            <div class="gallery-track"></div>
-            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
-            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
-            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <!-- ===== Section 2: 經濟週 ===== -->
-  <section id="econ-week" class="reveal">
-    <div class="section-heading" data-num="02"><h2>經濟週</h2></div>
-    <p>經濟週是系學會每年舉辦的系列活動，通常包含園遊會、市集、主題展覽或講座等，旨在推廣經濟學知識，並提供系上同學與校內師生交流互動的平台。</p>
-    <!-- [開發備注] single-entry → 移除該 class 並新增 tab+pane 即可啟用多年份 -->
-    <div class="horizontal-timeline single-entry">
-      <div class="timeline-nav">
-        <button class="timeline-tab active" data-year="2023">2023</button>
-      </div>
-      <div class="timeline-content">
-        <div class="timeline-pane active" data-year="2023">
-          <h3>經濟週主題</h3>
-          <p>此處可放置該年份經濟週的介紹、照片或相關連結。</p>
-          <div class="gallery" data-section="econ-week" data-key="2023">
-            <div class="gallery-track"></div>
-            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
-            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
-            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+      <!-- ===== Section 2: 經濟週 ===== -->
+      <section id="econ-week" class="reveal">
+        <div class="section-heading" data-num="02">
+          <h2>經濟週</h2>
+        </div>
+        <p>經濟週是系學會每年舉辦的系列活動，通常包含園遊會、市集、主題展覽或講座等，旨在推廣經濟學知識，並提供系上同學與校內師生交流互動的平台。</p>
+        <!-- [開發備注] single-entry → 移除該 class 並新增 tab+pane 即可啟用多年份 -->
+        <div class="horizontal-timeline single-entry">
+          <div class="timeline-nav">
+            <button class="timeline-tab active" data-year="2023">2023</button>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-pane active" data-year="2023">
+              <h3>經濟週主題</h3>
+              <p>此處可放置該年份經濟週的介紹、照片或相關連結。</p>
+              <div class="gallery" data-section="econ-week" data-key="2023">
+                <div class="gallery-track"></div>
+                <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+                <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+                <div class="gallery-footer">
+                  <div class="gallery-dots"></div><span class="gallery-counter"></span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <!-- ===== Section 3: 經濟營 ===== -->
-  <section id="econ-camp" class="reveal">
-    <div class="section-heading" data-num="03"><h2>經濟營</h2></div>
-    <p>每年暑假舉辦的經濟營，旨在讓高中生提早接觸經濟學領域，透過課程、講座、團體活動等方式，探索經濟學的奧秘，並體驗大學生活。是高中生認識台大經濟系的重要管道。</p>
-    <!-- [開發備注] single-entry → 移除該 class 並新增 tab+pane 即可啟用多年份 -->
-    <div class="horizontal-timeline single-entry">
-      <div class="timeline-nav">
-        <button class="timeline-tab active" data-year="2023">2023</button>
-      </div>
-      <div class="timeline-content">
-        <div class="timeline-pane active" data-year="2023">
-          <h3>經濟營主題</h3>
-          <p>此處可放置該年份經濟營的介紹、照片或相關連結。</p>
-          <div class="gallery" data-section="econ-camp" data-key="2023">
-            <div class="gallery-track"></div>
-            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
-            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
-            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+      <!-- ===== Section 3: 經濟營 ===== -->
+      <section id="econ-camp" class="reveal">
+        <div class="section-heading" data-num="03">
+          <h2>經濟營</h2>
+        </div>
+        <p>每年暑假舉辦的經濟營，旨在讓高中生提早接觸經濟學領域，透過課程、講座、團體活動等方式，探索經濟學的奧秘，並體驗大學生活。是高中生認識台大經濟系的重要管道。</p>
+        <!-- [開發備注] single-entry → 移除該 class 並新增 tab+pane 即可啟用多年份 -->
+        <div class="horizontal-timeline single-entry">
+          <div class="timeline-nav">
+            <button class="timeline-tab active" data-year="2023">2023</button>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-pane active" data-year="2023">
+              <h3>經濟營主題</h3>
+              <p>此處可放置該年份經濟營的介紹、照片或相關連結。</p>
+              <div class="gallery" data-section="econ-camp" data-key="2023">
+                <div class="gallery-track"></div>
+                <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+                <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+                <div class="gallery-footer">
+                  <div class="gallery-dots"></div><span class="gallery-counter"></span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <!-- ===== Section 4: 迎新 ===== -->
-  <section id="orientation" class="reveal">
-    <div class="section-heading" data-num="04"><h2>迎新</h2></div>
-    <p>為了歡迎經濟系的新生，系學會每年都會舉辦迎新活動，幫助新生更快融入大學生活、認識系上同學與學長姐。</p>
-    <!-- [開發備注] single-entry → 移除該 class 並新增 tab+pane 即可啟用多年份 -->
-    <div class="horizontal-timeline single-entry">
-      <div class="timeline-nav">
-        <button class="timeline-tab active" data-year="future">即將更新</button>
-      </div>
-      <div class="timeline-content">
-        <div class="timeline-pane active" data-year="future">
-          <h3>迎新活動</h3>
-          <p>此處將更新迎新活動的資訊，敬請期待。</p>
-          <div class="gallery" data-section="orientation" data-key="future">
-            <div class="gallery-track"></div>
-            <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
-            <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
-            <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+      <!-- ===== Section 4: 迎新 ===== -->
+      <section id="orientation" class="reveal">
+        <div class="section-heading" data-num="04">
+          <h2>迎新</h2>
+        </div>
+        <p>為了歡迎經濟系的新生，系學會每年都會舉辦迎新活動，幫助新生更快融入大學生活、認識系上同學與學長姐。</p>
+        <!-- [開發備注] single-entry → 移除該 class 並新增 tab+pane 即可啟用多年份 -->
+        <div class="horizontal-timeline single-entry">
+          <div class="timeline-nav">
+            <button class="timeline-tab active" data-year="future">即將更新</button>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-pane active" data-year="future">
+              <h3>迎新活動</h3>
+              <p>此處將更新迎新活動的資訊，敬請期待。</p>
+              <div class="gallery" data-section="orientation" data-key="future">
+                <div class="gallery-track"></div>
+                <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+                <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+                <div class="gallery-footer">
+                  <div class="gallery-dots"></div><span class="gallery-counter"></span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <!-- ===== Section 5: 其他活動 ===== -->
-  <section id="other-activities" class="reveal">
-    <div class="section-heading" data-num="05"><h2>其他活動</h2></div>
-    <p>除了四大年度活動外，系學會也舉辦各式各樣的單次活動，豐富大家的課餘生活。</p>
-    <div class="mini-activities-grid">
-      <div class="mini-card">
-        <span class="mini-card-icon">🀄</span>
-        <h3>麻將大賽</h3>
-        <p>與系上同學切磋牌技的絕佳機會。</p>
-        <div class="gallery" data-section="other-activities" data-key="mahjong">
-          <div class="gallery-track"></div>
-          <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
-          <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
-          <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+      <!-- ===== Section 5: 其他活動 ===== -->
+      <section id="other-activities" class="reveal">
+        <div class="section-heading" data-num="05">
+          <h2>其他活動</h2>
         </div>
-      </div>
-      <div class="mini-card">
-        <span class="mini-card-icon">🧺</span>
-        <h3>系野餐</h3>
-        <p>在校園草地享受悠閒的午後時光。</p>
-        <div class="gallery" data-section="other-activities" data-key="picnic">
-          <div class="gallery-track"></div>
-          <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
-          <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
-          <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
+        <p>除了四大年度活動外，系學會也舉辦各式各樣的單次活動，豐富大家的課餘生活。</p>
+        <div class="mini-activities-grid">
+          <div class="mini-card">
+            <span class="mini-card-icon">🀄</span>
+            <h3>麻將大賽</h3>
+            <p>與系上同學切磋牌技的絕佳機會。</p>
+            <div class="gallery" data-section="other-activities" data-key="mahjong">
+              <div class="gallery-track"></div>
+              <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+              <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+              <div class="gallery-footer">
+                <div class="gallery-dots"></div><span class="gallery-counter"></span>
+              </div>
+            </div>
+          </div>
+          <div class="mini-card">
+            <span class="mini-card-icon">🧺</span>
+            <h3>系野餐</h3>
+            <p>在校園草地享受悠閒的午後時光。</p>
+            <div class="gallery" data-section="other-activities" data-key="picnic">
+              <div class="gallery-track"></div>
+              <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+              <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+              <div class="gallery-footer">
+                <div class="gallery-dots"></div><span class="gallery-counter"></span>
+              </div>
+            </div>
+          </div>
+          <div class="mini-card">
+            <span class="mini-card-icon">🔥</span>
+            <h3>系烤</h3>
+            <p>增進感情的經典團體活動。</p>
+            <div class="gallery" data-section="other-activities" data-key="bbq">
+              <div class="gallery-track"></div>
+              <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+              <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+              <div class="gallery-footer">
+                <div class="gallery-dots"></div><span class="gallery-counter"></span>
+              </div>
+            </div>
+          </div>
+          <div class="mini-card">
+            <span class="mini-card-icon">🥂</span>
+            <h3>系酒會</h3>
+            <p>讓系上同學與教授在正式場合交流。</p>
+            <div class="gallery" data-section="other-activities" data-key="cocktail">
+              <div class="gallery-track"></div>
+              <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
+              <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
+              <div class="gallery-footer">
+                <div class="gallery-dots"></div><span class="gallery-counter"></span>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="mini-card">
-        <span class="mini-card-icon">🔥</span>
-        <h3>系烤</h3>
-        <p>增進感情的經典團體活動。</p>
-        <div class="gallery" data-section="other-activities" data-key="bbq">
-          <div class="gallery-track"></div>
-          <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
-          <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
-          <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
-        </div>
-      </div>
-      <div class="mini-card">
-        <span class="mini-card-icon">🥂</span>
-        <h3>系酒會</h3>
-        <p>讓系上同學與教授在正式場合交流。</p>
-        <div class="gallery" data-section="other-activities" data-key="cocktail">
-          <div class="gallery-track"></div>
-          <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
-          <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
-          <div class="gallery-footer"><div class="gallery-dots"></div><span class="gallery-counter"></span></div>
-        </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-</div><!-- /.layout-container-full -->
-</main>
+    </div><!-- /.layout-container-full -->
+  </main>
 
-<!-- ======================================================
+  <!-- ======================================================
      FOOTER
 ====================================================== -->
-<footer>
-  <div class="footer-content">
-    <div class="footer-col">
-      <h4>關於我們</h4>
-      <ul>
-        <li><a href="index.html">學生會首頁</a></li>
-        <li><a href="02_review.html">活動回顧</a></li>
-        <li><a href="01_about.html">關於我們</a></li>
-      </ul>
+  <footer>
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4>關於我們</h4>
+        <ul>
+          <li><a href="index.html">學生會首頁</a></li>
+          <li><a href="02_review.html">活動回顧</a></li>
+          <li><a href="01_about.html">關於我們</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>相關連結</h4>
+        <ul>
+          <li><a href="https://giving.ntu.edu.tw/" target="_blank">台大財務處捐款</a></li>
+          <li><a href="http://www.econ.ntu.edu.tw/" target="_blank">經濟系官方網站</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>聯絡資訊</h4>
+        <ul>
+          <li>Email: ntu.econ.student@gmail.com</li>
+          <li>台北市大安區羅斯福路四段1號</li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-col">
-      <h4>相關連結</h4>
-      <ul>
-        <li><a href="https://giving.ntu.edu.tw/" target="_blank">台大財務處捐款</a></li>
-        <li><a href="http://www.econ.ntu.edu.tw/" target="_blank">經濟系官方網站</a></li>
-      </ul>
+    <div class="footer-bottom">
+      © 2026 國立臺灣大學經濟學系學生會 | All Rights Reserved.
     </div>
-    <div class="footer-col">
-      <h4>聯絡資訊</h4>
-      <ul>
-        <li>Email: ntu.econ.student@gmail.com</li>
-        <li>台北市大安區羅斯福路四段1號</li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    © 2026 國立臺灣大學經濟學系學生會 | All Rights Reserved.
-  </div>
-</footer>
+  </footer>
 
-<script src="assets/js/main.js"></script>
-<script src="assets/js/gallery-data.js"></script>
-<script>
-/* ======================================================
-   PAGE JS — fully self-contained
-====================================================== */
-(function() {
-  'use strict';
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/gallery-data.js"></script>
+  <script>
+    /* ======================================================
+       PAGE JS — fully self-contained
+    ====================================================== */
+    (function () {
+      'use strict';
 
-  /* --------------------------------------------------
-     1. Scroll Reveal
-  -------------------------------------------------- */
-  function initReveal() {
-    var els = document.querySelectorAll('.reveal');
-    if (!els.length) return;
-    var io = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) { e.target.classList.add('active'); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.08 });
-    els.forEach(function(el) { io.observe(el); });
-  }
+      /* --------------------------------------------------
+         1. Scroll Reveal
+      -------------------------------------------------- */
+      function initReveal() {
+        var els = document.querySelectorAll('.reveal');
+        if (!els.length) return;
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('active'); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.08 });
+        els.forEach(function (el) { io.observe(el); });
+      }
 
-  /* --------------------------------------------------
-     2. Header shrink
-  -------------------------------------------------- */
-  function initHeader() {
-    var h = document.getElementById('main-header');
-    if (!h) return;
-    window.addEventListener('scroll', function() {
-      h.classList.toggle('scrolled', window.scrollY > 60);
-    }, { passive: true });
-  }
+      /* --------------------------------------------------
+         2. Header shrink
+      -------------------------------------------------- */
+      function initHeader() {
+        var h = document.getElementById('main-header');
+        if (!h) return;
+        window.addEventListener('scroll', function () {
+          h.classList.toggle('scrolled', window.scrollY > 60);
+        }, { passive: true });
+      }
 
-  /* --------------------------------------------------
-     3. Back to Top
-  -------------------------------------------------- */
-  function initBackToTop() {
-    var btn = document.getElementById('backToTopBtn');
-    if (!btn) return;
-    window.addEventListener('scroll', function() {
-      btn.classList.toggle('visible', window.scrollY > 300);
-    }, { passive: true });
-    btn.addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
+      /* --------------------------------------------------
+         3. Back to Top
+      -------------------------------------------------- */
+      function initBackToTop() {
+        var btn = document.getElementById('backToTopBtn');
+        if (!btn) return;
+        window.addEventListener('scroll', function () {
+          btn.classList.toggle('visible', window.scrollY > 300);
+        }, { passive: true });
+        btn.addEventListener('click', function () {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
 
-  /* --------------------------------------------------
-     4. Bubble cluster → sidebar transition
-  -------------------------------------------------- */
-  function initBubbleTransition() {
-    var cluster = document.getElementById('bubbleCluster');
-    var sidebar = document.getElementById('bubbleSidebar');
-    if (!cluster || !sidebar) return;
+      /* --------------------------------------------------
+         4. Bubble cluster → sidebar transition
+      -------------------------------------------------- */
+      function initBubbleTransition() {
+        var cluster = document.getElementById('bubbleCluster');
+        var sidebar = document.getElementById('bubbleSidebar');
+        if (!cluster || !sidebar) return;
 
-    var sidebarItems = Array.from(sidebar.querySelectorAll('.bubble-sidebar-item'));
-    var sectionIds = ['econ-night','econ-week','econ-camp','orientation','other-activities'];
-    var sections = sectionIds.map(function(id) { return document.getElementById(id); }).filter(Boolean);
+        var sidebarItems = Array.from(sidebar.querySelectorAll('.bubble-sidebar-item'));
+        var sectionIds = ['econ-night', 'econ-week', 'econ-camp', 'orientation', 'other-activities'];
+        var sections = sectionIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
 
-    function update() {
-      var rect = cluster.getBoundingClientRect();
-      var passed = rect.bottom < 90;
-      cluster.classList.toggle('hidden', passed);
-      sidebar.classList.toggle('visible', passed);
+        function update() {
+          var rect = cluster.getBoundingClientRect();
+          var passed = rect.bottom < 90;
+          cluster.classList.toggle('hidden', passed);
+          sidebar.classList.toggle('visible', passed);
 
-      /* active section highlight */
-      var scrollMid = window.scrollY + window.innerHeight * 0.4;
-      var activeId = '';
-      sections.forEach(function(sec) {
-        if (sec.offsetTop <= scrollMid) activeId = sec.id;
-      });
-      sidebarItems.forEach(function(item) {
-        var href = item.getAttribute('href').replace('#', '');
-        item.classList.toggle('active', href === activeId);
-      });
-    }
-    window.addEventListener('scroll', update, { passive: true });
-    update();
-  }
+          /* active section highlight */
+          var scrollMid = window.scrollY + window.innerHeight * 0.4;
+          var activeId = '';
+          sections.forEach(function (sec) {
+            if (sec.offsetTop <= scrollMid) activeId = sec.id;
+          });
+          sidebarItems.forEach(function (item) {
+            var href = item.getAttribute('href').replace('#', '');
+            item.classList.toggle('active', href === activeId);
+          });
+        }
+        window.addEventListener('scroll', update, { passive: true });
+        update();
+      }
 
-  /* --------------------------------------------------
-     5. Horizontal timeline tab switching
-  -------------------------------------------------- */
-  function initTimelines() {
-    document.querySelectorAll('.horizontal-timeline').forEach(function(tl) {
-      var tabs  = tl.querySelectorAll('.timeline-tab');
-      var panes = tl.querySelectorAll('.timeline-pane');
-      tabs.forEach(function(tab) {
-        tab.addEventListener('click', function() {
-          var year = tab.getAttribute('data-year');
-          tabs.forEach(function(t) { t.classList.remove('active'); });
-          tab.classList.add('active');
-          panes.forEach(function(p) {
-            p.classList.toggle('active', p.getAttribute('data-year') === year);
+      /* --------------------------------------------------
+         5. Horizontal timeline tab switching
+      -------------------------------------------------- */
+      function initTimelines() {
+        document.querySelectorAll('.horizontal-timeline').forEach(function (tl) {
+          var tabs = tl.querySelectorAll('.timeline-tab');
+          var panes = tl.querySelectorAll('.timeline-pane');
+          tabs.forEach(function (tab) {
+            tab.addEventListener('click', function () {
+              var year = tab.getAttribute('data-year');
+              tabs.forEach(function (t) { t.classList.remove('active'); });
+              tab.classList.add('active');
+              panes.forEach(function (p) {
+                p.classList.toggle('active', p.getAttribute('data-year') === year);
+              });
+            });
           });
         });
-      });
-    });
-  }
+      }
 
-  /* --------------------------------------------------
-     6. Dock timeline — macOS magnification + click
-  -------------------------------------------------- */
-  function initDock() {
-    var track = document.getElementById('dockTrack');
-    if (!track) return;
+      /* --------------------------------------------------
+         6. Dock timeline — macOS magnification + click
+      -------------------------------------------------- */
+      function initDock() {
+        var track = document.getElementById('dockTrack');
+        if (!track) return;
 
-    var nodes = Array.from(track.querySelectorAll('.dock-node'));
-    var panes = Array.from(document.querySelectorAll('.dock-pane'));
+        var nodes = Array.from(track.querySelectorAll('.dock-node'));
+        var panes = Array.from(document.querySelectorAll('.dock-pane'));
 
-    var MAX_SCALE = 2.0;
-    var SPREAD    = 150; /* px — 影響半徑，原100px × 150% = 150px（與圓圈尺寸同比例） */
-    var DUR_FAST  = '0.08s';
-    var DUR_SLOW  = '0.5s';
+        var MAX_SCALE = 2.0;
+        var SPREAD = 150; /* px — 影響半徑，原100px × 150% = 150px（與圓圈尺寸同比例） */
+        var DUR_FAST = '0.08s';
+        var DUR_SLOW = '0.5s';
 
-    function setTransition(dur) {
-      nodes.forEach(function(n) {
-        var c = n.querySelector('.dock-node-circle');
-        var l = n.querySelector('.dock-node-label');
-        var t = 'transform ' + dur + ' cubic-bezier(0.19,1,0.22,1)';
-        c.style.transition = t + ', background 0.25s, border-color 0.25s, color 0.25s';
-        l.style.transition = t;
-      });
-    }
-
-    function applyMagnify(mouseX) {
-      setTransition(DUR_FAST);
-      nodes.forEach(function(node) {
-        var circle = node.querySelector('.dock-node-circle');
-        var label  = node.querySelector('.dock-node-label');
-        var r = circle.getBoundingClientRect();
-        var cx = r.left + r.width / 2;
-        var dist = Math.abs(mouseX - cx);
-        if (dist < SPREAD) {
-          var ratio = 1 - dist / SPREAD;
-          var sc = 1 + (MAX_SCALE - 1) * ratio * ratio;
-          circle.style.transform = 'scale(' + sc + ')';
-          label.style.transform  = 'scale(' + (1 + 0.5 * ratio * ratio) + ')';
-        } else {
-          circle.style.transform = 'scale(1)';
-          label.style.transform  = 'scale(1)';
+        function setTransition(dur) {
+          nodes.forEach(function (n) {
+            var c = n.querySelector('.dock-node-circle');
+            var l = n.querySelector('.dock-node-label');
+            var t = 'transform ' + dur + ' cubic-bezier(0.19,1,0.22,1)';
+            c.style.transition = t + ', background 0.25s, border-color 0.25s, color 0.25s';
+            l.style.transition = t;
+          });
         }
-      });
-    }
 
-    function resetMagnify() {
-      setTransition(DUR_SLOW);
-      nodes.forEach(function(n) {
-        n.querySelector('.dock-node-circle').style.transform = 'scale(1)';
-        n.querySelector('.dock-node-label').style.transform  = 'scale(1)';
-      });
-    }
+        function applyMagnify(mouseX) {
+          setTransition(DUR_FAST);
+          nodes.forEach(function (node) {
+            var circle = node.querySelector('.dock-node-circle');
+            var label = node.querySelector('.dock-node-label');
+            var r = circle.getBoundingClientRect();
+            var cx = r.left + r.width / 2;
+            var dist = Math.abs(mouseX - cx);
+            if (dist < SPREAD) {
+              var ratio = 1 - dist / SPREAD;
+              var sc = 1 + (MAX_SCALE - 1) * ratio * ratio;
+              circle.style.transform = 'scale(' + sc + ')';
+              label.style.transform = 'scale(' + (1 + 0.5 * ratio * ratio) + ')';
+            } else {
+              circle.style.transform = 'scale(1)';
+              label.style.transform = 'scale(1)';
+            }
+          });
+        }
 
-    track.addEventListener('mousemove', function(e) { applyMagnify(e.clientX); });
-    track.addEventListener('mouseleave', resetMagnify);
+        function resetMagnify() {
+          setTransition(DUR_SLOW);
+          nodes.forEach(function (n) {
+            n.querySelector('.dock-node-circle').style.transform = 'scale(1)';
+            n.querySelector('.dock-node-label').style.transform = 'scale(1)';
+          });
+        }
 
-    /* click → switch pane */
-    nodes.forEach(function(node) {
-      node.addEventListener('click', function() {
-        var year = node.getAttribute('data-year');
-        nodes.forEach(function(n) { n.classList.remove('active'); });
-        node.classList.add('active');
-        panes.forEach(function(p) {
-          p.classList.toggle('active', p.getAttribute('data-year') === year);
+        track.addEventListener('mousemove', function (e) { applyMagnify(e.clientX); });
+        track.addEventListener('mouseleave', resetMagnify);
+
+        /* click → switch pane */
+        nodes.forEach(function (node) {
+          node.addEventListener('click', function () {
+            var year = node.getAttribute('data-year');
+            nodes.forEach(function (n) { n.classList.remove('active'); });
+            node.classList.add('active');
+            panes.forEach(function (p) {
+              p.classList.toggle('active', p.getAttribute('data-year') === year);
+            });
+          });
         });
-      });
-    });
-  }
-
-  /* --------------------------------------------------
-     7. Mobile bottom nav — highlight active section
-  -------------------------------------------------- */
-  function initMobileNav() {
-    var links = document.querySelectorAll('#mobileNav a');
-    if (!links.length) return;
-    var ids = ['econ-night','econ-week','econ-camp','orientation','other-activities'];
-    var sections = ids.map(function(id) { return document.getElementById(id); }).filter(Boolean);
-
-    window.addEventListener('scroll', function() {
-      var scrollY = window.scrollY + window.innerHeight * 0.35;
-      var activeId = '';
-      sections.forEach(function(sec) { if (sec.offsetTop <= scrollY) activeId = sec.id; });
-      links.forEach(function(a) {
-        a.classList.toggle('active', a.getAttribute('href').replace('#','') === activeId);
-      });
-    }, { passive: true });
-  }
-
-  /* --------------------------------------------------
-     8. Photo Gallery Slider
-  -------------------------------------------------- */
-  function initGalleries() {
-    document.querySelectorAll('.gallery').forEach(function(gallery) {
-      var section = gallery.getAttribute('data-section');
-      var key     = gallery.getAttribute('data-key');
-      var urls    = (typeof GALLERY_DATA !== 'undefined' &&
-                     GALLERY_DATA[section] &&
-                     GALLERY_DATA[section][key]) || [];
-
-      if (!urls.length) {
-        gallery.classList.add('empty');
-        return;
       }
 
-      var track   = gallery.querySelector('.gallery-track');
-      var dotsEl  = gallery.querySelector('.gallery-dots');
-      var counter = gallery.querySelector('.gallery-counter');
-      var prevBtn = gallery.querySelector('.gallery-prev');
-      var nextBtn = gallery.querySelector('.gallery-next');
-      var current = 0;
+      /* --------------------------------------------------
+         7. Mobile bottom nav — highlight active section
+      -------------------------------------------------- */
+      function initMobileNav() {
+        var links = document.querySelectorAll('#mobileNav a');
+        if (!links.length) return;
+        var ids = ['econ-night', 'econ-week', 'econ-camp', 'orientation', 'other-activities'];
+        var sections = ids.map(function (id) { return document.getElementById(id); }).filter(Boolean);
 
-      urls.forEach(function(item, i) {
-        /* 支援純字串或 {url, caption, credit} 物件 */
-        var src     = typeof item === 'string' ? item : item.url;
-        var caption = typeof item === 'string' ? null : (item.caption || null);
-        var credit  = typeof item === 'string' ? null : (item.credit  || null);
+        window.addEventListener('scroll', function () {
+          var scrollY = window.scrollY + window.innerHeight * 0.35;
+          var activeId = '';
+          sections.forEach(function (sec) { if (sec.offsetTop <= scrollY) activeId = sec.id; });
+          links.forEach(function (a) {
+            a.classList.toggle('active', a.getAttribute('href').replace('#', '') === activeId);
+          });
+        }, { passive: true });
+      }
 
-        /* slide */
-        var slide = document.createElement('div');
-        slide.className = 'gallery-slide' + (i === 0 ? ' active' : '');
-        var img = document.createElement('img');
-        img.src = src;
-        img.alt = '活動照片 ' + (i + 1);
-        img.loading = 'lazy';
-        slide.appendChild(img);
+      /* --------------------------------------------------
+         8. Photo Gallery Slider
+      -------------------------------------------------- */
+      function initGalleries() {
+        document.querySelectorAll('.gallery').forEach(function (gallery) {
+          var section = gallery.getAttribute('data-section');
+          var key = gallery.getAttribute('data-key');
+          var urls = (typeof GALLERY_DATA !== 'undefined' &&
+            GALLERY_DATA[section] &&
+            GALLERY_DATA[section][key]) || [];
 
-        /* 表演名稱 overlay（有填才顯示，左上角） */
-        if (caption) {
-          var captionEl = document.createElement('span');
-          captionEl.className = 'gallery-caption';
-          captionEl.textContent = caption;
-          slide.appendChild(captionEl);
-        }
+          if (!urls.length) {
+            gallery.classList.add('empty');
+            return;
+          }
 
-        /* credit overlay（有填才顯示，左下角） */
-        if (credit) {
-          var creditEl = document.createElement('span');
-          creditEl.className = 'gallery-credit';
-          creditEl.textContent = credit;
-          slide.appendChild(creditEl);
-        }
+          var track = gallery.querySelector('.gallery-track');
+          var dotsEl = gallery.querySelector('.gallery-dots');
+          var counter = gallery.querySelector('.gallery-counter');
+          var prevBtn = gallery.querySelector('.gallery-prev');
+          var nextBtn = gallery.querySelector('.gallery-next');
+          var current = 0;
 
-        track.appendChild(slide);
+          urls.forEach(function (item, i) {
+            /* 支援純字串或 {url, caption, credit} 物件 */
+            var src = typeof item === 'string' ? item : item.url;
+            var caption = typeof item === 'string' ? null : (item.caption || null);
+            var credit = typeof item === 'string' ? null : (item.credit || null);
 
-        /* dot */
-        var dot = document.createElement('button');
-        dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
-        dot.setAttribute('aria-label', '第 ' + (i + 1) + ' 張');
-        dot.addEventListener('click', function() { goTo(i); });
-        dotsEl.appendChild(dot);
+            /* slide */
+            var slide = document.createElement('div');
+            slide.className = 'gallery-slide' + (i === 0 ? ' active' : '');
+            var img = document.createElement('img');
+            img.src = src;
+            img.alt = '活動照片 ' + (i + 1);
+            img.loading = 'lazy';
+            slide.appendChild(img);
+
+            /* 表演名稱 overlay（有填才顯示，左上角） */
+            if (caption) {
+              var captionEl = document.createElement('span');
+              captionEl.className = 'gallery-caption';
+              captionEl.textContent = caption;
+              slide.appendChild(captionEl);
+            }
+
+            /* credit overlay（有填才顯示，左下角） */
+            if (credit) {
+              var creditEl = document.createElement('span');
+              creditEl.className = 'gallery-credit';
+              creditEl.textContent = credit;
+              slide.appendChild(creditEl);
+            }
+
+            track.appendChild(slide);
+
+            /* dot */
+            var dot = document.createElement('button');
+            dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', '第 ' + (i + 1) + ' 張');
+            dot.addEventListener('click', function () { goTo(i); });
+            dotsEl.appendChild(dot);
+          });
+
+          var slides = gallery.querySelectorAll('.gallery-slide');
+          var dots = gallery.querySelectorAll('.gallery-dot');
+
+          function goTo(idx) {
+            slides[current].classList.remove('active');
+            dots[current].classList.remove('active');
+            current = (idx + urls.length) % urls.length;
+            slides[current].classList.add('active');
+            dots[current].classList.add('active');
+            counter.textContent = (current + 1) + ' / ' + urls.length;
+          }
+
+          counter.textContent = '1 / ' + urls.length;
+
+          if (urls.length === 1) {
+            prevBtn.style.display = 'none';
+            nextBtn.style.display = 'none';
+            dotsEl.style.display = 'none';
+          }
+
+          prevBtn.addEventListener('click', function () { goTo(current - 1); });
+          nextBtn.addEventListener('click', function () { goTo(current + 1); });
+        });
+      }
+
+      /* --------------------------------------------------
+         BOOT
+      -------------------------------------------------- */
+      document.addEventListener('DOMContentLoaded', function () {
+        initReveal();
+        initHeader();
+        initBackToTop();
+        initBubbleTransition();
+        initTimelines();
+        initDock();
+        initMobileNav();
+        initGalleries();
       });
 
-      var slides = gallery.querySelectorAll('.gallery-slide');
-      var dots   = gallery.querySelectorAll('.gallery-dot');
-
-      function goTo(idx) {
-        slides[current].classList.remove('active');
-        dots[current].classList.remove('active');
-        current = (idx + urls.length) % urls.length;
-        slides[current].classList.add('active');
-        dots[current].classList.add('active');
-        counter.textContent = (current + 1) + ' / ' + urls.length;
-      }
-
-      counter.textContent = '1 / ' + urls.length;
-
-      if (urls.length === 1) {
-        prevBtn.style.display = 'none';
-        nextBtn.style.display = 'none';
-        dotsEl.style.display  = 'none';
-      }
-
-      prevBtn.addEventListener('click', function() { goTo(current - 1); });
-      nextBtn.addEventListener('click', function() { goTo(current + 1); });
-    });
-  }
-
-  /* --------------------------------------------------
-     BOOT
-  -------------------------------------------------- */
-  document.addEventListener('DOMContentLoaded', function() {
-    initReveal();
-    initHeader();
-    initBackToTop();
-    initBubbleTransition();
-    initTimelines();
-    initDock();
-    initMobileNav();
-    initGalleries();
-  });
-
-}());
-</script>
+    }());
+  </script>
 </body>
+
 </html>

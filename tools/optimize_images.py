@@ -13,8 +13,6 @@
 方式 A：輸出 WebP（預設，最常用）
     python tools/optimize_images.py
 
-方式 B：只優化特定資料夾
-    python tools/optimize_images.py images/econ-night/2024
 
 方式 C：輸出 PNG（保留透明度）
     python tools/optimize_images.py --format png
@@ -74,6 +72,11 @@ def convert_image(src: Path, out_format: str = 'webp') -> None:
     ext = '.webp' if out_format == 'webp' else '.png'
     dst = src.with_suffix(ext)
 
+    # 若輸入與輸出副檔名相同（如 PNG→PNG），改存為 _opt.png 避免覆蓋原檔
+    if dst == src:
+        dst = src.with_name(src.stem + '_opt' + ext)
+        print(f"  ℹ️   同副檔名轉換，輸出改為：{dst.name}")
+
     # 若目標已存在且比原檔新，跳過
     if dst.exists() and dst.stat().st_mtime >= src.stat().st_mtime:
         print(f"  ⏭  略過（已是最新）：{src.name}")
@@ -104,6 +107,13 @@ def convert_image(src: Path, out_format: str = 'webp') -> None:
             new_h = int(img.height * ratio)
             img = img.resize((MAX_WIDTH, new_h), Image.LANCZOS)
 
+        # 確保目標資料夾有寫入權限（有些資料夾可能是唯讀）
+        try:
+            import os
+            os.chmod(dst.parent, 0o755)
+        except Exception:
+            pass
+
         if out_format == 'webp':
             img.save(dst, 'WEBP', quality=QUALITY, method=6)
         else:
@@ -120,12 +130,12 @@ def convert_image(src: Path, out_format: str = 'webp') -> None:
 
 def process_folder(folder: Path, out_format: str = 'webp') -> None:
     """遞迴處理資料夾內所有支援格式的圖片"""
-    # 排除已是目標格式的圖片（避免重複轉換）
+    # 排除已是 _opt 標記的輸出檔（避免重複處理）
     images = [
         p for p in sorted(folder.rglob('*'))
         if p.is_file()
         and p.suffix.lower() in SUPPORTED_EXTS
-        and p.suffix.lower() != f'.{out_format}'
+        and not p.stem.endswith('_opt')
     ]
 
     if not images:
