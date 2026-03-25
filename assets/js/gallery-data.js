@@ -287,7 +287,7 @@ var GALLERY_DATA = {
     ],
 
     'azalea': [        /* 杜鵑花節 */
-      // 'images/highlights/azalea/01.webp',
+      'images/highlights/azalea/02.JPG',
     ],
 
     'econ-camp': [     /* 經濟營 */
