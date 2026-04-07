@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>關於我們 - 國立臺灣大學經濟學系學生會</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Outfit:wght@400;600;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Outfit:wght@400;600;800&family=Space+Grotesk:wght@700&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="assets/css/style.css">
 
     <style>
@@ -16,21 +19,44 @@
            Page Hero — 與活動回顧頁一致的標題區
         ===================================================== */
         .page-hero {
-            display: flex; align-items: flex-start; gap: 40px; margin-bottom: 60px;
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+            margin-bottom: 60px;
             min-height: 340px;
         }
-        .page-hero-text { flex: 1 1 0; min-width: 0; }
+
+        .page-hero-text {
+            flex: 1 1 0;
+            min-width: 0;
+        }
+
         .page-hero-text h1 {
             font-family: 'Noto Sans TC', sans-serif;
-            font-size: clamp(3rem, 6vw, 5rem); font-weight: 900; color: var(--navy-900);
-            margin: 0 0 20px -4px; line-height: 1.05; letter-spacing: -2px;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 900;
+            color: var(--navy-900);
+            margin: 0 0 20px -4px;
+            line-height: 1.05;
+            letter-spacing: -2px;
         }
+
         .page-hero-text h1 span {
-            display: block; font-family: 'Outfit', sans-serif;
-            font-size: clamp(1.1rem, 2.2vw, 1.6rem); font-weight: 800;
-            color: var(--gold-500); letter-spacing: 6px; line-height: 1.4; margin-top: 6px;
+            display: block;
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+            font-weight: 800;
+            color: var(--gold-500);
+            letter-spacing: 6px;
+            line-height: 1.4;
+            margin-top: 6px;
         }
-        .page-hero-text p { font-size: 16px; color: var(--text-muted); max-width: 560px; }
+
+        .page-hero-text p {
+            font-size: 16px;
+            color: var(--text-muted);
+            max-width: 560px;
+        }
 
         /* =====================================================
            1. 核心任務（願景）— 一排 4 格
@@ -43,6 +69,7 @@
             gap: 24px;
             margin-top: 32px;
         }
+
         .goal-item {
             background: var(--gold-100);
             border: none !important;
@@ -52,66 +79,107 @@
             flex-direction: column;
             height: 100%;
             position: relative;
-            box-shadow: 0 2px 8px rgba(203,161,110,0.15);
-            background-image: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 100%);
+            box-shadow: 0 2px 8px rgba(203, 161, 110, 0.15);
+            background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
         }
-        .goal-item:nth-child(1) { background: var(--gold-100); }
-        .goal-item:nth-child(2) { background: rgba(230, 240, 249, 0.7); }
-        .goal-item:nth-child(3) { background: var(--gold-100); }
-        .goal-item:nth-child(4) { background: rgba(230, 240, 249, 0.8); }
+
+        .goal-item:nth-child(1) {
+            background: var(--gold-100);
+        }
+
+        .goal-item:nth-child(2) {
+            background: rgba(230, 240, 249, 0.7);
+        }
+
+        .goal-item:nth-child(3) {
+            background: var(--gold-100);
+        }
+
+        .goal-item:nth-child(4) {
+            background: rgba(230, 240, 249, 0.8);
+        }
+
         /* 黄色卡片反黄色 */
         .goal-item:nth-child(1):hover,
         .goal-item:nth-child(3):hover {
             transform: translate(-6px, -8px) scale(1.02) !important;
-            box-shadow: 8px 12px 24px rgba(203,161,110,0.4), 0 0 20px rgba(203,161,110,0.3) !important;
+            box-shadow: 8px 12px 24px rgba(203, 161, 110, 0.4), 0 0 20px rgba(203, 161, 110, 0.3) !important;
             background: rgba(203, 161, 110, 0.9) !important;
             color: #fff;
         }
+
         .goal-item:nth-child(1):hover h4,
         .goal-item:nth-child(3):hover h4,
         .goal-item:nth-child(1):hover p,
         .goal-item:nth-child(3):hover p {
             color: #fff !important;
         }
+
         /* 蓝色卡片反蓝色 */
         .goal-item:nth-child(2):hover,
         .goal-item:nth-child(4):hover {
             transform: translate(-6px, -8px) scale(1.02) !important;
-            box-shadow: 8px 12px 24px rgba(10,30,63,0.4), 0 0 20px rgba(10,30,63,0.3) !important;
+            box-shadow: 8px 12px 24px rgba(10, 30, 63, 0.4), 0 0 20px rgba(10, 30, 63, 0.3) !important;
             background: rgba(10, 30, 63, 0.9) !important;
             color: #fff;
         }
+
         .goal-item:nth-child(2):hover h4,
         .goal-item:nth-child(4):hover h4,
         .goal-item:nth-child(2):hover p,
         .goal-item:nth-child(4):hover p {
             color: #fff !important;
         }
+
         .goal-icon {
-            width: 52px; height: 52px;
+            width: 52px;
+            height: 52px;
             background: transparent;
             border: 2px solid currentColor;
-            display: flex; align-items: center; justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: var(--navy-900);
-            margin-bottom: 18px; border-radius: 0; flex-shrink: 0;
+            margin-bottom: 18px;
+            border-radius: 0;
+            flex-shrink: 0;
             transition: transform 0.3s, box-shadow 0.3s, color 0.3s;
             box-shadow: none;
         }
+
         .goal-item:nth-child(2) .goal-icon,
         .goal-item:nth-child(4) .goal-icon {
             color: var(--navy-700);
         }
+
         .goal-item:hover .goal-icon {
             transform: scale(1.15) rotate(5deg);
             color: #fff;
             border-color: #fff;
         }
-        .goal-item h4 { margin: 0 0 12px 0; font-size: 18px; color: var(--navy-900); font-weight: 700; border: none; padding: 0; }
-        .goal-item p { margin: 0; font-size: 14px; color: var(--text-main); line-height: 1.75; flex-grow: 1; }
+
+        .goal-item h4 {
+            margin: 0 0 12px 0;
+            font-size: 18px;
+            color: var(--navy-900);
+            font-weight: 700;
+            border: none;
+            padding: 0;
+        }
+
+        .goal-item p {
+            margin: 0;
+            font-size: 14px;
+            color: var(--text-main);
+            line-height: 1.75;
+            flex-grow: 1;
+        }
+
         .goal-item:nth-child(2) h4,
         .goal-item:nth-child(4) h4 {
             color: var(--navy-700);
         }
+
         .goal-item:nth-child(2) p,
         .goal-item:nth-child(4) p {
             color: var(--navy-700);
@@ -129,6 +197,7 @@
             gap: 24px;
             margin-top: 32px;
         }
+
         .department-card {
             background: rgba(230, 240, 249, 0.85);
             border: none;
@@ -140,28 +209,77 @@
             flex-direction: column;
             height: 100%;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(10,30,63,0.12);
-            background-image: linear-gradient(135deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 100%);
+            box-shadow: 0 4px 12px rgba(10, 30, 63, 0.12);
+            background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 100%);
         }
-        .department-card:nth-child(1) { background: rgba(230, 240, 249, 0.85); border-left: 5px solid var(--navy-700); }
-        .department-card:nth-child(2) { background: var(--gold-100); border-left: 5px solid var(--gold-500); }
-        .department-card:nth-child(3) { background: rgba(230, 240, 249, 0.75); border-left: 5px solid var(--navy-800); }
-        .department-card:nth-child(4) { background: var(--gold-100); border-left: 5px solid var(--gold-500); }
-        .department-card:nth-child(5) { background: rgba(230, 240, 249, 0.8); border-left: 5px solid var(--navy-700); }
-        .department-card:nth-child(6) { background: var(--gold-100); border-left: 5px solid var(--gold-500); }
-        .department-card:nth-child(7) { background: rgba(230, 240, 249, 0.85); border-left: 5px solid var(--navy-800); }
-        .department-card:nth-child(8) { background: var(--gold-100); border-left: 5px solid var(--gold-500); }
+
+        .department-card:nth-child(1) {
+            background: rgba(230, 240, 249, 0.85);
+            border-left: 5px solid var(--navy-700);
+        }
+
+        .department-card:nth-child(2) {
+            background: var(--gold-100);
+            border-left: 5px solid var(--gold-500);
+        }
+
+        .department-card:nth-child(3) {
+            background: rgba(230, 240, 249, 0.75);
+            border-left: 5px solid var(--navy-800);
+        }
+
+        .department-card:nth-child(4) {
+            background: var(--gold-100);
+            border-left: 5px solid var(--gold-500);
+        }
+
+        .department-card:nth-child(5) {
+            background: rgba(230, 240, 249, 0.8);
+            border-left: 5px solid var(--navy-700);
+        }
+
+        .department-card:nth-child(6) {
+            background: var(--gold-100);
+            border-left: 5px solid var(--gold-500);
+        }
+
+        .department-card:nth-child(7) {
+            background: rgba(230, 240, 249, 0.85);
+            border-left: 5px solid var(--navy-800);
+        }
+
+        .department-card:nth-child(8) {
+            background: var(--gold-100);
+            border-left: 5px solid var(--gold-500);
+        }
+
         .department-card::before {
             content: '';
             display: none;
         }
+
         .department-card:hover {
             transform: translate(-4px, -8px) scale(1.02);
-            box-shadow: 0 12px 32px rgba(10,30,63,0.25);
+            box-shadow: 0 12px 32px rgba(10, 30, 63, 0.25);
             border-radius: 16px;
         }
-        .department-card h3 { margin: 0 0 12px 0; font-size: 17px; color: var(--navy-900); font-weight: 700; border: none; padding: 0; }
-        .department-card p { font-size: 14px; color: var(--text-main); margin: 0; line-height: 1.7; flex-grow: 1; }
+
+        .department-card h3 {
+            margin: 0 0 12px 0;
+            font-size: 17px;
+            color: var(--navy-900);
+            font-weight: 700;
+            border: none;
+            padding: 0;
+        }
+
+        .department-card p {
+            font-size: 14px;
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.7;
+            flex-grow: 1;
+        }
 
         /* =====================================================
            3. 年度亮點 — 新聞卡片水平滾動
@@ -179,22 +297,26 @@
             padding-right: 20px;
             /* 隱藏滾動條但保留滾動功能 */
             scrollbar-width: thin;
-            scrollbar-color: rgba(203,161,110,0.3) transparent;
+            scrollbar-color: rgba(203, 161, 110, 0.3) transparent;
         }
+
         .cards-grid::-webkit-scrollbar {
             height: 6px;
         }
+
         .cards-grid::-webkit-scrollbar-track {
             background: transparent;
         }
+
         .cards-grid::-webkit-scrollbar-thumb {
-            background: rgba(203,161,110,0.3);
+            background: rgba(203, 161, 110, 0.3);
             border-radius: 3px;
         }
+
         .cards-grid::-webkit-scrollbar-thumb:hover {
-            background: rgba(203,161,110,0.6);
+            background: rgba(203, 161, 110, 0.6);
         }
-        
+
         /* ─── 亮點活動卡片（支援頂部 gallery）───  */
         .highlight-card {
             background: white;
@@ -209,24 +331,28 @@
             transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1),
                         box-shadow 0.35s ease;
         }
+
         .highlight-card:hover {
             transform: translateY(0);
             box-shadow: none;
         }
+
         /* 頂部 gallery 區域 */
         .highlight-card .highlights-gallery {
             margin: 0;
             padding: 0;
             flex-shrink: 0;
         }
+
         /* gallery 空時顯示預設底色 */
         .highlight-card .highlights-gallery.empty {
             display: block;
             background: var(--navy-100);
             aspect-ratio: 16 / 6;
         }
+
         /* 卡片文字主體 */
-        .highlight-card > div {
+        .highlight-card>div {
             padding: 16px 18px 20px;
             display: flex;
             flex-direction: column;
@@ -234,12 +360,14 @@
             flex: 1;
             overflow: hidden;
         }
+
         .highlight-card .badge {
             display: inline-block;
             width: fit-content;
             font-size: 10px;
             margin: 0;
         }
+
         .highlight-card h3 {
             font-size: 16px;
             font-weight: 700;
@@ -247,7 +375,11 @@
             margin: 0;
             line-height: 1.3;
         }
-        .highlight-card:hover h3 { color: var(--gold-500); }
+
+        .highlight-card:hover h3 {
+            color: var(--gold-500);
+        }
+
         .highlight-card p {
             font-size: 13px;
             color: var(--text-muted);
@@ -256,25 +388,57 @@
         }
 
         @keyframes slideInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to   { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @media (max-width: 768px) {
-            .cards-grid { grid-template-columns: 1fr 1fr; }
+            .cards-grid {
+                grid-template-columns: 1fr 1fr;
+            }
         }
+
         @media (max-width: 480px) {
-            .cards-grid { grid-template-columns: 1fr; }
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
         }
-        
-        .pay-card:nth-child(1) { animation-delay: 0.1s; }
-        .pay-card:nth-child(2) { animation-delay: 0.15s; }
-        .pay-card:nth-child(3) { animation-delay: 0.2s; }
-        .pay-card:nth-child(4) { animation-delay: 0.25s; }
-        .pay-card:nth-child(5) { animation-delay: 0.3s; }
-        .pay-card:nth-child(6) { animation-delay: 0.35s; }
-        .pay-card:nth-child(7) { animation-delay: 0.4s; }
-        
+
+        .pay-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .pay-card:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+
+        .pay-card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .pay-card:nth-child(4) {
+            animation-delay: 0.25s;
+        }
+
+        .pay-card:nth-child(5) {
+            animation-delay: 0.3s;
+        }
+
+        .pay-card:nth-child(6) {
+            animation-delay: 0.35s;
+        }
+
+        .pay-card:nth-child(7) {
+            animation-delay: 0.4s;
+        }
+
         /* 彩色標題區域 */
         .pay-card::before {
             content: '';
@@ -287,47 +451,61 @@
             transition: all 0.4s ease;
             animation: colorPulse 3s ease-in-out infinite;
         }
-        .pay-card:nth-child(1)::before { 
-            background: linear-gradient(135deg, rgba(203,161,110,0.3) 0%, rgba(203,161,110,0.1) 100%); 
-            border-bottom: 3px solid var(--gold-500); 
+
+        .pay-card:nth-child(1)::before {
+            background: linear-gradient(135deg, rgba(203, 161, 110, 0.3) 0%, rgba(203, 161, 110, 0.1) 100%);
+            border-bottom: 3px solid var(--gold-500);
             animation-delay: 0s;
         }
-        .pay-card:nth-child(2)::before { 
-            background: linear-gradient(135deg, rgba(10,30,63,0.2) 0%, rgba(10,30,63,0.05) 100%); 
+
+        .pay-card:nth-child(2)::before {
+            background: linear-gradient(135deg, rgba(10, 30, 63, 0.2) 0%, rgba(10, 30, 63, 0.05) 100%);
             border-bottom: 3px solid var(--navy-700);
             animation-delay: 0.2s;
         }
-        .pay-card:nth-child(3)::before { 
-            background: linear-gradient(135deg, rgba(203,161,110,0.3) 0%, rgba(203,161,110,0.1) 100%); 
+
+        .pay-card:nth-child(3)::before {
+            background: linear-gradient(135deg, rgba(203, 161, 110, 0.3) 0%, rgba(203, 161, 110, 0.1) 100%);
             border-bottom: 3px solid var(--gold-500);
             animation-delay: 0.4s;
         }
-        .pay-card:nth-child(4)::before { 
-            background: linear-gradient(135deg, rgba(10,30,63,0.22) 0%, rgba(10,30,63,0.05) 100%); 
+
+        .pay-card:nth-child(4)::before {
+            background: linear-gradient(135deg, rgba(10, 30, 63, 0.22) 0%, rgba(10, 30, 63, 0.05) 100%);
             border-bottom: 3px solid var(--navy-800);
             animation-delay: 0.6s;
         }
-        .pay-card:nth-child(5)::before { 
-            background: linear-gradient(135deg, rgba(203,161,110,0.28) 0%, rgba(203,161,110,0.1) 100%); 
+
+        .pay-card:nth-child(5)::before {
+            background: linear-gradient(135deg, rgba(203, 161, 110, 0.28) 0%, rgba(203, 161, 110, 0.1) 100%);
             border-bottom: 3px solid var(--gold-500);
             animation-delay: 0.8s;
         }
-        .pay-card:nth-child(6)::before { 
-            background: linear-gradient(135deg, rgba(10,30,63,0.2) 0%, rgba(10,30,63,0.05) 100%); 
+
+        .pay-card:nth-child(6)::before {
+            background: linear-gradient(135deg, rgba(10, 30, 63, 0.2) 0%, rgba(10, 30, 63, 0.05) 100%);
             border-bottom: 3px solid var(--navy-700);
             animation-delay: 1s;
         }
-        .pay-card:nth-child(7)::before { 
-            background: linear-gradient(135deg, rgba(203,161,110,0.3) 0%, rgba(203,161,110,0.1) 100%); 
+
+        .pay-card:nth-child(7)::before {
+            background: linear-gradient(135deg, rgba(203, 161, 110, 0.3) 0%, rgba(203, 161, 110, 0.1) 100%);
             border-bottom: 3px solid var(--gold-500);
             animation-delay: 1.2s;
         }
-        
+
         @keyframes colorPulse {
-            0%, 100% { opacity: 0.9; }
-            50% { opacity: 1; }
+
+            0%,
+            100% {
+                opacity: 0.9;
+            }
+
+            50% {
+                opacity: 1;
+            }
         }
-        
+
         /* 新聞圖標/數字 */
         .pay-card::after {
             content: '';
@@ -341,35 +519,72 @@
             opacity: 0.8;
             z-index: 2;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             animation: floatIcon 2.5s ease-in-out infinite;
         }
-        .pay-card:nth-child(1)::after { background: rgba(203,161,110,0.15); animation-delay: 0s; }
-        .pay-card:nth-child(2)::after { background: rgba(10,30,63,0.1); animation-delay: 0.3s; }
-        .pay-card:nth-child(3)::after { background: rgba(203,161,110,0.15); animation-delay: 0.6s; }
-        .pay-card:nth-child(4)::after { background: rgba(10,30,63,0.12); animation-delay: 0.9s; }
-        .pay-card:nth-child(5)::after { background: rgba(203,161,110,0.15); animation-delay: 1.2s; }
-        .pay-card:nth-child(6)::after { background: rgba(10,30,63,0.1); animation-delay: 1.5s; }
-        .pay-card:nth-child(7)::after { background: rgba(203,161,110,0.15); animation-delay: 1.8s; }
-        
-        @keyframes floatIcon {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-4px); }
+
+        .pay-card:nth-child(1)::after {
+            background: rgba(203, 161, 110, 0.15);
+            animation-delay: 0s;
         }
-        
+
+        .pay-card:nth-child(2)::after {
+            background: rgba(10, 30, 63, 0.1);
+            animation-delay: 0.3s;
+        }
+
+        .pay-card:nth-child(3)::after {
+            background: rgba(203, 161, 110, 0.15);
+            animation-delay: 0.6s;
+        }
+
+        .pay-card:nth-child(4)::after {
+            background: rgba(10, 30, 63, 0.12);
+            animation-delay: 0.9s;
+        }
+
+        .pay-card:nth-child(5)::after {
+            background: rgba(203, 161, 110, 0.15);
+            animation-delay: 1.2s;
+        }
+
+        .pay-card:nth-child(6)::after {
+            background: rgba(10, 30, 63, 0.1);
+            animation-delay: 1.5s;
+        }
+
+        .pay-card:nth-child(7)::after {
+            background: rgba(203, 161, 110, 0.15);
+            animation-delay: 1.8s;
+        }
+
+        @keyframes floatIcon {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-4px);
+            }
+        }
+
         .pay-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 12px 40px rgba(10, 30, 63, 0.22);
         }
+
         .pay-card:hover::before {
             height: 110px;
             animation-play-state: paused;
         }
+
         .pay-card:hover::after {
             animation-play-state: paused;
         }
-        
-        .pay-card > div {
+
+        .pay-card>div {
             display: flex;
             flex-direction: column;
             gap: 8px;
@@ -379,7 +594,7 @@
             flex: 1;
             justify-content: space-between;
         }
-        
+
         .pay-card .badge {
             display: inline-block;
             width: fit-content;
@@ -387,18 +602,25 @@
             font-size: 10px;
             animation: badgePulse 2s ease-in-out infinite;
         }
-        
+
         @keyframes badgePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
         }
-        
-        .pay-card h3 { 
-            font-size: 16px; 
-            margin: 0; 
-            color: var(--navy-900); 
-            font-weight: 700; 
-            border: none; 
+
+        .pay-card h3 {
+            font-size: 16px;
+            margin: 0;
+            color: var(--navy-900);
+            font-weight: 700;
+            border: none;
             padding: 0;
             transition: all 0.3s ease;
             line-height: 1.3;
@@ -408,19 +630,20 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
-        
+
         .pay-card:hover h3 {
             color: var(--gold-500);
             transform: translateX(2px);
         }
+
         .pay-card:nth-child(even):hover h3 {
             color: var(--navy-700);
         }
-        
-        .pay-card p { 
-            font-size: 12px; 
-            color: #888; 
-            margin: 0; 
+
+        .pay-card p {
+            font-size: 12px;
+            color: #888;
+            margin: 0;
             line-height: 1.5;
             transition: all 0.3s ease;
             display: -webkit-box;
@@ -429,27 +652,30 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
+
         .pay-card:hover p {
             color: var(--navy-900);
         }
-        
+
         @keyframes slideInUp {
             from {
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
+
         @media (max-width: 768px) {
             .pay-card {
                 flex: 0 0 220px;
                 height: 260px;
             }
-            .pay-card > div {
+
+            .pay-card>div {
                 padding: 90px 12px 12px 12px;
             }
         }
@@ -459,16 +685,28 @@
            ★ 斷點可依需求調整
         ===================================================== */
         @media (max-width: 1000px) {
-            .goals-grid, .department-grid { grid-template-columns: repeat(2, 1fr); }
+
+            .goals-grid,
+            .department-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
+
         @media (max-width: 540px) {
-            .goals-grid, .department-grid { grid-template-columns: 1fr; }
+
+            .goals-grid,
+            .department-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* =====================================================
            Section 背景與裝飾 — 統一連貫流動感
         ===================================================== */
-        #mission, #structure, #highlights, #contact {
+        #mission,
+        #structure,
+        #highlights,
+        #contact {
             background: linear-gradient(180deg, rgba(249, 243, 235, 0.15) 0%, rgba(230, 240, 249, 0.15) 50%, rgba(249, 243, 235, 0.1) 100%);
             position: relative;
         }
@@ -482,16 +720,26 @@
             transition: opacity 0.4s ease;
             border-radius: 0;
         }
-        
+
         section::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0;
-            height: 3px; background: linear-gradient(90deg, transparent 0%, var(--gold-500) 50%, transparent 100%);
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent 0%, var(--gold-500) 50%, transparent 100%);
             opacity: 0.7;
         }
-        
+
         section::after {
-            content: ''; position: absolute; bottom: 0; left: 10%; right: 10%;
-            height: 1px; background: linear-gradient(90deg, transparent 0%, var(--navy-700) 50%, transparent 100%);
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, var(--navy-700) 50%, transparent 100%);
             opacity: 0.3;
         }
 
@@ -501,32 +749,43 @@
             animation: slideInLeft 0.6s ease-out;
             margin-bottom: 40px;
         }
-        
+
         .section-heading::before {
-            content: ''; position: absolute; left: 0; top: 50%;
-            width: 6px; height: 32px; background: linear-gradient(180deg, var(--gold-500), var(--navy-700));
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 6px;
+            height: 32px;
+            background: linear-gradient(180deg, var(--gold-500), var(--navy-700));
             transform: translateY(-50%);
             transition: height 0.4s ease;
-            box-shadow: 2px 4px 8px rgba(203,161,110,0.3);
+            box-shadow: 2px 4px 8px rgba(203, 161, 110, 0.3);
         }
-        
+
         .section-heading:hover::before {
             height: 40px;
         }
-        
+
         .section-heading h2 {
             position: relative;
             z-index: 1;
         }
-        
-        #structure .section-heading::before { background: linear-gradient(180deg, var(--navy-700), var(--gold-500)); }
-        #contact .section-heading::before { background: linear-gradient(180deg, var(--gold-400), var(--navy-800)); }
-        
+
+        #structure .section-heading::before {
+            background: linear-gradient(180deg, var(--navy-700), var(--gold-500));
+        }
+
+        #contact .section-heading::before {
+            background: linear-gradient(180deg, var(--gold-400), var(--navy-800));
+        }
+
         @keyframes slideInLeft {
             from {
                 opacity: 0;
                 transform: translateX(-30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
@@ -534,10 +793,30 @@
         }
 
         /* 聯絡資訊列表 */
-        .contact-list { list-style: none; padding-left: 0; margin-top: 32px; }
-        .contact-list li { margin-bottom: 16px; font-size: 16px; color: var(--text-main); line-height: 1.8; }
-        .contact-list a { color: var(--navy-700); font-weight: 700; text-decoration: underline; text-decoration-color: var(--gold-400); }
-        .contact-list a:hover { color: var(--navy-900); text-decoration-color: var(--gold-500); }
+        .contact-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 32px;
+        }
+
+        .contact-list li {
+            margin-bottom: 16px;
+            font-size: 16px;
+            color: var(--text-main);
+            line-height: 1.8;
+        }
+
+        .contact-list a {
+            color: var(--navy-700);
+            font-weight: 700;
+            text-decoration: underline;
+            text-decoration-color: var(--gold-400);
+        }
+
+        .contact-list a:hover {
+            color: var(--navy-900);
+            text-decoration-color: var(--gold-500);
+        }
 
         /* =====================================================
            PHOTO GALLERY SLIDER（年度亮點用）
@@ -551,6 +830,7 @@
             padding: 0;
             margin: 0;
         }
+
         .highlights-gallery .gallery-slide {
             position: absolute; inset: 0;
             opacity: 0; transition: opacity 0.45s var(--ease-custom, cubic-bezier(0.19,1,0.22,1));
@@ -560,27 +840,65 @@
         .highlights-gallery .gallery-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
         /* 北顔小屏隱藏導航按鈕與 dots */
         .highlight-card .gallery-btn,
-        .highlight-card .gallery-footer { display: none !important; }
-        .highlights-gallery .gallery-dots { display: flex; gap: 5px; align-items: center; }
+        .highlight-card .gallery-footer {
+            display: none !important;
+        }
+
+        .highlights-gallery .gallery-dots {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
         .highlights-gallery .gallery-dot {
-            width: 6px; height: 6px; border-radius: 50%;
-            background: var(--navy-100); border: 1.5px solid var(--navy-700);
-            cursor: pointer; transition: background 0.2s, transform 0.2s; padding: 0;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--navy-100);
+            border: 1.5px solid var(--navy-700);
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            padding: 0;
         }
-        .highlights-gallery .gallery-dot.active { background: var(--navy-800); transform: scale(1.3); }
+
+        .highlights-gallery .gallery-dot.active {
+            background: var(--navy-800);
+            transform: scale(1.3);
+        }
+
         .highlights-gallery .gallery-caption {
-            position: absolute; top: 0; left: 0;
-            background: rgba(2,18,38,0.62); color: rgba(255,255,255,0.92);
-            font-family: 'Noto Sans TC', sans-serif; font-size: 11px; font-weight: 700;
-            padding: 4px 12px 4px 8px; pointer-events: none; z-index: 5;
-            max-width: 85%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgba(2, 18, 38, 0.62);
+            color: rgba(255, 255, 255, 0.92);
+            font-family: 'Noto Sans TC', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 12px 4px 8px;
+            pointer-events: none;
+            z-index: 5;
+            max-width: 85%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
+
         .highlights-gallery .gallery-credit {
-            position: absolute; bottom: 0; left: 0;
-            background: rgba(2,18,38,0.62); color: rgba(255,255,255,0.85);
-            font-family: 'Noto Sans TC', sans-serif; font-size: 10px;
-            padding: 3px 10px 3px 8px; pointer-events: none; z-index: 5;
-            max-width: 75%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background: rgba(2, 18, 38, 0.62);
+            color: rgba(255, 255, 255, 0.85);
+            font-family: 'Noto Sans TC', sans-serif;
+            font-size: 10px;
+            padding: 3px 10px 3px 8px;
+            pointer-events: none;
+            z-index: 5;
+            max-width: 75%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         /* RWD：手機小屏寬度 */
@@ -589,6 +907,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <header id="main-header">
@@ -609,8 +928,9 @@
     </header>
 
 
-    <main style="max-width: 1200px; margin: clamp(40px, 8vw, 100px) auto; padding: 0 clamp(20px, 5%, 60px); min-height: 60vh;">
-        
+    <main
+        style="max-width: 1200px; margin: clamp(40px, 8vw, 100px) auto; padding: 0 clamp(20px, 5%, 60px); min-height: 60vh;">
+
         <div class="page-hero reveal active" style="margin-bottom: 50px;">
             <div class="page-hero-text">
                 <h1>關於我們<br><span>ABOUT US</span></h1>
@@ -622,28 +942,36 @@
         <section id="mission" class="reveal">
             <div class="section-heading">
                 <div class="heading-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5" /></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="icon">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5" />
+                    </svg>
                 </div>
                 <h2>核心任務與願景</h2>
             </div>
             <div class="goals-grid">
                 <div class="goal-item reveal delay-100">
-                    <div class="goal-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c1.356 0 2.673-.11 3.955-.329a9.036 9.036 0 000-5.314A9.036 9.036 0 0012 8.329a9.036 9.036 0 00-3.955.329 9.036 9.036 0 000 5.314A9.036 9.036 0 0012 21zm-4.243-9.243a9.004 9.004 0 0111.486 0M7.757 11.757a9.004 9.004 0 0011.486 0M12 3v.01" /></svg></div>
+                    <div class="goal-icon"><img src="images/icon/權益維護.png" alt="權益維護"
+                            style="width: 100%; height: 100%; object-fit: contain;"></div>
                     <h4>權益維護</h4>
                     <p>擔任系方與學生間的溝通橋樑，為學生爭取更優質的學習與生活環境</p>
                 </div>
                 <div class="goal-item reveal delay-200">
-                    <div class="goal-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" /></svg></div>
+                    <div class="goal-icon"><img src="images/icon/資源共享.png" alt="資源共享"
+                            style="width: 100%; height: 100%; object-fit: contain;"></div>
                     <h4>資源共享</h4>
                     <p>建置臺大經濟資料庫，整合學習資源，並協助系友與在校生的資訊對接</p>
                 </div>
                 <div class="goal-item reveal delay-300">
-                    <div class="goal-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a5.971 5.971 0 00-.941 3.196M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" /></svg></div>
+                    <div class="goal-icon"><img src="images/icon/社群凝聚.png" alt="社群凝聚"
+                            style="width: 100%; height: 100%; object-fit: contain;"></div>
                     <h4>社群凝聚</h4>
                     <p>舉辦跨年級、跨系所、跨國際的交流活動，建立緊密社群脈絡</p>
                 </div>
                 <div class="goal-item reveal delay-100">
-                    <div class="goal-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" /></svg></div>
+                    <div class="goal-icon"><img src="images/icon/專業發展.png" alt="專業發展"
+                            style="width: 100%; height: 100%; object-fit: contain;"></div>
                     <h4>專業發展</h4>
                     <p>透過講座、參訪等活動，縮短學術理論與職場實務的差距，佈局多元職涯賽道</p>
                 </div>
@@ -653,7 +981,11 @@
         <section id="structure" class="reveal">
             <div class="section-heading">
                 <div class="heading-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" /></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="icon">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
+                    </svg>
                 </div>
                 <h2>組織架構</h2>
             </div>
@@ -697,7 +1029,13 @@
         <section id="highlights" class="reveal">
             <div class="section-heading">
                 <div class="heading-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" /></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="icon">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" />
+                    </svg>
                 </div>
                 <h2>年度亮點活動</h2>
             </div>
@@ -708,7 +1046,9 @@
                         <div class="gallery-track"></div>
                         <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
                         <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
-                        <div class="gallery-footer"><div class="gallery-dots"></div></div>
+                        <div class="gallery-footer">
+                            <div class="gallery-dots"></div>
+                        </div>
                     </div>
                     <div>
                         <span class="badge bg-gold">年度盛事</span>
@@ -722,7 +1062,9 @@
                         <div class="gallery-track"></div>
                         <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
                         <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
-                        <div class="gallery-footer"><div class="gallery-dots"></div></div>
+                        <div class="gallery-footer">
+                            <div class="gallery-dots"></div>
+                        </div>
                     </div>
                     <div>
                         <span class="badge bg-navy">專業成長</span>
@@ -736,7 +1078,9 @@
                         <div class="gallery-track"></div>
                         <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
                         <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
-                        <div class="gallery-footer"><div class="gallery-dots"></div></div>
+                        <div class="gallery-footer">
+                            <div class="gallery-dots"></div>
+                        </div>
                     </div>
                     <div>
                         <span class="badge bg-navy">學系推廣</span>
@@ -750,7 +1094,9 @@
                         <div class="gallery-track"></div>
                         <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
                         <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
-                        <div class="gallery-footer"><div class="gallery-dots"></div></div>
+                        <div class="gallery-footer">
+                            <div class="gallery-dots"></div>
+                        </div>
                     </div>
                     <div>
                         <span class="badge bg-navy">學系推廣</span>
@@ -764,7 +1110,9 @@
                         <div class="gallery-track"></div>
                         <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
                         <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
-                        <div class="gallery-footer"><div class="gallery-dots"></div></div>
+                        <div class="gallery-footer">
+                            <div class="gallery-dots"></div>
+                        </div>
                     </div>
                     <div>
                         <span class="badge bg-gray">特色活動</span>
@@ -778,7 +1126,9 @@
                         <div class="gallery-track"></div>
                         <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
                         <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
-                        <div class="gallery-footer"><div class="gallery-dots"></div></div>
+                        <div class="gallery-footer">
+                            <div class="gallery-dots"></div>
+                        </div>
                     </div>
                     <div>
                         <span class="badge bg-navy">新生系列</span>
@@ -792,7 +1142,9 @@
                         <div class="gallery-track"></div>
                         <button class="gallery-btn gallery-prev" aria-label="上一張">&#8249;</button>
                         <button class="gallery-btn gallery-next" aria-label="下一張">&#8250;</button>
-                        <div class="gallery-footer"><div class="gallery-dots"></div></div>
+                        <div class="gallery-footer">
+                            <div class="gallery-dots"></div>
+                        </div>
                     </div>
                     <div>
                         <span class="badge bg-navy">新生系列</span>
@@ -806,13 +1158,18 @@
         <section id="contact" class="reveal">
             <div class="section-heading">
                 <div class="heading-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.902l-5.4 2.7a2.25 2.25 0 01-2.13 0l-5.4-2.7a2.25 2.25 0 01-1.07-1.902V6.75" /></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="icon">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.902l-5.4 2.7a2.25 2.25 0 01-2.13 0l-5.4-2.7a2.25 2.25 0 01-1.07-1.902V6.75" />
+                    </svg>
                 </div>
                 <h2>聯絡我們</h2>
             </div>
             <ul class="contact-list">
                 <li><strong>系學會辦公室：</strong> 國立臺灣大學社會科學院（社科院大樓）</li>
-                <li><strong>官方網站：</strong> <a href="https://ericccclin.github.io/">https://ericccclin.github.io/</a></li>
+                <li><strong>官方網站：</strong> <a href="https://ericccclin.github.io/">https://ericccclin.github.io/</a>
+                </li>
                 <li><strong>Facebook：</strong> <a href="#" target="_blank">國立臺灣大學經濟學系學生會</a></li>
                 <li><strong>Instagram：</strong> <a href="#" target="_blank">@ntueconsa</a></li>
                 <li><strong>意見箱：</strong> 歡迎透過社群平台私訊或電郵向我們反映建議。</li>
@@ -822,8 +1179,9 @@
     </main>
 
     <button id="backToTopBtn" aria-label="回到頁首">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5"/>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
         </svg>
     </button>
 
@@ -861,173 +1219,174 @@
     <script src="assets/js/main.js"></script>
 
     <script>
-(function() {
-  'use strict';
+        (function () {
+            'use strict';
 
-  /* ── 1. Scroll Reveal ── */
-  function initReveal() {
-    var io = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) { e.target.classList.add('active'); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
-  }
+            /* ── 1. Scroll Reveal ── */
+            function initReveal() {
+                var io = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (e) {
+                        if (e.isIntersecting) { e.target.classList.add('active'); io.unobserve(e.target); }
+                    });
+                }, { threshold: 0.08 });
+                document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+            }
 
-  /* ── 2. Card stagger animate ── */
-  function initCards() {
-    var cards = document.querySelectorAll('.goal-item, .department-card, .pay-card');
-    var io = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry, idx) {
-        if (entry.isIntersecting) {
-          setTimeout(function() {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0) scale(1)';
-          }, idx * 70);
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    cards.forEach(function(card) {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(24px) scale(0.96)';
-      card.style.transition = 'opacity 0.55s ease, transform 0.55s cubic-bezier(0.34,1.56,0.64,1)';
-      io.observe(card);
-    });
-  }
+            /* ── 2. Card stagger animate ── */
+            function initCards() {
+                var cards = document.querySelectorAll('.goal-item, .department-card, .pay-card');
+                var io = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry, idx) {
+                        if (entry.isIntersecting) {
+                            setTimeout(function () {
+                                entry.target.style.opacity = '1';
+                                entry.target.style.transform = 'translateY(0) scale(1)';
+                            }, idx * 70);
+                            io.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.12 });
+                cards.forEach(function (card) {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(24px) scale(0.96)';
+                    card.style.transition = 'opacity 0.55s ease, transform 0.55s cubic-bezier(0.34,1.56,0.64,1)';
+                    io.observe(card);
+                });
+            }
 
-  /* ── 3. Header shrink ── */
-  function initHeader() {
-    var h = document.getElementById('main-header');
-    if (!h) return;
-    window.addEventListener('scroll', function() {
-      h.classList.toggle('scrolled', window.scrollY > 60);
-    }, { passive: true });
-  }
+            /* ── 3. Header shrink ── */
+            function initHeader() {
+                var h = document.getElementById('main-header');
+                if (!h) return;
+                window.addEventListener('scroll', function () {
+                    h.classList.toggle('scrolled', window.scrollY > 60);
+                }, { passive: true });
+            }
 
-  /* ── 4. Back To Top ── */
-  function initBackToTop() {
-    var btn = document.getElementById('backToTopBtn');
-    if (!btn) return;
-    window.addEventListener('scroll', function() {
-      btn.classList.toggle('visible', window.scrollY > 300);
-    }, { passive: true });
-    btn.addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
+            /* ── 4. Back To Top ── */
+            function initBackToTop() {
+                var btn = document.getElementById('backToTopBtn');
+                if (!btn) return;
+                window.addEventListener('scroll', function () {
+                    btn.classList.toggle('visible', window.scrollY > 300);
+                }, { passive: true });
+                btn.addEventListener('click', function () {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
 
-  /* ── 5. Right Sidebar (show after scroll + active section) ── */
-  function initAboutSidebar() {
-    var sidebar = document.getElementById('aboutSidebar');
-    if (!sidebar) return;
-    var items = Array.from(sidebar.querySelectorAll('.about-sidebar-item'));
-    var sectionIds = ['mission', 'structure', 'highlights', 'contact'];
-    var sections = sectionIds.map(function(id) { return document.getElementById(id); }).filter(Boolean);
+            /* ── 5. Right Sidebar (show after scroll + active section) ── */
+            function initAboutSidebar() {
+                var sidebar = document.getElementById('aboutSidebar');
+                if (!sidebar) return;
+                var items = Array.from(sidebar.querySelectorAll('.about-sidebar-item'));
+                var sectionIds = ['mission', 'structure', 'highlights', 'contact'];
+                var sections = sectionIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
 
-    function update() {
-      /* show sidebar after first section is out of viewport */
-      var firstSection = sections[0];
-      var show = firstSection && firstSection.getBoundingClientRect().top < 60;
-      sidebar.classList.toggle('visible', !!show);
+                function update() {
+                    /* show sidebar after first section is out of viewport */
+                    var firstSection = sections[0];
+                    var show = firstSection && firstSection.getBoundingClientRect().top < 60;
+                    sidebar.classList.toggle('visible', !!show);
 
-      /* highlight active section */
-      var scrollMid = window.scrollY + window.innerHeight * 0.4;
-      var activeId = '';
-      sections.forEach(function(sec) {
-        if (sec.offsetTop <= scrollMid) activeId = sec.id;
-      });
-      items.forEach(function(item) {
-        var href = item.getAttribute('href').replace('#', '');
-        item.classList.toggle('active', href === activeId);
-      });
-    }
-    window.addEventListener('scroll', update, { passive: true });
-    update();
-  }
+                    /* highlight active section */
+                    var scrollMid = window.scrollY + window.innerHeight * 0.4;
+                    var activeId = '';
+                    sections.forEach(function (sec) {
+                        if (sec.offsetTop <= scrollMid) activeId = sec.id;
+                    });
+                    items.forEach(function (item) {
+                        var href = item.getAttribute('href').replace('#', '');
+                        item.classList.toggle('active', href === activeId);
+                    });
+                }
+                window.addEventListener('scroll', update, { passive: true });
+                update();
+            }
 
-  /* ── 6. Highlights Gallery (reads GALLERY_DATA.highlights) ── */
-  function initHighlightsGalleries() {
-    document.querySelectorAll('.highlights-gallery').forEach(function(gallery) {
-      var hkey = gallery.getAttribute('data-hkey');
-      var urls = (typeof GALLERY_DATA !== 'undefined' &&
-                  GALLERY_DATA['highlights'] &&
-                  GALLERY_DATA['highlights'][hkey]) || [];
+            /* ── 6. Highlights Gallery (reads GALLERY_DATA.highlights) ── */
+            function initHighlightsGalleries() {
+                document.querySelectorAll('.highlights-gallery').forEach(function (gallery) {
+                    var hkey = gallery.getAttribute('data-hkey');
+                    var urls = (typeof GALLERY_DATA !== 'undefined' &&
+                        GALLERY_DATA['highlights'] &&
+                        GALLERY_DATA['highlights'][hkey]) || [];
 
-      if (!urls.length) { gallery.classList.add('empty'); return; }
+                    if (!urls.length) { gallery.classList.add('empty'); return; }
 
-      var track   = gallery.querySelector('.gallery-track');
-      var dotsEl  = gallery.querySelector('.gallery-dots');
-      var prevBtn = gallery.querySelector('.gallery-prev');
-      var nextBtn = gallery.querySelector('.gallery-next');
-      var current = 0;
+                    var track = gallery.querySelector('.gallery-track');
+                    var dotsEl = gallery.querySelector('.gallery-dots');
+                    var prevBtn = gallery.querySelector('.gallery-prev');
+                    var nextBtn = gallery.querySelector('.gallery-next');
+                    var current = 0;
 
-      urls.forEach(function(item, i) {
-        var src     = typeof item === 'string' ? item : item.url;
-        var caption = typeof item === 'object' ? (item.caption || null) : null;
-        var credit  = typeof item === 'object' ? (item.credit  || null) : null;
+                    urls.forEach(function (item, i) {
+                        var src = typeof item === 'string' ? item : item.url;
+                        var caption = typeof item === 'object' ? (item.caption || null) : null;
+                        var credit = typeof item === 'object' ? (item.credit || null) : null;
 
-        var slide = document.createElement('div');
-        slide.className = 'gallery-slide' + (i === 0 ? ' active' : '');
-        var img = document.createElement('img');
-        img.src = src;
-        img.alt = '活動照片 ' + (i + 1);
-        img.loading = 'lazy';
-        slide.appendChild(img);
+                        var slide = document.createElement('div');
+                        slide.className = 'gallery-slide' + (i === 0 ? ' active' : '');
+                        var img = document.createElement('img');
+                        img.src = src;
+                        img.alt = '活動照片 ' + (i + 1);
+                        img.loading = 'lazy';
+                        slide.appendChild(img);
 
-        if (caption) {
-          var capEl = document.createElement('span');
-          capEl.className = 'gallery-caption';
-          capEl.textContent = caption;
-          slide.appendChild(capEl);
-        }
-        if (credit) {
-          var creEl = document.createElement('span');
-          creEl.className = 'gallery-credit';
-          creEl.textContent = credit;
-          slide.appendChild(creEl);
-        }
-        track.appendChild(slide);
+                        if (caption) {
+                            var capEl = document.createElement('span');
+                            capEl.className = 'gallery-caption';
+                            capEl.textContent = caption;
+                            slide.appendChild(capEl);
+                        }
+                        if (credit) {
+                            var creEl = document.createElement('span');
+                            creEl.className = 'gallery-credit';
+                            creEl.textContent = credit;
+                            slide.appendChild(creEl);
+                        }
+                        track.appendChild(slide);
 
-        var dot = document.createElement('button');
-        dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
-        dot.setAttribute('aria-label', '第 ' + (i + 1) + ' 張');
-        dot.addEventListener('click', function() { goTo(i); });
-        dotsEl.appendChild(dot);
-      });
+                        var dot = document.createElement('button');
+                        dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+                        dot.setAttribute('aria-label', '第 ' + (i + 1) + ' 張');
+                        dot.addEventListener('click', function () { goTo(i); });
+                        dotsEl.appendChild(dot);
+                    });
 
-      var slides = gallery.querySelectorAll('.gallery-slide');
-      var dots   = gallery.querySelectorAll('.gallery-dot');
+                    var slides = gallery.querySelectorAll('.gallery-slide');
+                    var dots = gallery.querySelectorAll('.gallery-dot');
 
-      function goTo(idx) {
-        slides[current].classList.remove('active');
-        dots[current].classList.remove('active');
-        current = (idx + urls.length) % urls.length;
-        slides[current].classList.add('active');
-        dots[current].classList.add('active');
-      }
+                    function goTo(idx) {
+                        slides[current].classList.remove('active');
+                        dots[current].classList.remove('active');
+                        current = (idx + urls.length) % urls.length;
+                        slides[current].classList.add('active');
+                        dots[current].classList.add('active');
+                    }
 
-      if (urls.length === 1) {
-        prevBtn.style.display = 'none';
-        nextBtn.style.display = 'none';
-        if (dotsEl) dotsEl.style.display = 'none';
-      }
+                    if (urls.length === 1) {
+                        prevBtn.style.display = 'none';
+                        nextBtn.style.display = 'none';
+                        if (dotsEl) dotsEl.style.display = 'none';
+                    }
 
-      prevBtn.addEventListener('click', function() { goTo(current - 1); });
-      nextBtn.addEventListener('click', function() { goTo(current + 1); });
-    });
-  }
+                    prevBtn.addEventListener('click', function () { goTo(current - 1); });
+                    nextBtn.addEventListener('click', function () { goTo(current + 1); });
+                });
+            }
 
-  /* ── BOOT ── */
-  document.addEventListener('DOMContentLoaded', function() {
-    initReveal();
-    initCards();
-    initHeader();
-    initBackToTop();
-    initHighlightsGalleries();
-  });
+            /* ── BOOT ── */
+            document.addEventListener('DOMContentLoaded', function () {
+                initReveal();
+                initCards();
+                initHeader();
+                initBackToTop();
+                initHighlightsGalleries();
+            });
 
-}());
+        }());
     </script>
 </body>
+
 </html>
