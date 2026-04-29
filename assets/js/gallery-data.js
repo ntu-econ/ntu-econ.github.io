@@ -295,15 +295,15 @@ var GALLERY_DATA = {
     ],
 
     'econ-week': [     /* 經濟週 */
-      // 'images/econ-week/2023/01.webp',
+      'images/econ-week/03.webp',
     ],
 
     'orientation': [   /* 大迎新 */
-      'images/orientation/01.webp',
+      'images/orientation/IMG_9865.webp',
     ],
 
     'camp': [          /* 宿營 */
-      'images/highlights/camp/01.webp',
+      'images/other-activities/orientation-camp/01.webp',
     ],
   }
 
