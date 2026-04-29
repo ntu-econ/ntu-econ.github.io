@@ -299,11 +299,11 @@ var GALLERY_DATA = {
     ],
 
     'orientation': [   /* 大迎新 */
-      // 'images/orientation/01.webp',
+      'images/orientation/01.webp',
     ],
 
     'camp': [          /* 宿營 */
-      // 'images/highlights/camp/01.webp',
+      'images/highlights/camp/01.webp',
     ],
   }
 
