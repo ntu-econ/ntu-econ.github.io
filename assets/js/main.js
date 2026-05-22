@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       ANNOUNCEMENTS.forEach(item => {
         const row = document.createElement(item.link ? 'a' : 'div');
-        row.className = 'news-row';
+        row.className = 'news-row' + (item.highlight ? ' news-highlight' : '');
         if (item.link) { row.href = item.link; row.target = '_blank'; row.rel = 'noopener'; }
 
         /* 標籤顏色對應：可在此擴充 */

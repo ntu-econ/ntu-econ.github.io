@@ -159,6 +159,34 @@
   }
   .news-empty { color:var(--text-muted); font-size:14px; padding:16px 0; }
 
+  /* 醒目公告樣式 */
+  .news-highlight {
+    background:var(--navy-100);
+    padding:24px 28px !important;
+    border:3px solid var(--navy-900);
+    border-left:6px solid var(--gold-500);
+    box-shadow:0 6px 16px rgba(2,18,38,0.12);
+    margin:12px 0;
+    transition:transform 0.25s var(--ease-custom), box-shadow 0.25s;
+  }
+  a.news-highlight:hover {
+    transform:translate(-4px, -4px);
+    box-shadow:0 12px 24px rgba(2,18,38,0.20);
+    background:var(--navy-100);
+  }
+  .news-highlight .news-date {
+    font-size:14px; font-weight:700; color:var(--navy-900);
+  }
+  .news-highlight .news-tag {
+    font-size:12px; padding:4px 12px; font-weight:800;
+  }
+  .news-highlight .news-title {
+    font-size:22px; font-weight:900; color:var(--navy-900);
+  }
+  .news-highlight .news-arrow {
+    font-size:24px; color:var(--gold-500);
+  }
+
   /* =====================================================
      相關連結（框框卡片）
      ★ 維護：編輯 assets/data/links.json

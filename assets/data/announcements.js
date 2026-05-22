@@ -28,22 +28,11 @@ var ANNOUNCEMENTS = [
   /* ▼ 最新的放在最上面 ▼ */
 
   {
-    date:  '2026-03-11',
-    title: '114 學年度下學期第一次幹部會議公告',
-    link:   null,          /* 無連結 */
-    tag:   '公告',
-  },
-  {
-    date:  '2026-03-01',
-    title: '經濟之夜 2026 報名開始！快來報名參加年度盛典',
-    link:  'news/econ-night-2026.html',   /* ← 有連結時，整列可點擊 */
-    tag:   '活動',
-  },
-  {
-    date:  '2026-02-15',
-    title: '113 學年度下學期贊助說明會簡報公開',
-    link:   null,
+    date:  '2026-05-22',
+    title: '經濟資料庫請點這裡！',
+    link:  '/database',
     tag:   '最新',
+    highlight: true,
   },
 
   /* ▲ 若有新公告，插入在此處以上 ▲ */
