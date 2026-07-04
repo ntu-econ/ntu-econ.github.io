@@ -15,9 +15,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
 
     <style>
-        /* =====================================================
-           Page Hero — 與活動回顧頁一致的標題區
-        ===================================================== */
+        /* 內頁專用樣式 */
         .page-hero {
             display: flex;
             align-items: flex-start;
@@ -58,13 +56,11 @@
             max-width: 560px;
         }
 
-        /* =====================================================
-           1. 核心任務（願景）— 一排 4 格
-           ★ 欄數：修改 grid-template-columns 的數字
-        ===================================================== */
+        
+        /* 四個目標卡 */
         .goals-grid {
             display: grid;
-            /* ★ 一排 4 欄，手機自動折疊 */
+            
             grid-template-columns: repeat(4, 1fr);
             gap: 24px;
             margin-top: 32px;
@@ -99,7 +95,7 @@
             background: rgba(230, 240, 249, 0.8);
         }
 
-        /* 黄色卡片反黄色 */
+        
         .goal-item:nth-child(1):hover,
         .goal-item:nth-child(3):hover {
             transform: translate(-6px, -8px) scale(1.02) !important;
@@ -115,7 +111,7 @@
             color: #fff !important;
         }
 
-        /* 蓝色卡片反蓝色 */
+        
         .goal-item:nth-child(2):hover,
         .goal-item:nth-child(4):hover {
             transform: translate(-6px, -8px) scale(1.02) !important;
@@ -185,13 +181,10 @@
             color: var(--navy-700);
         }
 
-        /* =====================================================
-           2. 組織架構 — 一排 4 格
-           ★ 欄數：修改 grid-template-columns 的數字
-        ===================================================== */
+        
         .department-grid {
             display: grid;
-            /* ★ 一排 4 欄，手機自動折疊 */
+            
             grid-template-columns: repeat(4, 1fr);
             grid-auto-rows: 1fr;
             gap: 24px;
@@ -281,9 +274,7 @@
             flex-grow: 1;
         }
 
-        /* =====================================================
-           3. 年度亮點 — 新聞卡片水平滾動
-        ===================================================== */
+        
         .cards-grid {
             display: flex;
             gap: 20px;
@@ -295,7 +286,7 @@
             margin-right: -20px;
             padding-left: 20px;
             padding-right: 20px;
-            /* 隱藏滾動條但保留滾動功能 */
+            
             scrollbar-width: thin;
             scrollbar-color: rgba(203, 161, 110, 0.3) transparent;
         }
@@ -317,17 +308,17 @@
             background: rgba(203, 161, 110, 0.6);
         }
 
-        /* ─── 亮點活動卡片（支援頂部 gallery）───  */
+        
         .highlight-card {
             background: white;
             border: none;
             border-radius: 0;
-            overflow: hidden;          /* clip gallery to card edge */
+            overflow: hidden;          
             display: flex;
             flex-direction: column;
             box-shadow: none;
-            flex: 0 0 260px;            /* 固定寬度 */
-            height: 280px;              /* 固定高度 */
+            flex: 0 0 260px;            
+            height: 280px;              
             transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1),
                         box-shadow 0.35s ease;
         }
@@ -337,21 +328,21 @@
             box-shadow: none;
         }
 
-        /* 頂部 gallery 區域 */
+        
         .highlight-card .highlights-gallery {
             margin: 0;
             padding: 0;
             flex-shrink: 0;
         }
 
-        /* gallery 空時顯示預設底色 */
+        
         .highlight-card .highlights-gallery.empty {
             display: block;
             background: var(--navy-100);
             aspect-ratio: 16 / 6;
         }
 
-        /* 卡片文字主體 */
+        
         .highlight-card>div {
             padding: 16px 18px 20px;
             display: flex;
@@ -439,7 +430,7 @@
             animation-delay: 0.4s;
         }
 
-        /* 彩色標題區域 */
+        
         .pay-card::before {
             content: '';
             position: absolute;
@@ -506,7 +497,7 @@
             }
         }
 
-        /* 新聞圖標/數字 */
+        
         .pay-card::after {
             content: '';
             position: absolute;
@@ -680,10 +671,7 @@
             }
         }
 
-        /* =====================================================
-           RWD — 手機自動折疊
-           ★ 斷點可依需求調整
-        ===================================================== */
+        
         @media (max-width: 1000px) {
 
             .goals-grid,
@@ -700,9 +688,7 @@
             }
         }
 
-        /* =====================================================
-           Section 背景與裝飾 — 統一連貫流動感
-        ===================================================== */
+        
         #mission,
         #structure,
         #highlights,
@@ -711,9 +697,7 @@
             position: relative;
         }
 
-        /* =====================================================
-           裝飾與視覺特效
-        ===================================================== */
+        
         section {
             position: relative;
             opacity: 0.95;
@@ -792,7 +776,7 @@
             }
         }
 
-        /* 聯絡資訊列表 */
+        
         .contact-list {
             list-style: none;
             padding-left: 0;
@@ -818,9 +802,7 @@
             text-decoration-color: var(--gold-500);
         }
 
-        /* =====================================================
-           PHOTO GALLERY SLIDER（年度亮點用）
-        ===================================================== */
+        
         .highlights-gallery { margin-top: 0; position: relative; user-select: none; }
         .highlights-gallery.empty { display: none; }
         .highlights-gallery .gallery-track {
@@ -838,7 +820,7 @@
         }
         .highlights-gallery .gallery-slide.active { opacity: 1; }
         .highlights-gallery .gallery-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        /* 北顔小屏隱藏導航按鈕與 dots */
+        
         .highlight-card .gallery-btn,
         .highlight-card .gallery-footer {
             display: none !important;
@@ -901,9 +883,9 @@
             text-overflow: ellipsis;
         }
 
-        /* RWD：手機小屏寬度 */
+        
         @media (max-width: 900px) {
-            /* sidebar 已移除，保留 media query 區塊以備將來扩展 */
+            
         }
     </style>
 </head>
@@ -1041,7 +1023,7 @@
                 <h2>年度亮點活動</h2>
             </div>
             <div class="cards-grid">
-                <!-- 經濟之夜 -->
+                
                 <div class="highlight-card reveal delay-100">
                     <div class="highlights-gallery" data-hkey="econ-night">
                         <div class="gallery-track"></div>
@@ -1057,7 +1039,7 @@
                         <p>系上同學展現多元才藝之活動，如樂團表演、舞蹈演出、戲劇節目。</p>
                     </div>
                 </div>
-                <!-- 職涯與學術講座 -->
+                
                 <div class="highlight-card reveal delay-200">
                     <div class="highlights-gallery" data-hkey="lecture">
                         <div class="gallery-track"></div>
@@ -1073,7 +1055,7 @@
                         <p>邀請知名系友或產業專家分享，包含金融、數據分析、學術研究等領域。</p>
                     </div>
                 </div>
-                <!-- 杜鵑花節 -->
+                
                 <div class="highlight-card reveal delay-300">
                     <div class="highlights-gallery" data-hkey="azalea">
                         <div class="gallery-track"></div>
@@ -1089,7 +1071,7 @@
                         <p>向有興趣就讀本校系之高中生介紹本系之修課規劃及職涯發展等。</p>
                     </div>
                 </div>
-                <!-- 經濟營 -->
+                
                 <div class="highlight-card reveal delay-100">
                     <div class="highlights-gallery" data-hkey="econ-camp">
                         <div class="gallery-track"></div>
@@ -1105,7 +1087,7 @@
                         <p>帶領高中生更認識經濟系及建立人際網絡。</p>
                     </div>
                 </div>
-                <!-- 經濟週 -->
+                
                 <div class="highlight-card reveal delay-200">
                     <div class="highlights-gallery" data-hkey="econ-week">
                         <div class="gallery-track"></div>
@@ -1121,7 +1103,7 @@
                         <p>販賣經濟系周邊商品、手作美食、設計小遊戲給系外同學娛樂。</p>
                     </div>
                 </div>
-                <!-- 大迎新 -->
+                
                 <div class="highlight-card reveal delay-300">
                     <div class="highlights-gallery" data-hkey="orientation">
                         <div class="gallery-track"></div>
@@ -1137,7 +1119,7 @@
                         <p>學期初向新生介紹系學會及各系隊、邀請教授蒞臨指導。</p>
                     </div>
                 </div>
-                <!-- 宿營 -->
+                
                 <div class="highlight-card reveal delay-100">
                     <div class="highlights-gallery" data-hkey="camp">
                         <div class="gallery-track"></div>
@@ -1224,7 +1206,7 @@
         (function () {
             'use strict';
 
-            /* ── 1. Scroll Reveal ── */
+            
             function initReveal() {
                 var io = new IntersectionObserver(function (entries) {
                     entries.forEach(function (e) {
@@ -1234,7 +1216,7 @@
                 document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
             }
 
-            /* ── 2. Card stagger animate ── */
+            
             function initCards() {
                 var cards = document.querySelectorAll('.goal-item, .department-card, .pay-card');
                 var io = new IntersectionObserver(function (entries) {
@@ -1256,7 +1238,7 @@
                 });
             }
 
-            /* ── 3. Header shrink ── */
+            
             function initHeader() {
                 var h = document.getElementById('main-header');
                 if (!h) return;
@@ -1265,7 +1247,7 @@
                 }, { passive: true });
             }
 
-            /* ── 4. Back To Top ── */
+            
             function initBackToTop() {
                 var btn = document.getElementById('backToTopBtn');
                 if (!btn) return;
@@ -1277,7 +1259,7 @@
                 });
             }
 
-            /* ── 5. Right Sidebar (show after scroll + active section) ── */
+            
             function initAboutSidebar() {
                 var sidebar = document.getElementById('aboutSidebar');
                 if (!sidebar) return;
@@ -1286,12 +1268,12 @@
                 var sections = sectionIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
 
                 function update() {
-                    /* show sidebar after first section is out of viewport */
+                    
                     var firstSection = sections[0];
                     var show = firstSection && firstSection.getBoundingClientRect().top < 60;
                     sidebar.classList.toggle('visible', !!show);
 
-                    /* highlight active section */
+                    
                     var scrollMid = window.scrollY + window.innerHeight * 0.4;
                     var activeId = '';
                     sections.forEach(function (sec) {
@@ -1306,7 +1288,7 @@
                 update();
             }
 
-            /* ── 6. Highlights Gallery (reads GALLERY_DATA.highlights) ── */
+            
             function initHighlightsGalleries() {
                 document.querySelectorAll('.highlights-gallery').forEach(function (gallery) {
                     var hkey = gallery.getAttribute('data-hkey');
@@ -1378,7 +1360,7 @@
                 });
             }
 
-            /* ── BOOT ── */
+            
             document.addEventListener('DOMContentLoaded', function () {
                 initReveal();
                 initCards();

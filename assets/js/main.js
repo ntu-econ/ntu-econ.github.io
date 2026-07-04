@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ─────────────────────────────────────────────
-     Header 縮放效果
-  ───────────────────────────────────────────── */
+  // Header 捲動時縮小高度
   const header = document.getElementById('main-header') || document.querySelector('header');
   if (header) {
     window.addEventListener('scroll', () => {
@@ -10,9 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ─────────────────────────────────────────────
-     捲動顯現動畫 (Reveal)
-  ───────────────────────────────────────────── */
+  // 捲動顯現動畫
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -23,11 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  /* ─────────────────────────────────────────────
-     最新公告列表
-     資料來源：assets/data/announcements.js（ANNOUNCEMENTS 陣列）
-     ★ 維護：直接編輯 announcements.js，不需動這裡
-  ───────────────────────────────────────────── */
+  // 首頁公告渲染
   const newsList = document.getElementById('news-list');
   if (newsList && typeof ANNOUNCEMENTS !== 'undefined') {
     if (!ANNOUNCEMENTS.length) {
@@ -38,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         row.className = 'news-row' + (item.highlight ? ' news-highlight' : '');
         if (item.link) { row.href = item.link; row.target = '_blank'; row.rel = 'noopener'; }
 
-        /* 標籤顏色對應：可在此擴充 */
+        // 標籤顏色對應
         const tagColors = {
           '公告': 'tag-announce',
           '活動': 'tag-event',
@@ -58,13 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  /* ─────────────────────────────────────────────
-     相關連結（有框框卡片）
-     資料來源：assets/data/links.json
-     ★ 維護：編輯 links.json 即可，格式：
-       { "title": "顯示文字", "url": "https://...", "icon": "instagram" }
-       icon 支援：instagram / facebook / globe / youtube / line
-  ───────────────────────────────────────────── */
+  // 首頁相關連結渲染
   const linktreeContainer = document.getElementById('linktree-container');
   if (linktreeContainer) {
     fetch('assets/data/links.json')
@@ -87,11 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(err => console.error('links.json 載入失敗：', err));
   }
 });
-
-/* ─────────────────────────────────────────────
-   SVG Icon 輔助函式
-   ★ 若要新增 icon，在此加入對應的 SVG 路徑
-───────────────────────────────────────────── */
+// SVG icon 對應
 function getIcon(name) {
   const icons = {
     instagram: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>`,

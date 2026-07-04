@@ -1,101 +1,18 @@
-/**
- * ============================================================
- *  活動照片資料 — gallery-data.js
- * ============================================================
- *
- *  【照片存放位置】
- *  所有照片放在專案根目錄的 images/ 資料夾內，結構如下：
- *
- *    images/
- *    ├── econ-night/
- *    │   ├── 2024/   ← 把 2024 年的照片放這裡
- *    │   ├── 2022/
- *    │   ├── 2017/
- *    │   └── ...（其他年份依此類推）
- *    ├── econ-week/
- *    │   └── 2023/
- *    ├── econ-camp/
- *    │   └── 2023/
- *    ├── orientation/
- *    └── other-activities/
- *        ├── mahjong/
- *        ├── picnic/
- *        ├── bbq/
- *        └── cocktail/
- *
- * ============================================================
- *  【如何新增照片 — 三步驟】
- *
- *  步驟 1：優化圖片（必做，否則網頁會很慢）
- *    - 執行專案根目錄的 tools/optimize_images.py 腳本批次轉換
- *    - 或使用線上工具：https://squoosh.app
- *    - 目標：WebP 格式、寬度不超過 1920px、單張不超過 300KB
- *
- *  步驟 2：放入對應資料夾
- *    - 命名建議：01.webp、02.webp、03.webp（方便排序）
- *    - 路徑範例：images/econ-night/2024/01.webp
- *
- *  步驟 3：在下方填入路徑（取消註解並修改）
- *    每個活動最多放 5 張，超過只顯示前 5 張。
- *    把路徑加入陣列後存檔，重新整理網頁即可看到效果。
- *
- *  ── 格式 A：純路徑字串（不標任何資訊）─────────────────
- *    'images/econ-night/2024/01.webp',
- *
- *  ── 格式 B：物件格式（可選填 caption 和/或 credit）──────
- *    {
- *      url:     'images/econ-night/2024/02.webp',
- *      caption: '合唱團表演',     ← 表演名稱，顯示在圖片【左上角】（可省略）
- *      credit:  '攝影：陳小明',   ← 攝影者，  顯示在圖片【左下角】（可省略）
- *    },
- *
- *  兩種格式可在同一陣列中混用 *  caption 和 credit 彼此獨立，可以只填其中一個，也可以都填，也可以都不填。
- *
- * ============================================================
- *  【新增年份】
- *  以經濟之夜為例，若要新增 2025 年：
- *    1. 在 images/econ-night/ 新增 2025/ 資料夾
- *    2. 把照片放進去（命名 01.webp, 02.webp ...）
- *    3. 在 02_review.html 的 dock-track 加一個 dock-node 按鈕
- *    4. 在 dock-pane-wrap 加一個 dock-pane（含 gallery div）
- *    5. 在下方 '2025': [...] 填入路徑
- * ============================================================
- */
+
+
+
 
 /*
-不要 credit（原本的格式，繼續沿用）：
-
-
-'images/econ-night/2024/01.webp',
-要標攝影者：
-
-
-{ url: 'images/econ-night/2024/02.webp', credit: '攝影：陳小明' },
-兩種混用（同一個活動裡，某幾張要標、某幾張不標）：
-
-
-'2024': [
-  { url: 'images/econ-night/2024/01.webp', credit: '攝影：陳小明' },
-  'images/econ-night/2024/02.webp',          // 這張不標
-  { url: 'images/econ-night/2024/03.webp', credit: '攝影：林小華' },
-],
-*/
-
+ * 活動相簿資料
+ * 結構：活動類別 -> 年份/主題 -> 圖片陣列。
+ */
 var GALLERY_DATA = {
 
-  /* ──────────────────────────────────────────
-     經濟之夜（依年份）
-     路徑格式：'images/econ-night/年份/01.webp'
-  ────────────────────────────────────────── */
-  /* 格式 A：純路徑，不加任何標註 */
-  // 'images/econ-night/2024/01.webp',
-  /* 格式 B：只標攝影者 */
-  // { url: 'images/econ-night/2024/02.webp', credit: '攝影：陳小明' },
-  /* 格式 B：只標表演名稱（左上角）*/
-  // { url: 'images/econ-night/2024/03.webp', caption: '合唱團表演' },
-  /* 格式 B：同時標表演名稱和攝影者 */
-  // { url: 'images/econ-night/2024/04.webp', caption: '舞蹈表演', credit: '攝影：林小華' },
-  // 'images/econ-night/2024/05.webp',
+
+
+
+
+  // 經濟之夜
   'econ-night': {
 
     '2025': [
@@ -161,7 +78,7 @@ var GALLERY_DATA = {
     ],
 
     '2016': [
-      // 'images/econ-night/2016/01.webp',
+
     ],
 
     '2015': [
@@ -177,7 +94,7 @@ var GALLERY_DATA = {
       { url: 'images/econ-night/2015/10.webp', caption: '倒數十四天' },
       { url: 'images/econ-night/2015/11.webp', caption: '倒數十五天' },
       { url: 'images/econ-night/2015/12.webp', caption: '倒數十六天' },
-      // Ice Monster 活動冰品兌換卷抽獎：https://www.facebook.com/share/v/18Wfngomfi/
+
     ],
 
     '2014': [
@@ -209,100 +126,88 @@ var GALLERY_DATA = {
     ],
 
     '2012': [
-      // 'images/econ-night/2012/01.webp',
+
     ]
   },
 
-  /* ──────────────────────────────────────────
-     經濟週（依年份）
-     路徑格式：'images/econ-week/年份/01.webp'
-  ────────────────────────────────────────── */
+  
+  // 經濟週 / 營隊 / 迎新
   'econ-week': {
 
     '2023': [
-      // 'images/econ-week/2023/01.webp',
-      // 'images/econ-week/2023/02.webp',
+
+
     ]
   },
 
-  /* ──────────────────────────────────────────
-     經濟營（依年份）
-     路徑格式：'images/econ-camp/年份/01.webp'
-  ────────────────────────────────────────── */
+  
   'econ-camp': {
 
     '2023': [
-      // 'images/econ-camp/2023/01.webp',
-      // 'images/econ-camp/2023/02.webp',
+
+
     ]
   },
 
-  /* ──────────────────────────────────────────
-     迎新
-     路徑格式：'images/orientation/01.webp'
-  ────────────────────────────────────────── */
+  
   'orientation': {
 
     'future': [
-      // 'images/orientation/01.webp',
-      // 'images/orientation/02.webp',
+
+
     ]
   },
 
-  /* ──────────────────────────────────────────
-     其他活動（對應四張 mini-card）
-     路徑格式：'images/other-activities/活動key/01.webp'
-  ────────────────────────────────────────── */
+  
+  // 其他活動
   'other-activities': {
 
-    'mahjong': [   /* 麻將大賽 */
-      // 'images/other-activities/mahjong/01.webp',
+    'mahjong': [   
+
     ],
 
-    'picnic': [    /* 系野餐 */
-      // 'images/other-activities/picnic/01.webp',
+    'picnic': [    
+
     ],
 
-    'bbq': [       /* 系烤 */
-      // 'images/other-activities/bbq/01.webp',
+    'bbq': [       
+
     ],
 
-    'cocktail': [  /* 系酒會 */
-      // 'images/other-activities/cocktail/01.webp',
+    'cocktail': [  
+
     ]
   },
 
-  /* ──────────────────────────────────────────
-     關於我們 — 年度亮點活動（01_about.html）
-     路徑格式：'images/highlights/活動key/01.webp'
-  ────────────────────────────────────────── */
+  
+  // 首頁精選
   'highlights': {
 
-    'econ-night': [    /* 經濟之夜 */
+    'econ-night': [    
       'images/econ-night/2024/01.webp'
     ],
 
-    'lecture': [       /* 職涯與學術講座 */
-      // 'images/highlights/lecture/01.webp',
+    'lecture': [       
+
     ],
 
-    'azalea': [        /* 杜鵑花節 */
+    'azalea': [        
       'images/highlights/azalea/02.JPG',
     ],
 
-    'econ-camp': [     /* 經濟營 */
-      // 'images/econ-camp/2023/01.webp',
+    'econ-camp': [     
+
     ],
 
-    'econ-week': [     /* 經濟週 */
+    'econ-week': [     
       'images/econ-week/03.webp',
     ],
 
-    'orientation': [   /* 大迎新 */
+    'orientation': [   
       'images/orientation/IMG_9865.webp',
     ],
 
-    'camp': [          /* 宿營 */
+    'camp': [          
       'images/other-activities/orientation-camp/01.webp',
     ],
   }

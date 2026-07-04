@@ -12,9 +12,7 @@
     rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <style>
-    /* =====================================================
-   VARIABLES FALLBACK
-===================================================== */
+    /* 內頁專用樣式 */
     :root {
       --navy-900: #021226;
       --navy-800: #0A2647;
@@ -31,9 +29,8 @@
       --header-h: 80px;
     }
 
-    /* =====================================================
-   PAGE HERO — title + bubble cluster
-===================================================== */
+    
+    /* 頁首區 */
     .page-hero {
       display: flex;
       align-items: flex-start;
@@ -81,9 +78,8 @@
       margin-top: 24px;
     }
 
-    /* =====================================================
-   BUBBLE CLUSTER — more spread out, 3D quality
-===================================================== */
+    
+    /* 圓形時間軸 */
     .bubble-cluster {
       flex: 0 0 500px;
       width: 500px;
@@ -115,23 +111,23 @@
       transition: transform 0.5s var(--ease-custom), opacity 0.6s var(--ease-custom);
     }
 
-    /* Dark bubble (odd) — refined 3D: subtle top-left highlight, deep shadow */
+    
     .bubble:nth-child(odd) {
       background: radial-gradient(ellipse at 38% 32%,
           #2a5a9e 0%, #0d3660 30%, #071e40 65%, #020e22 100%);
       border: 1px solid rgba(255, 255, 255, 0.10);
       color: #fff;
       box-shadow:
-        /* inner top highlight */
+        
         inset 0 2px 6px rgba(80, 140, 220, 0.22),
-        /* inner bottom shadow */
+        
         inset 0 -3px 8px rgba(0, 0, 0, 0.45),
-        /* outer ambient */
+        
         0 10px 30px rgba(2, 18, 38, 0.40),
         0 3px 8px rgba(2, 18, 38, 0.25);
     }
 
-    /* Light bubble (even) — clean glass */
+    
     .bubble:nth-child(even) {
       background: radial-gradient(ellipse at 38% 30%,
           #ffffff 0%, #d4e8f8 38%, #9fc4e4 80%, #7aaed4 100%);
@@ -144,7 +140,7 @@
         0 3px 8px rgba(20, 66, 114, 0.12);
     }
 
-    /* Specular highlight — small bright ellipse top-left */
+    
     .bubble::before {
       content: '';
       position: absolute;
@@ -159,7 +155,7 @@
       z-index: 1;
     }
 
-    /* Secondary bottom-right rim light for depth */
+    
     .bubble::after {
       content: '';
       position: absolute;
@@ -196,57 +192,51 @@
       transform: scale(1.07) translateY(-6px);
     }
 
-    /*
- * Spread positions — container 500×340px
- * sizes: 1=240  2=180  3=240  4=150  5=120
- * Layout: 1 far-left, 3 upper-right, 4 centre-top, 2 lower-mid, 5 far-right
- */
+    
     .bubble:nth-child(1) {
       left: 0;
       top: 60px;
       z-index: 3;
     }
 
-    /* 經濟之夜 240 */
+    
     .bubble:nth-child(2) {
       left: 210px;
       top: 160px;
       z-index: 4;
     }
 
-    /* 經濟週 180 */
+    
     .bubble:nth-child(3) {
       left: 220px;
       top: 0;
       z-index: 2;
     }
 
-    /* 經濟營 240 */
+    
     .bubble:nth-child(4) {
       left: 80px;
       top: -20px;
       z-index: 5;
     }
 
-    /* 迎新 150 */
+    
     .bubble:nth-child(5) {
       left: 400px;
       top: 50px;
       z-index: 3;
     }
 
-    /* 其他活動 120 */
+    
 
-    /* fade-out when scrolled past */
+    
     .bubble-cluster.hidden .bubble {
       opacity: 0;
       pointer-events: none;
       transform: scale(0.85) translateY(8px);
     }
 
-    /* =====================================================
-   SIDEBAR — fixed right column after scroll
-===================================================== */
+    
     .bubble-sidebar {
       position: fixed;
       right: 0;
@@ -258,7 +248,7 @@
       align-items: flex-end;
       gap: 9px;
       pointer-events: none;
-      /* ★ gap：原6px × 150% = 9px */
+      
       opacity: 0;
       translate: 120px 0;
       transition: opacity 0.55s var(--ease-custom), translate 0.55s var(--ease-custom);
@@ -297,8 +287,7 @@
       text-shadow: none !important;
     }
 
-    /* slide-out label
-   ★ 字體大小：原12px × 150% ≈ 14px，hover 展開寬度對應調整 */
+    
     .sidebar-label {
       font-family: 'Noto Sans TC', sans-serif;
       font-size: 14px;
@@ -321,9 +310,7 @@
       padding: 0;
     }
 
-    /* pill（右側圓形選單）
-   ★ 圓圈大小：原42px × 150% = 63px
-   ★ 字體大小：原9px × 150% ≈ 13px */
+    
     .sidebar-pill {
       width: 63px;
       height: 63px;
@@ -348,7 +335,7 @@
       transition: opacity 0.2s, color 0.2s;
     }
 
-    /* 目前滾動到的章節：空心圓 + 金色邊框 */
+    
     .bubble-sidebar-item.active .sidebar-pill {
       border-color: var(--gold-500);
       background: black;
@@ -359,7 +346,7 @@
       color: var(--gold-500);
     }
 
-    /* hover: 圓形變深藍色 + 白字，不改變形狀 */
+    
     .bubble-sidebar-item:hover .sidebar-pill {
       background: var(--navy-800) !important;
       border-color: var(--navy-900) !important;
@@ -371,9 +358,7 @@
       opacity: 1;
     }
 
-    /* =====================================================
-   BACK-TO-TOP BUTTON — fixed, z-index above sidebar
-===================================================== */
+    
     #backToTopBtn {
       position: fixed;
       bottom: 28px;
@@ -419,9 +404,7 @@
       pointer-events: none;
     }
 
-    /* =====================================================
-   DOCK TIMELINE — econ-night
-===================================================== */
+    
     #econ-night {
       overflow: visible !important;
     }
@@ -436,14 +419,13 @@
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      /* top padding = max scale headroom: node 44px × 2 = 88px, plus label ~36px ≈ 130px */
+      
       padding: 0px 44px 0 8px;
       overflow: visible;
       gap: 0;
     }
 
-    /* dashed line — 圓圈中心對齊（66px/2 = 33px，加 9px 視覺補償 = 42px）
-   ★ 若圓圈尺寸有改，此值約為：圓圈高度 × 0.64 */
+    
     .dock-track::before {
       content: '';
       position: absolute;
@@ -455,8 +437,7 @@
       pointer-events: none;
     }
 
-    /* arrow at right end — bottom = 線的 bottom - 箭頭半高（42 - 13 = 29）
-   ★ border-top/bottom 約為 圓圈高度 × 0.197，border-left 約為 × 0.36 */
+    
     .dock-track::after {
       content: '';
       position: absolute;
@@ -483,7 +464,7 @@
     }
 
     .dock-node-circle {
-      /* ★ 圓圈尺寸：原 44px × 150% = 66px。若要調整大小，修改 width/height/font-size */
+      
       width: 66px;
       height: 66px;
       border-radius: 50%;
@@ -497,9 +478,9 @@
       font-size: 18px;
       color: var(--navy-800);
       will-change: transform;
-      /* scale grows UPWARD */
+      
       transform-origin: center bottom;
-      /* transition controlled by JS (fast on move, slow on leave) */
+      
       transition: background 0.25s, border-color 0.25s, color 0.25s;
       cursor: pointer;
     }
@@ -511,7 +492,7 @@
     }
 
     .dock-node-label {
-      /* ★ 年份下方中文標題：原 10px × 150% = 15px */
+      
       margin-top: 10px;
       font-family: 'Noto Sans TC', sans-serif;
       font-size: 15px;
@@ -574,9 +555,7 @@
       color: var(--gold-500);
     }
 
-    /* =====================================================
-   HORIZONTAL TIMELINE (other sections)
-===================================================== */
+    
     .horizontal-timeline {
       margin-top: 28px;
     }
@@ -682,9 +661,7 @@
       }
     }
 
-    /* =====================================================
-   SECTION HEADINGS — bigger number, 10% darker
-===================================================== */
+    
     .section-heading {
       position: relative;
     }
@@ -699,7 +676,7 @@
       font-size: 128px;
       font-weight: 800;
       color: #BECFE4;
-      /* #E6F0F9 darkened ~10% */
+      
       line-height: 1;
       z-index: 0;
       user-select: none;
@@ -711,9 +688,7 @@
       z-index: 1;
     }
 
-    /* =====================================================
-   OTHER ACTIVITIES mini cards
-===================================================== */
+    
     .mini-activities-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -766,9 +741,7 @@
       line-height: 1.5;
     }
 
-    /* =====================================================
-   PHOTO GALLERY SLIDER
-===================================================== */
+    
     .gallery {
       margin-top: 16px;
       position: relative;
@@ -810,7 +783,7 @@
       pointer-events: none;
     }
 
-    /* overlay arrow buttons */
+    
     .gallery-btn {
       position: absolute;
       top: 50%;
@@ -885,7 +858,7 @@
       text-align: center;
     }
 
-    /* 表演名稱 caption — 疊在圖片左上角 */
+    
     .gallery-caption {
       position: absolute;
       top: 0;
@@ -910,7 +883,7 @@
       padding: 3px 8px 3px 6px;
     }
 
-    /* 攝影 credit — 疊在圖片左下角 */
+    
     .gallery-credit {
       position: absolute;
       bottom: 0;
@@ -930,7 +903,7 @@
       text-overflow: ellipsis;
     }
 
-    /* mini-card 內的相簿比例較小 */
+    
     .mini-card .gallery {
       margin-top: 10px;
     }
@@ -950,9 +923,7 @@
       padding: 2px 7px 2px 6px;
     }
 
-    /* =====================================================
-   MOBILE BOTTOM NAV
-===================================================== */
+    
     .mobile-nav-bar {
       display: none;
       position: fixed;
@@ -1011,9 +982,7 @@
       opacity: 1;
     }
 
-    /* =====================================================
-   RWD
-===================================================== */
+    
     @media (max-width:900px) {
       .page-hero {
         flex-direction: column;
@@ -1049,7 +1018,7 @@
         font-size: 72px;
       }
 
-      /* ★ 手機版 dock 圓圈：原36px × 150% = 54px，字體同比例 */
+      
       .dock-node-circle {
         width: 54px;
         height: 54px;
@@ -1069,9 +1038,7 @@
 
 <body>
 
-  <!-- ======================================================
-     HEADER
-====================================================== -->
+  
   <header id="main-header">
     <div class="brand-area">
       <img src="images.jpeg" alt="Logo" class="site-logo">
@@ -1084,13 +1051,13 @@
           <li><a href="02_review.html" class="nav-link">活動回顧</a></li>
           <li><a href="01_about.html" class="nav-link">關於我們</a></li>
           <li><a href="/database" class="nav-link">經濟資料庫</a></li>
-          <!--<li><a href="03_support.html" class="nav-link">立即贊助</a></li>-->
+          
         </ul>
       </nav>
     </div>
   </header>
 
-  <!-- MOBILE BOTTOM NAV -->
+  
   <nav class="mobile-nav-bar" id="mobileNav" aria-label="活動分類導覽">
     <a href="#econ-night"><span class="dot"></span>經濟之夜</a>
     <a href="#econ-week"><span class="dot"></span>經濟週</a>
@@ -1099,7 +1066,7 @@
     <a href="#other-activities"><span class="dot"></span>其他活動</a>
   </nav>
 
-  <!-- FIXED SIDEBAR (appears on scroll) -->
+  
   <div class="bubble-sidebar" id="bubbleSidebar" aria-label="活動快捷導航">
     <a href="#econ-night" class="bubble-sidebar-item" aria-label="經濟之夜">
       <span class="sidebar-label">經濟之夜</span>
@@ -1123,20 +1090,18 @@
     </a>
   </div>
 
-  <!-- BACK TO TOP -->
+  
   <button id="backToTopBtn" aria-label="回到頁首">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
     </svg>
   </button>
 
-  <!-- ======================================================
-     MAIN
-====================================================== -->
+  
   <main>
     <div class="layout-container-full">
 
-      <!-- HERO: title + bubble cluster -->
+      
       <div class="page-hero reveal active">
         <div class="page-hero-text">
           <h1>活動回顧<br><span>EVENTS</span></h1>
@@ -1152,7 +1117,7 @@
         </div>
       </div>
 
-      <!-- ===== Section 1: 經濟之夜 ===== -->
+      
       <section id="econ-night" class="reveal">
         <div class="section-heading" data-num="01">
           <h2>經濟之夜</h2>
@@ -1162,7 +1127,7 @@
         </p>
         <p>官方 YouTube 頻道：<a href="https://www.youtube.com/@ntuEconNight/videos" target="_blank">NTU Econ Night ↗</a></p>
 
-        <!-- DOCK TIMELINE -->
+        
         <div class="dock-timeline">
           <div class="dock-track" id="dockTrack">
             <button class="dock-node active" data-year="2024">
@@ -1302,13 +1267,13 @@
         </div>
       </section>
 
-      <!-- ===== Section 2: 經濟週 ===== -->
+      
       <section id="econ-week" class="reveal">
         <div class="section-heading" data-num="02">
           <h2>經濟週</h2>
         </div>
         <p>經濟週是系學會每年舉辦的系列活動，通常包含園遊會、市集、主題展覽或講座等，旨在推廣經濟學知識，並提供系上同學與校內師生交流互動的平台。</p>
-        <!-- [開發備注] single-entry → 移除該 class 並新增 tab+pane 即可啟用多年份 -->
+        
         <div class="horizontal-timeline single-entry">
           <div class="timeline-nav">
             <button class="timeline-tab active" data-year="2023">2023</button>
@@ -1330,13 +1295,13 @@
         </div>
       </section>
 
-      <!-- ===== Section 3: 經濟營 ===== -->
+      
       <section id="econ-camp" class="reveal">
         <div class="section-heading" data-num="03">
           <h2>經濟營</h2>
         </div>
         <p>每年暑假舉辦的經濟營，旨在讓高中生提早接觸經濟學領域，透過課程、講座、團體活動等方式，探索經濟學的奧秘，並體驗大學生活。是高中生認識台大經濟系的重要管道。</p>
-        <!-- [開發備注] single-entry → 移除該 class 並新增 tab+pane 即可啟用多年份 -->
+        
         <div class="horizontal-timeline single-entry">
           <div class="timeline-nav">
             <button class="timeline-tab active" data-year="2023">2023</button>
@@ -1358,13 +1323,13 @@
         </div>
       </section>
 
-      <!-- ===== Section 4: 迎新 ===== -->
+      
       <section id="orientation" class="reveal">
         <div class="section-heading" data-num="04">
           <h2>迎新</h2>
         </div>
         <p>為了歡迎經濟系的新生，系學會每年都會舉辦迎新活動，幫助新生更快融入大學生活、認識系上同學與學長姐。</p>
-        <!-- [開發備注] single-entry → 移除該 class 並新增 tab+pane 即可啟用多年份 -->
+        
         <div class="horizontal-timeline single-entry">
           <div class="timeline-nav">
             <button class="timeline-tab active" data-year="future">即將更新</button>
@@ -1386,7 +1351,7 @@
         </div>
       </section>
 
-      <!-- ===== Section 5: 其他活動 ===== -->
+      
       <section id="other-activities" class="reveal">
         <div class="section-heading" data-num="05">
           <h2>其他活動</h2>
@@ -1448,12 +1413,10 @@
         </div>
       </section>
 
-    </div><!-- /.layout-container-full -->
+    </div>
   </main>
 
-  <!-- ======================================================
-     FOOTER
-====================================================== -->
+  
   <footer>
     <div class="footer-content">
       <div class="footer-col">
@@ -1487,15 +1450,11 @@
   <script src="assets/js/main.js"></script>
   <script src="assets/js/gallery-data.js"></script>
   <script>
-    /* ======================================================
-       PAGE JS — fully self-contained
-    ====================================================== */
+    
     (function () {
       'use strict';
 
-      /* --------------------------------------------------
-         1. Scroll Reveal
-      -------------------------------------------------- */
+      
       function initReveal() {
         var els = document.querySelectorAll('.reveal');
         if (!els.length) return;
@@ -1507,9 +1466,7 @@
         els.forEach(function (el) { io.observe(el); });
       }
 
-      /* --------------------------------------------------
-         2. Header shrink
-      -------------------------------------------------- */
+      
       function initHeader() {
         var h = document.getElementById('main-header');
         if (!h) return;
@@ -1518,9 +1475,7 @@
         }, { passive: true });
       }
 
-      /* --------------------------------------------------
-         3. Back to Top
-      -------------------------------------------------- */
+      
       function initBackToTop() {
         var btn = document.getElementById('backToTopBtn');
         if (!btn) return;
@@ -1532,9 +1487,7 @@
         });
       }
 
-      /* --------------------------------------------------
-         4. Bubble cluster → sidebar transition
-      -------------------------------------------------- */
+      
       function initBubbleTransition() {
         var cluster = document.getElementById('bubbleCluster');
         var sidebar = document.getElementById('bubbleSidebar');
@@ -1550,7 +1503,7 @@
           cluster.classList.toggle('hidden', passed);
           sidebar.classList.toggle('visible', passed);
 
-          /* active section highlight */
+          
           var scrollMid = window.scrollY + window.innerHeight * 0.4;
           var activeId = '';
           sections.forEach(function (sec) {
@@ -1565,9 +1518,7 @@
         update();
       }
 
-      /* --------------------------------------------------
-         5. Horizontal timeline tab switching
-      -------------------------------------------------- */
+      
       function initTimelines() {
         document.querySelectorAll('.horizontal-timeline').forEach(function (tl) {
           var tabs = tl.querySelectorAll('.timeline-tab');
@@ -1585,9 +1536,7 @@
         });
       }
 
-      /* --------------------------------------------------
-         6. Dock timeline — macOS magnification + click
-      -------------------------------------------------- */
+      
       function initDock() {
         var track = document.getElementById('dockTrack');
         if (!track) return;
@@ -1596,7 +1545,7 @@
         var panes = Array.from(document.querySelectorAll('.dock-pane'));
 
         var MAX_SCALE = 2.0;
-        var SPREAD = 150; /* px — 影響半徑，原100px × 150% = 150px（與圓圈尺寸同比例） */
+        var SPREAD = 150; 
         var DUR_FAST = '0.08s';
         var DUR_SLOW = '0.5s';
 
@@ -1641,7 +1590,7 @@
         track.addEventListener('mousemove', function (e) { applyMagnify(e.clientX); });
         track.addEventListener('mouseleave', resetMagnify);
 
-        /* click → switch pane */
+        
         nodes.forEach(function (node) {
           node.addEventListener('click', function () {
             var year = node.getAttribute('data-year');
@@ -1654,9 +1603,7 @@
         });
       }
 
-      /* --------------------------------------------------
-         7. Mobile bottom nav — highlight active section
-      -------------------------------------------------- */
+      
       function initMobileNav() {
         var links = document.querySelectorAll('#mobileNav a');
         if (!links.length) return;
@@ -1673,9 +1620,7 @@
         }, { passive: true });
       }
 
-      /* --------------------------------------------------
-         8. Photo Gallery Slider
-      -------------------------------------------------- */
+      
       function initGalleries() {
         document.querySelectorAll('.gallery').forEach(function (gallery) {
           var section = gallery.getAttribute('data-section');
@@ -1697,12 +1642,12 @@
           var current = 0;
 
           urls.forEach(function (item, i) {
-            /* 支援純字串或 {url, caption, credit} 物件 */
+            
             var src = typeof item === 'string' ? item : item.url;
             var caption = typeof item === 'string' ? null : (item.caption || null);
             var credit = typeof item === 'string' ? null : (item.credit || null);
 
-            /* slide */
+            
             var slide = document.createElement('div');
             slide.className = 'gallery-slide' + (i === 0 ? ' active' : '');
             var img = document.createElement('img');
@@ -1711,7 +1656,7 @@
             img.loading = 'lazy';
             slide.appendChild(img);
 
-            /* 表演名稱 overlay（有填才顯示，左上角） */
+            
             if (caption) {
               var captionEl = document.createElement('span');
               captionEl.className = 'gallery-caption';
@@ -1719,7 +1664,7 @@
               slide.appendChild(captionEl);
             }
 
-            /* credit overlay（有填才顯示，左下角） */
+            
             if (credit) {
               var creditEl = document.createElement('span');
               creditEl.className = 'gallery-credit';
@@ -1729,7 +1674,7 @@
 
             track.appendChild(slide);
 
-            /* dot */
+            
             var dot = document.createElement('button');
             dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
             dot.setAttribute('aria-label', '第 ' + (i + 1) + ' 張');
@@ -1762,9 +1707,7 @@
         });
       }
 
-      /* --------------------------------------------------
-         BOOT
-      -------------------------------------------------- */
+      
       document.addEventListener('DOMContentLoaded', function () {
         initReveal();
         initHeader();

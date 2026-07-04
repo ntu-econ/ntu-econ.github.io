@@ -1,9 +1,7 @@
-/* 實驗室風格重構 - 去 AI 化設計 */
-/* =========================================
-   1. 核心變數與重置 (Design Tokens)
-   ========================================= */
+
+/* 全站共用色彩與尺寸變數 */
 :root {
-    /* 品牌色系 */
+    
     --navy-900: #0A1E3F; 
     --navy-800: #14325A; 
     --navy-700: #1C4E80; 
@@ -13,19 +11,19 @@
     --gold-400: #DCC09B;
     --gold-100: #F9F3EB;
     
-    /* 文字色彩 */
+    
     --text-main: #334155;  
     --text-muted: #718096; 
     
     --bg-body: #F8FAFC;
     --bg-white: #FAFAFA; 
     
-    /* 陰影系統 */
+    
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
     --shadow-float: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     
-    /* 尺寸設定 */
+    
     --sidebar-width: 220px;
     --radius-xl: 0px; 
     --radius-md: 0px; 
@@ -33,6 +31,7 @@
     --ease-custom: cubic-bezier(0.19, 1, 0.22, 1); 
 }
 
+/* 基本全域樣式 */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg-body); }
 ::-webkit-scrollbar-thumb { 
@@ -72,11 +71,10 @@ a:hover { text-shadow: 2px 0 var(--gold-500), -2px 0 var(--navy-700); }
 ul { list-style: none; margin: 0; padding: 0; }
 .icon { width: 1.25em; height: 1.25em; display: inline-block; vertical-align: middle; flex-shrink: 0; }
 
-/* =========================================
-   2. Header (全面改為明體)
-   ========================================= */
+
+/* 頁首與導覽列 */
 header {
-    font-family: "PMingLiU", "新細明體", serif; /* 橫列字體改為明體 */
+    font-family: "PMingLiU", "新細明體", serif; 
     font-weight: 700;
     display: flex;
     justify-content: space-between;
@@ -101,7 +99,7 @@ header.scrolled { height: 60px; box-shadow: var(--shadow-sm); }
 
 .nav-area ul { display: flex; gap: 8px; }
 .nav-link {
-    font-family: "PMingLiU", "新細明體", serif; /* 選單也套用明體 */
+    font-family: "PMingLiU", "新細明體", serif; 
     font-size: 17px; font-weight: 700; color: var(--text-muted);
     padding: 8px 16px; border-radius: 0; position: relative; overflow: hidden;
     text-transform: uppercase; letter-spacing: 1px;
@@ -113,9 +111,8 @@ header.scrolled { height: 60px; box-shadow: var(--shadow-sm); }
 .nav-link:hover::before { width: 100%; }
 .nav-link:hover { color: var(--navy-900); }
 
-/* =========================================
-   3. Back to Top Button (回到頁首小工具)
-   ========================================= */
+
+/* 回到頁首按鈕 */
 #backToTopBtn {
     position: fixed; bottom: 28px; right: 24px;
     width: 48px; height: 48px;
@@ -136,25 +133,24 @@ header.scrolled { height: 60px; box-shadow: var(--shadow-sm); }
 }
 #backToTopBtn svg { width: 22px; height: 22px; pointer-events: none; }
 
-/* =========================================
-   4. Footer
-   ========================================= */
+
+/* 頁尾 */
 footer { background: var(--navy-900); color: #94A3B8; padding: 80px 0 40px; margin-top: 100px; }
 .footer-content { max-width: 1280px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; text-align: left; }
 .footer-col h4 { color: #fff; margin-bottom: 24px; font-size: 18px; letter-spacing: 1px; margin-top: 0; }
 .footer-col a:hover { color: var(--gold-500); }
 .footer-bottom { text-align: center; margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 15px; }
 
-/* 其餘排版及元件樣式... (略) */
-/* =========================================
-   5. 動畫與其它共用元件
-   ========================================= */
+
+
+/* 捲動顯示動畫 */
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity 1s var(--ease-custom), transform 1s var(--ease-custom); }
 .reveal.active { opacity: 1; transform: translateY(0) skewY(0deg); }
 .delay-100 { transition-delay: 0.1s; }
 .delay-200 { transition-delay: 0.2s; }
 .delay-300 { transition-delay: 0.3s; }
 
+/* 內頁雙欄版面 */
 .layout-container { max-width: 1280px; margin: clamp(40px, 8vw, 100px) auto; padding: 0 clamp(20px, 5%, 60px); display: grid; grid-template-columns: var(--sidebar-width) 1fr; gap: 40px; align-items: start; position: relative; }
 .sidebar { position: sticky; top: 100px; background: var(--bg-white); border-radius: 0; padding: 24px; border: 1px solid var(--navy-900); box-shadow: 4px 4px 0 var(--navy-900); width: var(--sidebar-width); z-index: 10; }
 .sidebar-title { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--gold-500); font-weight: 800; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
@@ -175,7 +171,7 @@ section { background: var(--bg-white); border-radius: 0; padding: clamp(30px, 5v
 .section-heading { display: flex; align-items: center; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 2px solid var(--navy-900); }
 .section-heading h2 { font-size: 28px; color: var(--navy-900); margin: 0; font-weight: 700; display: flex; align-items: center; gap: 12px; }
 
-/* RWD */
+
 @media (max-width: 1024px) {
     .layout-container { grid-template-columns: 1fr; display: flex; flex-direction: column; }
     .sidebar { display: none; }
@@ -187,28 +183,26 @@ section { background: var(--bg-white); border-radius: 0; padding: clamp(30px, 5v
     section { padding: 32px 24px; }
     .layout-container-full { padding: 0 20px; }
 }
-/* =========================================
-   6. 全站 UX 微優化
-   ========================================= */
-/* 鍵盤 focus ring */
+
+
 :focus-visible {
     outline: 2.5px solid var(--gold-500);
     outline-offset: 3px;
 }
 :focus:not(:focus-visible) { outline: none; }
 
-/* nav-link：目前頁面底線常駐 */
+
 .nav-link.current-page::before { width: 100%; }
 .nav-link.current-page { color: var(--navy-900); }
 
-/* button 手型指標 */
+
 button { cursor: pointer; }
 
-/* section hover 左側金色邊框微提示 */
+
 section { transition: box-shadow 0.35s var(--ease-custom); }
 section:hover { box-shadow: inset 3px 0 0 var(--gold-500); }
 
-/* gallery / dock / toc focus */
+
 .gallery-btn:focus-visible,
 .dock-node:focus-visible,
 .toc-link:focus-visible {
