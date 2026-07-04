@@ -2,8 +2,6 @@
 
 這個專案是國立臺灣大學經濟學系學生會的官方網站，主要內容包含系上公告、活動資訊、回顧頁面與常用外部連結。網站以靜態頁面為主，使用純 HTML、CSS、JavaScript，不使用前端框架。大多數內容直接寫在 HTML，少數共用資料集中放在 `assets/data/`。
 
-網站的視覺基調以深藍、金色與白色為主，搭配少量動態效果與圖片區塊。內容沿用既有格式時，版面與風格會維持一致。
-
 ## 專案結構
 
 ```text
@@ -108,7 +106,7 @@ ntu-econ.github.io/
 
 - 公告：改 `assets/data/announcements.js`
 - 首頁連結：改 `assets/data/links.json`
-- 連結頁：改 `links.html`，並同步確認 `assets/data/links.json`
+- 連結頁：改 `links.html`，同步確認 `assets/data/links.json`
 - 外觀：改 `assets/css/style.css`
 - 首頁互動或共用渲染：改 `assets/js/main.js`
 - 單一頁文字或圖片：改對應 HTML 檔
