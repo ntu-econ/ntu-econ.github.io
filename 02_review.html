@@ -1034,9 +1034,12 @@
       }
     }
   </style>
+  <script src="assets/js/site-config.js?v=20260825-2" defer></script>
+  <script src="assets/js/page-content.js?v=20260825-2" defer></script>
+  <script src="assets/js/auth-ui.js" defer></script>
 </head>
 
-<body>
+<body data-cms-page="review">
 
   
   <header id="main-header">
@@ -1447,7 +1450,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js?v=20260825-1"></script>
   <script src="assets/js/gallery-data.js"></script>
   <script>
     
@@ -1716,7 +1719,7 @@
         initTimelines();
         initDock();
         initMobileNav();
-        initGalleries();
+        Promise.resolve(window.NTU_ECON_PAGE_READY).then(initGalleries);
       });
 
     }());

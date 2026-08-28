@@ -1,0 +1,48 @@
+name = "ntu-econ-portal"
+main = "src/index.js"
+compatibility_date = "2026-08-24"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = true
+
+[observability]
+enabled = true
+
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+
+[vars]
+# Public values. Replace these before the first deployment.
+GOOGLE_CLIENT_ID = "228459143084-drkag3ou6ctvi4jv0un49vvhv79poqi4.apps.googleusercontent.com"
+GOOGLE_HOSTED_DOMAIN = "g.ntu.edu.tw"
+SPREADSHEET_ID = "1oR5AAgPluQTFgyKT3e2eklvHXSv6X3hvvT8qg-eVhFU"
+OWNER_ADMINS = "b13303035@g.ntu.edu.tw"
+# After the first successful owner login, copy the stable Google sub from the
+# Users sheet here and remove OWNER_ADMINS when practical.
+OWNER_SUBS = ""
+PUBLIC_SITE_ORIGINS = "https://ntu-econ.github.io,http://localhost:8000,http://127.0.0.1:8000"
+SESSION_TTL_SECONDS = "3600"
+PUBLIC_CACHE_SECONDS = "60"
+
+# Secrets are configured with `wrangler secret put` and must never be committed:
+#   GOOGLE_SA_KEY  - the complete Google service-account JSON string
+#   SESSION_SECRET - at least 32 random bytes (for example, 64 hex characters)
+
+[env.staging]
+name = "ntu-econ-portal-staging"
+workers_dev = true
+
+[env.staging.vars]
+GOOGLE_CLIENT_ID = "REPLACE_WITH_STAGING_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
+GOOGLE_HOSTED_DOMAIN = "g.ntu.edu.tw"
+SPREADSHEET_ID = "REPLACE_WITH_STAGING_GOOGLE_SHEET_ID"
+OWNER_ADMINS = "REPLACE_WITH_OWNER@g.ntu.edu.tw"
+OWNER_SUBS = ""
+PUBLIC_SITE_ORIGINS = "http://localhost:8000,http://127.0.0.1:8000"
+SESSION_TTL_SECONDS = "3600"
+PUBLIC_CACHE_SECONDS = "0"

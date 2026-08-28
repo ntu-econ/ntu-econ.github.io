@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'self'; script-src 'self' https://accounts.google.com/gsi/client; style-src 'self' https://accounts.google.com/gsi/style; frame-src https://accounts.google.com/gsi/; connect-src 'self' https://accounts.google.com/gsi/; img-src 'self' data: https://*.googleusercontent.com;">
+  <title>登入與會員專區｜臺大經濟系學生會</title>
+  <link rel="stylesheet" href="/assets/portal.css">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="/assets/portal.js" defer></script>
+  <script src="/assets/member.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳到主要內容</a>
+  <header class="portal-header">
+    <a class="brand" href="https://ntu-econ.github.io/">
+      <span class="brand-mark" aria-hidden="true">E</span>
+      <span class="brand-copy">
+        <span class="brand-title">國立臺灣大學經濟學系學生會</span>
+        <span class="brand-subtitle">Member &amp; Admin Portal</span>
+      </span>
+    </a>
+    <div class="header-actions">
+      <span class="header-user" id="header-user"></span>
+      <a class="btn btn--gold btn--small" id="admin-entry-link" href="/admin/" hidden>管理後台</a>
+      <a class="btn btn--quiet btn--small" href="https://ntu-econ.github.io/">返回官網</a>
+      <button class="btn btn--quiet btn--small" id="logout-button" type="button" hidden>登出</button>
+    </div>
+  </header>
+
+  <main class="portal-main" id="main-content">
+    <section class="auth-layout" id="loading-view" aria-live="polite">
+      <div class="auth-card">
+        <div class="loading-mark" aria-hidden="true"></div>
+        <h1>正在確認登入狀態</h1>
+        <p class="auth-copy">請稍候，我們正在安全地確認您的會員資格。</p>
+      </div>
+    </section>
+
+    <section class="auth-layout" id="login-view" hidden>
+      <div class="auth-card">
+        <div class="auth-emblem" aria-hidden="true">E</div>
+        <span class="eyebrow">NTU ECON SA</span>
+        <h1>會員與管理員登入</h1>
+        <p class="auth-copy">所有使用者都從這裡登入。系統確認臺大身分後，會員會進入會員專區，管理員則會直接進入網站後台。</p>
+        <div class="google-button" id="google-signin" aria-label="Google 登入"></div>
+        <div class="message message--error" id="login-message" role="alert" hidden></div>
+        <p class="fine-print">本站不會取得或保存您的 Google 密碼。</p>
+      </div>
+    </section>
+
+    <section class="auth-layout" id="denied-view" hidden>
+      <div class="auth-card">
+        <div class="auth-emblem" aria-hidden="true">!</div>
+        <span class="eyebrow">Access check</span>
+        <h1>尚未開通會員資格</h1>
+        <p class="auth-copy" id="denied-copy">您的 Google 帳號已通過驗證，但目前不在有效會員名單中。如有疑問，請聯絡系學會。</p>
+        <button class="btn btn--primary" id="switch-account-button" type="button">改用其他帳號</button>
+      </div>
+    </section>
+
+    <section id="member-view" hidden>
+      <div class="page-heading">
+        <div>
+          <span class="eyebrow">Members only</span>
+          <h1>會員專區</h1>
+          <p class="page-intro" id="member-greeting">歡迎回來。</p>
+        </div>
+        <div class="btn-row">
+          <a class="btn btn--gold" id="member-admin-button" href="/admin/" hidden>進入管理後台</a>
+          <button class="btn" id="refresh-content-button" type="button">重新整理</button>
+        </div>
+      </div>
+      <div class="member-grid" id="member-content" aria-live="polite"></div>
+      <p class="footer-note">會員內容僅由登入後的同源 API 提供，請勿轉傳受限資料。</p>
+    </section>
+  </main>
+
+  <div class="toast-region" id="toast-region" aria-live="polite"></div>
+</body>
+</html>

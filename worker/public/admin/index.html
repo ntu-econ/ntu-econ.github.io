@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'self'; script-src 'self'; style-src 'self'; frame-src 'none'; connect-src 'self'; img-src 'self' data:;">
+  <title>網站後台｜臺大經濟系學生會</title>
+  <link rel="stylesheet" href="/assets/portal.css">
+  <script src="/assets/portal.js" defer></script>
+  <script src="/assets/page-editor.js" defer></script>
+  <script src="/assets/admin.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳到主要內容</a>
+  <header class="portal-header">
+    <a class="brand" href="https://ntu-econ.github.io/">
+      <span class="brand-mark" aria-hidden="true">E</span>
+      <span class="brand-copy">
+        <span class="brand-title">國立臺灣大學經濟學系學生會</span>
+        <span class="brand-subtitle">Website Administration</span>
+      </span>
+    </a>
+    <div class="header-actions">
+      <span class="header-user" id="header-user"></span>
+      <a class="btn btn--quiet btn--small" href="/member/?view=member">會員專區</a>
+      <button class="btn btn--quiet btn--small" id="logout-button" type="button" hidden>登出</button>
+    </div>
+  </header>
+
+  <main class="portal-main portal-main--wide" id="main-content">
+    <section class="auth-layout" id="loading-view" aria-live="polite">
+      <div class="auth-card">
+        <div class="loading-mark" aria-hidden="true"></div>
+        <h1>正在確認管理權限</h1>
+        <p class="auth-copy">請稍候，系統正在驗證安全工作階段。</p>
+      </div>
+    </section>
+
+    <section class="auth-layout" id="login-view" hidden>
+      <div class="auth-card">
+        <div class="auth-emblem" aria-hidden="true">E</div>
+        <span class="eyebrow">Single sign-on</span>
+        <h1>請從統一入口登入</h1>
+        <p class="auth-copy" id="admin-entry-message">會員與管理員共用同一個 Google 登入入口，登入後系統會依角色自動帶您到正確頁面。</p>
+        <a class="btn btn--primary" href="/member/?next=/admin/">前往登入</a>
+        <p class="fine-print">登入後的所有內容異動都會留下操作紀錄。</p>
+      </div>
+    </section>
+
+    <section class="auth-layout" id="denied-view" hidden>
+      <div class="auth-card">
+        <div class="auth-emblem" aria-hidden="true">!</div>
+        <span class="eyebrow">Access denied</span>
+        <h1>沒有後台權限</h1>
+        <p class="auth-copy" id="denied-copy">此帳號未列入網站管理員名單。</p>
+        <button class="btn btn--primary" id="switch-account-button" type="button">改用其他帳號</button>
+      </div>
+    </section>
+
+    <section id="admin-view" hidden>
+      <div class="admin-layout">
+        <aside class="admin-sidebar" aria-label="後台功能">
+          <div class="admin-sidebar__heading">管理選單</div>
+          <nav class="admin-nav" id="admin-nav">
+            <button type="button" data-panel="dashboard" aria-current="page">總覽</button>
+            <button type="button" data-panel="announcements" data-permission="content">公告</button>
+            <button type="button" data-panel="links" data-permission="content">相關連結</button>
+            <button type="button" data-panel="pages" data-permission="content">公開頁面</button>
+            <button type="button" data-panel="member-content" data-permission="content">會員內容</button>
+            <button type="button" data-panel="members" data-permission="members">會員名單</button>
+            <button type="button" data-panel="admins" data-owner-only="true">管理員</button>
+            <button type="button" data-panel="audit" data-permission="audit">操作紀錄</button>
+          </nav>
+        </aside>
+
+        <div class="admin-content">
+          <section class="admin-panel is-active" id="panel-dashboard" data-admin-panel="dashboard">
+            <div class="admin-welcome">
+              <span class="eyebrow">NTU ECON SA</span>
+              <h1 id="welcome-title">網站管理後台</h1>
+              <p>在這裡更新公告、連結、公開頁面與會員內容。儲存前可以先用即時預覽確認版面。</p>
+            </div>
+            <div class="metric-grid" aria-label="資料統計">
+              <div class="metric"><span class="metric__value" id="metric-announcements">—</span><span class="metric__label">公告</span></div>
+              <div class="metric"><span class="metric__value" id="metric-links">—</span><span class="metric__label">相關連結</span></div>
+              <div class="metric"><span class="metric__value" id="metric-pages">—</span><span class="metric__label">公開頁面</span></div>
+              <div class="metric"><span class="metric__value" id="metric-content">—</span><span class="metric__label">會員內容</span></div>
+              <div class="metric"><span class="metric__value" id="metric-members">—</span><span class="metric__label">會員名單</span></div>
+            </div>
+            <div class="panel-card panel-card--accent">
+              <h2 class="panel-title">系統狀態</h2>
+              <p class="section-copy" id="system-status">正在讀取後台狀態…</p>
+              <div class="btn-row">
+                <button class="btn" id="refresh-dashboard-button" type="button">重新整理統計</button>
+                <a class="btn" href="https://ntu-econ.github.io/" target="_blank" rel="noopener noreferrer">查看公開網站</a>
+              </div>
+            </div>
+          </section>
+
+          <section class="admin-panel" id="panel-announcements" data-admin-panel="announcements">
+            <div class="section-heading">
+              <div><span class="eyebrow">Content</span><h1>公告管理</h1><p class="section-copy">新增、置頂及排程公開公告。</p></div>
+              <button class="btn" type="button" data-refresh="announcements">重新整理</button>
+            </div>
+            <div class="editor-workspace">
+              <form class="panel-card panel-card--accent editor-form" id="announcement-form">
+                <div class="editor-form__heading">
+                  <div><span class="editor-step">編輯內容</span><h2 class="panel-title" id="announcement-form-title">新增公告</h2></div>
+                  <span class="editor-live-dot">即時預覽</span>
+                </div>
+                <input id="announcement-id" type="hidden">
+                <div class="form-grid">
+                  <div class="field"><label for="announcement-title">標題</label><input id="announcement-title" maxlength="160" required></div>
+                  <div class="field field--quarter"><label for="announcement-date">日期</label><input id="announcement-date" type="date"></div>
+                  <div class="field field--quarter"><label for="announcement-tag">分類</label><select id="announcement-tag"><option value="公告">公告</option><option value="活動">活動</option><option value="最新">最新</option><option value="招募">招募</option></select></div>
+                  <div class="field field--quarter"><label for="announcement-order">排序</label><input id="announcement-order" type="number" value="0"></div>
+                  <div class="field field--full"><label for="announcement-link">連結</label><input id="announcement-link" type="text" placeholder="https://… 或 /站內路徑"><p class="field-help">僅接受 http、https 或本站相對路徑。</p></div>
+                  <div class="field field--full"><label for="announcement-body">內文</label><textarea id="announcement-body" maxlength="12000" placeholder="補充公告內容；首頁公告列只顯示日期、分類與標題。"></textarea></div>
+                  <div class="field field--quarter"><label for="announcement-from">上架日</label><input id="announcement-from" type="date"></div>
+                  <div class="field field--quarter"><label for="announcement-until">下架日</label><input id="announcement-until" type="date"></div>
+                  <div class="field"><span class="field-label">狀態</span><div class="checks"><label class="check"><input id="announcement-highlight" type="checkbox">醒目置頂</label><label class="check"><input id="announcement-published" type="checkbox" checked>公開</label></div></div>
+                  <div class="form-actions"><button class="btn btn--primary" type="submit">儲存公告</button><button class="btn" id="announcement-cancel" type="button">清除表單</button></div>
+                </div>
+              </form>
+              <aside class="live-preview" aria-labelledby="announcement-preview-title">
+                <div class="preview-toolbar">
+                  <div><span class="preview-label">Preview</span><h2 id="announcement-preview-title">首頁公告預覽</h2></div>
+                  <div class="preview-size-switch" aria-label="預覽尺寸">
+                    <button type="button" data-preview-stage="announcement-preview-stage" data-preview-width="desktop" aria-pressed="true">桌面</button>
+                    <button type="button" data-preview-stage="announcement-preview-stage" data-preview-width="mobile" aria-pressed="false">手機</button>
+                  </div>
+                </div>
+                <div class="preview-status" id="announcement-preview-status">公開 · 一般公告</div>
+                <div class="preview-stage" id="announcement-preview-stage">
+                  <div class="preview-viewport">
+                    <div class="preview-site-header"><span class="preview-site-mark">E</span><span>臺大經濟系學生會</span></div>
+                    <div class="preview-site-content">
+                      <div class="preview-section-heading"><strong>最新公告</strong><span>Announcements</span></div>
+                      <div class="preview-news-row" id="announcement-preview-row">
+                        <span class="preview-news-date" id="announcement-preview-date">日期</span>
+                        <span class="preview-news-tag" id="announcement-preview-tag">公告</span>
+                        <strong class="preview-news-title" id="announcement-preview-heading">請輸入公告標題</strong>
+                        <span class="preview-news-arrow" id="announcement-preview-arrow">→</span>
+                      </div>
+                      <div class="preview-copy-block">
+                        <span class="preview-copy-label">內文草稿</span>
+                        <p id="announcement-preview-body">尚未輸入內文。首頁目前只顯示上方公告列。</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </aside>
+            </div>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>公告</th><th>日期／排程</th><th>狀態</th><th>操作</th></tr></thead><tbody id="announcements-body"></tbody></table></div>
+          </section>
+
+          <section class="admin-panel" id="panel-links" data-admin-panel="links">
+            <div class="section-heading">
+              <div><span class="eyebrow">Content</span><h1>相關連結</h1><p class="section-copy">首頁與完整連結頁共用同一份資料。</p></div>
+              <button class="btn" type="button" data-refresh="links">重新整理</button>
+            </div>
+            <div class="editor-workspace">
+              <form class="panel-card panel-card--accent editor-form" id="link-form">
+                <div class="editor-form__heading">
+                  <div><span class="editor-step">編輯內容</span><h2 class="panel-title" id="link-form-title">新增連結</h2></div>
+                  <span class="editor-live-dot">即時預覽</span>
+                </div>
+                <input id="link-id" type="hidden">
+                <div class="form-grid">
+                  <div class="field"><label for="link-title">標題</label><input id="link-title" maxlength="120" required></div>
+                  <div class="field"><label for="link-group">群組</label><input id="link-group" maxlength="80" placeholder="例如：社群媒體"></div>
+                  <div class="field field--full"><label for="link-description">說明</label><input id="link-description" maxlength="240"></div>
+                  <div class="field field--full"><label for="link-url">網址</label><input id="link-url" type="text" required placeholder="https://… 或 /站內路徑"><p class="field-help">不接受 javascript: 或 data: 網址。</p></div>
+                  <div class="field field--third"><label for="link-icon">圖示</label><select id="link-icon"><option value="globe">網站</option><option value="instagram">Instagram</option><option value="facebook">Facebook</option><option value="youtube">YouTube</option><option value="line">LINE</option></select></div>
+                  <div class="field field--third"><label for="link-order">排序</label><input id="link-order" type="number" value="0"></div>
+                  <div class="field field--third"><span class="field-label">狀態</span><div class="checks"><label class="check"><input id="link-home" type="checkbox">首頁顯示</label><label class="check"><input id="link-published" type="checkbox" checked>公開</label></div></div>
+                  <div class="form-actions"><button class="btn btn--primary" type="submit">儲存連結</button><button class="btn" id="link-cancel" type="button">清除表單</button></div>
+                </div>
+              </form>
+              <aside class="live-preview" aria-labelledby="link-preview-title">
+                <div class="preview-toolbar">
+                  <div><span class="preview-label">Preview</span><h2 id="link-preview-title">連結卡片預覽</h2></div>
+                  <div class="preview-size-switch" aria-label="預覽尺寸">
+                    <button type="button" data-preview-stage="link-preview-stage" data-preview-width="desktop" aria-pressed="true">桌面</button>
+                    <button type="button" data-preview-stage="link-preview-stage" data-preview-width="mobile" aria-pressed="false">手機</button>
+                  </div>
+                </div>
+                <div class="preview-status" id="link-preview-status">公開 · 完整連結頁</div>
+                <div class="preview-stage" id="link-preview-stage">
+                  <div class="preview-viewport preview-viewport--links">
+                    <div class="preview-site-header"><span class="preview-site-mark">E</span><span>臺大經濟系學生會</span></div>
+                    <div class="preview-site-content">
+                      <div class="preview-section-heading"><strong>相關連結</strong><span>All Links</span></div>
+                      <span class="preview-link-group" id="link-preview-group">相關連結</span>
+                      <div class="preview-link-card">
+                        <span class="preview-link-icon" id="link-preview-icon">◎</span>
+                        <span class="preview-link-copy"><strong id="link-preview-heading">請輸入連結標題</strong><small id="link-preview-description">連結說明會顯示在這裡</small></span>
+                        <span class="preview-link-arrow">→</span>
+                      </div>
+                      <p class="preview-url" id="link-preview-url">尚未設定網址</p>
+                    </div>
+                  </div>
+                </div>
+              </aside>
+            </div>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>群組／連結</th><th>網址</th><th>排序</th><th>狀態</th><th>操作</th></tr></thead><tbody id="links-body"></tbody></table></div>
+          </section>
+
+          <section class="admin-panel" id="panel-pages" data-admin-panel="pages">
+            <div class="section-heading">
+              <div><span class="eyebrow">Visual page builder</span><h1>公開頁面管理</h1><p class="section-copy">自由新增文字、圖片、圖文並排、卡片與按鈕，拖曳即可調整公開頁面的區塊順序。</p></div>
+              <button class="btn" type="button" data-refresh="pages">重新整理</button>
+            </div>
+            <div class="page-editor-bar panel-card">
+              <div class="field">
+                <label for="page-editor-page">選擇頁面</label>
+                <select id="page-editor-page">
+                  <option value="about">關於我們</option>
+                  <option value="review">活動回顧</option>
+                  <option value="support">贊助與支持</option>
+                </select>
+              </div>
+              <a class="btn" id="page-editor-public-link" href="https://ntu-econ.github.io/01_about.html" target="_blank" rel="noopener noreferrer">開啟公開頁面</a>
+            </div>
+            <div class="editor-workspace editor-workspace--page">
+              <form class="panel-card panel-card--accent editor-form" id="page-content-form">
+                <div class="editor-form__heading">
+                  <div><span class="editor-step">編輯頁面</span><h2 class="panel-title" id="page-editor-title">關於我們</h2></div>
+                  <span class="editor-live-dot">即時預覽</span>
+                </div>
+                <input id="page-content-id" type="hidden">
+                <section class="page-builder" aria-labelledby="page-builder-heading">
+                  <div class="page-builder__heading">
+                    <div><span class="field-label">自由版面</span><h3 id="page-builder-heading">加入內容區塊</h3></div>
+                    <span class="page-builder__hint">可拖曳排序</span>
+                  </div>
+                  <div class="page-builder-toolbar" aria-label="加入內容區塊">
+                    <button class="block-add" type="button" data-add-block="hero"><span>▣</span>橫幅</button>
+                    <button class="block-add" type="button" data-add-block="text"><span>¶</span>文字</button>
+                    <button class="block-add" type="button" data-add-block="image"><span>▧</span>圖片</button>
+                    <button class="block-add" type="button" data-add-block="split"><span>◫</span>圖文並排</button>
+                    <button class="block-add" type="button" data-add-block="cards"><span>▦</span>卡片群組</button>
+                    <button class="block-add" type="button" data-add-block="button"><span>→</span>按鈕</button>
+                    <button class="block-add" type="button" data-add-block="divider"><span>↕</span>間距</button>
+                  </div>
+                  <div class="page-block-list" id="page-block-list"></div>
+                  <div class="page-builder-empty" id="page-builder-empty">
+                    <strong>目前使用原網站版面</strong>
+                    <p>從上方加入第一個區塊後，公開頁會切換成自由版面；舊內容仍會保留，可隨時切回。</p>
+                  </div>
+                </section>
+                <details class="page-editor-group page-editor-legacy" id="page-editor-legacy">
+                  <summary>原網站固定欄位（相容模式）</summary>
+                  <p class="field-help">沒有自由區塊時，公開頁會使用這些欄位與原本的版型。加入自由區塊後仍會保存，但不會顯示。</p>
+                  <div class="page-editor-fields" id="page-editor-fields"></div>
+                </details>
+                <details class="page-editor-group" id="page-editor-gallery-group">
+                  <summary>原網站相簿（相容模式）</summary>
+                  <p class="field-help">每行一張：圖片網址 | 圖片說明 | 攝影資訊。自由版面的圖片請直接使用「圖片」、「圖文並排」或「卡片群組」。</p>
+                  <div class="page-editor-gallery-fields" id="page-editor-gallery-fields"></div>
+                </details>
+                <div class="field field--full page-editor-publish"><span class="field-label">公開狀態</span><div class="checks"><label class="check"><input id="page-content-published" type="checkbox" checked>將此版本套用到公開網站</label></div></div>
+                <div class="form-actions"><button class="btn btn--primary" type="submit">儲存整個頁面</button><button class="btn" id="page-content-defaults" type="button">恢復網站預設值</button></div>
+              </form>
+              <aside class="live-preview page-live-preview" aria-labelledby="page-preview-title">
+                <div class="preview-toolbar">
+                  <div><span class="preview-label">Preview</span><h2 id="page-preview-title">公開頁面預覽</h2></div>
+                  <div class="preview-size-switch" aria-label="預覽尺寸">
+                    <button type="button" data-preview-stage="page-preview-stage" data-preview-width="desktop" aria-pressed="true">桌面</button>
+                    <button type="button" data-preview-stage="page-preview-stage" data-preview-width="mobile" aria-pressed="false">手機</button>
+                  </div>
+                </div>
+                <div class="preview-status" id="page-preview-status">公開版本</div>
+                <div class="preview-stage page-preview-stage" id="page-preview-stage">
+                  <div class="preview-viewport page-preview-viewport">
+                    <div class="preview-site-header"><span class="preview-site-mark">E</span><span>國立臺灣大學經濟學系學生會</span></div>
+                    <div class="page-preview-content" id="page-preview-content"></div>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </section>
+
+          <section class="admin-panel" id="panel-member-content" data-admin-panel="member-content">
+            <div class="section-heading">
+              <div><span class="eyebrow">Members only</span><h1>會員內容</h1><p class="section-copy">內容只會在後端確認會員資格後回傳。</p></div>
+              <button class="btn" type="button" data-refresh="member-content">重新整理</button>
+            </div>
+            <div class="editor-workspace">
+              <form class="panel-card panel-card--accent editor-form" id="member-content-form">
+                <div class="editor-form__heading">
+                  <div><span class="editor-step">編輯內容</span><h2 class="panel-title" id="member-content-form-title">新增會員內容</h2></div>
+                  <span class="editor-live-dot">即時預覽</span>
+                </div>
+                <input id="member-content-id" type="hidden">
+                <div class="form-grid">
+                  <div class="field"><label for="member-content-title">標題</label><input id="member-content-title" maxlength="160" required></div>
+                  <div class="field field--quarter"><label for="member-content-order">排序</label><input id="member-content-order" type="number" value="0"></div>
+                  <div class="field field--full"><label for="member-content-summary">摘要</label><input id="member-content-summary" maxlength="1000"></div>
+                  <div class="field field--full"><label for="member-content-body">內容</label><textarea id="member-content-body" maxlength="12000" required></textarea></div>
+                  <div class="field"><label for="member-content-link">資源連結</label><input id="member-content-link" type="text" placeholder="https://…"><p class="field-help">會員資源連結需使用完整的 http 或 https 網址。</p></div>
+                  <div class="field field--quarter"><label for="member-content-from">上架日</label><input id="member-content-from" type="date"></div>
+                  <div class="field field--quarter"><label for="member-content-until">下架日</label><input id="member-content-until" type="date"></div>
+                  <div class="field"><span class="field-label">狀態</span><div class="checks"><label class="check"><input id="member-content-published" type="checkbox" checked>開放會員查看</label></div></div>
+                  <div class="form-actions"><button class="btn btn--primary" type="submit">儲存內容</button><button class="btn" id="member-content-cancel" type="button">清除表單</button></div>
+                </div>
+              </form>
+              <aside class="live-preview" aria-labelledby="member-content-preview-title">
+                <div class="preview-toolbar">
+                  <div><span class="preview-label">Preview</span><h2 id="member-content-preview-title">會員內容預覽</h2></div>
+                  <div class="preview-size-switch" aria-label="預覽尺寸">
+                    <button type="button" data-preview-stage="member-content-preview-stage" data-preview-width="desktop" aria-pressed="true">桌面</button>
+                    <button type="button" data-preview-stage="member-content-preview-stage" data-preview-width="mobile" aria-pressed="false">手機</button>
+                  </div>
+                </div>
+                <div class="preview-status" id="member-content-preview-status">開放會員查看</div>
+                <div class="preview-stage" id="member-content-preview-stage">
+                  <div class="preview-viewport">
+                    <div class="preview-site-header"><span class="preview-site-mark">E</span><span>會員專區</span></div>
+                    <div class="preview-site-content">
+                      <div class="preview-section-heading"><strong>會員專區</strong><span>Members only</span></div>
+                      <article class="preview-member-card">
+                        <h3 id="member-content-preview-heading">請輸入內容標題</h3>
+                        <p class="preview-member-summary" id="member-content-preview-summary">摘要會顯示在這裡。</p>
+                        <p class="preview-member-body" id="member-content-preview-body">開始輸入內容後，就能在這裡確認段落與換行。</p>
+                        <span class="preview-resource-button" id="member-content-preview-link">開啟資源</span>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+              </aside>
+            </div>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>會員內容</th><th>排程</th><th>狀態</th><th>操作</th></tr></thead><tbody id="member-content-body-list"></tbody></table></div>
+          </section>
+
+          <section class="admin-panel" id="panel-members" data-admin-panel="members">
+            <div class="section-heading">
+              <div><span class="eyebrow">Access</span><h1>會員名單</h1><p class="section-copy">g.ntu.edu.tw 僅代表臺大身分；此名單決定會員專區權限。</p></div>
+              <button class="btn" type="button" data-refresh="members">重新整理</button>
+            </div>
+            <form class="panel-card panel-card--accent" id="member-form">
+              <h2 class="panel-title" id="member-form-title">新增會員</h2>
+              <input id="member-id" type="hidden">
+              <input id="member-original-email" type="hidden">
+              <div class="form-grid">
+                <div class="field"><label for="member-email">g.ntu.edu.tw Email</label><input id="member-email" type="email" autocomplete="off" required placeholder="example@g.ntu.edu.tw"></div>
+                <div class="field"><label for="member-name">姓名</label><input id="member-name" maxlength="80"></div>
+                <div class="field field--third"><label for="member-valid-until">有效期限</label><input id="member-valid-until" type="date"></div>
+                <div class="field field--third"><label for="member-status">狀態</label><select id="member-status"><option value="active">有效</option><option value="inactive">停用</option></select></div>
+                <div class="field field--full"><label for="member-notes">備註</label><input id="member-notes" maxlength="240"></div>
+                <div class="form-actions"><button class="btn btn--primary" type="submit">儲存會員</button><button class="btn" id="member-cancel" type="button">清除表單</button></div>
+              </div>
+            </form>
+            <div class="panel-card">
+              <h2 class="panel-title">批次匯入</h2>
+              <div class="field field--full"><label for="member-bulk">每行一筆：Email,姓名,有效期限,備註</label><textarea id="member-bulk" placeholder="b12345678@g.ntu.edu.tw,王小明,2027-07-31,115 學年度"></textarea><p class="field-help">匯入會新增或更新同 Email 的會員；送出前會顯示筆數確認。</p></div>
+              <div class="btn-row"><button class="btn" id="bulk-members-button" type="button">檢查並匯入</button></div>
+            </div>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>會員</th><th>有效期限</th><th>狀態</th><th>備註</th><th>操作</th></tr></thead><tbody id="members-body"></tbody></table></div>
+          </section>
+
+          <section class="admin-panel" id="panel-admins" data-admin-panel="admins">
+            <div class="section-heading">
+              <div><span class="eyebrow">Owner only</span><h1>管理員</h1><p class="section-copy">只有擁有者可以新增、停用或調整後台權限。</p></div>
+              <button class="btn" type="button" data-refresh="admins">重新整理</button>
+            </div>
+            <form class="panel-card panel-card--accent" id="admin-form">
+              <h2 class="panel-title" id="admin-form-title">新增管理員</h2>
+              <input id="admin-id" type="hidden">
+              <input id="admin-original-email" type="hidden">
+              <div class="form-grid">
+                <div class="field"><label for="admin-email">g.ntu.edu.tw Email</label><input id="admin-email" type="email" autocomplete="off" required></div>
+                <div class="field"><label for="admin-name">姓名</label><input id="admin-name" maxlength="80"></div>
+                <fieldset class="field field--full permission-fieldset"><legend>功能權限</legend><div class="permission-grid" id="admin-permissions">
+                  <label class="permission-option"><input id="admin-permission-content" name="admin-permission" type="checkbox" value="content" checked><span><strong>網站內容</strong><small>公告、連結、公開頁面與會員內容</small></span></label>
+                  <label class="permission-option"><input id="admin-permission-members" name="admin-permission" type="checkbox" value="members"><span><strong>會員名單</strong><small>新增、停用與批次匯入會員</small></span></label>
+                  <label class="permission-option"><input id="admin-permission-audit" name="admin-permission" type="checkbox" value="audit"><span><strong>操作紀錄</strong><small>查看所有後台異動紀錄</small></span></label>
+                  <label class="permission-option permission-option--all"><input id="admin-permission-all" name="admin-permission" type="checkbox" value="all"><span><strong>全部功能</strong><small>一次授予上述全部權限</small></span></label>
+                </div><p class="field-help">擁有者由 Worker 環境設定指定，不能在此授予。</p></fieldset>
+                <div class="field"><span class="field-label">狀態</span><div class="checks"><label class="check"><input id="admin-active" type="checkbox" checked>啟用後台權限</label></div></div>
+                <div class="form-actions"><button class="btn btn--primary" type="submit">儲存管理員</button><button class="btn" id="admin-cancel" type="button">清除表單</button></div>
+              </div>
+            </form>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>管理員</th><th>權限</th><th>最後登入</th><th>狀態</th><th>操作</th></tr></thead><tbody id="admins-body"></tbody></table></div>
+          </section>
+
+          <section class="admin-panel" id="panel-audit" data-admin-panel="audit">
+            <div class="section-heading">
+              <div><span class="eyebrow">Owner only</span><h1>操作紀錄</h1><p class="section-copy">後台寫入操作的時間、操作者與目標。</p></div>
+              <button class="btn" type="button" data-refresh="audit">重新整理</button>
+            </div>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>時間</th><th>操作者</th><th>動作</th><th>目標</th></tr></thead><tbody id="audit-body"></tbody></table></div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast-region" id="toast-region" aria-live="polite"></div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "ntu-econ-portal",
+  "version": "1.0.0",
+  "private": true,
+  "description": "NTU Economics Student Association member portal and CMS API",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "check": "node --check src/index.js && node --check public/assets/portal.js && node --check public/assets/page-editor.js && node --check public/assets/admin.js && node --check public/assets/member.js",
+    "test": "node --test",
+    "validate": "npm run check && npm test",
+    "dry-run": "wrangler deploy --dry-run --env=\"\""
+  },
+  "devDependencies": {
+    "wrangler": "^4.124.0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}
